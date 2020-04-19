@@ -1,0 +1,8 @@
+# IDE Specific files/folder
+.idea
+.vscode
+
+#Ignore MACOS files/folder
+.DS_Store
+.AppleDouble
+.LSOverride
