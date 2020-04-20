@@ -6,3 +6,12 @@
 .DS_Store
 .AppleDouble
 .LSOverride
+
+# Build tool specific stuff for Semantic UI
+node_modules
+package-lock.json
+semantic.json
+css/semantic
+css/components
+css/themes
+css/*.js
