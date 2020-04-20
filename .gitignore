@@ -9,9 +9,7 @@
 
 # Build tool specific stuff for Semantic UI
 node_modules
+package.json
 package-lock.json
 semantic.json
-css/semantic
-css/components
-css/themes
-css/*.js
+semantic
