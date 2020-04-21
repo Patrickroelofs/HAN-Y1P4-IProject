@@ -5,7 +5,7 @@
         <div class="column">
             <div class="ui fluid card">
                 <a class="image" href="#">
-                    <img src="https://place-hold.it/300x150">
+                    <img src="https://place-hold.it/300x150" alt="Placeholder image">
                 </a>
                 <div class="content">
                     <a class="header" href="#">iPhones</a>
@@ -15,7 +15,7 @@
         <div class="column">
             <div class="ui fluid card">
                 <a class="image" href="#">
-                    <img src="https://place-hold.it/300x150">
+                    <img src="https://place-hold.it/300x150" alt="Placeholder image>
                 </a>
                 <div class="content">
                     <a class="header" href="#">Auto's</a>
@@ -25,7 +25,7 @@
         <div class="column">
             <div class="ui fluid card">
                 <a class="image" href="#">
-                    <img src="https://place-hold.it/300x150">
+                    <img src="https://place-hold.it/300x150" alt="Placeholder image>
                 </a>
                 <div class="content">
                     <a class="header" href="#">Laptops</a>
@@ -35,7 +35,7 @@
         <div class="column">
             <div class="ui fluid card">
                 <a class="image" href="#">
-                    <img src="https://place-hold.it/300x150">
+                    <img src="https://place-hold.it/300x150" alt="Placeholder image>
                 </a>
                 <div class="content">
                     <a class="header" href="#">Mondmaskers</a>
@@ -51,7 +51,7 @@
             <div class="column">
                 <div class="ui fluid card">
                     <a class="image" href="#">
-                        <img src="https://place-hold.it/150x150">
+                        <img src="https://place-hold.it/150x150" alt="Placeholder image>
                     </a>
                     <div class="content">
                         <a class="header" href="#">Product</a>
@@ -62,7 +62,7 @@
             <div class="column">
                 <div class="ui fluid card">
                     <a class="image" href="#">
-                        <img src="https://place-hold.it/150x150">
+                        <img src="https://place-hold.it/150x150" alt="Placeholder image>
                     </a>
                     <div class="content">
                         <a class="header" href="#">Product</a>
@@ -73,7 +73,7 @@
             <div class="column">
                 <div class="ui fluid card">
                     <a class="image" href="#">
-                        <img src="https://place-hold.it/150x150">
+                        <img src="https://place-hold.it/150x150" alt="Placeholder image>
                     </a>
                     <div class="content">
                         <a class="header" href="#">Product</a>
@@ -84,7 +84,7 @@
             <div class="column">
                 <div class="ui fluid card">
                     <a class="image" href="#">
-                        <img src="https://place-hold.it/150x150">
+                        <img src="https://place-hold.it/150x150" alt="Placeholder image>
                     </a>
                     <div class="content">
                         <a class="header" href="#">Product</a>
@@ -95,7 +95,7 @@
             <div class="column">
                 <div class="ui fluid card">
                     <a class="image" href="#">
-                        <img src="https://place-hold.it/150x150">
+                        <img src="https://place-hold.it/150x150" alt="Placeholder image>
                     </a>
                     <div class="content">
                         <a class="header" href="#">Product</a>
@@ -108,7 +108,7 @@
             <div class="column">
                 <div class="ui fluid card">
                     <a class="image" href="#">
-                        <img src="https://place-hold.it/150x150">
+                        <img src="https://place-hold.it/150x150" alt="Placeholder image>
                     </a>
                     <div class="content">
                         <a class="header" href="#">Product</a>
@@ -119,7 +119,7 @@
             <div class="column">
                 <div class="ui fluid card">
                     <a class="image" href="#">
-                        <img src="https://place-hold.it/150x150">
+                        <img src="https://place-hold.it/150x150" alt="Placeholder image>
                     </a>
                     <div class="content">
                         <a class="header" href="#">Product</a>
@@ -130,7 +130,7 @@
             <div class="column">
                 <div class="ui fluid card">
                     <a class="image" href="#">
-                        <img src="https://place-hold.it/150x150">
+                        <img src="https://place-hold.it/150x150" alt="Placeholder image>
                     </a>
                     <div class="content">
                         <a class="header" href="#">Product</a>
@@ -141,7 +141,7 @@
             <div class="column">
                 <div class="ui fluid card">
                     <a class="image" href="#">
-                        <img src="https://place-hold.it/150x150">
+                        <img src="https://place-hold.it/150x150" alt="Placeholder image>
                     </a>
                     <div class="content">
                         <a class="header" href="#">Product</a>
@@ -152,7 +152,7 @@
             <div class="column">
                 <div class="ui fluid card">
                     <a class="image" href="#">
-                        <img src="https://place-hold.it/150x150">
+                        <img src="https://place-hold.it/150x150" alt="Placeholder image>
                     </a>
                     <div class="content">
                         <a class="header" href="#">Product</a>
