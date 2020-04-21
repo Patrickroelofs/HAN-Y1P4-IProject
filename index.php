@@ -11,7 +11,7 @@
 
     <main>
         <?php include 'includes/tmp/mainContent.php'; ?>
-    </main>>
+    </main>
 
     <?php include 'includes/footer.inc.php'; ?>
 
