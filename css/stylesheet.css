@@ -28,6 +28,24 @@ nav .ui.input > input {
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
+/* user dropdown */
+.accountdropdown .image img{
+    padding: 8px;
+}
+.accountdropdown .text,
+.accountdropdown i,
+.favoritesdropdown i{
+    color: white;
+}
+
+.accountdropdown .text span:first-child {
+    display: block;
+    padding-bottom: 6px;
+}
+.accountdropdown .text span:last-child {
+    display: block;
+}
+
 /* --- Footer ------------------------------------------- */
 
 footer {

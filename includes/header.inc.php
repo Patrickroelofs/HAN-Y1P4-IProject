@@ -17,8 +17,30 @@
                 </div>
             </div>
 
-            <div class="item two wide column">
+            <div class="item three wide column">
+                <div class="ui dropdown link item accountdropdown">
+                    <span class="image">
+                        <img alt="user profile picture" src="https://place-hold.it/48x48" class="ui circular image">
+                    </span>
+                    <div class="text">
+                        <span class="bold">Goedemiddag,</span>
+                        <span>Gebruiker</span>
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <div class="item">Mijn Profiel</div>
+                    </div>
+                </div>
+            </div>
 
+            <div class="item one wide column">
+                <div class="ui dropdown link item favoritesdropdown">
+                    <span class="text"><i class="heart icon"></i></span>
+
+                    <div class="menu">
+                        <!-- Producten in favorieten -->
+                    </div>
+                </div>
             </div>
         </div>
     </div>
