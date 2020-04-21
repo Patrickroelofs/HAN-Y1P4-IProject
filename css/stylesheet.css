@@ -1,3 +1,4 @@
+/* --- Navigation ------------------------------------------- */
 nav {
     padding: 16px 0 0 0;
     background: #0F4C8E;
@@ -27,6 +28,8 @@ nav .ui.input > input {
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
+/* --- Footer ------------------------------------------- */
+
 footer {
     margin: 128px 0 0 0;
 }
@@ -43,6 +46,19 @@ footer .footer.title {
 footer .footer.title h1 {
     padding: 48px 0;
     margin: 16px 0;
+}
+
+
+
+
+/* --- Text modifiers ------------------------------------------- */
+.bold {
+    font-weight: bold;
+}
+
+/* --- Padding modifiers ------------------------------------------- */
+.vertical-padding-6 {
+    padding: 6px 0;
 }
 
 .vertical-padding-12 {
