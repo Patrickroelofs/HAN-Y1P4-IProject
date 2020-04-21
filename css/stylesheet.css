@@ -82,3 +82,11 @@ footer .footer.title h1 {
 .vertical-padding-12 {
     padding: 12px 0;
 }
+/* --- Margin modifiers ------------------------------------------- */
+.vertical-margin-6 {
+    margin: 6px 0;
+}
+
+.vertical-margin-12 {
+    margin: 12px 0;
+}
