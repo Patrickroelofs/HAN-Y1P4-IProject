@@ -8,7 +8,7 @@ nav h1 {
     font-size: 1.6em;
 }
 
-main{
+main {
     margin: 32px 0;
 }
 
@@ -22,7 +22,29 @@ nav .ui.input > input {
     border: 0;
 }
 
-.ui.secondary.menu.categories{
+.ui.secondary.menu.categories {
     background: white;
     border-bottom: 2px solid red;
+}
+
+footer {
+    margin: 128px 0 0 0;
+}
+
+footer section.primary {
+    background: #0F4C8E;
+    color: white;
+}
+
+footer .footer.title {
+    text-align: center;
+}
+
+footer .footer.title h1 {
+    padding: 48px 0;
+    margin: 16px 0;
+}
+
+.vertical-padding-12 {
+    padding: 12px 0;
 }
