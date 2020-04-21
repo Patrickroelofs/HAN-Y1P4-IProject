@@ -24,7 +24,7 @@ nav .ui.input > input {
 
 .ui.secondary.menu.categories {
     background: white;
-    border-bottom: 2px solid red;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 footer {

@@ -16,6 +16,22 @@
                     </div>
                 </div>
             </div>
+
+            <div class="item two wide column">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="ui secondary menu categories">
+        <div class="ui container">
+            <div class="ui dropdown item">
+                <div class="text">Categorieën</div>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <!-- Menu items -->
+                </div>
+            </div>
         </div>
     </div>
 </nav>

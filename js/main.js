@@ -13,3 +13,8 @@ $('.ui.search')
         minCharacters : 3
     })
 ;
+
+/* Category select */
+$(function() {
+    $('.ui.dropdown').dropdown();
+});
