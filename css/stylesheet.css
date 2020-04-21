@@ -1,0 +1,28 @@
+nav {
+    padding: 16px 0 0 0;
+    background: #0F4C8E;
+}
+
+nav h1 {
+    color: white;
+    font-size: 1.6em;
+}
+
+main{
+    margin: 32px 0;
+}
+
+nav .search,
+nav .input,
+nav input {
+    width: 100%;
+}
+
+nav .ui.input > input {
+    border: 0;
+}
+
+.ui.secondary.menu.categories{
+    background: white;
+    border-bottom: 2px solid red;
+}
