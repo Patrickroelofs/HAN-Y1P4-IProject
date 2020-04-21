@@ -9,9 +9,9 @@
 <body>
     <?php include 'includes/header.inc.php'; ?>
 
-    <div class="ui container">
+    <main>
         <?php include 'includes/tmp/mainContent.php'; ?>
-    </div>
+    </main>>
 
     <?php include 'includes/footer.inc.php'; ?>
 

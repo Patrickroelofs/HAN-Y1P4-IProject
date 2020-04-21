@@ -1,4 +1,5 @@
-<main>
+<div class="ui container">
+    <!-- featured content -->
     <div class="ui stackable four column grid">
         <div class="column">
             <div class="ui card">
@@ -52,4 +53,4 @@
         </div>
     </div>
 -->
-</main>
+</div>
