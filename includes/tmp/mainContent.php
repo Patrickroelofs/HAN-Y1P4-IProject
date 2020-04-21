@@ -3,7 +3,7 @@
     <h2>Uitgelicht</h2>
     <div class="ui stackable four column grid">
         <div class="column">
-            <div class="ui card">
+            <div class="ui fluid card">
                 <a class="image" href="#">
                     <img src="https://place-hold.it/300x150">
                 </a>
@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="column">
-            <div class="ui card">
+            <div class="ui fluid card">
                 <a class="image" href="#">
                     <img src="https://place-hold.it/300x150">
                 </a>
@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="column">
-            <div class="ui card">
+            <div class="ui fluid card">
                 <a class="image" href="#">
                     <img src="https://place-hold.it/300x150">
                 </a>
@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class="column">
-            <div class="ui card">
+            <div class="ui fluid card">
                 <a class="image" href="#">
                     <img src="https://place-hold.it/300x150">
                 </a>
@@ -49,7 +49,7 @@
     <div class="ui stackable five column grid">
         <div class="five column row">
             <div class="column">
-                <div class="ui card">
+                <div class="ui fluid card">
                     <a class="image" href="#">
                         <img src="https://place-hold.it/150x150">
                     </a>
@@ -60,7 +60,7 @@
                 </div>
             </div>
             <div class="column">
-                <div class="ui card">
+                <div class="ui fluid card">
                     <a class="image" href="#">
                         <img src="https://place-hold.it/150x150">
                     </a>
@@ -71,7 +71,7 @@
                 </div>
             </div>
             <div class="column">
-                <div class="ui card">
+                <div class="ui fluid card">
                     <a class="image" href="#">
                         <img src="https://place-hold.it/150x150">
                     </a>
@@ -82,7 +82,7 @@
                 </div>
             </div>
             <div class="column">
-                <div class="ui card">
+                <div class="ui fluid card">
                     <a class="image" href="#">
                         <img src="https://place-hold.it/150x150">
                     </a>
@@ -93,7 +93,7 @@
                 </div>
             </div>
             <div class="column">
-                <div class="ui card">
+                <div class="ui fluid card">
                     <a class="image" href="#">
                         <img src="https://place-hold.it/150x150">
                     </a>
@@ -106,7 +106,7 @@
         </div>
         <div class="five column row">
             <div class="column">
-                <div class="ui card">
+                <div class="ui fluid card">
                     <a class="image" href="#">
                         <img src="https://place-hold.it/150x150">
                     </a>
@@ -117,7 +117,7 @@
                 </div>
             </div>
             <div class="column">
-                <div class="ui card">
+                <div class="ui fluid card">
                     <a class="image" href="#">
                         <img src="https://place-hold.it/150x150">
                     </a>
@@ -128,7 +128,7 @@
                 </div>
             </div>
             <div class="column">
-                <div class="ui card">
+                <div class="ui fluid card">
                     <a class="image" href="#">
                         <img src="https://place-hold.it/150x150">
                     </a>
@@ -139,7 +139,7 @@
                 </div>
             </div>
             <div class="column">
-                <div class="ui card">
+                <div class="ui fluid card">
                     <a class="image" href="#">
                         <img src="https://place-hold.it/150x150">
                     </a>
@@ -150,7 +150,7 @@
                 </div>
             </div>
             <div class="column">
-                <div class="ui card">
+                <div class="ui fluid card">
                     <a class="image" href="#">
                         <img src="https://place-hold.it/150x150">
                     </a>
