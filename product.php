@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/stylesheet.css">
 </head>
 <body>
-<?php include 'includes/header.inc.php'; ?>
+<?php include 'includes/navigation.inc.php'; ?>
 
 <main>
     <?php include 'includes/tmp/productContent.php'; ?>
