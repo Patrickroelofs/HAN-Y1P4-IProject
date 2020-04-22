@@ -73,6 +73,9 @@ footer .footer.title h1 {
 .bold {
     font-weight: bold;
 }
+.text-center {
+    text-align: center;
+}
 
 /* --- Padding modifiers ------------------------------------------- */
 .vertical-padding-6 {
