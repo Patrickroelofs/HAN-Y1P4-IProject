@@ -10,7 +10,7 @@ class Dbh{
         $this->servername = "localhost";
         $this->username = "sa";
         $this->password = "sa";
-        $this->dbname = "IProject";
+        $this->dbname = "iproject19";
 
         try{
             $dsn = "sqlsrv:Server=" . $this->servername . ";Database=" . $this->dbname;
