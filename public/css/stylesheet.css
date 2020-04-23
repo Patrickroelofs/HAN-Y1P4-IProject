@@ -93,3 +93,10 @@ footer .footer.title h1 {
 .vertical-margin-12 {
     margin: 12px 0;
 }
+.horizontal-margin-6 {
+    margin: 0px 12px;
+}
+
+.horizontal-margin-12 {
+    margin: 0 12px;
+}
