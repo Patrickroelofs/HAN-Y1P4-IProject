@@ -29,6 +29,7 @@
                     <i class="dropdown icon"></i>
                     <div class="menu">
                         <div class="item">Mijn Profiel</div>
+                        <div class="item">Uitloggen</div>
                     </div>
                 </div>
             </div>
