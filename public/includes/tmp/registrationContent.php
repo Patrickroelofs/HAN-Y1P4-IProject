@@ -9,14 +9,14 @@
                             <div class="horizontal-margin-6">
                                 <div class="field">
                                     <label for="username">Gebruikersnaam</label>
-                                    <input type="text" name="username" id="username" placeholder="Gebruikersnaam..."
+                                    <input type="text" name="username" id="username" placeholder="Gebruikersnaam"
                                            required>
                                 </div>
                             </div>
                             <div class="horizontal-margin-6">
                                 <div class="field">
                                     <label for="email">Email</label>
-                                    <input type="email" name="email" id="email" placeholder="Email..." required>
+                                    <input type="email" name="email" id="email" placeholder="Email" required>
                                 </div>
                             </div>
                         </div>
@@ -26,14 +26,14 @@
                             <div class="horizontal-margin-6">
                                 <div class="field">
                                     <label for="firstname">Voornaam</label>
-                                    <input type="text" name="firstname" id="firstname" placeholder="Voornaam..."
+                                    <input type="text" name="firstname" id="firstname" placeholder="Voornaam"
                                            required>
                                 </div>
                             </div>
                             <div class="horizontal-margin-6">
                                 <div class="field">
                                     <label for="lastname">Achternaam</label>
-                                    <input type="text" name="lastname" id="lastname" placeholder="Achternaam..."
+                                    <input type="text" name="lastname" id="lastname" placeholder="Achternaam"
                                            required>
                                 </div>
                             </div>
@@ -62,13 +62,13 @@
                             <div class="horizontal-margin-6">
                                 <div class="field">
                                     <label for="adress">Adress</label>
-                                    <input type="text" name="adress" id="adress" placeholder="Adress..." required>
+                                    <input type="text" name="adress" id="adress" placeholder="Adress" required>
                                 </div>
                             </div>
                             <div class="horizontal-margin-6">
                                 <div class="field">
                                     <label for="postalcode">Postcode</label>
-                                    <input type="text" name="postalcode" id="postalcode" placeholder="Postcode..."
+                                    <input type="text" name="postalcode" id="postalcode" placeholder="Postcode"
                                            required>
                                 </div>
                             </div>
@@ -79,13 +79,13 @@
                             <div class="horizontal-margin-6">
                                 <div class="field">
                                     <label for="place">Plaats</label>
-                                    <input type="text" name="place" id="place" placeholder="Plaats..." required>
+                                    <input type="text" name="place" id="place" placeholder="Plaats" required>
                                 </div>
                             </div>
                             <div class="horizontal-margin-6">
                                 <div class="field">
                                     <label for="country">Land</label>
-                                    <input type="text" name="country" id="country" placeholder="Land..." required>
+                                    <input type="text" name="country" id="country" placeholder="Land" required>
                                 </div>
                             </div>
                         </div>
@@ -95,13 +95,13 @@
                             <div class="horizontal-margin-6">
                                 <div class="field">
                                     <label for="phone">Telefoon 1</label>
-                                    <input type="text" name="phone" id="phone" placeholder="Telefoon 1..." required>
+                                    <input type="tel" name="phone" id="phone" placeholder="Telefoon 1" required>
                                 </div>
                             </div>
                             <div class="horizontal-margin-6">
                                 <div class="field">
                                     <label for="phone_2">Telefoon 2</label>
-                                    <input type="text" name="phone_2" id="phone_2" placeholder="Telefoon 2...">
+                                    <input type="tel" name="phone_2" id="phone_2" placeholder="Telefoon 2">
                                 </div>
                             </div>
                         </div>
@@ -125,7 +125,7 @@
                     <div class="vertical-margin-12">
                         <div class="field">
                             <label for="secretAnswer"></label>
-                            <input type="text" name="secretAnswer" id="secretAnswer" placeholder="Antwoord..."
+                            <input type="text" name="secretAnswer" id="secretAnswer" placeholder="Antwoord"
                                    required>
                         </div>
                     </div>
