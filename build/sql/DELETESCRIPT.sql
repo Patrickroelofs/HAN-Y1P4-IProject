@@ -4,9 +4,16 @@
 USE iproject19
 GO
 
-drop table if exists bestand
-go
+DROP TABLE IF EXISTS bestand
+GO
 
-drop table if exists bod
-go
+DROP TABLE IF EXISTS bod
+GO
+
+DROP TABLE IF EXISTS Gebruiker
+GO
+
+DROP TABLE IF EXISTS Voorwerp
+GO
+
 
