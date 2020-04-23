@@ -66,9 +66,13 @@ footer .footer.title h1 {
     margin: 16px 0;
 }
 
+.selling-point i {
+    margin-bottom: 12px;
+}
 
-
-
+.selling-point p {
+    margin: 0;
+}
 /* --- Text modifiers ------------------------------------------- */
 .bold {
     font-weight: bold;
@@ -86,6 +90,10 @@ footer .footer.title h1 {
     padding: 12px 0;
 }
 
+.top-padding-12 {
+    padding-top: 12px;
+}
+
 .horizontal-padding-6 {
     padding: 0 6px;
 }
@@ -101,6 +109,7 @@ footer .footer.title h1 {
 .vertical-margin-12 {
     margin: 12px 0;
 }
+
 .horizontal-margin-6 {
     margin: 0px 12px;
 }
