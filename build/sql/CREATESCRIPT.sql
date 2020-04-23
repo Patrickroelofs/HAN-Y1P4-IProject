@@ -71,7 +71,7 @@ CREATE TABLE Voorwerp (
     verzendkosten           CHAR(27)        NULL,
     verzendinstructies      CHAR(27)        NULL,
     verkopersgebruikersnaam VARCHAR(255)    NOT NULL,
-    kopersgebruikersnaam    VARCHAR(255)        NOT NULL,
+    kopersgebruikersnaam    VARCHAR(255)    NOT NULL,
     looptijdeindedag        DATE            NOT NULL,
     looptijdeindetijdstip   TIME(0)         NOT NULL    DEFAULT CONVERT(TIME, GETDATE()),
     veilinggesloten         BIT             NOT NULL,
@@ -103,7 +103,7 @@ CREATE TABLE Bod
 (
     voorwerp    NUMERIC(10)     NOT NULL,
     bodbedrag   NUMERIC(8, 2)   NOT NULL    DEFAULT '0.00',
-    gebruiker   VARCHAR(255)        NOT NULL,
+    gebruiker   VARCHAR(255)    NOT NULL,
     boddag      DATE            NOT NULL    DEFAULT GETDATE(),
     bodtijdstip TIME(0)         NOT NULL    DEFAULT CONVERT(TIME, GETDATE()),
 
@@ -138,7 +138,7 @@ GO
 create table Gebruikerstelefoon
 (
     volgnr      INT             NOT NULL,
-    gebruiker   VARCHAR(255)        NOT NULL,
+    gebruiker   VARCHAR(255)    NOT NULL,
     telefoon    CHAR(11)        NOT NULL,
 
     CONSTRAINT pk_volgnr_gebruiker PRIMARY KEY(volgnr, Gebruiker),
