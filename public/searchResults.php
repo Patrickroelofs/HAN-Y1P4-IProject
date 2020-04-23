@@ -12,7 +12,7 @@
 
 <main>
     <div class="ui container">
-        <h2>Producten</h2>
+        <h2>Zoekresultaten</h2>
         <div class="ui stackable five column grid">
             <div class="five column row">
                 <div class="column">
