@@ -83,55 +83,63 @@
                                 </div>
                             </div>
                             <div class="horizontal-margin-6">
-                                <div class="field">
+                                <div class="bold">
                                     <label for="country">Land</label>
-                                    <input type="text" name="country" id="country" placeholder="Land" required>
+                                </div>
+                                <div class="ui fluid search selection dropdown">
+                                    <input type="hidden" name="country">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">Selecteer Land</div>
+                                    <div class="menu">
+                                        <div class="item" data-value="nl"><i class="nl flag"></i>Nederland</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="ui two column centered grid ">
-                        <div class="two colomn centered row">
-                            <div class="horizontal-margin-6">
-                                <div class="field">
-                                    <label for="phone">Telefoon 1</label>
-                                    <input type="tel" name="phone" id="phone" placeholder="Telefoon 1" required>
-                                </div>
-                            </div>
-                            <div class="horizontal-margin-6">
-                                <div class="field">
-                                    <label for="phone_2">Telefoon 2</label>
-                                    <input type="tel" name="phone_2" id="phone_2" placeholder="Telefoon 2">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="vertical-margin-12">
-                        <div class="field">
-                            <label for="birthdate">Geboorte datum</label>
-                            <input type="date" name="birthdate" id="birthdate" required>
-                        </div>
-                    </div>
-                    <div class="vertical-margin-12">
-                        <div class="field">
-                            <label for="secretQuestion">Geheime vraag</label>
-                            <select class="ui dropdown">
-                                <option value="">Geheime vraag</option>
-                                <option value="1">Vraag 1</option>
-                                <option value="0">Vraag 2</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="vertical-margin-12">
-                        <div class="field">
-                            <label for="secretAnswer"></label>
-                            <input type="text" name="secretAnswer" id="secretAnswer" placeholder="Antwoord"
-                                   required>
-                        </div>
-                    </div>
-                    <button class="ui fluid large primary submit button">Registreer</button>
                 </div>
-            </form>
+                <div class="ui two column centered grid ">
+                    <div class="two colomn centered row">
+                        <div class="horizontal-margin-6">
+                            <div class="field">
+                                <label for="phone">Telefoon 1</label>
+                                <input type="tel" name="phone" id="phone" placeholder="Telefoon 1" required>
+                            </div>
+                        </div>
+                        <div class="horizontal-margin-6">
+                            <div class="field">
+                                <label for="phone_2">Telefoon 2</label>
+                                <input type="tel" name="phone_2" id="phone_2" placeholder="Telefoon 2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="vertical-margin-12">
+                    <div class="field">
+                        <label for="birthdate">Geboorte datum</label>
+                        <input type="date" name="birthdate" id="birthdate" required>
+                    </div>
+                </div>
+                <div class="vertical-margin-12">
+                    <div class="field">
+                        <label for="secretQuestion">Geheime vraag</label>
+                        <select class="ui dropdown">
+                            <option value="">Geheime vraag</option>
+                            <option value="1">Vraag 1</option>
+                            <option value="0">Vraag 2</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="vertical-margin-12">
+                    <div class="field">
+                        <label for="secretAnswer"></label>
+                        <input type="text" name="secretAnswer" id="secretAnswer" placeholder="Antwoord"
+                               required>
+                    </div>
+                </div>
+                <button class="ui fluid large primary submit button">Registreer</button>
         </div>
+        </form>
     </div>
+</div>
 </div>
