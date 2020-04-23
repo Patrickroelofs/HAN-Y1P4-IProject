@@ -46,24 +46,88 @@ GO
 
 /* TABLE: Voorwerp */
 CREATE TABLE Voorwerp (
-    voorwerpnummer NUMERIC(10) NOT NULL PRIMARY KEY,
-    titel CHAR(18) NOT NULL,
-    beschrijving CHAR(10) NOT NULL,
-    startprijs CHAR(5) NOT NULL,
-    betalingswijzenaam CHAR(9) NOT NULL,
-    betalingsinstructie VARCHAR(255) NULL,
-    plaatsnaam CHAR(12) NOT NULL,
-    landnaam CHAR(9) NOT NULL,
-    looptijd INT NOT NULL,
-    looptijdbegindag DATE NOT NULL,
-    looptijdbegintijdstip TIME(0) NOT NULL DEFAULT CONVERT(TIME, GETDATE()),
-    verzendkosten CHAR(27) NULL,
-    verzendinstructies CHAR(27) NULL,
-    verkopersgebruikersnaam CHAR(10) NOT NULL,
-    kopersgebruikersnaam char(10) NOT NULL,
-    looptijdeindedag DATE NOT NULL,
-    looptijdeindetijdstip TIME(0) NOT NULL DEFAULT CONVERT(TIME, GETDATE()),
-    veilinggesloten BIT NOT NULL,
-    verkoopprijs NUMERIC(8, 2) NOT NULL
+    voorwerpnummer          NUMERIC(10)     NOT NULL    PRIMARY KEY,
+    titel                   CHAR(18)        NOT NULL,
+    beschrijving            CHAR(10)        NOT NULL,
+    startprijs              CHAR(5)         NOT NULL,
+    betalingswijzenaam      CHAR(9)         NOT NULL,
+    betalingsinstructie     VARCHAR(255)    NULL,
+    plaatsnaam              CHAR(12)        NOT NULL,
+    landnaam                CHAR(9)         NOT NULL,
+    looptijd                INT             NOT NULL,
+    looptijdbegindag        DATE            NOT NULL,
+    looptijdbegintijdstip   TIME(0)         NOT NULL    DEFAULT CONVERT(TIME, GETDATE()),
+    verzendkosten           CHAR(27)        NULL,
+    verzendinstructies      CHAR(27)        NULL,
+    verkopersgebruikersnaam CHAR(10)        NOT NULL,
+    kopersgebruikersnaam    CHAR(10)        NOT NULL,
+    looptijdeindedag        DATE            NOT NULL,
+    looptijdeindetijdstip   TIME(0)         NOT NULL    DEFAULT CONVERT(TIME, GETDATE()),
+    veilinggesloten         BIT             NOT NULL,
+    verkoopprijs            NUMERIC(8, 2)   NOT NULL
+);
+GO
+
+/*TABLE: Feedback */
+create table Feedback
+(
+    voorwerp        NUMERIC(10)     NOT NULL,
+    soortGebruiker  CHAR(8)         NOT NULL,
+    feedbacksoort   CHAR(8)         NOT NULL,
+    dag             CHAR(10)        NOT NULL,
+    tijdstip        CHAR(8)         NOT NULL,
+    commentaar      CHAR(12)        NULL,
+
+    CONSTRAINT pk_voorwerp_soortGebruiker PRIMARY KEY(Voorwerp, SoortGebruiker),
+);
+GO
+
+/* TABLE: Gebruikerstelefoon */
+create table Gebruikerstelefoon
+(
+    volgnr      INT             NOT NULL,
+    gebruiker   CHAR(10)        NOT NULL,
+    telefoon    CHAR(11)        NOT NULL,
+
+    CONSTRAINT pk_volgnr_gebruiker PRIMARY KEY(Volgnr, Gebruiker)
+);
+GO
+
+/* TABLE: Rubriek */
+create table Rubriek
+(
+    rubrieknummer   INT         NOT NULL    PRIMARY KEY,
+    rubrieknaam     CHAR(24)    NOT NULL,
+    rubriek         INT         NULL,
+    volgnr          INT         NOT NULL
+);
+GO
+
+/* TABLE: Verkoper */
+create table Verkoper
+(
+    gebruiker       CHAR(10)    NOT NULL    PRIMARY KEY,
+    bank            CHAR(8)     NULL,
+    bankrekening    INT         NULL,
+    controleOptie   CHAR(10)    NOT NULL,
+    creditcard      CHAR(19)    NULL
+);
+GO
+
+/*TABLE: Voorwerp in Rubriek*/
+create table VoorwerpInRubriek
+(
+    voorwerp                    NUMERIC(10)     NOT NULL,
+    rubriekOpLaagsteNiveau      INT             NOT NULL,
+
+    CONSTRAINT pk_Voorwerp_rubriekOpLaagsteNiveau PRIMARY KEY(voorwerp, rubriekOpLaagsteNiveau)
+);
+GO
+
+/* Vraag */
+create table Vraag
+(
+    vraagnummer     INT         NOT NULL    PRIMARY KEY,
+    tekstVraag      CHAR(21)    NOT NULL
 );
 GO
