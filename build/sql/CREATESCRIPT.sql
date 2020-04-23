@@ -7,8 +7,8 @@ GO
 /* TABLE: Bestand */
 CREATE TABLE Bestand
 (
-    Filenaam    CHAR(13)        NOT NULL    PRIMARY KEY,
-    Voorwerp    NUMERIC(10)     NOT NULL
+    filenaam    CHAR(13)        NOT NULL    PRIMARY KEY,
+    voorwerp    NUMERIC(10)     NOT NULL
 );
 GO
 
@@ -72,13 +72,13 @@ GO
 create table Feedback
 (
     voorwerp        NUMERIC(10)     NOT NULL,
-    soortGebruiker  CHAR(8)         NOT NULL,
+    soortgebruiker  CHAR(8)         NOT NULL,
     feedbacksoort   CHAR(8)         NOT NULL,
     dag             CHAR(10)        NOT NULL,
     tijdstip        CHAR(8)         NOT NULL,
     commentaar      CHAR(12)        NULL,
 
-    CONSTRAINT pk_voorwerp_soortGebruiker PRIMARY KEY(Voorwerp, SoortGebruiker),
+    CONSTRAINT pk_voorwerp_soortGebruiker PRIMARY KEY(voorwerp, soortgebruiker),
 );
 GO
 
@@ -89,7 +89,7 @@ create table Gebruikerstelefoon
     gebruiker   CHAR(10)        NOT NULL,
     telefoon    CHAR(11)        NOT NULL,
 
-    CONSTRAINT pk_volgnr_gebruiker PRIMARY KEY(Volgnr, Gebruiker)
+    CONSTRAINT pk_volgnr_gebruiker PRIMARY KEY(volgnr, Gebruiker)
 );
 GO
 
@@ -109,7 +109,7 @@ create table Verkoper
     gebruiker       CHAR(10)    NOT NULL    PRIMARY KEY,
     bank            CHAR(8)     NULL,
     bankrekening    INT         NULL,
-    controleOptie   CHAR(10)    NOT NULL,
+    controleoptie   CHAR(10)    NOT NULL,
     creditcard      CHAR(19)    NULL
 );
 GO
@@ -118,9 +118,9 @@ GO
 create table VoorwerpInRubriek
 (
     voorwerp                    NUMERIC(10)     NOT NULL,
-    rubriekOpLaagsteNiveau      INT             NOT NULL,
+    rubriekoplaagsteniveau      INT             NOT NULL,
 
-    CONSTRAINT pk_Voorwerp_rubriekOpLaagsteNiveau PRIMARY KEY(voorwerp, rubriekOpLaagsteNiveau)
+    CONSTRAINT pk_Voorwerp_rubriekOpLaagsteNiveau PRIMARY KEY(voorwerp, rubriekoplaagsteniveau)
 );
 GO
 
@@ -128,6 +128,6 @@ GO
 create table Vraag
 (
     vraagnummer     INT         NOT NULL    PRIMARY KEY,
-    tekstVraag      CHAR(21)    NOT NULL
+    tekstvraag      CHAR(21)    NOT NULL
 );
 GO
