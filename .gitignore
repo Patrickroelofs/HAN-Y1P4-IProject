@@ -13,4 +13,3 @@ package.json
 package-lock.json
 semantic.json
 semantic
-db/Dbh.php
