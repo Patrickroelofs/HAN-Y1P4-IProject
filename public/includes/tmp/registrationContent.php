@@ -109,8 +109,7 @@
                     <div class="vertical-margin-12">
                         <div class="field">
                             <label for="birthdate">Geboorte datum</label>
-                            <input type="text" name="birthdate" id="birthdate"
-                                   placeholder="Geboorte datum (dd/mm/jjjj)..." required>
+                            <input type="date" name="birthdate" id="birthdate" required>
                         </div>
                     </div>
                     <div class="vertical-margin-12">
