@@ -8,8 +8,4 @@ class Hash {
     public static function get($string, $hash) {
         return password_verify($string, $hash);
     }
-
-    public static function unique() {
-        return self::make(uniqid());
-    }
 }
