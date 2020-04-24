@@ -13,9 +13,9 @@
     } else {
 ?>
 
-<div class="ui dropdown link item accountdropdown">
+<div class="ui dropdown link item accountdropdown right aligned horizontal-padding-6">
     <span class="image">
-        <img alt="user profile picture" src="https://place-hold.it/48x48" class="ui circular image">
+        <img alt="user profile picture" src="https://place-hold.it/32x32" class="ui circular image">
     </span>
     <div class="text">
         <span class="bold">Goedemiddag,</span>

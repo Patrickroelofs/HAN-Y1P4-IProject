@@ -3,8 +3,6 @@
     include 'includes/head.inc.php';
 ?>
 
-<?php include 'includes/navigation.inc.php'; ?>
-
 <main>
     <div class="ui container">
         <h2>Zoekresultaten</h2>

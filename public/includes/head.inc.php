@@ -8,3 +8,7 @@
     <link rel="stylesheet" href="css/stylesheet.css">
 </head>
 <body>
+<?php include 'mobile-navigation.inc.php'; ?>
+
+<div class="pusher">
+<?php include 'navigation.inc.php'; ?>

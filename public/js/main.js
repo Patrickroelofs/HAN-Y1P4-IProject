@@ -33,3 +33,7 @@ $('.ui.range.slider')
         step: 0
     })
 ;
+
+$('a#mobile_item').click(function () {
+    $('#sidebar').sidebar('toggle')
+});

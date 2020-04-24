@@ -4,8 +4,6 @@ include 'includes/head.inc.php';
 include '../functions/register.func.php';
 ?>
 
-<?php include 'includes/navigation.inc.php'; ?>
-
 <main>
     <div class="ui container">
         <div class="ui two column centered grid">

@@ -3,8 +3,6 @@
     include 'includes/head.inc.php';
 ?>
 
-<?php include 'includes/navigation.inc.php'; ?>
-
 <main>
     <!-- Buttons, map -->
     <div class="ui container">

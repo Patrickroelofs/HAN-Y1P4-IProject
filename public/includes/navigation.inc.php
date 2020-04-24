@@ -1,21 +1,26 @@
 <nav class="white">
-    <div class="ui secondary menu stackable">
+    <div class="ui secondary menu">
         <div class="ui three column grid container">
-            <div class="item three wide column">
+
+            <div class="two wide tablet mobile only column mobile-button">
+                <a id="mobile_item" class="item"><i class="bars icon white"></i></a>
+            </div>
+
+            <div class="three wide tablet phone three wide computer logo">
                 <a href="index.php"><h1>EenmaalAndermaal</h1></a>
             </div>
 
-            <div class="item eight wide column">
+            <div class="computer tablet only item seven wide column">
                 <?php include_once 'navigation/search.inc.php'; ?>
             </div>
 
-            <div class="item four wide column">
+            <div class="computer only item five wide column right aligned nopadding">
                 <?php include_once 'navigation/account.inc.php'; ?>
             </div>
         </div>
     </div>
 
-    <div class="ui secondary menu categories">
+    <div class="computer only ui secondary menu categories">
         <div class="ui container">
             <div class="ui dropdown link item">
                 <span class="text bold">Categorieën</span>
@@ -46,3 +51,4 @@
         </div>
     </div>
 </nav>
+
