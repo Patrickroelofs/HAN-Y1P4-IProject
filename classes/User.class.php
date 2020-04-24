@@ -7,4 +7,20 @@ class User {
     {
         $this->_db = Database::getInstance();
     }
+
+    public function create() {
+
+    }
+
+    public function delete() {
+
+    }
+
+    public function logout() {
+
+    }
+
+    public function isLoggedIn() {
+
+    }
 }

@@ -34,7 +34,6 @@ class Database {
             }
 
             if($this->_query->execute()) {
-                echo 'executed';
                 $this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);
                 $this->_count = $this->_query->rowCount();
             } else {
@@ -69,16 +68,8 @@ class Database {
         return false;
     }
 
-    public function update($table, $row, $fields) {
-        // Update table, row and field
-    }
-
-    public function get($table, $row) {
-        //TODO: Basic getter (*) for specific table (and row?)
-    }
-
-    public function delete($table, $row) {
-        //TODO: Delete row from table
+    public function prepare($sql){
+        return $this->_pdo->prepare($sql);
     }
 
     public function error() {

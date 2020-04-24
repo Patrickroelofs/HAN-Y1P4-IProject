@@ -7,7 +7,7 @@
 //======================================================================
 
 // Is submit pressed
-if(isset($_POST['submit'])) {
+if(isset($_POST['register-submit'])) {
 
     // Save data in temporary variables
     $username           =  $_POST['username'];
@@ -51,7 +51,7 @@ if(isset($_POST['submit'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Testfile</title>
+    <title>Register | Testfile</title>
 </head>
 <body>
     <form action="" method="post">
@@ -76,8 +76,7 @@ if(isset($_POST['submit'])) {
         </div>
 
         <div class="field">
-            <input type="hidden" name="token" value="">
-            <input type="submit" name="submit" value="Submit">
+            <input type="submit" name="register-submit" value="Submit">
         </div>
     </form>
 </body>
