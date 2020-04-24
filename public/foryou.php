@@ -1,27 +1,24 @@
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-    <title>EenmaalAndermaal</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php
+    require_once '../core/init.php';
+    include 'includes/head.inc.php';
+?>
 
-    <link rel="stylesheet" href="css/semantic.min.css">
-    <link rel="stylesheet" href="css/stylesheet.css">
-</head>
-<body>
 <?php include 'includes/navigation.inc.php'; ?>
 
 <main>
     <div class="ui container">
-        <h2>Zoekresultaten</h2>
+        <!--Jouw lopende biedingen-->
+        <h2>Jouw lopende biedingen</h2>
         <div class="ui stackable five column grid">
             <div class="five column row">
                 <div class="column">
                     <div class="ui fluid card">
                         <a class="image" href="#">
-                            <img src="https://place-hold.it/150x150">
+                            <img src="https://place-hold.it/150x150" alt="product-image">
                         </a>
                         <div class="content">
                             <a class="header" href="#">Product</a>
+                            <div class="description">Tijd tot verkoop: 6 dagen</div>
                             <div class="description">€52,00</div>
                         </div>
                     </div>
@@ -29,10 +26,11 @@
                 <div class="column">
                     <div class="ui fluid card">
                         <a class="image" href="#">
-                            <img src="https://place-hold.it/150x150">
+                            <img src="https://place-hold.it/150x150" alt="product-image">
                         </a>
                         <div class="content">
                             <a class="header" href="#">Product</a>
+                            <div class="description">Tijd tot verkoop: 6 dagen</div>
                             <div class="description">€52,00</div>
                         </div>
                     </div>
@@ -40,10 +38,11 @@
                 <div class="column">
                     <div class="ui fluid card">
                         <a class="image" href="#">
-                            <img src="https://place-hold.it/150x150">
+                            <img src="https://place-hold.it/150x150" alt="product-image">
                         </a>
                         <div class="content">
                             <a class="header" href="#">Product</a>
+                            <div class="description">Tijd tot verkoop: 6 dagen</div>
                             <div class="description">€52,00</div>
                         </div>
                     </div>
@@ -51,10 +50,11 @@
                 <div class="column">
                     <div class="ui fluid card">
                         <a class="image" href="#">
-                            <img src="https://place-hold.it/150x150">
+                            <img src="https://place-hold.it/150x150" alt="product-image">
                         </a>
                         <div class="content">
                             <a class="header" href="#">Product</a>
+                            <div class="description">Tijd tot verkoop: 6 dagen</div>
                             <div class="description">€52,00</div>
                         </div>
                     </div>
@@ -62,77 +62,71 @@
                 <div class="column">
                     <div class="ui fluid card">
                         <a class="image" href="#">
-                            <img src="https://place-hold.it/150x150">
+                            <img src="https://place-hold.it/150x150" alt="product-image">
                         </a>
                         <div class="content">
                             <a class="header" href="#">Product</a>
-                            <div class="description">€52,00</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="five column row">
-                <div class="column">
-                    <div class="ui fluid card">
-                        <a class="image" href="#">
-                            <img src="https://place-hold.it/150x150">
-                        </a>
-                        <div class="content">
-                            <a class="header" href="#">Product</a>
-                            <div class="description">€52,00</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="ui fluid card">
-                        <a class="image" href="#">
-                            <img src="https://place-hold.it/150x150">
-                        </a>
-                        <div class="content">
-                            <a class="header" href="#">Product</a>
-                            <div class="description">€52,00</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="ui fluid card">
-                        <a class="image" href="#">
-                            <img src="https://place-hold.it/150x150">
-                        </a>
-                        <div class="content">
-                            <a class="header" href="#">Product</a>
-                            <div class="description">€52,00</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="ui fluid card">
-                        <a class="image" href="#">
-                            <img src="https://place-hold.it/150x150">
-                        </a>
-                        <div class="content">
-                            <a class="header" href="#">Product</a>
-                            <div class="description">€52,00</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="ui fluid card">
-                        <a class="image" href="#">
-                            <img src="https://place-hold.it/150x150">
-                        </a>
-                        <div class="content">
-                            <a class="header" href="#">Product</a>
+                            <div class="description">Tijd tot verkoop: 6 dagen</div>
                             <div class="description">€52,00</div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!--Aanbevolen rubrieken voor jou-->
+        <h2>Aanbevolen rubrieken voor jou</h2>
+        <div class="ui stackable four column grid">
+            <div class="column">
+                <div class="ui fluid card">
+                    <a class="image" href="#">
+                        <img src="https://place-hold.it/300x150" alt="rubriek-image">
+                    </a>
+                    <div class="content">
+                        <a class="header" href="#">iPhones</a>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui fluid card">
+                    <a class="image" href="#">
+                        <img src="https://place-hold.it/300x150" alt="rubriek-image">
+                    </a>
+                    <div class="content">
+                        <a class="header" href="#">Auto's</a>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui fluid card">
+                    <a class="image" href="#">
+                        <img src="https://place-hold.it/300x150" alt="rubriek-image">
+                    </a>
+                    <div class="content">
+                        <a class="header" href="#">Laptops</a>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui fluid card">
+                    <a class="image" href="#">
+                        <img src="https://place-hold.it/300x150" alt="rubriek-image">
+                    </a>
+                    <div class="content">
+                        <a class="header" href="#">Mondmaskers</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Aanbevolen producten-->
+        <h2>Aanbevolen producten</h2>
+        <div class="ui stackable five column grid">
             <div class="five column row">
                 <div class="column">
                     <div class="ui fluid card">
                         <a class="image" href="#">
-                            <img src="https://place-hold.it/150x150">
+                            <img src="https://place-hold.it/150x150" alt="product-image">
                         </a>
                         <div class="content">
                             <a class="header" href="#">Product</a>
@@ -143,7 +137,7 @@
                 <div class="column">
                     <div class="ui fluid card">
                         <a class="image" href="#">
-                            <img src="https://place-hold.it/150x150">
+                            <img src="https://place-hold.it/150x150" alt="product-image">
                         </a>
                         <div class="content">
                             <a class="header" href="#">Product</a>
@@ -154,7 +148,7 @@
                 <div class="column">
                     <div class="ui fluid card">
                         <a class="image" href="#">
-                            <img src="https://place-hold.it/150x150">
+                            <img src="https://place-hold.it/150x150" alt="product-image">
                         </a>
                         <div class="content">
                             <a class="header" href="#">Product</a>
@@ -165,7 +159,7 @@
                 <div class="column">
                     <div class="ui fluid card">
                         <a class="image" href="#">
-                            <img src="https://place-hold.it/150x150">
+                            <img src="https://place-hold.it/150x150" alt="product-image">
                         </a>
                         <div class="content">
                             <a class="header" href="#">Product</a>
@@ -176,7 +170,7 @@
                 <div class="column">
                     <div class="ui fluid card">
                         <a class="image" href="#">
-                            <img src="https://place-hold.it/150x150">
+                            <img src="https://place-hold.it/150x150" alt="product-image">
                         </a>
                         <div class="content">
                             <a class="header" href="#">Product</a>
@@ -190,10 +184,4 @@
 </main>
 
 <?php include 'includes/footer.inc.php'; ?>
-
-
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-<script src="js/semantic.min.js"></script>
-<script src="js/main.js"></script>
-</body>
-</html>
+<?php include 'includes/foot.php'; ?>

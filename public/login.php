@@ -1,24 +1,35 @@
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-    <title>EenmaalAndermaal</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="css/semantic.min.css">
-    <link rel="stylesheet" href="css/stylesheet.css">
-</head>
-<body>
-<?php include 'includes/navigation.inc.php'; ?>
+<?php
+    require_once '../core/init.php';
+    include 'includes/head.inc.php';
+?>
 
 <main>
-    <?php include 'includes/tmp/loginContent.php'; ?>
+    <div class="ui container">
+        <div class="ui two column centered grid">
+            <div class="column">
+                <div class="ui segment">
+                    <form class="ui large form">
+                        <div class="stacked segment">
+                            <h2 class="text-center">Login</h2>
+                            <div class="field">
+                                <label for="email">Email</label>
+                                <input type="email" name="email" id="email" placeholder="Email" required>
+                            </div>
+                            <div class="field">
+                                <label for="password">Wachtwoord</label>
+                                <input type="password" name="password" id="password" placeholder="Wachtwoord" required>
+                            </div>
+                            <button class="ui fluid large primary submit button">Login</button>
+                            <div class="vertical-margin-12">
+                                <button class="ui fluid large primary submit button">Klik hier om te registreren</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 
 <?php include 'includes/footer.inc.php'; ?>
-
-
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-<script src="js/semantic.min.js"></script>
-<script src="js/main.js"></script>
-</body>
-</html>
+<?php include 'includes/foot.php'; ?>
