@@ -8,7 +8,6 @@ class User {
     public function __construct($user = null)
     {
         $this->_db = Database::getInstance();
-
         $this->_sessionName = Config::get('session/session_name');
     }
 

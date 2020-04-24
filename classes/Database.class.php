@@ -116,7 +116,7 @@ class Database {
     }
 
     public function get($table, $where) {
-        return $this->action('SELECT *', $table, $where);
+        return $this->action('SELECT * ', $table, $where);
     }
 
     public function results() {

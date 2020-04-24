@@ -4,26 +4,17 @@ if (Input::exists()) {
     if (Token::check(Input::get('token'))) {
 
         $validate = new Validate();
-        $validation = $validate->check($_POST, array(
-            'username' => array(
-                'required' => true,
-                'min' => 2,
-                'max' => 255,
-                'unique' => 'Gebruiker'
-            ),
-            'email' => array(),
-            'password' => array()
-        ));
+
+        $validation = $validate->check($_POST, array());
 
         if ($validation->passed()) {
             $user = new User();
-
             try {
 
                 $user->create(array(
                     'gebruikersnaam' => Input::get('username'),
                     'emailadres' => Input::get('email'),
-                    'wachtwoord' => Hash::make('wachtwoord')
+                    'wachtwoord' => Hash::make('password')
                 ));
 
                 Session::flash('index', 'Jouw account is geregistreerd!');
