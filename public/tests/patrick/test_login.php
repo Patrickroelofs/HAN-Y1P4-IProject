@@ -36,7 +36,6 @@ if(isset($_POST['login-submit'])) {
     else if(Hash::get($password, $result)) {
         //Username and password correct -> log user in
         Session::put('username', Hash::make($username));
-        echo 'true';
 
     } else {
         echo 'error - password or username incorrect';
