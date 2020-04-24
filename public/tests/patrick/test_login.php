@@ -18,7 +18,7 @@
     </div>
 
     <div class="field">
-        <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
+        <input type="hidden" name="token" value="">
         <input type="submit" value="Submit">
     </div>
 </form>

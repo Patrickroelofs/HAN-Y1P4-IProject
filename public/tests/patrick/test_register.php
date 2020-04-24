@@ -9,7 +9,7 @@
     <form action="" method="post">
         <div class="field">
             <label for="username">Gebruikersnaam</label>
-            <input type="text" name="username" id="username" value="<?php echo escape(Input::get('username')); ?>">
+            <input type="text" name="username" id="username" value="">
         </div>
 
         <div class="field">
@@ -23,7 +23,7 @@
         </div>
 
         <div class="field">
-            <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
+            <input type="hidden" name="token" value="">
             <input type="submit" value="Submit">
         </div>
     </form>
