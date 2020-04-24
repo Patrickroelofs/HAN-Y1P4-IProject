@@ -37,7 +37,7 @@ if(isset($_POST['register-submit'])) {
                 'wachtwoord' => Hash::make($password)
             ));
 
-            Session::put('username', Hash::make($username));
+            Session::put('username', $username);
 
         } catch(PDOException $e){
             //Error during insert

@@ -19,7 +19,7 @@
     </span>
     <div class="text">
         <span class="bold">Goedemiddag,</span>
-        <span>Gebruiker</span>
+        <span><?php echo Session::get('username') ?></span>
     </div>
     <i class="dropdown icon"></i>
     <div class="menu">
