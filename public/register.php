@@ -1,6 +1,7 @@
 <?php
-    require_once '../core/init.php';
-    include 'includes/head.inc.php';
+require_once '../core/init.php';
+include 'includes/head.inc.php';
+include '../functions/register.func.php';
 ?>
 
 <?php include 'includes/navigation.inc.php'; ?>
@@ -9,7 +10,7 @@
     <div class="ui container">
         <div class="ui two column centered grid">
             <div class="ui segment">
-                <form class="ui large form">
+                <form class="ui large form" method="post" action="">
                     <div class="stacked segment">
                         <h2 class="text-center">Registreren</h2>
                         <div class="ui two column centered grid">
@@ -29,6 +30,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!--
                         <div class="ui two column centered grid">
                             <div class="two colomn centered row">
                                 <div class="horizontal-margin-6">
@@ -47,6 +49,7 @@
                                 </div>
                             </div>
                         </div>
+                        -->
                         <div class="ui two column centered grid">
                             <div class="two colomn centered row">
                                 <div class="horizontal-margin-6">
@@ -59,12 +62,13 @@
                                 <div class="horizontal-margin-6">
                                     <div class="field">
                                         <label for="repeat_password">Herhaal wachtwoord</label>
-                                        <input type="password" name="repeat_password" id="repeat_password"
+                                        <input type="password" name="password_repeat" id="password_repeat"
                                                placeholder="Wachtwoord" required>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <!--
                         <div class="ui two column centered grid">
                             <div class="two colomn centered row">
                                 <div class="horizontal-margin-6">
@@ -145,7 +149,10 @@
                                    required>
                         </div>
                     </div>
-                    <button class="ui fluid large primary submit button">Registreer</button>
+                        -->
+                        <div class="top-padding-12">
+                            <input name="register-submit" type="submit" class="ui fluid large primary submit button" value="Registreer">
+                        </div>
                 </form>
             </div>
         </div>

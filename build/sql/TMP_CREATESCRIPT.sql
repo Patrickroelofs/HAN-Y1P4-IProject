@@ -7,7 +7,7 @@ GO
 
 CREATE TABLE Gebruiker (
     id int identity,
-    gebruikersnaam varchar(255),
+    gebruikersnaam varchar(255) unique,
     emailadres varchar(255),
     wachtwoord varchar(255)
 );

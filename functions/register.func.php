@@ -1,5 +1,3 @@
-<?php require_once '../../../core/init.php'; ?>
-
 <?php
 
 //======================================================================
@@ -39,45 +37,11 @@ if(isset($_POST['register-submit'])) {
                 'wachtwoord' => Hash::make($password)
             ));
 
+            Session::put('username', Hash::make($username));
+
         } catch(PDOException $e){
             //Error during insert
             echo $e->getMessage();
         }
     }
 }
-
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Register | Testfile</title>
-</head>
-<body>
-    <form action="" method="post">
-        <div class="field">
-            <label for="username">Gebruikersnaam</label>
-            <input type="text" name="username" id="username" value="">
-        </div>
-
-        <div class="field">
-            <label for="email">Emailadres</label>
-            <input type="text" name="email" id="email" value="">
-        </div>
-
-        <div class="field">
-            <label for="password">Wachtwoord</label>
-            <input type="password" name="password" id="password" value="">
-        </div>
-
-        <div class="field">
-            <label for="password_repeat">Wachtwoord herhalen</label>
-            <input type="password" name="password_repeat" id="password_repeat" value="">
-        </div>
-
-        <div class="field">
-            <input type="submit" name="register-submit" value="Submit">
-        </div>
-    </form>
-</body>
-</html>

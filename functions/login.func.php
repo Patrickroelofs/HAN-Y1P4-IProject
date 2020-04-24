@@ -1,5 +1,3 @@
-<?php require_once '../../../core/init.php'; ?>
-
 <?php
 
 //======================================================================
@@ -16,7 +14,7 @@ if(isset($_POST['login-submit'])) {
     // Get (hashed) password from $username
     $stmt = Database::getInstance()->prepare('SELECT wachtwoord FROM Gebruiker WHERE gebruikersnaam=:username');
     $stmt->execute(array(
-       ':username' => $username
+        ':username' => $username
     ));
 
     //Fetch actual password
@@ -41,30 +39,3 @@ if(isset($_POST['login-submit'])) {
         echo 'error - password or username incorrect';
     }
 }
-
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Login | Testfile</title>
-</head>
-<body>
-<form action="" method="post">
-    <div class="field">
-        <label for="username">Gebruikersnaam</label>
-        <input type="text" name="username" id="username" value="">
-    </div>
-
-    <div class="field">
-        <label for="password">Wachtwoord</label>
-        <input type="password" name="password" id="password" value="">
-    </div>
-
-    <div class="field">
-        <input type="hidden" name="token" value="">
-        <input type="submit" name="login-submit" value="Submit">
-    </div>
-</form>
-</body>
-</html>
