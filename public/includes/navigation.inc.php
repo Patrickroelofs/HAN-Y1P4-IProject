@@ -4,46 +4,13 @@
             <div class="item three wide column">
                 <a href="index.php"><h1>EenmaalAndermaal</h1></a>
             </div>
+
             <div class="item eight wide column">
-                <form id="search" method="get" action="">
-                    <div class="ui search fluid">
-                        <div class="ui icon input">
-                            <input class="prompt" type="text" placeholder="Search..." name="query">
-                            <i class="search icon"></i>
-                        </div>
-
-                        <div class="results">
-                            <!-- Search results -->
-                        </div>
-                    </div>
-                </form>
+                <?php include_once 'navigation/search.inc.php'; ?>
             </div>
 
-            <div class="item three wide column">
-                <div class="ui dropdown link item accountdropdown">
-                    <span class="image">
-                        <img alt="user profile picture" src="https://place-hold.it/48x48" class="ui circular image">
-                    </span>
-                    <div class="text">
-                        <span class="bold">Goedemiddag,</span>
-                        <span>Gebruiker</span>
-                    </div>
-                    <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <div class="item">Mijn Profiel</div>
-                        <div class="item">Uitloggen</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="item one wide column">
-                <div class="ui dropdown link item favoritesdropdown">
-                    <span class="text"><i class="heart icon"></i></span>
-
-                    <div class="menu">
-                        <!-- Producten in favorieten -->
-                    </div>
-                </div>
+            <div class="item four wide column">
+                <?php include_once 'navigation/account.inc.php'; ?>
             </div>
         </div>
     </div>

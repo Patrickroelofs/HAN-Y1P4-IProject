@@ -3,6 +3,8 @@
     include 'includes/head.inc.php';
 ?>
 
+<?php include 'includes/navigation.inc.php'; ?>
+
 <main>
     <div class="ui container">
         <div class="ui two column centered grid">
@@ -32,4 +34,4 @@
 </main>
 
 <?php include 'includes/footer.inc.php'; ?>
-<?php include 'includes/foot.php'; ?>
+<?php include 'includes/foot.inc.php'; ?>

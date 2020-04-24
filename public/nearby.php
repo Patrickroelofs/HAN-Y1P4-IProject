@@ -111,4 +111,4 @@
 </main>
 
 <?php include 'includes/footer.inc.php'; ?>
-<?php include 'includes/foot.php'; ?>
+<?php include 'includes/foot.inc.php'; ?>
