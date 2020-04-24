@@ -3,6 +3,8 @@
 class Database {
     private static  $_instance = null;
     private         $_pdo;
+    private         $_query;
+    private         $_error = false;
 
     private function __construct() {
         try {
@@ -21,7 +23,50 @@ class Database {
     }
 
     public function query($sql, $params = array()) {
-        //TODO: Basic query into database
+        $this->_error = false;
+        if($this->_query = $this->_pdo->prepare($sql)) {
+            $x = 1;
+            if(count($params)) {
+                foreach($params as $param) {
+                    $this->_query->bindValue($x, $param);
+                    $x++;
+                }
+            }
+
+            if($this->_query->execute()) {
+                echo 'executed';
+                $this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);
+                $this->_count = $this->_query->rowCount();
+            } else {
+                $this->_error = true;
+            }
+        }
+
+        return $this;
+    }
+
+    public function insert($table, $fields = array()) {
+        if(count($fields)) {
+            $keys = array_keys($fields);
+            $values = null;
+            $x = 1;
+
+            foreach($fields as $field){
+                $values .= '?';
+                if($x < count($fields)) {
+                    $values .= ', ';
+                }
+                $x++;
+            }
+
+            $sql = "INSERT INTO $table (".implode(', ', $keys).") VALUES ({$values})";
+
+            if(!$this->query($sql, $fields)->error()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function update($table, $row, $fields) {
@@ -34,5 +79,9 @@ class Database {
 
     public function delete($table, $row) {
         //TODO: Delete row from table
+    }
+
+    public function error() {
+        return $this->_error;
     }
 }
