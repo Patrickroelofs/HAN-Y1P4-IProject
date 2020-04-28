@@ -1,3 +1,4 @@
+<?php include_once 'modals/login.inc.php' ?>
 <nav class="white">
     <div class="ui secondary menu">
         <div class="ui three column grid container">

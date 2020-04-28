@@ -4,7 +4,7 @@
 ?>
 
         <div class="account-login">
-            <a href="login.php" class="ui button">Inloggen</a>
+            <a id="login-modal" class="ui button">Inloggen</a>
             <a href="register.php" class="ui button">Registreren</a>
         </div>
 
@@ -19,7 +19,10 @@
     </span>
     <div class="text">
         <span class="bold">Goedemiddag,</span>
-        <span><?php echo Session::get('username') ?></span>
+        <span>
+            Gebruiker
+            <?php // TODO: Add username of user ?>
+        </span>
     </div>
     <i class="dropdown icon"></i>
     <div class="menu">

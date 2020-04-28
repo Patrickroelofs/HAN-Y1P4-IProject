@@ -37,3 +37,10 @@ $('.ui.range.slider')
 $('a#mobile_item').click(function () {
     $('#sidebar').sidebar('toggle')
 });
+
+$("#login-modal").click(function(){
+    $(".login-modal").modal('show');
+});
+$(".login-modal").modal({
+    closable: true
+});
