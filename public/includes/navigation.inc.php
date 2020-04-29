@@ -3,7 +3,7 @@
 
 <nav class="white">
     <div class="ui secondary menu">
-        <div class="ui three column grid container">
+        <div class="ui four column grid container">
 
             <div class="two wide tablet mobile only column mobile-button">
                 <a id="mobile_item" class="item"><i class="bars icon white"></i></a>

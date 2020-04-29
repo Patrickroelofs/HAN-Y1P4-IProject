@@ -20,7 +20,7 @@
     // If user is logged in
     } else {
 ?>
-        <a class="item">Mijn Profiel</a>
+        <a class="item" href="profile.php">Mijn Profiel</a>
         <a class="item" href="includes/navigation/logout.inc.php">Uitloggen</a>
 <?php
     }

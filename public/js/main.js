@@ -59,3 +59,10 @@ $("#register-modal").click(function(){
 $(".register-modal").modal({
     closable: true
 });
+
+$('#dob_calendar')
+    .calendar({
+        type: 'date',
+        startMode: 'year'
+    })
+;

@@ -39,6 +39,8 @@ if(isset($_POST['register-submit'])) {
 
             Session::put('username', $username);
 
+            Redirect::to('profile.php');
+
         } catch(PDOException $e){
             //Error during insert
             echo $e->getMessage();
