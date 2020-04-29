@@ -54,7 +54,6 @@ $(".login-modal").modal({
 
 $("#register-modal").click(function(){
     $(".register-modal").modal('show');
-    $(".login-modal").modal('hide');
 });
 
 $(".register-modal").modal({

@@ -82,6 +82,11 @@ footer .footer.title h1 {
 .selling-point p {
     margin: 0;
 }
+
+.features-step{
+    text-align: left;
+}
+
 /* --- Text modifiers ------------------------------------------- */
 .bold {
     font-weight: bold;
