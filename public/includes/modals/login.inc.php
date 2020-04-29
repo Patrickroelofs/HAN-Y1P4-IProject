@@ -6,7 +6,7 @@
             <div class="ui vertical divider">Of</div>
 
             <div class="middle aligned row">
-                <div class="">
+                <div class="column">
                     <form class="ui large form" action="" method="post">
                         <h2 class="text-center">Login</h2>
                         <br>
@@ -21,8 +21,9 @@
                         <input type="submit" name="login-submit" class="ui fluid large primary submit button" value="login">
                     </form>
                 </div>
-                <div class="column">
 
+                <div class="column">
+                    <button class="large ui button" id="login-register-modal">Registreer account</button>
                 </div>
             </div>
         </div>

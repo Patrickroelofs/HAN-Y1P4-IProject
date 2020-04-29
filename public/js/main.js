@@ -42,7 +42,21 @@ $('a#mobile_item').click(function () {
 
 $("#login-modal").click(function(){
     $(".login-modal").modal('show');
+    $("#login-register-modal").click(function(){
+        $(".register-modal").modal('show');
+        $(".login-modal").modal('hide');
+    });
 });
+
 $(".login-modal").modal({
+    closable: true
+});
+
+$("#register-modal").click(function(){
+    $(".register-modal").modal('show');
+    $(".login-modal").modal('hide');
+});
+
+$(".register-modal").modal({
     closable: true
 });
