@@ -16,7 +16,9 @@ $('.ui.search')
 
 /* Category select */
 $(function() {
-    $('.ui.dropdown').dropdown();
+    $('.ui.dropdown').dropdown({
+        action: 'select'
+    });
 });
 
 /* slider */

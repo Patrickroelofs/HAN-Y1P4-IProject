@@ -1,19 +1,4 @@
-<?php
-    //If user is not logged in
-    if(!Session::exists('username')){
-?>
-
-        <div class="account-login">
-            <a id="login-modal" class="ui button">Inloggen</a>
-            <a href="register.php" class="ui button">Registreren</a>
-        </div>
-
-<?php
-    // If user is logged in
-    } else {
-?>
-
-<div class="ui dropdown link item accountdropdown right aligned horizontal-padding-6">
+<div class="ui dropdown item accountdropdown right aligned horizontal-padding-6">
     <span class="image">
         <img alt="user profile picture" src="https://place-hold.it/32x32" class="ui circular image">
     </span>
@@ -26,12 +11,20 @@
     </div>
     <i class="dropdown icon"></i>
     <div class="menu">
-        <div class="item">Mijn Profiel</div>
+<?php
+    //If user is not logged in
+    if(!Session::exists('username')){
+?>
+            <a id="login-modal" class="item">Inloggen</a>
+            <a id="register-modal" class="item">Registreren</a>
+<?php
+    // If user is logged in
+    } else {
+?>
+        <a class="item">Mijn Profiel</a>
         <a class="item" href="includes/navigation/logout.inc.php">Uitloggen</a>
-    </div>
-</div>
-
 <?php
     }
 ?>
-
+    </div>
+</div>
