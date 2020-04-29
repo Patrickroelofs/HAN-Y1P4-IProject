@@ -2,6 +2,7 @@
 
 require_once 'globals.inc.php';
 
+ob_start();
 session_start();
 
 

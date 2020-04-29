@@ -5,8 +5,7 @@
     <div class="text">
         <span class="bold">Goedemiddag,</span>
         <span>
-            Gebruiker
-            <?php // TODO: Add username of user ?>
+            <?php echo Session::get('username'); ?>
         </span>
     </div>
     <i class="dropdown icon"></i>
