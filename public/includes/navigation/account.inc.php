@@ -9,7 +9,7 @@
             if(!Session::exists('username')) {
                 echo 'Gebruiker';
             } else {
-                echo Session::get('username');
+                echo $user->first()->voornaam;
             } ?>
         </span>
     </div>

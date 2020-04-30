@@ -13,3 +13,8 @@ spl_autoload_register(function($class) {
 
 
 include(__DIR__ . '/../functions/sanitize.func.php');
+
+// Get userdata from current logged in user
+if(Session::exists('username')){
+    $user = Database::getInstance()->get('Gebruiker', array('gebruikersnaam', '=', Session::get('username')));
+}

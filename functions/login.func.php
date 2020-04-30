@@ -34,6 +34,7 @@ if(isset($_POST['login-submit'])) {
     else if(Hash::verify($password, $result)) {
         //Username and password correct -> log user in
         Session::put('username', $username);
+        Redirect::to('index.php');
 
     } else {
         echo 'error - password or username incorrect';
