@@ -28,6 +28,8 @@ if(isset($_POST['update-inloggegevens-submit'])) {
                 'wachtwoord' => Hash::make($password)
             ));
 
+            Redirect::to('profile.php');
+
         } catch(PDOException $e){
             //Error during insert
             echo $e->getMessage();
@@ -62,6 +64,8 @@ if(isset($_POST['update-persoonsgegevens-submit'])) {
                 'achternaam' => $lastname,
                 'geboortedag' => $dob
             ));
+
+            Redirect::to('profile.php');
 
         } catch(PDOException $e) {
             //Error during insert
@@ -101,6 +105,8 @@ if(isset($_POST['update-locatiegegevens-submit'])) {
                 'plaatsnaam' => $plaatsnaam,
                 'landnaam' => $land
             ));
+
+            Redirect::to('profile.php');
 
         } catch(PDOException $e) {
             //Error during insert

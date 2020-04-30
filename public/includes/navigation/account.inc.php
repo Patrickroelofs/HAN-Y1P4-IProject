@@ -8,8 +8,10 @@
             <?php
             if(!Session::exists('username')) {
                 echo 'Gebruiker';
+            } else if(empty($user->first()->voornaam) || empty($user->first()->achternaam)) {
+                echo $user->first()->gebruikersnaam;
             } else {
-                echo $user->first()->voornaam;
+                echo $user->first()->voornaam . ' ' . $user->first()->achternaam;
             } ?>
         </span>
     </div>

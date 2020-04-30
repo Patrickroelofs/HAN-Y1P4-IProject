@@ -1,7 +1,12 @@
 <?php
     require_once '../core/init.php';
-    include 'includes/head.inc.php';
+
+    if(!Session::exists('username')){
+        Redirect::to('../index.php');
+    }
+
     include '../functions/profile.func.php';
+    include 'includes/head.inc.php';
 ?>
 
     <main>

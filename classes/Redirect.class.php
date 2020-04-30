@@ -19,4 +19,8 @@ class Redirect
             exit();
         }
     }
+
+    public static function refresh() {
+        header("Refresh: 0");
+    }
 }
