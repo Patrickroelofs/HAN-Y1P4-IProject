@@ -13,3 +13,6 @@ package.json
 package-lock.json
 semantic.json
 semantic
+
+public/upload/profilepictures/*.png
+public/upload/profilepictures/*.jpg

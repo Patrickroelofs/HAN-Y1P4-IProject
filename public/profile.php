@@ -11,6 +11,7 @@
 
     <main>
         <div class="ui container">
+            <img class="ui small circular image" src="<?= $user->first()->profielfoto ?>">
             <h1>Hoi,
                 <?php if(empty($user->first()->voornaam) || empty($user->first()->achternaam)) {
                     echo $user->first()->gebruikersnaam;
@@ -54,8 +55,12 @@
                 </div>
 
                 <div class="column vertical-margin-24">
-                    <form class="ui large form" action="" method="post">
+                    <form class="ui large form" action="" method="post" enctype="multipart/form-data">
                         <h2>Persoonsgegevens</h2>
+                        <div class="field">
+                            <label for="profilepicture">Profiel foto</label>
+                            <input type="file" name="profilepicture" id="profilepicture">
+                        </div>
                         <div class="field">
                             <label for="firstname">Voornaam</label>
                             <input type="text" name="firstname" id="firstname" placeholder="<?= $user->first()->voornaam ?>">

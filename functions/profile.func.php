@@ -49,6 +49,12 @@ if(isset($_POST['update-persoonsgegevens-submit'])) {
     $firstname          =   $_POST['firstname'];
     $lastname           =   $_POST['lastname'];
     $dob                =   $_POST['dob'];
+    $profilepicture     =   $_FILES['profilepicture']['name'];
+
+    //Randomly hash filename
+    $ext = pathinfo($_FILES['profilepicture']['name'], PATHINFO_EXTENSION);
+    $filename = md5(basename($profilepicture));
+    $target = 'upload/profilepictures/' . $filename . '.' . $ext;
 
     // TODO: Error messages and other invalid register checks.
     if(empty($firstname) || empty($lastname) || empty($dob)) {
@@ -59,11 +65,27 @@ if(isset($_POST['update-persoonsgegevens-submit'])) {
     else {
         // Insert into database
         try{
-            $stmt = Database::getInstance()->update('Gebruiker', Session::get('username'), array(
-                'voornaam' => $firstname,
-                'achternaam' => $lastname,
-                'geboortedag' => $dob
-            ));
+            //Move uploaded profilepicture to folder
+            //TODO: Secure image upload
+            move_uploaded_file($_FILES['profilepicture']['tmp_name'], $target);
+
+            // If there is no profile picture uploaded
+            if(empty($profilepicture)) {
+                $stmt = Database::getInstance()->update('Gebruiker', Session::get('username'), array(
+                    'voornaam' => $firstname,
+                    'achternaam' => $lastname,
+                    'geboortedag' => $dob,
+                ));
+            }
+            // If there is a profile picture uploaded
+            else {
+                $stmt = Database::getInstance()->update('Gebruiker', Session::get('username'), array(
+                    'voornaam' => $firstname,
+                    'achternaam' => $lastname,
+                    'geboortedag' => $dob,
+                    'profielfoto' => $target
+                ));
+            }
 
             Redirect::to('profile.php');
 

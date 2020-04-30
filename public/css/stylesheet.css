@@ -87,6 +87,10 @@ footer .footer.title h1 {
     text-align: left;
 }
 
+#search {
+    margin: 0;
+}
+
 /* --- Text modifiers ------------------------------------------- */
 .bold {
     font-weight: bold;

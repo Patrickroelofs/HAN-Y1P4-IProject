@@ -11,6 +11,7 @@ CREATE TABLE Gebruiker (
     emailadres      VARCHAR(255)    NOT NULL,
     wachtwoord      VARCHAR(255)    NOT NULL,
 
+    profielfoto     VARCHAR(255)    NULL,
     voornaam        VARCHAR(255)    NULL,
     achternaam      VARCHAR(255)    NULL,
     geboortedag     DATE            NULL,

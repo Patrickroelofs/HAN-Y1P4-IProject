@@ -1,6 +1,6 @@
 <div class="ui dropdown item accountdropdown right aligned horizontal-padding-6">
     <span class="image">
-        <img alt="user profile picture" src="https://place-hold.it/32x32" class="ui circular image">
+        <img width="48" height="48" alt="user profile picture" src="<?= $user->first()->profielfoto ?>" class="ui circular image">
     </span>
     <div class="text">
         <span class="bold">Goedemiddag,</span>
