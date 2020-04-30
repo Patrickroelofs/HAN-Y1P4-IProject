@@ -5,7 +5,7 @@ class Hash {
         return password_hash($string, PASSWORD_DEFAULT);
     }
 
-    public static function get($string, $hash) {
+    public static function verify($string, $hash) {
         return password_verify($string, $hash);
     }
 }

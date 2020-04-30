@@ -68,6 +68,26 @@ class Database {
         return false;
     }
 
+    public function update($table, $username, $fields) {
+        $set = '';
+        $x = 1;
+
+        foreach($fields as $name => $value) {
+            $set .= "{$name} = ?";
+            if ($x < count($fields)) {
+                $set .= ', ';
+            }
+            $x++;
+        }
+
+        $sql = "UPDATE {$table} SET {$set} WHERE gebruikersnaam = '{$username}'";
+
+        if(!$this->query($sql, $fields)->error()) {
+            return true;
+        }
+        return false;
+    }
+
     public function prepare($sql){
         return $this->_pdo->prepare($sql);
     }

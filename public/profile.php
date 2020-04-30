@@ -12,17 +12,22 @@
                 Gegevens aanpassen
             </div>
 
-            <form class="ui large form" action="" method="post">
-                <div class="ui equal width grid">
-                    <div class="column vertical-margin-24">
+            <div class="ui equal width grid">
+                <div class="column vertical-margin-24">
+                    <form class="ui large form" action="" method="post">
                         <h2>Inloggegevens</h2>
                         <div class="field">
                             <label for="username">Gebruikersnaam</label>
-                            <input type="text" name="username" id="username" placeholder="...">
+                            <div class="ui disabled input">
+                                <input type="text" name="username" id="username" placeholder="<?php echo Session::get('username'); ?>">
+                            </div>
                         </div>
                         <div class="field">
                             <label for="email">Emailadres</label>
-                            <input type="email" name="email" id="email" placeholder="...">
+                            <div class="ui disabled input">
+                                <?php //TODO: Include actual emailadres in disabled field ?>
+                                <input type="email" name="email" id="email" placeholder="...">
+                            </div>
                         </div>
                         <div class="field">
                             <label for="password">Wachtwoord</label>
@@ -32,9 +37,12 @@
                             <label for="password_repeat">Wachtwoord herhalen</label>
                             <input type="password" name="password_repeat" id="password_repeat" placeholder="...">
                         </div>
-                    </div>
+                        <input class="ui button" type="submit" name="update-inloggegevens-submit" value="Inloggegevens aanpassen">
+                    </form>
+                </div>
 
-                    <div class="column vertical-margin-24">
+                <div class="column vertical-margin-24">
+                    <form class="ui large form" action="" method="post">
                         <h2>Persoonsgegevens</h2>
                         <div class="field">
                             <label for="firstname">Voornaam</label>
@@ -53,9 +61,12 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <input class="ui button" type="submit" name="update-persoonsgegevens-submit" value="Persoonsgegevens aanpassen">
+                    </form>
+                </div>
 
-                    <div class="column vertical-margin-24">
+                <div class="column vertical-margin-24">
+                    <form class="ui large form" action="" method="post">
                         <h2>Locatiegegevens</h2>
                         <div class="field">
                             <label for="adresregel1">Adresregel 1</label>
@@ -77,11 +88,10 @@
                             <label for="land">Land</label>
                             <input type="text" name="land" id="land" placeholder="...">
                         </div>
-
-                        <input class="ui button" type="submit" name="update-submit" value="Profiel aanpassen">
-                    </div>
+                        <input class="ui button" type="submit" name="update-locatiegegevens-submit" value="Locatiegegevens aanpassen">
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
     </main>
 

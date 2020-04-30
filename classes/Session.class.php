@@ -18,4 +18,10 @@ class Session {
             unset($_SESSION[$name]);
         }
     }
+
+    public static function destroy($name) {
+        if(self::exists($name)) {
+            session_destroy();
+        }
+    }
 }

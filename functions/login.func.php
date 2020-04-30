@@ -31,7 +31,7 @@ if(isset($_POST['login-submit'])) {
     }
 
     //Verify password hash
-    else if(Hash::get($password, $result)) {
+    else if(Hash::verify($password, $result)) {
         //Username and password correct -> log user in
         Session::put('username', $username);
 

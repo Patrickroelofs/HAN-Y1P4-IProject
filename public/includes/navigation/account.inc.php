@@ -5,7 +5,12 @@
     <div class="text">
         <span class="bold">Goedemiddag,</span>
         <span>
-            <?php echo Session::get('username'); ?>
+            <?php
+            if(!Session::exists('username')) {
+                echo 'Gebruiker';
+            } else {
+                echo Session::get('username');
+            } ?>
         </span>
     </div>
     <i class="dropdown icon"></i>
