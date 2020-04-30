@@ -1,6 +1,13 @@
 <div class="ui dropdown item accountdropdown right aligned horizontal-padding-6">
     <span class="image">
-        <img width="48" height="48" alt="user profile picture" src="<?= $user->first()->profielfoto ?>" class="ui circular image">
+        <img width="48" height="48" alt="user profile picture" class="ui circular image" src="
+        <?php
+            if(!Session::exists('username')) {
+                echo 'https://place-hold.it/64x64';
+            } else {
+                echo $user->first()->profielfoto;
+            }
+        ?>">
     </span>
     <div class="text">
         <span class="bold">Goedemiddag,</span>
