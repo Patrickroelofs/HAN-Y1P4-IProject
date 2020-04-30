@@ -5,6 +5,8 @@ class Database {
     private         $_pdo;
     private         $_query;
     private         $_error = false;
+    private         $_results;
+    private         $_count = 0;
 
     private function __construct() {
         try {
@@ -88,11 +90,49 @@ class Database {
         return false;
     }
 
+    public function action($action, $table, $where = array()) {
+        if(count($where) === 3) {
+            $operators = array('=', '>', '<', '>=', '<=');
+
+            $field      = $where[0];
+            $operator   = $where[1];
+            $value      = $where[2];
+
+            if(in_array($operator, $operators)) {
+                $sql = "{$action} FROM {$table} WHERE {$field} {$operator} ?";
+                if(!$this->query($sql, array($value))->error()) {
+                    return $this;
+                }
+            }
+        }
+        return false;
+    }
+
+    public function get($table, $where) {
+        return $this->action('SELECT *', $table, $where);
+    }
+
+    public function delete($table, $where) {
+        return $this->action('DELETE', $table, $where);
+    }
+
     public function prepare($sql){
         return $this->_pdo->prepare($sql);
     }
 
+    public function results() {
+        return $this->_results;
+    }
+
+    public function first() {
+        return $this->results()[0];
+    }
+
     public function error() {
         return $this->_error;
+    }
+
+    public function count() {
+        return $this->_count;
     }
 }
