@@ -13,7 +13,7 @@
                 <a href="index.php"><h1>EenmaalAndermaal</h1></a>
             </div>
 
-            <div class="computer tablet only item seven wide column">
+            <div class="item six wide column">
                 <?php include_once 'navigation/search.inc.php'; ?>
             </div>
 
