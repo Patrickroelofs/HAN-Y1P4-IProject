@@ -70,11 +70,7 @@ $('#dob_calendar')
 $('.categories .item.dropdown-hover').popup({
     inline     : true,
     hoverable  : true,
-    position   : 'bottom left',
-    delay: {
-        show: 300,
-        hide: 800
-    }
+    position   : 'bottom left'
 });
 
 $('.tabular.menu .item').tab();

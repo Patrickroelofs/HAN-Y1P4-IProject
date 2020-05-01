@@ -2,7 +2,7 @@
 <?php include_once 'modals/register.inc.php' ?>
 
 <nav class="white">
-    <div class="ui secondary menu">
+    <div class="ui secondary menu main-nav">
         <div class="ui four column grid container">
 
             <div class="two wide tablet mobile only column mobile-button">
@@ -13,28 +13,29 @@
                 <a href="index.php"><h1>EenmaalAndermaal</h1></a>
             </div>
 
-            <div class="item six wide column">
+            <div class="seven wide computer tablet fourteen wide phone item column center aligned">
                 <?php include_once 'navigation/search.inc.php'; ?>
             </div>
 
-            <div class="computer only item five wide column right aligned nopadding">
+            <div class="computer or lower hidden item three wide column right aligned nopadding">
                 <?php include_once 'navigation/account.inc.php'; ?>
             </div>
         </div>
     </div>
 
-    <div class="computer only ui secondary menu categories">
+    <div class="ui secondary menu categories tablet or lower hidden">
         <div class="ui container">
-            <a class="ui dropdown link item dropdown-hover">
+            <div class="ui dropdown link item dropdown-hover hidden">
                 <span class="text bold">Categorieën</span>
                 <i class="dropdown icon"></i>
-            </a>
+            </div>
 
             <div class="ui fluid popup bottom middle transition hidden">
                 <div class="ui four column center aligned grid">
                     <div class="column">
                         <div class="four wide column">
-                            <div class="ui fluid vertical tabular menu">
+                            <a class="text-left link item" href="categories.php">Bekijk alle Categorieën</a>
+                            <div class="ui fluid vertical tabular menu text-left">
                                 <a class="active item" data-tab="1">Computer en Electronica</a>
                                 <a class="item" data-tab="2">Tab 2</a>
                                 <a class="item" data-tab="3">Tab 3</a>
