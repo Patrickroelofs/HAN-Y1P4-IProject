@@ -31,21 +31,42 @@
             </a>
 
             <div class="ui fluid popup bottom middle transition hidden">
-                <div class="ui four column divided center aligned grid">
+                <div class="ui four column center aligned grid">
                     <div class="column">
-                        
+                        <div class="four wide column">
+                            <div class="ui fluid vertical tabular menu">
+                                <a class="active item" data-tab="1">Computer en Electronica</a>
+                                <a class="item" data-tab="2">Tab 2</a>
+                                <a class="item" data-tab="3">Tab 3</a>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="column">
+                    <div class="stretched twelve wide column">
+                        <div class="ui bottom attached active tab" data-tab="1">
+                            <div class="ui four column grid text-left">
+                                <div class="column">
+                                    <h4 class="header">Computer</h4>
+                                </div>
+                                <div class="column">
+                                    <h4 class="header">Tablets & Telefonie</h4>
+                                </div>
+                                <div class="column">
+                                    <h4 class="header">Televisie</h4>
+                                </div>
+                                <div class="column">
+                                    <h4 class="header">Audio & Hifi</h4>
+                                </div>
+                            </div>
+                        </div>
 
-                    </div>
+                        <div class="ui bottom attached tab" data-tab="2">
 
-                    <div class="column">
+                        </div>
 
-                    </div>
+                        <div class="ui bottom attached tab" data-tab="3">
 
-                    <div class="column">
-
+                        </div>
                     </div>
                 </div>
             </div>
