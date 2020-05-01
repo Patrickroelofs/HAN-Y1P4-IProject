@@ -25,7 +25,7 @@
                 Gegevens aanpassen
             </div>
 
-            <div class="ui equal width grid">
+            <div class="ui equal width stackable grid">
                 <div class="column vertical-margin-24">
                     <form class="ui large form" action="" method="post">
                         <h2>Inloggegevens</h2>
