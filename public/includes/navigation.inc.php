@@ -25,25 +25,27 @@
 
     <div class="computer only ui secondary menu categories">
         <div class="ui container">
-            <div class="ui dropdown link item">
+            <a class="ui dropdown link item dropdown-hover">
                 <span class="text bold">Categorieën</span>
                 <i class="dropdown icon"></i>
-                <div class="menu">
-                    <div class="item">
-                        <i class="dropdown icon"></i>
-                        <span class="text">Clothing</span>
-                        <div class="menu">
-                            <div class="header">Mens</div>
-                            <div class="item">Shirts</div>
-                            <div class="item">Pants</div>
-                            <div class="item">Jeans</div>
-                            <div class="item">Shoes</div>
-                            <div class="divider"></div>
-                            <div class="header">Womens</div>
-                            <div class="item">Dresses</div>
-                            <div class="item">Shoes</div>
-                            <div class="item">Bags</div>
-                        </div>
+            </a>
+
+            <div class="ui fluid popup bottom middle transition hidden">
+                <div class="ui four column divided center aligned grid">
+                    <div class="column">
+                        
+                    </div>
+
+                    <div class="column">
+
+                    </div>
+
+                    <div class="column">
+
+                    </div>
+
+                    <div class="column">
+
                     </div>
                 </div>
             </div>
