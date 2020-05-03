@@ -1,7 +1,7 @@
 <?php
-    require_once '../core/init.php';
-    include 'includes/head.inc.php';
-    include '../functions/login.func.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/core/init.php';
+    include INCLUDES . 'head.inc.php';
+    include FUNCTIONS . 'login.func.php';
 ?>
 
 <main>
@@ -32,5 +32,5 @@
     </div>
 </main>
 
-<?php include 'includes/footer.inc.php'; ?>
-<?php include 'includes/foot.inc.php'; ?>
+<?php include INCLUDES . 'footer.inc.php'; ?>
+<?php include INCLUDES . 'foot.inc.php'; ?>

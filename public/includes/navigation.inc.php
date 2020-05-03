@@ -1,5 +1,5 @@
-<?php include_once 'modals/login.inc.php' ?>
-<?php include_once 'modals/register.inc.php' ?>
+<?php include_once MODALS . 'login.inc.php' ?>
+<?php include_once MODALS . 'register.inc.php' ?>
 
 <nav class="white">
     <div class="ui secondary menu main-nav">

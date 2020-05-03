@@ -1,12 +1,12 @@
 <?php
-    require_once '../core/init.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/core/init.php';
 
     if(!Session::exists('username')){
         Redirect::to('../index.php');
     }
 
-    include '../functions/profile.func.php';
-    include 'includes/head.inc.php';
+    include FUNCTIONS . 'profile.func.php';
+    include INCLUDES . 'head.inc.php';
 ?>
 
     <main>
@@ -38,7 +38,6 @@
                         <div class="field">
                             <label for="email">Emailadres</label>
                             <div class="ui disabled input">
-                                <?php //TODO: Include actual emailadres in disabled field ?>
                                 <input type="email" name="email" id="email" placeholder="<?= $user->first()->emailadres ?>">
                             </div>
                         </div>
@@ -112,5 +111,5 @@
         </div>
     </main>
 
-<?php include 'includes/footer.inc.php'; ?>
-<?php include 'includes/foot.inc.php'; ?>
+<?php include INCLUDES . 'footer.inc.php'; ?>
+<?php include INCLUDES . 'foot.inc.php'; ?>

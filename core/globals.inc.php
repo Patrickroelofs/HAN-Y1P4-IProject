@@ -6,9 +6,5 @@ $GLOBALS['config'] = array(
         'username' => 'sa',
         'password' => 'sa',
         'database' => 'iproject19'
-    ),
-    'session' => array(
-        'session_name' => 'user',
-        'token_name' => ''
     )
 );

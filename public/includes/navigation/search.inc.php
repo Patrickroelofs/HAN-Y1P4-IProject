@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <form id="search" method="get" action="">
     <div class="ui search fluid">
         <div class="ui icon input">
