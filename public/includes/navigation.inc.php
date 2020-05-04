@@ -1,7 +1,7 @@
 <?php include_once MODALS . 'login.inc.php' ?>
 <?php include_once MODALS . 'register.inc.php' ?>
 
-<nav class="white">
+<nav class="white primary background">
     <div class="ui secondary menu main-nav">
         <div class="ui four column grid container">
 

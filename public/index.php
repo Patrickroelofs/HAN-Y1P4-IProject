@@ -11,21 +11,15 @@
             <div class="column">
                 <div class="ui fluid card">
                     <a class="image" href="#">
-                        <img src="https://place-hold.it/600x250">
+                        <img src="images/highlightedCategories/Computers.png" alt="categorie computers">
                     </a>
-                    <div class="content">
-                        <a class="header" href="#">...</a>
-                    </div>
                 </div>
             </div>
             <div class="column">
                 <div class="ui fluid card">
                     <a class="image" href="#">
-                        <img src="https://place-hold.it/600x250">
+                        <img src="images/highlightedCategories/Autos.png" alt="categorie autos">
                     </a>
-                    <div class="content">
-                        <a class="header" href="#">...</a>
-                    </div>
                 </div>
             </div>
         </div>

@@ -1,7 +1,6 @@
 /* --- Navigation ------------------------------------------- */
 nav {
     padding: 16px 0 0 0;
-    background: #0F4C8E;
 }
 
 nav h1 {
@@ -159,6 +158,22 @@ footer .footer.title h1 {
 /* --- Other modifiers ------------------------------------------- */
 .white{
     color: white;
+}
+
+.primary.background {
+    background: #3772FF;
+}
+
+.primary.text {
+    color: #3772FF;
+}
+
+.secondary.background {
+    background: #0F4C8E;
+}
+
+.secondary.text {
+    background: #0F4C8E;
 }
 
 .hidden-element{
