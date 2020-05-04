@@ -4,7 +4,14 @@
 ?>
 
 <main>
+    <?php
+        $stmt = Database::getInstance()->query("SELECT * FROM Rubriek WHERE rubriek = -1", array());
 
+        foreach($stmt->results() as $result) {
+            echo $result->rubrieknaam;
+            echo '<br>';
+        }
+    ?>
 </main>
 
 <?php include INCLUDES . 'footer.inc.php'; ?>

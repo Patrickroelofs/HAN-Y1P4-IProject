@@ -23,3 +23,12 @@ CREATE TABLE Gebruiker (
     landnaam        VARCHAR(255)    NULL,
 );
 GO
+
+CREATE TABLE Rubriek
+(
+    rubrieknummer   INT             NOT NULL    PRIMARY KEY,
+    rubrieknaam     VARCHAR(255)    NOT NULL,
+    rubriek         INT             NULL,
+    volgnr          INT             NULL,
+);
+GO
