@@ -160,6 +160,11 @@ footer .footer.title h1 {
 .white{
     color: white;
 }
+
+.hidden-element{
+    display: none;
+}
+
 /* --- Custom hiders ------------------------------------------- */
 /* Mobile */
 @media only screen and (max-width: 767px) {
