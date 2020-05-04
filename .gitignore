@@ -12,7 +12,7 @@ node_modules
 package.json
 package-lock.json
 semantic.json
-semantic
+build/semantic
 
 public/upload/profilepictures/*.png
 public/upload/profilepictures/*.jpg
