@@ -7,8 +7,9 @@
     <!-- Buttons, map -->
     <div class="ui container">
         <h2>Dichtbij</h2>
-        <div class="ui grid">
-            <div class="four wide column">
+        <div class="ui stackable three column grid">
+
+            <div class="column">
                 <form id="search" method="get" action="">
                     <div class="ui search fluid">
                         <div class="ui icon input">
@@ -22,7 +23,7 @@
                     </div>
                 </form>
             </div>
-            <div class="four wide column">
+            <div class="column">
                 <div class="field">
                     <select class="ui dropdown">
                         <option value="">Catogorieën</option>
@@ -31,7 +32,7 @@
                     </select>
                 </div>
             </div>
-            <div class="two wide column">
+            <div class="column">
                 <form id="search" method="get" action="">
                     <div class="ui search fluid">
                         <input class="prompt" type="text" placeholder="Postcode..." name="query">
@@ -39,9 +40,7 @@
             </div>
             </form>
         </div>
-        <div class="column">
-            <img src="https://place-hold.it/1100x300">
-        </div>
+        <img class="ui fluid image" src="https://place-hold.it/1200x450">
 
 
         <!-- Product row -->
