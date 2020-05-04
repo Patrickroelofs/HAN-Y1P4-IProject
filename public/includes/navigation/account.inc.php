@@ -2,7 +2,7 @@
     <span class="image">
         <img width="48" height="48" alt="user profile picture" class="ui circular image" src="
         <?php
-            if(!Session::exists('username')) {
+            if(!Session::exists('username') || empty($user->first()->profielfoto)) {
                 echo 'https://place-hold.it/64x64';
             } else {
                 echo $user->first()->profielfoto;

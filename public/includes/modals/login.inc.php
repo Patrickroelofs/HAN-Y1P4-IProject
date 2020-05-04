@@ -1,4 +1,4 @@
-<?php include '../functions/login.func.php' ?>
+<?php include FUNCTIONS . 'login.func.php' ?>
 
 <div class="ui modal login-modal">
     <div class="ui placeholder segment">

@@ -55,11 +55,15 @@ if(isset($_POST['update-persoonsgegevens-submit'])) {
     $ext = pathinfo($_FILES['profilepicture']['name'], PATHINFO_EXTENSION);
     $filename = md5(basename($profilepicture));
     $target = 'upload/profilepictures/' . $filename . '.' . $ext;
+    $supported_image = array('gif','jpg','jpeg','png');
+    $size = getimagesize($target);
 
     // TODO: Error messages and other invalid register checks.
     if(empty($firstname) || empty($lastname) || empty($dob)) {
         //error
         echo 'error - empty';
+    } if(!in_array($ext, $supported_image)) {
+        echo 'error - unsupported file format';
     }
 
     else {
