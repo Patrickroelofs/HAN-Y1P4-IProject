@@ -27,41 +27,29 @@
             <div class="column">
                 <div class="ui fluid card">
                     <a class="image" href="#">
-                        <img src="https://place-hold.it/300x150">
+                        <img src="images/highlightedCategories/Baby.png">
                     </a>
-                    <div class="content">
-                        <a class="header" href="#">iPhones</a>
-                    </div>
                 </div>
             </div>
             <div class="column">
                 <div class="ui fluid card">
                     <a class="image" href="#">
-                        <img src="https://place-hold.it/300x150">
+                        <img src="images/highlightedCategories/SieradenHorloge.png">
                     </a>
-                    <div class="content">
-                        <a class="header" href="#">Auto's</a>
-                    </div>
                 </div>
             </div>
             <div class="column">
                 <div class="ui fluid card">
                     <a class="image" href="#">
-                        <img src="https://place-hold.it/300x150">
+                        <img src="images/highlightedCategories/Muziek.png">
                     </a>
-                    <div class="content">
-                        <a class="header" href="#">Laptops</a>
-                    </div>
                 </div>
             </div>
             <div class="column">
                 <div class="ui fluid card">
                     <a class="image" href="#">
-                        <img src="https://place-hold.it/300x150">
+                        <img src="images/highlightedCategories/FilmDVD.png">
                     </a>
-                    <div class="content">
-                        <a class="header" href="#">Mondmaskers</a>
-                    </div>
                 </div>
             </div>
         </div>
