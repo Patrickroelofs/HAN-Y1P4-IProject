@@ -3,7 +3,7 @@
 <div class="ui modal login-modal">
     <div class="ui placeholder segment">
         <div class="ui two column stackable center aligned grid">
-            <div class="ui vertical divider">Of</div>
+            <div class="ui vertical divider mobile hidden">Of</div>
 
             <div class="middle aligned row">
                 <div class="column">
