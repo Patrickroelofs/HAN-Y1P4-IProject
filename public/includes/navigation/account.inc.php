@@ -10,7 +10,21 @@
         ?>">
     </span>
     <div class="text">
-        <span class="bold">Goedemiddag,</span>
+        <span class="bold">
+        <?php
+        $time = date("H");
+
+        if($time < "12") {
+            echo "Goedemorgen,";
+        } else if ($time >= "12" && $time < "17") {
+            echo "Goedemiddag,";
+        } else if ($time >= "17" && $time < "19") {
+            echo "Goedeavond,";
+        } else if ($time >= "19") {
+            echo "Goedenacht,";
+        }
+        ?>
+        </span>
         <span>
             <?php
             if(!Session::exists('username')) {
