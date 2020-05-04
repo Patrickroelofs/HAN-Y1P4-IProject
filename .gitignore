@@ -16,3 +16,4 @@ semantic
 
 public/upload/profilepictures/*.png
 public/upload/profilepictures/*.jpg
+public/upload/profilepictures/*.gif

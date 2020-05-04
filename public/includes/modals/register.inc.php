@@ -1,4 +1,4 @@
-<?php include '../functions/register.func.php' ?>
+<?php include FUNCTIONS . 'register.func.php' ?>
 
 <div class="ui modal small register-modal">
     <div class="ui placeholder segment">
