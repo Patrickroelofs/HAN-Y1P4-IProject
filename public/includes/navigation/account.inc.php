@@ -42,8 +42,8 @@
     //If user is not logged in
     if(!Session::exists('username')){
 ?>
-            <a id="login-modal" class="item">Inloggen</a>
-            <a id="register-modal" class="item">Registreren</a>
+            <a class="item press-login-modal">Inloggen</a>
+            <a class="item press-register-modal">Registreren</a>
 <?php
     // If user is logged in
     } else {

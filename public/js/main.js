@@ -26,7 +26,7 @@ $('a#mobile_item').click(function () {
     $('#sidebar').sidebar('toggle')
 });
 
-$("#login-modal").click(function(){
+$(".press-login-modal").click(function(){
     $(".login-modal").modal('show');
     $("#login-register-modal").click(function(){
         $(".register-modal").modal('show');
@@ -38,7 +38,7 @@ $(".login-modal").modal({
     closable: true
 });
 
-$("#register-modal").click(function(){
+$(".press-register-modal").click(function(){
     $(".register-modal").modal('show');
 });
 
