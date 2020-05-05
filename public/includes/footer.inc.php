@@ -1,5 +1,5 @@
 <footer>
-    <section class="primary">
+    <section class="primary background">
         <div class="ui container selling-point">
             <div class="centered aligned ui five column grid">
                 <div class="row">
@@ -42,23 +42,50 @@
             </div>
         </div>
     </section>
-    <section>
-        <div class="ui container">
-            <div class="footer title">
-                <h1>EenmaalAndermaal</h1>
-            </div>
 
-            <div class="centered aligned ui five column grid">
-                <div class="row">
-                    <div class="centered aligned column sixteen wide mobile tablet three wide computer">
-                        <a href="#">Cookies</a>
+    <section class="ui footer vertical-margin-24">
+        <div class="ui container">
+            <div class="ui stackable divided grid">
+                <div class="three wide column">
+                    <h4 class="ui header">Informatie</h4>
+                    <div class="ui link list">
+                        <a href="#" class="item">Link One</a>
+                        <a href="#" class="item">Link Two</a>
+                        <a href="#" class="item">Link Three</a>
+                        <a href="#" class="item">Link Four</a>
                     </div>
-                    <div class="centered aligned column sixteen wide mobile tablet three wide computer">
-                        <a href="#">Algemene voorwaarden</a>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui header">Koper</h4>
+                    <div class="ui link list">
+                        <a href="#" class="item">Link One</a>
+                        <a href="#" class="item">Link Two</a>
+                        <a href="#" class="item">Link Three</a>
+                        <a href="#" class="item">Link Four</a>
                     </div>
-                    <div class="centered aligned column sixteen wide mobile tablet three wide computer">
-                        <a href="#">Privacy</a>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui header">Verkoper</h4>
+                    <div class="ui link list">
+                        <a href="#" class="item">Link One</a>
+                        <a href="#" class="item">Link Two</a>
+                        <a href="#" class="item">Link Three</a>
+                        <a href="#" class="item">Link Four</a>
                     </div>
+                </div>
+                <div class="seven wide column">
+                    <h4 class="ui header">Jouw online Veilingsite.</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque iusto reprehenderit repudiandae.</p>
+                </div>
+            </div>
+            <div class="ui section divider"></div>
+            <div class="ui container center aligned">
+                <h2>Eenmaal Andermaal</h2>
+                <div class="ui horizontal small divided link list center aligned">
+                    <a class="item" href="#">Site Map</a>
+                    <a class="item" href="#">Contact Us</a>
+                    <a class="item" href="#">Terms and Conditions</a>
+                    <a class="item" href="#">Privacy Policy</a>
                 </div>
             </div>
         </div>
