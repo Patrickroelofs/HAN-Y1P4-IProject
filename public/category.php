@@ -1,180 +1,93 @@
 <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . '/core/init.php';
     include INCLUDES . 'head.inc.php';
+
+    $category = $_GET['cat'];
+
+    if(!is_numeric($category)) {
+        Redirect::to('index.php');
+    }
+    $subcategories = Database::getInstance()->query("SELECT * FROM Rubriek WHERE rubriek = $category", array());
 ?>
 
 <main>
     <div class="ui container">
-        <div class="ui stackable five column grid">
-            <div class="five column row">
-                <div class="column">
-                    <h2>Gekozen categorie</h2>
-                    <h3>Prijs range</h3>
-                    <div class="ui range slider" id="slider-range"></div>
-                    <p>To do boxes with values toevoegen</p>
-                    <h3>Merken</h3>
-                    <div class="ui checkbox">
-                        <input id="optieA" type="checkbox">
-                        <label for="optieA">Optie A</label>
-                    </div>
-                    <div class="ui checkbox">
-                        <input id="optieB" type="checkbox">
-                        <label for="optieB">Optie B</label>
-                    </div>
-                    <div class="ui checkbox">
-                        <input id="optieC" type="checkbox">
-                        <label for="optieC">Optie C</label>
-                    </div>
+        <div class="ui stackable two column grid">
+
+            <div class="three wide column">
+                <h3>Categorieën</h3>
+                <?php
+                    if($subcategories->count() > 0) {
+                ?>
+                <div class="cat-list">
+                    <?php
+
+                    foreach($subcategories->results() as $subcategory) {
+                        echo "<a href='category.php?cat=$subcategory->rubrieknummer'>" . $subcategory->rubrieknaam . '</a>';
+                    }
+
+                    ?>
                 </div>
-                <div class="column">
-                    <div class="ui fluid card">
-                        <a class="image" href="#">
-                            <img src="https://place-hold.it/150x150">
-                        </a>
-                        <div class="content">
-                            <a class="header" href="#">Product</a>
-                            <div class="description">€52,00</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="ui fluid card">
-                        <a class="image" href="#">
-                            <img src="https://place-hold.it/150x150">
-                        </a>
-                        <div class="content">
-                            <a class="header" href="#">Product</a>
-                            <div class="description">€52,00</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="ui fluid card">
-                        <a class="image" href="#">
-                            <img src="https://place-hold.it/150x150">
-                        </a>
-                        <div class="content">
-                            <a class="header" href="#">Product</a>
-                            <div class="description">€52,00</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="ui fluid card">
-                        <a class="image" href="#">
-                            <img src="https://place-hold.it/150x150">
-                        </a>
-                        <div class="content">
-                            <a class="header" href="#">Product</a>
-                            <div class="description">€52,00</div>
-                        </div>
-                    </div>
-                </div>
+                <input type="checkbox" name="toggle" id="cat-toggle" class="category-toggle">
+                <label for="cat-toggle"></label>
+                <?php } ?>
             </div>
-            <div class="five column row">
-                <div class="column">
-                    <h3>Iets anders</h3>
-                    <div class="ui checkbox">
-                        <input id="optieD" type="checkbox">
-                        <label for="optieD">Optie D</label>
-                    </div>
-                    <div class="ui checkbox">
-                        <input id="optieE" type="checkbox">
-                        <label for="optieE">Optie E</label>
-                    </div>
-                    <div class="ui checkbox">
-                        <input id="optieE" type="checkbox">
-                        <label for="optieE">Optie E</label>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="ui fluid card">
-                        <a class="image" href="#">
-                            <img src="https://place-hold.it/150x150">
-                        </a>
-                        <div class="content">
-                            <a class="header" href="#">Product</a>
-                            <div class="description">€52,00</div>
+
+            <div class="thirteen wide column">
+                <div class="ui stackable five column grid">
+                    <div class="column">
+                        <div class="ui fluid card">
+                            <a class="image" href="#">
+                                <img src="https://place-hold.it/150x150" alt="product-image">
+                            </a>
+                            <div class="content">
+                                <a class="header" href="#">Product</a>
+                                <div class="description">€52,00</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="column">
-                    <div class="ui fluid card">
-                        <a class="image" href="#">
-                            <img src="https://place-hold.it/150x150">
-                        </a>
-                        <div class="content">
-                            <a class="header" href="#">Product</a>
-                            <div class="description">€52,00</div>
+                    <div class="column">
+                        <div class="ui fluid card">
+                            <a class="image" href="#">
+                                <img src="https://place-hold.it/150x150" alt="product-image">
+                            </a>
+                            <div class="content">
+                                <a class="header" href="#">Product</a>
+                                <div class="description">€52,00</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="column">
-                    <div class="ui fluid card">
-                        <a class="image" href="#">
-                            <img src="https://place-hold.it/150x150">
-                        </a>
-                        <div class="content">
-                            <a class="header" href="#">Product</a>
-                            <div class="description">€52,00</div>
+                    <div class="column">
+                        <div class="ui fluid card">
+                            <a class="image" href="#">
+                                <img src="https://place-hold.it/150x150" alt="product-image">
+                            </a>
+                            <div class="content">
+                                <a class="header" href="#">Product</a>
+                                <div class="description">€52,00</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="column">
-                    <div class="ui fluid card">
-                        <a class="image" href="#">
-                            <img src="https://place-hold.it/150x150">
-                        </a>
-                        <div class="content">
-                            <a class="header" href="#">Product</a>
-                            <div class="description">€52,00</div>
+                    <div class="column">
+                        <div class="ui fluid card">
+                            <a class="image" href="#">
+                                <img src="https://place-hold.it/150x150" alt="product-image">
+                            </a>
+                            <div class="content">
+                                <a class="header" href="#">Product</a>
+                                <div class="description">€52,00</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="five column row">
-                <div class="column"></div>
-                <div class="column">
-                    <div class="ui fluid card">
-                        <a class="image" href="#">
-                            <img src="https://place-hold.it/150x150">
-                        </a>
-                        <div class="content">
-                            <a class="header" href="#">Product</a>
-                            <div class="description">€52,00</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="ui fluid card">
-                        <a class="image" href="#">
-                            <img src="https://place-hold.it/150x150">
-                        </a>
-                        <div class="content">
-                            <a class="header" href="#">Product</a>
-                            <div class="description">€52,00</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="ui fluid card">
-                        <a class="image" href="#">
-                            <img src="https://place-hold.it/150x150">
-                        </a>
-                        <div class="content">
-                            <a class="header" href="#">Product</a>
-                            <div class="description">€52,00</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="ui fluid card">
-                        <a class="image" href="#">
-                            <img src="https://place-hold.it/150x150">
-                        </a>
-                        <div class="content">
-                            <a class="header" href="#">Product</a>
-                            <div class="description">€52,00</div>
+                    <div class="column">
+                        <div class="ui fluid card">
+                            <a class="image" href="#">
+                                <img src="https://place-hold.it/150x150" alt="product-image">
+                            </a>
+                            <div class="content">
+                                <a class="header" href="#">Product</a>
+                                <div class="description">€52,00</div>
+                            </div>
                         </div>
                     </div>
                 </div>

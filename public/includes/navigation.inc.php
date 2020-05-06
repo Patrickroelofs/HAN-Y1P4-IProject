@@ -72,9 +72,9 @@
                 </div>
             </div>
 
-            <div class="ui item link">Voor Jou</div>
-            <div class="ui item link">Dichtbij</div>
-            <div class="ui item link">Nieuw</div>
+            <a href="foryou.php" class="ui item link">Voor Jou</a>
+            <a href="nearby.php" class="ui item link">Dichtbij</a>
+            <a href="new.php" class="ui item link">Nieuw</a>
         </div>
     </div>
 </nav>

@@ -71,6 +71,29 @@ nav .ui.input > input {
     color: #0F4C8E;
 }
 
+
+/* --- Category dropdown in Category.php ---------------- */
+.cat-list {
+    height: 77px;
+    overflow: hidden;
+}
+.cat-list a{
+    display: block;
+}
+#cat-toggle {
+    display: none;
+}
+#cat-toggle + label:after {
+    content:">> Meer Categorieën";
+}
+.cat-list.toggled{
+    height: auto;
+    overflow: auto;
+}
+#cat-toggle:checked + label:after {
+    content:"<< Minder Categorieën";
+}
+
 /* --- Footer ------------------------------------------- */
 
 footer {

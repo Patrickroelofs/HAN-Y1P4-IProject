@@ -60,3 +60,7 @@ $('.categories .item.dropdown-hover').popup({
 });
 
 $('.tabular.menu .item').tab();
+
+$("#cat-toggle").click(function(){
+    $(".cat-list").toggleClass('toggled');
+});

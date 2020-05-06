@@ -9,13 +9,17 @@
 
         <div class="ui stackable four column grid categories-list">
             <?php
+
+            // Load all root categories
             $categories = Database::getInstance()->query("SELECT * FROM Rubriek WHERE rubriek = -1", array());
             foreach($categories->results() as $category) {
               ?>
                 <div class="column">
                     <?php
+                    // Echo root categories
                   echo "<a href='category.php?cat=$category->rubrieknummer'>" . $category->rubrieknaam . '</a>';
 
+                  // Load all subcategories based on category's loaded previously
                   $subcategories = Database::getInstance()->query("SELECT * FROM Rubriek WHERE rubriek = $category->rubrieknummer", array());
                   foreach($subcategories->results() as $subcategory) {
                       echo "<a href='category.php?cat=$subcategory->rubrieknummer'>" . $subcategory->rubrieknaam . '</a>';
