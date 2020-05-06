@@ -127,6 +127,10 @@ class Database {
         return $this->results()[0];
     }
 
+    public function id($id) {
+        return $this->results()[$id];
+    }
+
     public function error() {
         return $this->_error;
     }

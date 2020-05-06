@@ -2,27 +2,39 @@
     require_once $_SERVER['DOCUMENT_ROOT'] . '/core/init.php';
     include INCLUDES . 'head.inc.php';
 
-    $category = $_GET['cat'];
+    $selectedCategory = $_GET['cat'];
 
-    if(!is_numeric($category)) {
+    if(!is_numeric($selectedCategory) || $selectedCategory < 0) {
         Redirect::to('index.php');
     }
-    $subcategories = Database::getInstance()->query("SELECT * FROM Rubriek WHERE rubriek = $category", array());
+
+
+
 ?>
 
 <main>
     <div class="ui container">
+        <h2>
+            <?php
+                $category = Database::getInstance()->get('Rubriek', array('rubrieknummer', '=', $selectedCategory));
+                echo $category->first()->rubrieknaam;
+            ?>
+        </h2>
         <div class="ui stackable two column grid">
+
 
             <div class="three wide column">
                 <h3>Categorieën</h3>
                 <?php
-                    if($subcategories->count() > 0) {
+                    //Get all subcategories
+                    $categories = Database::getInstance()->get('Rubriek', array('Rubriek', '=', $selectedCategory));
+                    // Load all subcategories that this category has
+                    if($categories->count() > 0) {
                 ?>
                 <div class="cat-list">
                     <?php
 
-                    foreach($subcategories->results() as $subcategory) {
+                    foreach($categories->results() as $subcategory) {
                         echo "<a href='category.php?cat=$subcategory->rubrieknummer'>" . $subcategory->rubrieknaam . '</a>';
                     }
 
