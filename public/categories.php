@@ -5,35 +5,23 @@
 
 <main>
     <div class="ui container">
-        <div class="ui container center aligned">
-            <div class="ui three column grid centered stackable">
-                <div class="column">
-                    <div class="ui category search">
-                        <div class="ui icon input fluid">
-                            <input class="prompt" type="text" placeholder="Categorie zoeken...">
-                            <i class="search icon"></i>
-                        </div>
-                        <div class="results"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <h2>Alle Categorieën</h2>
 
-        <div class="ui stackable four column grid">
+        <div class="ui stackable four column grid categories-list">
             <?php
-                $categories = Database::getInstance()->query("SELECT * FROM Rubriek WHERE rubriek = -1", array());
-                foreach($categories->results() as $category) {
-            ?>
-            <div class="column">
-                <?php
-                    echo "<a href='category.php?cat=$category->rubrieknummer'>" . $category->rubrieknummer . ' ' . $category->rubrieknaam . '</a><br>';
+            $categories = Database::getInstance()->query("SELECT * FROM Rubriek WHERE rubriek = -1", array());
+            foreach($categories->results() as $category) {
+              ?>
+                <div class="column">
+                    <?php
+                  echo "<a href='category.php?cat=$category->rubrieknummer'>" . $category->rubrieknaam . '</a>';
 
-                    $subcategories = Database::getInstance()->query("SELECT * FROM Rubriek WHERE rubriek = $category->rubrieknummer", array());
-                    foreach($subcategories->results() as $subcategory) {
-                        echo "<a href='category.php?cat=$subcategory->rubrieknummer'>" . $subcategory->rubrieknummer . ' ' . $subcategory->rubrieknaam . '</a><br>';
-                    }
-                ?>
-            </div>
+                  $subcategories = Database::getInstance()->query("SELECT * FROM Rubriek WHERE rubriek = $category->rubrieknummer", array());
+                  foreach($subcategories->results() as $subcategory) {
+                      echo "<a href='category.php?cat=$subcategory->rubrieknummer'>" . $subcategory->rubrieknaam . '</a>';
+                  }
+                  ?>
+                </div>
             <?php } ?>
         </div>
     </div>

@@ -54,6 +54,23 @@ nav .ui.input > input {
 .mobile-button{
     padding: 16px 0 !important;
 }
+.categories-list a{
+    display: block;
+    color: black;
+    transition: all 0.3s ease;
+}
+
+.categories-list .column a:first-of-type{
+    font-size: 1.2em;
+    line-height: 2em;
+    color: black;
+    font-weight: bold;
+}
+
+.categories-list .column a:hover{
+    color: #0F4C8E;
+}
+
 /* --- Footer ------------------------------------------- */
 
 footer {
