@@ -17,6 +17,10 @@ define('FUNCTIONS', '../functions/');
 define('INCLUDES', '../public/includes/');
 define('MODALS', INCLUDES . 'modals/');
 
+//Define inaccessible picture folder
+//TODO: check if it works
+define('PICTURES',  "http://iproject19.icasites.nl/pics");
+
 //Load all classes
 spl_autoload_register(function($class) {
     require_once CORE . DIRECTORY_SEPARATOR . CLASSES . $class . '.class.php';
