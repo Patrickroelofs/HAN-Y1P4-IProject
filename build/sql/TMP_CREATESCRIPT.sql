@@ -6,8 +6,8 @@ USE iproject19
 GO
 
 CREATE TABLE Gebruiker (
-    id              INT             NOT NULL    IDENTITY,
-    gebruikersnaam  VARCHAR(255)    NOT NULL    UNIQUE,
+    id              INT             NOT NULL    UNIQUE  IDENTITY,
+    gebruikersnaam  VARCHAR(255)    NOT NULL    PRIMARY KEY,
     emailadres      VARCHAR(255)    NOT NULL,
     wachtwoord      VARCHAR(255)    NOT NULL,
 

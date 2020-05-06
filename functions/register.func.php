@@ -13,6 +13,10 @@ if(isset($_POST['register-submit'])) {
     $password           =  $_POST['password'];
     $password_repeat    =  $_POST['password_repeat'];
 
+    // Get usernames if its already taken
+    $users = Database::getInstance()->get('Gebruiker', array('gebruikersnaam', '=', $username));
+    $emails = Database::getInstance()->get('Gebruiker', array('emailadres', '=', $email));
+
     // TODO: Error messages and other invalid register checks.
     if(empty($username) || empty($email) || empty($password) || empty($password_repeat)){
         //error
@@ -26,6 +30,9 @@ if(isset($_POST['register-submit'])) {
 
     } else if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
         echo 'error - not a correct email';
+
+    } else if ($users->count() > 0 || $emails->count() > 0) {
+        echo 'error - username or email taken';
     }
 
     else {
@@ -38,7 +45,6 @@ if(isset($_POST['register-submit'])) {
             ));
 
             Session::put('username', $username);
-
             Redirect::to('profile.php');
 
         } catch(PDOException $e){
