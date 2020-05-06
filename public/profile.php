@@ -2,7 +2,7 @@
     require_once $_SERVER['DOCUMENT_ROOT'] . '/core/init.php';
 
     if(!Session::exists('username')){
-        Redirect::to('../index.php');
+        Redirect::to('index.php');
     }
 
     include FUNCTIONS . 'profile.func.php';
