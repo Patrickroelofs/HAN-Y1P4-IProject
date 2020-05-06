@@ -1,3 +1,6 @@
+USE iproject19
+go
+
 INSERT Rubriek (rubrieknummer,rubrieknaam,rubriek) VALUES (-1,'Root',NULL)
 INSERT Rubriek (rubrieknummer,rubrieknaam,rubriek) VALUES (1,'Verzamelen',-1)
 INSERT Rubriek (rubrieknummer,rubrieknaam,rubriek) VALUES (30,'Overig klassiek speelgoed',19016)

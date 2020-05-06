@@ -3,23 +3,23 @@
 /* ***************************** */
 USE iproject19
 GO
-DROP TABLE Bestand
+DROP TABLE IF EXISTS Bestand
 GO
-DROP TABLE Bod
+DROP TABLE IF EXISTS  Bod
 GO
-DROP TABLE Feedback
+DROP TABLE IF EXISTS  Feedback
 GO
-DROP TABLE Gebruikerstelefoon
+DROP TABLE IF EXISTS  Gebruikerstelefoon
 GO
-DROP TABLE VoorwerpInRubriek
+DROP TABLE IF EXISTS  VoorwerpInRubriek
 GO
-DROP TABLE Rubriek
+DROP TABLE IF EXISTS  Rubriek
 GO
-DROP TABLE Voorwerp
+DROP TABLE IF EXISTS  Voorwerp
 GO
-DROP TABLE Verkoper
+DROP TABLE IF EXISTS  Verkoper
 GO
-DROP TABLE Gebruiker
+DROP TABLE IF EXISTS  Gebruiker
 GO
-DROP TABLE Vraag
+DROP TABLE IF EXISTS  Vraag
 GO

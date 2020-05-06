@@ -27,7 +27,7 @@ ECHO.
 PAUSE
 @cls
 
-SQLCMD -i %~dp0\INSERTSCRIPT.sql
+SQLCMD -i %~dp0\insertscripts\Rubriek_insert.sql
 ECHO.
 ECHO STEP 3 - 3
 ECHO INSERTED ALL DATA INTO TABLES
