@@ -183,5 +183,5 @@
     </div>
 </main>
 
-<?php include PROJECT_INCLUDES . 'footer.inc.php'; ?>
-<?php include PROJECT_INCLUDES . 'foot.inc.php'; ?>
+<?php include INCLUDES . 'footer.inc.php'; ?>
+<?php include INCLUDES . 'foot.inc.php'; ?>
