@@ -8,18 +8,10 @@ if (isset($_GET['search'])) {
     $query = $_GET['search'];
 
     // Check database if it contains $query
-    $stmt = Database::getInstance()->prepare("SELECT * FROM Gebruiker WHERE gebruikersnaam LIKE :query");
-    $stmt->execute(array(
-        ':query' => $query
-    ));
+    $stmt = Database::getInstance()->query("SELECT * FROM Voorwerp WHERE titel LIKE '%$query%' OR beschrijving LIKE '%$query%'",array());
 
-    // Get results
-    $results = $stmt->fetch(PDO::FETCH_OBJ);
-
-    // TODO: Display results in cards
-    if (empty($results)) {
+    if ($stmt->count() < 1) {
         // no data passed by get
         echo "<p>Geen resultaten</p>";
     }
-    print_r($results);
 }
