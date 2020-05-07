@@ -10,14 +10,14 @@
         <div class="ui stackable two column grid">
             <div class="column">
                 <div class="ui fluid card">
-                    <a class="image" href="#">
+                    <a class="image" href="category.php?cat=160">
                         <img src="images/highlightedCategories/Computers.png" alt="categorie computers">
                     </a>
                 </div>
             </div>
             <div class="column">
                 <div class="ui fluid card">
-                    <a class="image" href="#">
+                    <a class="image" href="category.php?cat=9800">
                         <img src="images/highlightedCategories/Autos.png" alt="categorie autos">
                     </a>
                 </div>
@@ -26,28 +26,28 @@
         <div class="ui stackable four column grid">
             <div class="column">
                 <div class="ui fluid card">
-                    <a class="image" href="#">
+                    <a class="image" href="category.php?cat=12081">
                         <img src="images/highlightedCategories/Baby.png">
                     </a>
                 </div>
             </div>
             <div class="column">
                 <div class="ui fluid card">
-                    <a class="image" href="#">
+                    <a class="image" href="category.php?cat=281">
                         <img src="images/highlightedCategories/SieradenHorloge.png">
                     </a>
                 </div>
             </div>
             <div class="column">
                 <div class="ui fluid card">
-                    <a class="image" href="#">
+                    <a class="image" href="category.php?cat=11233">
                         <img src="images/highlightedCategories/Muziek.png">
                     </a>
                 </div>
             </div>
             <div class="column">
                 <div class="ui fluid card">
-                    <a class="image" href="#">
+                    <a class="image" href="category.php?cat=11232">
                         <img src="images/highlightedCategories/FilmDVD.png">
                     </a>
                 </div>
