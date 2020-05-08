@@ -1,8 +1,7 @@
 <?php
 
 class Database {
-    private static  $_instance = null;
-    private         $_pdo;
+    private static  $_pdo = null;
     private         $_query;
     private         $_error = false;
     private         $_results;
@@ -10,22 +9,25 @@ class Database {
 
     private function __construct() {
         try {
-            $this->_pdo = new PDO('sqlsrv:Server=' . Config::get('pdo/host') . ',1433;Database=' . Config::get('pdo/database'), Config::get('pdo/username'), Config::get('pdo/password'));
+            if(self::$_pdo == null) {
+                self::$_pdo = new PDO('sqlsrv:Server=' . Config::get('pdo/host') . ',1433;Database=' . Config::get('pdo/database'), Config::get('pdo/username'), Config::get('pdo/password'));
+            }
         } catch(PDOException $e) {
             die($e->getMessage());
         }
     }
 
     public static function getInstance() {
-        if(!isset(self::$_instance)) {
-            self::$_instance = new Database();
-        }
-        return self::$_instance;
+        return new Database();
+    }
+
+    public function closeConnection() {
+        self::$_pdo = null;
     }
 
     public function query($sql, $params = array()) {
         $this->_error = false;
-        if($this->_query = $this->_pdo->prepare($sql)) {
+        if($this->_query = self::$_pdo->prepare($sql)) {
             $x = 1;
             if(count($params)) {
                 foreach($params as $param) {
@@ -116,7 +118,7 @@ class Database {
     }
 
     public function prepare($sql){
-        return $this->_pdo->prepare($sql);
+        return self::$_pdo->prepare($sql);
     }
 
     public function results() {
