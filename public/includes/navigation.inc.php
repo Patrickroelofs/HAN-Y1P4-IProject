@@ -36,38 +36,35 @@
                         <div class="four wide column">
                             <a class="text-left link item" href="categories.php">Bekijk alle Categorieën</a>
                             <div class="ui fluid vertical tabular menu text-left">
-                                <a class="active item" data-tab="1">Computer en Electronica</a>
-                                <a class="item" data-tab="2">Tab 2</a>
-                                <a class="item" data-tab="3">Tab 3</a>
+                                <?php
+                                // Get all ROOT rubrieken
+                                $categories = Database::getInstance()->query("SELECT TOP 6 * FROM Rubriek WHERE rubriek = -1", array());
+
+                                // Echo each rubriek
+                                foreach ($categories->results() as $result) {
+                                    echo "<a class='item' data-tab='$result->rubrieknummer'>" . $result->rubrieknaam . "</a>";
+                                }
+                                ?>
                             </div>
                         </div>
                     </div>
 
                     <div class="stretched twelve wide column">
-                        <div class="ui bottom attached active tab" data-tab="1">
-                            <div class="ui four column grid text-left">
-                                <div class="column">
-                                    <h4 class="header">Computer</h4>
-                                </div>
-                                <div class="column">
-                                    <h4 class="header">Tablets & Telefonie</h4>
-                                </div>
-                                <div class="column">
-                                    <h4 class="header">Televisie</h4>
-                                </div>
-                                <div class="column">
-                                    <h4 class="header">Audio & Hifi</h4>
-                                </div>
+                        <?php foreach($categories->results() as $result) { ?>
+                        <div class="ui bottom attached tab" data-tab="<?= $result->rubrieknummer ?>">
+                            <div class="ui stackable three column grid categories-navbar-list">
+                            <?php
+                                //Get all rubrieken inside of the rubriek tab
+                                $category = Database::getInstance()->query("SELECT * FROM Rubriek WHERE rubriek = $result->rubrieknummer");
+                                foreach($category->results() as $cat) {
+                            ?>
+                            <div class="column">
+                                <a href="category.php?cat=<?= $cat->rubrieknummer ?>"><?= $cat->rubrieknaam; ?></a>
+                            </div>
+                            <?php } ?>
                             </div>
                         </div>
-
-                        <div class="ui bottom attached tab" data-tab="2">
-
-                        </div>
-
-                        <div class="ui bottom attached tab" data-tab="3">
-
-                        </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

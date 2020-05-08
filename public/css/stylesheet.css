@@ -70,6 +70,22 @@ nav .ui.input > input {
 .categories-list .column a:hover{
     color: #0F4C8E;
 }
+.categories-navbar-list{
+    padding: 16px 0 !important;
+}
+.categories-navbar-list .column {
+    padding: 6px 0 !important;
+    text-align: left !important;
+}
+.categories-navbar-list .column a{
+    color: black;
+    -webkit-transition: color 0.15s ease-in-out;
+    -moz-transition: color 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out;
+}
+.categories-navbar-list .column a:hover{
+    color: #3772FF;
+}
 
 
 /* --- Category dropdown in Category.php ---------------- */
