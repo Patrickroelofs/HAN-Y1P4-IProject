@@ -25,17 +25,17 @@ include FUNCTIONS . 'login.func.php';
                 </div>
                 <div class="field">
                     <label for="bank number">Bankrekening nummer</label>
-                    <input type="text" name="bank number" id="bank number" placeholder="Vul uw banknummer in">
+                    <input type="text" name="bankNummer" id="bankNummer" placeholder="Vul uw banknummer in">
                 </div>
                 <div class="field">
                     <label for="control option">Controle optie</label>
-                    <input type="text" name="control option" id="control option" placeholder="Geef een controle optie">
+                    <input type="text" name="controleOptie" id="controleOptie" placeholder="Geef een controle optie">
                 </div>
                 <div class="field">
                     <label for="credit card">Credit card</label>
-                    <input type="text" name="credit card" id="creditcard" placeholder="Vul uw creditcard nummer in">
+                    <input type="text" name="creditcard" id="creditcard" placeholder="Vul uw creditcard nummer in">
                 </div>
-                <input class="ui button" type="submit" name="update-bankgegevens" value="Update bankgegevens">
+                <input class="ui button" type="submit" name="updateBankgegevens" value="Update bankgegevens">
             </form>
         </div>
         <div class="column vertical-margin-24"></div>
