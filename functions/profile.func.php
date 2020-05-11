@@ -24,7 +24,7 @@ if(isset($_POST['update-inloggegevens-submit'])) {
     else {
         //Insert into database
         try{
-            $stmt = Database::getInstance()->update('Gebruiker', Session::get('username'), array(
+            $stmt = Database::getInstance()->update('Gebruiker', 'gebruikersnaam', Session::get('username'), array(
                 'wachtwoord' => Hash::make($password)
             ));
 
@@ -75,7 +75,7 @@ if(isset($_POST['update-persoonsgegevens-submit'])) {
 
             // If there is no profile picture uploaded
             if(empty($profilepicture)) {
-                $stmt = Database::getInstance()->update('Gebruiker', Session::get('username'), array(
+                $stmt = Database::getInstance()->update('Gebruiker', 'gebruikersnaam', Session::get('username'), array(
                     'voornaam' => $firstname,
                     'achternaam' => $lastname,
                     'geboortedag' => $dob,
@@ -83,7 +83,7 @@ if(isset($_POST['update-persoonsgegevens-submit'])) {
             }
             // If there is a profile picture uploaded
             else {
-                $stmt = Database::getInstance()->update('Gebruiker', Session::get('username'), array(
+                $stmt = Database::getInstance()->update('Gebruiker', 'gebruikersnaam', Session::get('username'), array(
                     'voornaam' => $firstname,
                     'achternaam' => $lastname,
                     'geboortedag' => $dob,
@@ -124,7 +124,7 @@ if(isset($_POST['update-locatiegegevens-submit'])) {
     else {
         // Insert into database
         try {
-            $stmt = Database::getInstance()->update('Gebruiker', Session::get('username'), array(
+            $stmt = Database::getInstance()->update('Gebruiker', 'gebruikersnaam', Session::get('username'), array(
                 'adresregel1' => $adresregel1,
                 'adresregel2' => $adresregel2,
                 'postcode' => $postcode,
