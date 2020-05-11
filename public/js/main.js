@@ -1,8 +1,12 @@
 /* Search bar ---------------- */
 
 /* Category select */
+$('.ui.dropdown')
+    .dropdown()
+;
+
 $(function() {
-    $('.ui.dropdown').dropdown({
+    $('.ui.dropdown.select').dropdown({
         action: 'select'
     });
 });
@@ -64,3 +68,7 @@ $('.tabular.menu .item').tab();
 $("#cat-toggle").click(function(){
     $(".cat-list").toggleClass('toggled');
 });
+
+$('.ui.accordion')
+    .accordion()
+;
