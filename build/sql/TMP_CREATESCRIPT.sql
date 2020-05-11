@@ -23,7 +23,7 @@ CREATE TABLE Gebruiker
     plaatsnaam     VARCHAR(255) NULL,
     landnaam       VARCHAR(255) NULL,
 
-    gebruiker      BIT          NULL,
+    verkoper       BIT          NULL,
 );
 GO
 
