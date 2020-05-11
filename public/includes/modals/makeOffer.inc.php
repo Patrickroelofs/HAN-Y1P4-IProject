@@ -1,6 +1,3 @@
-<?php //include FUNCTIONS . 'makeOffer.func.php'
-?>
-
 <div class="ui modal makeOffer">
     <i class="close icon"></i>
     <div class="header">
@@ -14,7 +11,7 @@
             <div class="ui header">Product</div>
 
             <form method="post" id="offer-form">
-                <div class="ui input labeled input">
+                <div class="ui input labeled input required">
                     <label for="amount" class="ui label">€</label>
                     <input type="text" placeholder="Uw bod" name="amount">
                 </div>
@@ -23,7 +20,7 @@
     </div>
     <div class="actions">
         <div class="ui input labeled input">
-            <button type="submit" form="offer-form" name="offer-submit" class="ui teal labeled icon button">
+            <button type="submit" form="offer-form" name="offer-submit" class="ui primary labeled icon button">
                 <i class="gavel icon"></i>
                 Bieden
             </button>

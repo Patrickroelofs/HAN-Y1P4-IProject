@@ -9,12 +9,15 @@ if(isset($_POST['offer-submit'])) {
     // TODO take product id
     // Save data in temporary variables
     $amount = $_POST['amount'];
-    unset($_POST['offer-submit']);
 
+    //Insert into database
     try{
-        $stmt = Database::getInstance()->insert('Voorwerp', array(
+        $stmt = Database::getInstance()->update('Voorwerp','voorwerpnummer',1,
+        array(
             'verkoopprijs' => $amount
         ));
+
+        Redirect::to('index.php');
 
     } catch(PDOException $e){
         //Error during insert

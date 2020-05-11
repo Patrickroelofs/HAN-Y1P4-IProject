@@ -5,6 +5,7 @@
 
 <main>
     <div class="ui container">
+        <a href="product.php">PLEASE REMOVE ME</a>
         <!-- featured content -->
         <h2>Uitgelicht</h2>
         <div class="ui stackable two column grid">

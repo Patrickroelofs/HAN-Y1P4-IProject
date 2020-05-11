@@ -1,6 +1,7 @@
 <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . '/core/init.php';
     include INCLUDES . 'head.inc.php';
+    include FUNCTIONS . 'makeOffer.func.php'
 ?>
 
 <main>
@@ -29,7 +30,7 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi dignissimos eligendi quo.</p>
 
                     <div class="ui input labeled input">
-                        <button type="submit" id="makeOffer" class="ui teal labeled icon button">
+                        <button type="submit" id="makeOffer" class="ui primary labeled icon button">
                             <i class="gavel icon"></i>
                             Bieden
                         </button>
