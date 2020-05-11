@@ -152,7 +152,12 @@ footer .footer.title h1 {
         padding-bottom: 16px !important;
     }
 }
-
+/* --- ADD Auction page ----------------------------------------- */
+.addAuction label{
+    display: block;
+    margin: 16px 0 6px 0;
+    font-weight: bold;
+}
 
 /* --- Text modifiers ------------------------------------------- */
 .bold {
@@ -196,6 +201,7 @@ footer .footer.title h1 {
     padding: 0 12px;
 }
 /* --- Margin modifiers ------------------------------------------- */
+
 .vertical-margin-6 {
     margin: 6px 0;
 }
@@ -238,6 +244,10 @@ footer .footer.title h1 {
 
 .hidden-element{
     display: none;
+}
+
+.full-width{
+    width: 100%;
 }
 
 /* --- Custom hiders ------------------------------------------- */
