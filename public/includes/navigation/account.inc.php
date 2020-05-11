@@ -49,7 +49,13 @@
     } else {
 ?>
         <a class="item" href="profile.php">Mijn Profiel</a>
-        <a class="item" href="seller.php">Word een verkoper</a>
+        <?php
+            if($user->first()->verkoper == false) {
+                echo '<a class="item" href="seller.php">Word een verkoper</a>';
+            } else {
+                echo '<a class="item" href="addAuction.php">Veiling openen</a>';
+            }
+        ?>
         <a class="item" href="includes/navigation/logout.inc.php">Uitloggen</a>
 <?php
     }
