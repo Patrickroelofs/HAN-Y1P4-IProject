@@ -24,6 +24,7 @@ CREATE TABLE Gebruiker
     landnaam       VARCHAR(255) NULL,
 
     verkoper       BIT          NULL    DEFAULT 0,
+    compleet       BIT          NULL    DEFAULT 0
 );
 GO
 
