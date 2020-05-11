@@ -39,25 +39,24 @@ GO
 
 CREATE TABLE Voorwerp
 (
-    voorwerpnummer          NUMERIC(10)   NOT NULL PRIMARY KEY,
-    titel                   CHAR(18)      NOT NULL,
-    beschrijving            CHAR(10)      NOT NULL,
-    startprijs              CHAR(5)       NOT NULL,
-    betalingswijzenaam      CHAR(9)       NOT NULL,
-    betalingsinstructie     VARCHAR(255)  NULL,
-    plaatsnaam              CHAR(12)      NOT NULL,
-    landnaam                CHAR(9)       NOT NULL,
-    looptijd                INT           NOT NULL,
-    looptijdbegindag        DATE          NOT NULL,
-    looptijdbegintijdstip   TIME(0)       NOT NULL DEFAULT CONVERT(TIME, GETDATE()),
-    verzendkosten           CHAR(27)      NULL,
-    verzendinstructies      CHAR(27)      NULL,
-    verkopersgebruikersnaam VARCHAR(255)  NOT NULL,
-    kopersgebruikersnaam    VARCHAR(255)  NOT NULL,
-    looptijdeindedag        DATE          NOT NULL,
-    looptijdeindetijdstip   TIME(0)       NOT NULL DEFAULT CONVERT(TIME, GETDATE()),
-    veilinggesloten         BIT           NOT NULL,
-    verkoopprijs            NUMERIC(8, 2) NOT NULL,
+    voorwerpnummer          INT                 NOT NULL IDENTITY PRIMARY KEY,
+    titel                   VARCHAR(255)        NOT NULL,
+    beschrijving            VARCHAR(MAX)        NOT NULL,
+    startprijs              DECIMAL(18,2)       NOT NULL,
+    betalingsinstructies    VARCHAR(255)        NULL,
+    plaatsnaam              VARCHAR(255)        NOT NULL,
+    landnaam                VARCHAR(255)        NOT NULL,
+    looptijd                INT                 NOT NULL DEFAULT 7,
+    looptijdbegindag        DATE                NOT NULL DEFAULT GETDATE(),
+    looptijdbegintijdstip   TIME                NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    verzendkosten           DECIMAL(18,2)       NULL,
+    verzendinstructies      VARCHAR(MAX)        NULL,
+    verkoper                VARCHAR(255)        NOT NULL,
+    koper                   VARCHAR(255)        NULL,
+    looptijdeindedag        DATE                NULL,
+    looptijdeindetijdstip   TIME                NULL,
+    gesloten                BIT                 NOT NULL DEFAULT 0,
+    verkoopprijs            DECIMAL(18,2)       NULL
 );
 GO
 
