@@ -78,10 +78,11 @@ GO
 /* TABLE: Bod */
 CREATE TABLE Bod
 (
-    voorwerpnummer  INT                 NOT NULL    PRIMARY KEY,
+    id              INT                 NOT NULL    IDENTITY    PRIMARY KEY,
+    voorwerpnummer  INT                 NOT NULL,
     bodbedrag       INT                 NOT NULL,
     gebruiker       VARCHAR(255)        NULL,
-    boddag          DATE                NULL,
-    bodtijd         INT                 NULL
+    boddag          DATE                NOT NULL    DEFAULT     GETDATE(),
+    bodtijd         TIME                NOT NULL    DEFAULT     CURRENT_TIMESTAMP
 )
 GO
