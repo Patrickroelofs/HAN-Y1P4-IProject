@@ -78,7 +78,7 @@ GO
 /* TABLE: Bod */
 CREATE TABLE Bod
 (
-    voorwerp        VARCHAR(255)        NOT NULL    PRIMARY KEY,
+    voorwerpnummer  INT                 NOT NULL    PRIMARY KEY,
     bodbedrag       INT                 NOT NULL,
     gebruiker       VARCHAR(255)        NULL,
     boddag          DATE                NULL,
