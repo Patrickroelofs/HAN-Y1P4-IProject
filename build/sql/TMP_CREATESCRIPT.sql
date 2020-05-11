@@ -22,6 +22,8 @@ CREATE TABLE Gebruiker
     postcode       VARCHAR(255) NULL,
     plaatsnaam     VARCHAR(255) NULL,
     landnaam       VARCHAR(255) NULL,
+
+    gebruiker      BIT          NULL,
 );
 GO
 
