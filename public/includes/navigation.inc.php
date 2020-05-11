@@ -25,7 +25,7 @@
 
     <div class="ui secondary menu categories tablet or lower hidden">
         <div class="ui container">
-            <div class="ui dropdown link item dropdown-hover hidden">
+            <div class="ui dropdown select link item dropdown-hover hidden">
                 <span class="text bold">Categorieën</span>
                 <i class="dropdown icon"></i>
             </div>

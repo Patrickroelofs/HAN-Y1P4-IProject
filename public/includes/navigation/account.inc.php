@@ -1,4 +1,4 @@
-<div class="ui dropdown item accountdropdown right aligned horizontal-padding-6">
+<div class="ui dropdown select item accountdropdown right aligned horizontal-padding-6">
     <span class="image">
         <img width="48" height="48" alt="user profile picture" class="ui circular image" src="
         <?php
