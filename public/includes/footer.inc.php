@@ -86,6 +86,7 @@
                     <a class="item" href="#">Contact Us</a>
                     <a class="item" href="#">Terms and Conditions</a>
                     <a class="item" href="#">Privacy Policy</a>
+                    <a class="item" href="avg.php">Delete Account</a>
                 </div>
             </div>
         </div>
