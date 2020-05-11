@@ -49,6 +49,7 @@
             } else {
                 ?>
                 <a class="item" href="profile.php">Mijn Profiel</a>
+                <a class="item" href="seller.php">Word een verkoper</a>
                 <a class="item" href="includes/navigation/logout.inc.php">Uitloggen</a>
                 <?php
             }
