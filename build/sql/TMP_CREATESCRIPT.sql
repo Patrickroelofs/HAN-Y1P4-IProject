@@ -75,3 +75,14 @@ create table Verkoper
         ON DELETE NO ACTION
 );
 GO
+
+/* TABLE: Bod */
+CREATE TABLE Bod
+(
+    voorwerp        VARCHAR(255)        NOT NULL    PRIMARY KEY,
+    bodbedrag       INT                 NOT NULL    PRIMARY KEY,
+    gebruiker       VARCHAR(255)        NULL,
+    boddag          DATE                NULL,
+    bodtijd         INT                 NULL
+)
+GO
