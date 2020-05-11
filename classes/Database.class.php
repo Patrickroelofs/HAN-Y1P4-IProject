@@ -71,7 +71,7 @@ class Database {
         return false;
     }
 
-    public function update($table, $username, $fields) {
+    public function update($table, $row, $key, $fields) {
         $set = '';
         $x = 1;
 
@@ -83,7 +83,7 @@ class Database {
             $x++;
         }
 
-        $sql = "UPDATE {$table} SET {$set} WHERE gebruikersnaam = '{$username}'";
+        $sql = "UPDATE {$table} SET {$set} WHERE {$row} = '{$key}'";
 
         if(!$this->query($sql, $fields)->error()) {
             return true;
