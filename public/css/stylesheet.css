@@ -168,6 +168,10 @@ footer .footer.title h1 {
     text-align: right;
 }
 
+.link-white,.link-white:hover {
+    color: white;
+}
+
 /* --- Padding modifiers ------------------------------------------- */
 .nopadding{
     padding: 0 !important;
