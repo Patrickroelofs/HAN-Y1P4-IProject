@@ -4,6 +4,20 @@
 //======================================================================
 $productID = '1';
 
+// Check if user has filled in all credentials
+try {
+    $stmt = Database::getInstance()->query("SELECT compleet FROM Gebruiker WHERE gebruikersnaam = 'Camiel'",array());
+
+    if($stmt->first()->compleet == 1) {
+        $completedProfile = 1;
+    } else {
+        $completedProfile = 0;
+    }
+} catch (PDOException $e) {
+    //Error during select
+    echo $e->getMessage();
+}
+
 // Figure out highest bid
 $highestBid = '0';
 

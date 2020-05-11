@@ -1,4 +1,5 @@
 <?php
+// Check if the user is logged in
 if (!Session::exists('username')) {
     echo "
     <div class=\"ui mini modal makeOffer\">
@@ -16,7 +17,28 @@ if (!Session::exists('username')) {
       </div>
     </div>
     ";
-} else {
+}
+
+elseif ($completedProfile == 0) {
+    echo "
+    <div class=\"ui mini modal makeOffer\">
+      <div class=\"ui header\">
+        Profiel niet compleet
+      </div>
+      <div class=\"content\">
+        <p>Om te kunnen bieden op producten moet u eerst uw profielgegevens aanvullen op uw <a href='profile.php'>profiel pagina</a> .</p>
+      </div>
+      <div class=\"actions\">
+        <div class=\"ui green ok inverted button\">
+          <i class=\"checkmark icon\"></i>
+          Okay
+        </div>
+      </div>
+    </div>
+    ";
+}
+// User is logged in & has a complete profile
+else {
     echo "  
      <div class=\"ui modal makeOffer\">
         <i class=\"close icon\"></i>
