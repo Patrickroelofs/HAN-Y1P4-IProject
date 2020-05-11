@@ -53,7 +53,7 @@
                 if($user->first()->verkoper == false) {
                     echo '<a class="item" href="seller.php">Word een verkoper</a>';
                 } else {
-                    echo '<a class="item" href="addAuction.php">Veiling openen</a>';
+                    echo '<a class="item" href="addAuction.php">Advertentie plaatsen</a>';
                 }
                 ?>
                 <a class="item" href="includes/navigation/logout.inc.php">Uitloggen</a>
