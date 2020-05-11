@@ -11,32 +11,31 @@ include FUNCTIONS . 'login.func.php';
             <form class="ui large form" action="" method="post">
                 <h2>Verkoop gegevens</h2>
                 <div class="field">
-                    <label for="bank name">Bank naam</label>
+                    <label for="bank">Bank naam</label>
                     <div class="ui selection dropdown">
-                        <input type="hidden" name="gender">
+                        <input type="hidden" name="bank">
                         <i class="dropdown icon"></i>
-                        <div class="default text">Gender</div>
+                        <div class="default text">Bank</div>
                         <div class="menu">
-                            <div class="item" data-value="1">Male</div>
-                            <div class="item" data-value="0">Female</div>
+                            <div class="item" data-value="1">ING</div>
+                            <div class="item" data-value="0">KNAB</div>
+                            <div class="item" data-value="2">Rabobank</div>
                         </div>
                     </div>
                 </div>
                 <div class="field">
-                    <label for="email">Emailadres</label>
-                    <div class="ui disabled input">
-                        <input type="email" name="email" id="email" placeholder="<?= $user->first()->emailadres ?>">
-                    </div>
+                    <label for="bank number">Bankrekening nummer</label>
+                    <input type="text" name="bank number" id="bank number" placeholder="Vul uw banknummer in">
                 </div>
                 <div class="field">
-                    <label for="password">Wachtwoord</label>
-                    <input type="password" name="password" id="password" placeholder="...">
+                    <label for="control option">Controle optie</label>
+                    <input type="text" name="control option" id="control option" placeholder="Geef een controle optie">
                 </div>
                 <div class="field">
-                    <label for="password_repeat">Wachtwoord herhalen</label>
-                    <input type="password" name="password_repeat" id="password_repeat" placeholder="...">
+                    <label for="credit card">Credit card</label>
+                    <input type="text" name="credit card" id="creditcard" placeholder="Vul uw creditcard nummer in">
                 </div>
-                <input class="ui button" type="submit" name="update-inloggegevens-submit" value="Inloggegevens aanpassen">
+                <input class="ui button" type="submit" name="update-bankgegevens" value="Update bankgegevens">
             </form>
         </div>
         <div class="column vertical-margin-24"></div>
