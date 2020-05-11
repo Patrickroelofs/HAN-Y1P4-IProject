@@ -1,7 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/core/init.php';
 include INCLUDES . 'head.inc.php';
-include FUNCTIONS . 'login.func.php';
+include FUNCTIONS . 'sellerAccountCreation.func.php';
 ?>
 
 <main>
@@ -13,13 +13,13 @@ include FUNCTIONS . 'login.func.php';
                 <div class="field">
                     <label for="bank">Bank naam</label>
                     <div class="ui selection dropdown">
-                        <input type="hidden" name="bank">
+                        <input type="hidden" name="bank" id="bank">
                         <i class="dropdown icon"></i>
                         <div class="default text">Bank</div>
                         <div class="menu">
-                            <div class="item" data-value="1">ING</div>
-                            <div class="item" data-value="0">KNAB</div>
-                            <div class="item" data-value="2">Rabobank</div>
+                            <div class="item" data-value="ING">ING</div>
+                            <div class="item" data-value="KNAB">KNAB</div>
+                            <div class="item" data-value="Rabobank">Rabobank</div>
                         </div>
                     </div>
                 </div>

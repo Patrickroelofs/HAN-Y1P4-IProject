@@ -59,3 +59,18 @@ CREATE TABLE Voorwerp
     verkoopprijs            NUMERIC(8, 2) NOT NULL,
 );
 GO
+
+/* TABLE: Verkoper */
+create table Verkoper
+(
+    gebruiker       VARCHAR(255)        NOT NULL    PRIMARY KEY,
+    bank            VARCHAR(255)        NULL,
+    bankrekening    VARCHAR(255)        NULL,
+    controleoptie   VARCHAR(255)        NOT NULL,
+    creditcard      VARCHAR(255)        NULL,
+
+    CONSTRAINT fk_gebruiker FOREIGN KEY (gebruiker) REFERENCES Gebruiker(gebruikersnaam)
+        ON UPDATE CASCADE
+        ON DELETE NO ACTION
+);
+GO
