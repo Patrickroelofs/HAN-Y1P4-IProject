@@ -80,7 +80,7 @@ GO
 CREATE TABLE Bod
 (
     voorwerp        VARCHAR(255)        NOT NULL    PRIMARY KEY,
-    bodbedrag       INT                 NOT NULL    PRIMARY KEY,
+    bodbedrag       INT                 NOT NULL,
     gebruiker       VARCHAR(255)        NULL,
     boddag          DATE                NULL,
     bodtijd         INT                 NULL
