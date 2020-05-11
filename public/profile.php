@@ -62,18 +62,18 @@
                         </div>
                         <div class="field">
                             <label for="firstname">Voornaam</label>
-                            <input type="text" name="firstname" id="firstname" placeholder="<?= $user->first()->voornaam ?>">
+                            <input type="text" name="firstname" id="firstname" placeholder="<?= $user->first()->voornaam ?>" value="<?= $user->first()->voornaam ?>">
                         </div>
                         <div class="field">
                             <label for="lastname">Achternaam</label>
-                            <input type="text" name="lastname" id="lastname" placeholder="<?= $user->first()->achternaam ?>">
+                            <input type="text" name="lastname" id="lastname" placeholder="<?= $user->first()->achternaam ?>" value="<?= $user->first()->achternaam ?>">
                         </div>
                         <div class="field">
                             <label for="dob">Geboortedatum</label>
                             <div class="ui calendar" id="dob_calendar">
                                 <div class="ui input left icon">
                                     <i class="calendar icon"></i>
-                                    <input name="dob" type="text" placeholder="<?= $user->first()->geboortedag ?>">
+                                    <input name="dob" type="text" placeholder="<?= $user->first()->geboortedag ?>" value="<?= $user->first()->geboortedag ?>">
                                 </div>
                             </div>
                         </div>
@@ -86,23 +86,23 @@
                         <h2>Locatiegegevens</h2>
                         <div class="field">
                             <label for="adresregel1">Adresregel 1</label>
-                            <input type="text" name="adresregel1" id="adresregel1" placeholder="<?= $user->first()->adresregel1 ?>">
+                            <input type="text" name="adresregel1" id="adresregel1" placeholder="<?= $user->first()->adresregel1 ?>" value="<?= $user->first()->adresregel1 ?>">
                         </div>
                         <div class="field">
                             <label for="adresregel2">Adresregel 2</label>
-                            <input type="text" name="adresregel2" id="adresregel2" placeholder="<?= $user->first()->adresregel2 ?>">
+                            <input type="text" name="adresregel2" id="adresregel2" placeholder="<?= $user->first()->adresregel2 ?>" value="<?= $user->first()->adresregel2 ?>">
                         </div>
                         <div class="field">
                             <label for="postcode">Postcode</label>
-                            <input type="text" name="postcode" id="postcode" placeholder="<?= $user->first()->postcode ?>">
+                            <input type="text" name="postcode" id="postcode" placeholder="<?= $user->first()->postcode ?>" value="<?= $user->first()->postcode ?>">
                         </div>
                         <div class="field">
                             <label for="plaatsnaam">Plaatsnaam</label>
-                            <input type="text" name="plaatsnaam" id="plaatsnaam" placeholder="<?= $user->first()->plaatsnaam ?>">
+                            <input type="text" name="plaatsnaam" id="plaatsnaam" placeholder="<?= $user->first()->plaatsnaam ?>" value="<?= $user->first()->plaatsnaam ?>">
                         </div>
                         <div class="field">
                             <label for="land">Land</label>
-                            <input type="text" name="land" id="land" placeholder="<?= $user->first()->landnaam ?>">
+                            <input type="text" name="land" id="land" placeholder="<?= $user->first()->landnaam ?>" value="<?= $user->first()->landnaam ?>">
                         </div>
                         <input class="ui button" type="submit" name="update-locatiegegevens-submit" value="Locatiegegevens aanpassen">
                     </form>
