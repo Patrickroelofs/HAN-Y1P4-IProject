@@ -1,4 +1,12 @@
-/* Search bar ---------------- */
+/* Make offer modal */
+$(function(){
+    $("#makeOffer").click(function(){
+        $(".makeOffer").modal('show');
+    });
+    $(".makeOffer").modal({
+        closable: true
+    });
+});
 
 /* Category select */
 $('.ui.dropdown')

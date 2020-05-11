@@ -27,10 +27,13 @@
                 <div class="ui segment">
                     <h2>Beschrijving</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi dignissimos eligendi quo.</p>
-                    <h3>€5,00</h3>
-                    <div class="ui two bottom attached buttons primary">
-                        <div class="ui button">Bieden</div>
-                        <div class="ui button">Contact opnemen</div>
+
+                    <div class="ui input labeled input">
+                        <button type="submit" id="makeOffer" class="ui teal labeled icon button">
+                            <i class="gavel icon"></i>
+                            Bieden
+                        </button>
+                        <?php include 'includes/modals/makeOffer.inc.php' ?>
                     </div>
                 </div>
             </div>
