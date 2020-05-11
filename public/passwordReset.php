@@ -5,12 +5,12 @@ if(Session::exists('username')){
 }
 include INCLUDES . 'head.inc.php';
 include FUNCTIONS . 'resetPassword.func.php';
-
 ?>
 
 <form method="post" action="">
-    <input type="email" placeholder="" name="email" id="email" required>
-    <input type="submit" name="versturen" id="versturen" value="Versturen">
+    <input type="password" name="password" id="password" placeholder="Wachtwoord" required>
+    <input type="password" name="password_repeat" id="password_repeat" placeholder="Wachtwoord herhalen" required>
+    <input type="submit" name="veranderen" id="veranderen" value="Versturen">
 </form>
 
 <?php include INCLUDES . 'footer.inc.php'; ?>
