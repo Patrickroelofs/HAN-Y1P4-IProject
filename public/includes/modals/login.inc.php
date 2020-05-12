@@ -18,7 +18,11 @@
                             <label for="password">Wachtwoord</label>
                             <input type="password" name="password" id="password" placeholder="Wachtwoord" required>
                         </div>
-                        <input type="submit" name="login-submit" class="ui fluid large primary submit button" value="login">
+                        <input type="submit" name="login-submit" class="ui fluid large primary submit button"
+                               value="login">
+                        <div class="top-margin-12">
+                            <a href="passwordChange.php">Wachtwoord vergeten?</a>
+                        </div>
                     </form>
                 </div>
 
