@@ -2,12 +2,6 @@
 //======================================================================
 // Offer
 //======================================================================
-if (isset($_GET['p'])) {
-    $productID = $_GET['p'];
-} else {
-    Redirect::to('index.php');
-}
-
 // Figure out highest bid
 try {
     $stmt = Database::getInstance()->query("SELECT TOP 1 bodbedrag FROM Bod WHERE voorwerpnummer = $productID ORDER BY bodbedrag DESC",array());
@@ -37,12 +31,15 @@ if(isset($_POST['offer-submit'])) {
     // Save data in temporary variables
     $amount = $_POST['amount'];
 
+    if($amount < $startPrice){
+        echo "Bedrag te laag";
+    }
     // Check if amount is bigger than startprice
-    if ($amount < $highestBid) {
+    elseif (isset($highestBid) && $amount < $highestBid) {
         echo "Bedrag is te laag";
     }
     // Check if amount is smaller than 10x the highest bid
-    elseif ($amount > $highestBid*10) {
+    elseif (isset($highestBid) && $amount > $highestBid*10) {
         echo "Bedrag is te hoog";
     }
     else {

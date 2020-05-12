@@ -1,8 +1,12 @@
 <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . '/core/init.php';
     include INCLUDES . 'head.inc.php';
-    include FUNCTIONS . 'makeOffer.func.php';
-    include 'includes/modals/makeOffer.inc.php';
+
+    if (isset($_GET['p'])) {
+        $productID = $_GET['p'];
+    } else {
+        Redirect::to('index.php');
+    }
 
     // Get data from database
     try {
@@ -11,11 +15,15 @@
         foreach($stmt->results() as $result) {
             $title = $result->titel;
             $description = $result->beschrijving;
+            $startPrice = $result->startprijs;
         }
     } catch (PDOException $e) {
         //Error during insert
         echo $e->getMessage();
     }
+
+    include FUNCTIONS . 'makeOffer.func.php';
+    include INCLUDES . 'modals/makeOffer.inc.php';
 ?>
 
 <main>
