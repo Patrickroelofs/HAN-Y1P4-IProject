@@ -15,8 +15,7 @@ class Message {
             }
             $x++;
         }
-
-        Redirect::to($location.$fields);
+        Redirect::to($location.$set);
     }
 
     public static function warning($location, $fields) {
@@ -33,7 +32,7 @@ class Message {
             $x++;
         }
 
-        Redirect::to($location.$fields);
+        Redirect::to($location.$set);
     }
 
     public static function notice($location, $fields) {
@@ -50,7 +49,7 @@ class Message {
             $x++;
         }
 
-        Redirect::to($location.$fields);
+        Redirect::to($location.$set);
     }
 
     public static function info ($location, $fields) {
@@ -67,6 +66,6 @@ class Message {
             $x++;
         }
 
-        Redirect::to($location.$fields);
+        Redirect::to($location.$set);
     }
 }

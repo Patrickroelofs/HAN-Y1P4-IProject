@@ -5,7 +5,7 @@
             <i class="exclamation triangle icon"></i>
             <?php
                 if(isset($_GET['m'])) {
-                    escape($_GET['m']);
+                    echo escape($_GET['m']);
                 }
              ?>
         </div>
@@ -18,7 +18,7 @@
             <i class="exclamation icon"></i>
             <?php
             if(isset($_GET['m'])) {
-                escape($_GET['m']);
+                echo escape($_GET['m']);
             }
             ?>
         </div>
@@ -32,7 +32,7 @@
             <i class="exclamation icon"></i>
             <?php
             if(isset($_GET['m'])) {
-                escape($_GET['m']);
+                echo escape($_GET['m']);
             }
             ?>
         </div>
@@ -45,7 +45,7 @@
             <i class="question icon"></i>
             <?php
             if(isset($_GET['m'])) {
-                escape($_GET['m']);
+                echo escape($_GET['m']);
             }
             ?>
         </div>
