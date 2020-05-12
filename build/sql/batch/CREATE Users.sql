@@ -1,3 +1,6 @@
+USE [batch-iproject19]
+GO
+
 INSERT Users (Username,Postalcode,Location,Country,Rating) VALUES ('*cce.trading*','22844','Duitsland','DE',78.0)
 INSERT Users (Username,Postalcode,Location,Country,Rating) VALUES ('*himmel','13086','Duitsland','DE',66.0)
 INSERT Users (Username,Postalcode,Location,Country,Rating) VALUES ('*kristi1*','NP246DZ','Verenigd Koninkrijk','GB',96.0)

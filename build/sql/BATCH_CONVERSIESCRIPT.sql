@@ -32,3 +32,9 @@ GO
 INSERT INTO Rubriek (rubrieknummer, rubrieknaam, rubriek)
 SELECT Id, Name, Parent
 FROM [batch-iproject19].dbo.Categorieen
+GO
+
+INSERT INTO Gebruiker (gebruikersnaam, emailadres, wachtwoord, profielfoto, voornaam, achternaam, geboortedag, adresregel1, adresregel2, postcode, plaatsnaam, landnaam)
+SELECT Username, Username + '@eenmaalAndermaal.nl', '', '', '', '', '', '', '', Postalcode, '', Country
+FROM [batch-iproject19].dbo.Users
+GO
