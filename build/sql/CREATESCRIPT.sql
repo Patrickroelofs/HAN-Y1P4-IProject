@@ -119,12 +119,7 @@ create table Verkoper
 
     CONSTRAINT FK_gebruiker FOREIGN KEY (gebruikersnaam) REFERENCES Gebruiker(gebruikersnaam)
         ON UPDATE CASCADE
-        ON DELETE NO ACTION,
-
-    --CONSTRAINT:: TODO: Look up if this one is needed :)
-    CONSTRAINT fk_VerkoperGebruikersnaam FOREIGN KEY (gebruikersnaam) REFERENCES Gebruiker(gebruikersnaam)
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION,
+        ON DELETE CASCADE,
 
     --TODO: ADD Controleopties
     CONSTRAINT CHK_controloptie CHECK (controleoptie = 'Creditcard' OR controleoptie = 'Post')
@@ -179,12 +174,12 @@ CREATE TABLE VoorwerpInRubriek
 
     CONSTRAINT FK_voorwerpInRubriekVoorwerpnummer FOREIGN KEY (voorwerpnummer) REFERENCES Voorwerp (voorwerpnummer)
         ON UPDATE CASCADE
-        ON DELETE NO ACTION,
+        ON DELETE CASCADE,
 
     --CONSTRAINT:: TODO: Look up if this one is needed :)
     CONSTRAINT FK_rubriekVoorwerpInRubriekRubrieknummer FOREIGN KEY (rubrieknummer) REFERENCES Rubriek (rubrieknummer)
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION,
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
 );
 GO
 
@@ -202,9 +197,10 @@ CREATE TABLE Feedback
 
     CONSTRAINT  CHK_verkoper            CHECK (verkoper = 0 OR verkoper = 1),
     CONSTRAINT  CHK_feedbacksoortnaam   CHECK (feedbacksoortnaam = 'negatief' OR feedbacksoortnaam = 'neutraal' OR feedbacksoortnaam = 'positief'),
+
     CONSTRAINT  FK_FeedbackvoorwerpVoorwerpnummer FOREIGN KEY (voorwerpnummer) REFERENCES Voorwerp (voorwerpnummer)
         ON UPDATE CASCADE
-        ON DELETE NO ACTION,
+        ON DELETE CASCADE,
 
 );
 GO
@@ -215,10 +211,9 @@ CREATE TABLE Bestanden
     bestandnaam     VARCHAR(255)    NOT NULL    PRIMARY KEY,
     voorwerpnummer  INT             NOT NULL,
 
-    --CONSTRAINT:: TODO: Look up if this one is needed :)
     CONSTRAINT FK_bestandVoorwerp FOREIGN KEY (voorwerpnummer) REFERENCES Voorwerp (voorwerpnummer)
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION,
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
 );
 GO
 
@@ -229,7 +224,7 @@ CREATE TABLE Bod
     voorwerpnummer  INT                 NOT NULL,
     -- CONSTRAINT:: Bodbedrag MUST be higher than an existing one
     bodbedrag       DECIMAL(18,2)       NOT NULL,
-    gebruiker       VARCHAR(255)        NULL,
+    gebruikersnaam  VARCHAR(255)        NULL,
     boddag          DATE                NOT NULL    DEFAULT     GETDATE(),
     bodtijd         TIME                NOT NULL    DEFAULT     CURRENT_TIMESTAMP,
 
@@ -239,8 +234,8 @@ CREATE TABLE Bod
         ON UPDATE CASCADE
         ON DELETE CASCADE,
 
-    --CONSTRAINT:: TODO: Look up if this one is needed :)
-    CONSTRAINT FK_gebruikerGebruikersnaam FOREIGN KEY (gebruiker) REFERENCES Gebruiker(gebruikersnaam)
+    --CONSTRAINT:: TODO: 2:29PM NOT WORKING
+    CONSTRAINT FK_gebruikerGebruikersnaam FOREIGN KEY (gebruikersnaam) REFERENCES Gebruiker(gebruikersnaam)
         ON UPDATE NO ACTION
         ON DELETE NO ACTION,
 );
