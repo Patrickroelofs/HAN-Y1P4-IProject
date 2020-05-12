@@ -16,6 +16,15 @@ try {
     echo $e->getMessage();
 }
 
+// Check if bid is still open
+try {
+    $stmt = Database::getInstance()->query("SELECT gesloten FROM Voorwerp WHERE voorwerpnummer = $productID",array());
+
+    $bidClosed = $stmt->first()->gesloten;
+} catch (PDOException $e) {
+    //Error during select
+    echo $e->getMessage();
+}
 
 // Is submit pressed?
 if(isset($_POST['offer-submit'])) {
@@ -27,7 +36,12 @@ if(isset($_POST['offer-submit'])) {
     // Check if amount is bigger than startprice
     if ($amount < $highestBid) {
         echo "Bedrag is te laag";
-    } else {
+    }
+    // Check if amount is smaller than 10x the highest bid
+    elseif ($amount < $highestBid*10) {
+        echo "Bedrag is te hoog";
+    }
+    else {
         //Insert into database
         try {
             $stmt = Database::getInstance()->query("INSERT INTO Bod (voorwerpnummer, bodbedrag, gebruiker) VALUES ($productID, $amount, '".Session::get('username')."')",array());

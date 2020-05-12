@@ -34,6 +34,23 @@ elseif ($user->first()->compleet == 0) { ?>
       </div>
     </div>
 <?php }
+elseif ($bidClosed == 1) { ?>
+    <div class="ui mini modal makeOffer">
+        <div class="ui header">
+            Bieding gesloten
+        </div>
+        <div class="content">
+            <p>Deze bieding is helaas al gesloten.</p>
+        </div>
+        <div class="actions">
+            <div class="ui green ok inverted button">
+                <i class='checkmark icon'></i>
+                Okay
+            </div>
+        </div>
+    </div>
+<?php }
+
 // User is logged in & has a complete profile
 else { ?>
      <div class="ui modal makeOffer">
