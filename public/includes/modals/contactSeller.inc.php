@@ -49,7 +49,7 @@ else { ?>
                 <p><span class="bold">Emailadres: </span>
                 <a href="<?php echo 'mailto:' .$usrInfo->first()->emailadres ?>">
                     <?php echo $usrInfo->first()->emailadres ?></a></p>
-                
+
                 <p><span class="bold">Plaats:</span>
                     <?php if(empty($usrInfo->first()->plaatsnaam)) {
                         echo "niet beschikbaar";
