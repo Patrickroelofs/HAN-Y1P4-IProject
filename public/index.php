@@ -131,7 +131,7 @@
                             <img src="https://place-hold.it/150x150">
                         </a>
                         <div class="content">
-                            <a class="header" href="#"><?php echo $result->titel; ?></a>
+                            <a class="header" href="<?php echo 'product.php?p=' . $result->voorwerpnummer ?>"><?php echo $result->titel; ?></a>
                             <div class="description"><?php echo $result->beschrijving; ?></div>
                             <div class="description bold">€<?php echo $result->startprijs; ?></div>
                         </div>
