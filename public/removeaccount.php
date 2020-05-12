@@ -12,21 +12,14 @@ include FUNCTIONS . 'profile.func.php';
                     <form class="ui large form" action="" method="post">
                         <div class="stacked segment">
                             <h2 class="text-center">Weet u het zeker?</h2>
+                            <p>Als u uw account verwijderd verliest u al uw huidige biedingen.</p>
 
                             <!-- Ingelogd -->
                             <?php if (Session::exists('username')) { ?>
-                                <input class="ui button" type="submit" name="delete-account-submit" value="Verwijder je Account">
-                            <?php } else { ?>
-
-                                <!-- Niet Ingelogd -->
-                                <p class="text-center">Vul hier uw email in als u zeker bent van het verwijderen</p>
-                                <div class="field">
-                                    <label for="email">Email</label>
-                                    <input type="email" name="email" id="email" placeholder="Email" required>
-                                </div>
-                                <input class="ui button" type="submit" name="delete-account-submit" value="Verwijder je Account">
-
-                            <?php } ?>
+                                <input class="ui negative button" type="submit" name="delete-account-submit" value="Verwijder je Account">
+                            <?php } else {
+                                Redirect::to('index.php');
+                            } ?>
                         </div>
                     </form>
                 </div>
