@@ -51,7 +51,7 @@ elseif ($bidClosed == 1) { ?>
     </div>
 <?php }
 
-// User is logged in & has a complete profile
+// User has everything
 else { ?>
      <div class="ui modal makeOffer">
         <i class="close icon"></i>

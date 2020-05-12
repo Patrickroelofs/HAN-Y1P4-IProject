@@ -10,7 +10,7 @@ if (isset($_GET['p'])) {
 
 // Figure out highest bid
 try {
-    $stmt = Database::getInstance()->query("SELECT TOP 1 bodbedrag FROM Bod WHERE voorwerpnummer = '1' ORDER BY bodbedrag DESC",array());
+    $stmt = Database::getInstance()->query("SELECT TOP 1 bodbedrag FROM Bod WHERE voorwerpnummer = $productID ORDER BY bodbedrag DESC",array());
 
     foreach($stmt->results() as $result) {
         $highestBid = $result->bodbedrag;
@@ -42,7 +42,7 @@ if(isset($_POST['offer-submit'])) {
         echo "Bedrag is te laag";
     }
     // Check if amount is smaller than 10x the highest bid
-    elseif ($amount < $highestBid*10) {
+    elseif ($amount > $highestBid*10) {
         echo "Bedrag is te hoog";
     }
     else {
