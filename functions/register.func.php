@@ -19,20 +19,29 @@ if(isset($_POST['register-submit'])) {
 
     // TODO: Error messages and other invalid register checks.
     if(empty($username) || empty($email) || empty($password) || empty($password_repeat)){
-        //error
-        echo 'error - empty';
+        Message::error('index.php', array(
+            'm' => 'Verplichte velden zijn leeg...'
+        ));
 
     } else if($password !== $password_repeat) {
-        echo 'error - password not same';
+        Message::error('index.php', array(
+            'm' => 'Wachtwoorden zijn niet hetzelfde...'
+        ));
 
     } else if(!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
-        echo 'error - username has incorrect characters';
+        Message::error('index.php', array(
+            'm' => 'Incorrecte karakter in gebruikersnaam...'
+        ));
 
     } else if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-        echo 'error - not a correct email';
+        Message::error('index.php', array(
+            'm' => 'Emailadres is niet een correcte emailadres'
+        ));
 
     } else if ($users->count() > 0 || $emails->count() > 0) {
-        echo 'error - username or email taken';
+        Message::error('index.php', array(
+            'm' => 'Gebruikersnaam of email is al in gebruik'
+        ));
     }
 
     else {
