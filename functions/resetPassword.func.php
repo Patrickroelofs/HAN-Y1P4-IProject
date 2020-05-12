@@ -36,7 +36,7 @@ if (isset($_POST['versturen'])) {
         $subject = "Wachtwoord aanpassen";
         $message = "Hello world!";
         //mail($to, $subject, $message);
-        echo '<a href="passwordReset.php?id=' . Hash::make($to) . '&uid=' . $stmt->first()->gebruikersnaam . '">Klik hier</a>';
+        echo '<a href="passwordreset.php?id=' . Hash::make($to) . '&uid=' . $stmt->first()->gebruikersnaam . '">Klik hier</a>';
     }
 }
 ?>
