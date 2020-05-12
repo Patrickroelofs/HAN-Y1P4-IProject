@@ -1,7 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/core/init.php';
 include INCLUDES . 'head.inc.php';
-include FUNCTIONS . 'sellerAccountCreation.func.php';
+include FUNCTIONS . 'selleraccountcreation.func.php';
 ?>
 
 <main>

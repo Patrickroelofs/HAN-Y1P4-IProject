@@ -51,7 +51,7 @@
         <a class="item" href="profile.php">Mijn Profiel</a>
         <?php
             if($user->first()->verkoper == false) {
-                echo '<a class="item" href="sellerAccountCreation.php">Word een verkoper</a>';
+                echo '<a class="item" href="selleraccountcreation.php">Word een verkoper</a>';
             } else {
                 echo '<a class="item" href="createauction.php">Advertentie plaatsen</a>';
             }

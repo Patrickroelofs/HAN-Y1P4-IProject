@@ -24,8 +24,8 @@ try {
 }
 
 include FUNCTIONS . 'makeOffer.func.php';
-include INCLUDES . 'modals/makeOffer.inc.php';
-include INCLUDES . 'modals/contactSeller.inc.php';
+include INCLUDES . 'modals/makeoffer.inc.php';
+include INCLUDES . 'modals/contactseller.inc.php';
 ?>
 
     <main>
