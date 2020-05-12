@@ -7,6 +7,7 @@ include INCLUDES . 'head.inc.php';
 include FUNCTIONS . 'resetPassword.func.php';
 
 ?>
+
 <main>
     <div class="ui container">
         <h2>Wachtwoord vergeten</h2>
