@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . 'core/init.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/core/init.php';
 if (Session::exists('username')) {
     Redirect::to('index.php');
 }
