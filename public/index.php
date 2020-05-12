@@ -127,7 +127,7 @@
 
                 <div class="column">
                     <div class="ui fluid card">
-                        <a class="image" href=<?php echo 'product.php?id=' . $result->voorwerpnummer ?> >
+                        <a class="image" href=<?php echo 'product.php?p=' . $result->voorwerpnummer ?> >
                             <img src="https://place-hold.it/150x150">
                         </a>
                         <div class="content">
