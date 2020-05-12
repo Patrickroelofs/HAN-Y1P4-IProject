@@ -10,7 +10,7 @@ if (!Session::exists('username')) { ?>
       </div>
       <div class="actions">
         <div class="ui green ok inverted button">
-          <i class="checkmark icon"><i>
+            <i class='checkmark icon'></i>
           Okay
         </div>
       </div>
@@ -28,7 +28,7 @@ elseif ($completedProfile == 0) { ?>
       </div>
       <div class="actions">
         <div class="ui green ok inverted button">
-          <i class="checkmark icon"></i>
+            <i class='checkmark icon'></i>
           Okay
         </div>
       </div>
@@ -48,7 +48,7 @@ else { ?>
             <div class="description">
                 <div class="ui header">Product</div>
     
-                <form method="post" id="offer-form\">
+                <form method="post" id="offer-form">
                     <div class="ui input labeled input required">
                         <label for="amount" class="ui label">€</label>
                         <input type="text" placeholder="Uw bod" name="amount">
