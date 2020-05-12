@@ -145,9 +145,10 @@ if(isset($_POST['update-locatiegegevens-submit'])) {
 // DELETE Account
 //======================================================================
 
+// Is submit pressed
 if(isset($_POST['delete-account-submit'])) {
     $email = $_POST['email'];
-    // Ingelogd
+    // Logged in, delete account from database
     if(Session::exists('username')){
         $user = Database::getInstance()->delete('Gebruiker', array('gebruikersnaam', '=', Session::get('username')));
 
@@ -155,7 +156,7 @@ if(isset($_POST['delete-account-submit'])) {
         session_destroy();
     }
 
-    // Uitgelogd
+    // Logged out, delete account from database
     else {
         $emails = Database::getInstance()->delete('Gebruiker', array('emailadres', '=', $email));
     }
