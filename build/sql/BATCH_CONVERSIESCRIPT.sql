@@ -1,43 +1,6 @@
 USE iproject19
 GO
 
-DROP FUNCTION IF EXISTS dbo.udf_StripHTML
-GO
-
-DROP FUNCTION IF EXISTS dbo.get_id
-GO
-
-CREATE FUNCTION dbo.get_id (@gebruikersnaam varchar(255))
-RETURNS int
-AS
-BEGIN
-RETURN (SELECT id
-		FROM Gebruiker
-		WHERE voornaam = @gebruikersnaam)
-	END
-
-GO
-
-CREATE FUNCTION dbo.udf_StripHTML (@HTMLText VARCHAR(MAX))
-RETURNS VARCHAR(MAX) AS
-BEGIN
-    DECLARE @Start INT
-    DECLARE @End INT
-    DECLARE @Length INT
-    SET @Start = CHARINDEX('<',@HTMLText)
-    SET @End = CHARINDEX('>',@HTMLText,CHARINDEX('<',@HTMLText))
-    SET @Length = (@End - @Start) + 1
-    WHILE @Start > 0 AND @End > 0 AND @Length > 0
-    BEGIN
-        SET @HTMLText = STUFF(@HTMLText,@Start,@Length,'')
-        SET @Start = CHARINDEX('<',@HTMLText)
-        SET @End = CHARINDEX('>',@HTMLText,CHARINDEX('<',@HTMLText))
-        SET @Length = (@End - @Start) + 1
-    END
-    RETURN LTRIM(RTRIM(@HTMLText))
-END
-GO
-
 INSERT INTO Gebruiker (gebruikersnaam, emailadres, wachtwoord, profielfoto, voornaam, achternaam, geboortedag, adresregel1, adresregel2, postcode, plaatsnaam, landnaam, verkoper)
 SELECT Username, Username + '@eenmaalAndermaal.nl', '', '', '', '', '', '', '', Postalcode, '', Country, 1
 FROM [batch-iproject19].dbo.Users

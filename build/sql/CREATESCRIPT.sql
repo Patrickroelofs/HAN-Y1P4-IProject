@@ -8,9 +8,6 @@ GO
 /* ***************************** */
 /**  DROP TABLES AND FUNCTIONS   */
 /* ***************************** */
-DROP FUNCTION IF EXISTS udf_StripHTML
-GO
-
 DROP TABLE IF EXISTS Land
 GO
 
