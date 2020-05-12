@@ -123,10 +123,31 @@
         <!-- Product showcase -->
         <h2>Producten</h2>
         <!-- Includes the functions random products to pick -->
-        <?php include FUNCTIONS . 'randomProducts.func.php' ?>
         <div class="ui stackable five column grid">
-            <?php Product::createRows($randomProducts);?>
-            </div>
+            <?php
+            $randomProducts = Database::getInstance()->query("SELECT TOP 10 * FROM Voorwerp ORDER BY NEWID()");
+
+            if ($randomProducts->count() < 1) {
+                // no data passed by get
+                echo "<p>Geen resultaten</p>";
+            }
+
+            foreach($randomProducts->results() as $result) { ?>
+                <div class="column">
+                    <div class="ui fluid card">
+                        <a class="image" href="product.php?p=<?= $result->voorwerpnummer; ?>">
+                            <!-- <img src="<?= $result->voorwerpAfbeelding; ?>" alt="Foto van <?= $result->titel; ?>">-->
+                            <img src="https://place-hold.it/150x150">
+                        </a>
+                        <div class="content">
+                            <a class="header" href="product.php?p=<?= $result->voorwerpnummer; ?>"><?= $result->titel; ?></a>
+                            <div class="description"><?= $result->beschrijving; ?></div>
+                            <div class="description bold">€<?= $result->startprijs; ?></div>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
     </div>
 </main>
 
