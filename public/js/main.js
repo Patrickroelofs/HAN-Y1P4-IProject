@@ -8,6 +8,16 @@ $(function(){
     });
 });
 
+/* Contact seller modal */
+$(function(){
+    $("#contactSeller").click(function(){
+        $(".contactSeller").modal('show');
+    });
+    $(".contactSeller").modal({
+        closable: true
+    });
+});
+
 /* Category select */
 $('.ui.dropdown')
     .dropdown()

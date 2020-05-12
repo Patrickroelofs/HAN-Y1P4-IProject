@@ -25,6 +25,7 @@ try {
 
 include FUNCTIONS . 'makeOffer.func.php';
 include INCLUDES . 'modals/makeOffer.inc.php';
+include INCLUDES . 'modals/contactSeller.inc.php';
 ?>
 
     <main>
@@ -52,10 +53,19 @@ include INCLUDES . 'modals/makeOffer.inc.php';
                         <h2>Beschrijving</h2>
                         <p><?php echo $description ?></p>
 
+                        <!-- bidding -->
                         <div class="ui input labeled input">
                             <button type="submit" id="makeOffer" class="ui primary labeled icon button">
                                 <i class="gavel icon"></i>
                                 Bieden
+                            </button>
+                        </div>
+
+                        <!-- contact -->
+                        <div class="ui input labeled input">
+                            <button type="submit" id="contactSeller" class="ui primary labeled icon button">
+                                <i class="envelope icon"></i>
+                                Neem contact op
                             </button>
                         </div>
                     </div>
