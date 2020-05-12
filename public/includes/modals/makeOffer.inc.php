@@ -1,30 +1,29 @@
 <?php
-// Error messages
-$errorUserTitle = "U bent uitgelogd";
-$errorUserText = "<p>Om te kunnen bieden op producten moet u eerst inloggen of registreren.</p>";
-$errorProfileTitle = "Profiel niet compleet";
-$errorProfileText = "<p>Om te kunnen bieden op producten moet u eerst uw profielgegevens aanvullen op uw <a href='profile.php'>profiel pagina</a> .</p>";
-$errorBidTitle = "Bieding gesloten";
-$errorBidText = "<p>Deze bieding is helaas al gesloten.</p>";
 
+// If user is not logged in display error message
 if(!Session::exists('username')) {
     $error = true;
-    $errorTitle = $errorUserTitle;
-    $errorText = $errorUserText;
-} elseif($user->first()->compleet == 0) {
+    $errorTitle = "U bent uitgelogd";
+    $errorText = "<p>Om te kunnen bieden op producten moet u eerst inloggen of registreren.</p>";
+
+// if user account is not complete display error message
+} else if(!$user->first()->compleet) {
     $error = true;
-    $errorTitle = $errorProfileTitle;
-    $errorText = $errorProfileText;
-} elseif ($bidClosed->first()->gesloten == true) {
+    $errorTitle = "Profiel niet compleet";
+    $errorText = "<p>Om te kunnen bieden op producten moet u eerst uw profielgegevens aanvullen op uw <a href='profile.php'>profiel pagina</a>.</p>";
+
+//if bidding for this item is closed display error message
+} else if ($bidClosed->first()->gesloten) {
     $error = true;
-    $errorTitle = $errorBidTitle;
-    $errorText = $errorBidTitle;
+    $errorTitle = "Bieding gesloten";
+    $errorText = "<p>Deze bieding is helaas al gesloten.</p>";
+
 } else {
     $error = false;
 }
 
-// User has everything
-if ($error == false) { ?>
+// User is allowed to make a modal
+if (!$error) { ?>
     <div class="ui modal makeOffer">
         <i class="close icon"></i>
         <div class="header">
@@ -54,13 +53,16 @@ if ($error == false) { ?>
             </div>
         </div>
     </div>
-<?php } else if ($error == true) { ?>
+<?php
+    // An error occurred
+    } else if ($error) {
+?>
     <div class="ui mini modal makeOffer">
         <div class="ui header">
-            <?php echo $errorTitle ?>
+            <?= $errorTitle ?>
         </div>
         <div class="content">
-            <?php echo $errorText ?>
+            <?= $errorText ?>
         </div>
         <div class="actions">
             <div class="ui green ok inverted button">
@@ -69,6 +71,4 @@ if ($error == false) { ?>
             </div>
         </div>
     </div>
-    <?php
-}
-?>
+<?php } ?>
