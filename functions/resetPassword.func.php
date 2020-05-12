@@ -6,18 +6,23 @@ if (isset($_POST['veranderen'])) {
     $uid = $_GET['uid'];
     $stmt = Database::getInstance()->query("SELECT * FROM Gebruiker WHERE gebruikersnaam = '$uid'", array());
     // TODO: Error messages and other invalid register checks.
-    try {
-        if (Hash::verify($stmt->first()->emailadres, $email)) {
+    if ($password == $password_repeat) {
+        try {
+            if (Hash::verify($stmt->first()->emailadres, $email)) {
 
-            Database::getInstance()->update('Gebruiker', 'gebruikersnaam', $uid, array(
-                'wachtwoord' => Hash::make($password)
-            ));
-        } else {
-            Redirect::to('index.php');
+                Database::getInstance()->update('Gebruiker', 'gebruikersnaam', $uid, array(
+                    'wachtwoord' => Hash::make($password)
+                ));
+            } else {
+                Redirect::to('index.php');
+            }
+        } catch (PDOException $e) {
+            //Error during insert
+            echo $e->getMessage();
         }
-    } catch (PDOException $e) {
-        //Error during insert
-        echo $e->getMessage();
+    }
+    else {
+        echo "Ingevulde wachtwoorden komen niet overeen";
     }
 }
 
