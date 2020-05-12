@@ -1,74 +1,69 @@
 <?php
 // Check if the user is logged in
-if (!Session::exists('username')) {
-    echo "
-    <div class=\"ui mini modal makeOffer\">
-      <div class=\"ui header\">
+if (!Session::exists('username')) { ?>
+    <div class="ui mini modal makeOffer">
+      <div class="ui header">
         U bent uitgelogd
       </div>
-      <div class=\"content\">
+      <div class="content">
         <p>Om te kunnen bieden op producten moet u eerst inloggen of registreren.</p>
       </div>
-      <div class=\"actions\">
-        <div class=\"ui green ok inverted button\">
-          <i class=\"checkmark icon\"></i>
+      <div class="actions">
+        <div class="ui green ok inverted button">
+          <i class="checkmark icon"><i>
           Okay
         </div>
       </div>
     </div>
-    ";
+<?php
 }
 
-elseif ($completedProfile == 0) {
-    echo "
-    <div class=\"ui mini modal makeOffer\">
-      <div class=\"ui header\">
+elseif ($completedProfile == 0) { ?>
+    <div class="ui mini modal makeOffer">
+      <div class="ui header">
         Profiel niet compleet
       </div>
-      <div class=\"content\">
+      <div class="content">
         <p>Om te kunnen bieden op producten moet u eerst uw profielgegevens aanvullen op uw <a href='profile.php'>profiel pagina</a> .</p>
       </div>
-      <div class=\"actions\">
-        <div class=\"ui green ok inverted button\">
-          <i class=\"checkmark icon\"></i>
+      <div class="actions">
+        <div class="ui green ok inverted button">
+          <i class="checkmark icon"></i>
           Okay
         </div>
       </div>
     </div>
-    ";
-}
+<?php }
 // User is logged in & has a complete profile
-else {
-    echo "  
-     <div class=\"ui modal makeOffer\">
-        <i class=\"close icon\"></i>
-        <div class=\"header\">
+else { ?>
+     <div class="ui modal makeOffer">
+        <i class="close icon"></i>
+        <div class="header">
             Maak een bod
         </div>
-        <div class=\"image content\">
-            <div class=\"ui medium image\">
-                <img src=\"https://place-hold.it/400x400\">
+        <div class="image content">
+            <div class="ui medium image">
+                <img src="https://place-hold.it/400x400">
             </div>
-            <div class=\"description\">
-                <div class=\"ui header\">Product</div>
+            <div class="description">
+                <div class="ui header">Product</div>
     
-                <form method=\"post\" id=\"offer-form\">
-                    <div class=\"ui input labeled input required\">
-                        <label for=\"amount\" class=\"ui label\">€</label>
-                        <input type=\"text\" placeholder=\"Uw bod\" name=\"amount\">
+                <form method="post" id="offer-form\">
+                    <div class="ui input labeled input required">
+                        <label for="amount" class="ui label">€</label>
+                        <input type="text" placeholder="Uw bod" name="amount">
                     </div>
                 </form>
             </div>
         </div>
-        <div class=\"actions\">
-            <div class=\"ui input labeled input\">
-                <button type=\"submit\" form=\"offer-form\" name=\"offer-submit\" class=\"ui primary labeled icon button\">
-                    <i class=\"gavel icon\"></i>
+        <div class="actions">
+            <div class="ui input labeled input">
+                <button type="submit" form="offer-form" name="offer-submit" class="ui primary labeled icon button">
+                    <i class="gavel icon"></i>
                     Bieden
                 </button>
             </div>
         </div>
     </div>
-    ";
-}
+<?php }
 ?>
