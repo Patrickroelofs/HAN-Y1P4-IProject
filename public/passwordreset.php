@@ -9,7 +9,7 @@ include FUNCTIONS . 'resetPassword.func.php';
 
 <main>
     <div class="ui container">
-        <form class="ui form" method="post" action="">
+        <form class="ui form" method="post" action="index.php">
             <div class="field">
                 <label>Wachtwoord</label>
                 <input type="password" name="password" id="password" placeholder="" required>
