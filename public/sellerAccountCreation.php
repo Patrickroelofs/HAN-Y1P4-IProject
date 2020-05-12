@@ -34,7 +34,7 @@ include FUNCTIONS . 'sellerAccountCreation.func.php';
                         <i class="dropdown icon"></i>
                         <div class="default text">Controle optie</div>
                         <div class="menu">
-                            <div class="item" data-value="creditcard">Creditcard</div>
+                            <div class="item" data-value="Creditcard">Creditcard</div>
                         </div>
                     </div>
                 </div>

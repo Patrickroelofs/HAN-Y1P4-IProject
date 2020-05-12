@@ -9,26 +9,26 @@ if(isset($_POST['updateBankgegevens'])) {
     $creditcard     = $_POST['creditcard'];
 
     // TODO: Error messages and other invalid register checks. (koen)
-    if(empty($bank) || empty($bankNummer) || empty($controleOptie) || empty($creditcard || $user->first()->compleet == 0)){
-        //error
-        if(empty($bank) || empty($bankNummer) || empty($controleOptie) || empty($creditcard)) {
-            echo 'Fill in all information';
-        }
-        else if($stmt->first()->compleet == 0) {
-            echo 'Fill all your account information in first';
-        }
+    if(empty($bank) || empty($bankNummer) || empty($controleOptie) || empty($creditcard)) {
+        echo 'Fill in all information';
+    }
+    else if($user->first()->compleet == 0) {
+        echo 'Fill all your account information in first';
     }
 
     else {
         //insert into database
         try {
             $stmt = Database::getInstance()->insert('Verkoper', array(
-                'gebruiker' => Session::get('username'),
+                'gebruikersnaam' => Session::get('username'),
                 'bank' => $bank,
                 'bankrekening' => $bankNummer,
                 'controleoptie' => $controleOptie,
                 'creditcard' => $creditcard
+            ));
 
+            $stmt = Database::getInstance()->update('Gebruiker', 'gebruikersnaam', Session::get('username'), array(
+                'verkoper' => true
             ));
 
             Redirect::to('index.php');

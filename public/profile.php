@@ -73,7 +73,7 @@
                             <div class="ui calendar" id="dob_calendar">
                                 <div class="ui input left icon">
                                     <i class="calendar icon"></i>
-                                    <input name="dob" type="text" placeholder="<?= $user->first()->geboortedag ?>" value="<?= $user->first()->geboortedag ?>">
+                                    <input name="dob" type="text" autocomplete="off" placeholder="<?= $user->first()->geboortedag ?>" value="<?= $user->first()->geboortedag ?>">
                                 </div>
                             </div>
                         </div>

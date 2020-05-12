@@ -129,7 +129,9 @@ if(isset($_POST['update-locatiegegevens-submit'])) {
                 'adresregel2' => $adresregel2,
                 'postcode' => $postcode,
                 'plaatsnaam' => $plaatsnaam,
-                'landnaam' => $land
+                'landnaam' => $land,
+                'compleet' => true
+                //TODO: Compleet goed in database zetten
             ));
 
             Redirect::to('profile.php');
