@@ -146,16 +146,18 @@ if(isset($_POST['update-locatiegegevens-submit'])) {
 //======================================================================
 
 if(isset($_POST['delete-account-submit'])) {
-    // Uitgelogd
-    $email              =  $_POST['email'];
-    $emails = Database::getInstance()->delete('Gebruiker', array('emailadres', '=', $email));
-
     // Ingelogd
     if(Session::exists('username')){
         $user = Database::getInstance()->delete('Gebruiker', array('gebruikersnaam', '=', Session::get('username')));
 
         session_unset();
         session_destroy();
+    }
+
+    // Uitgelogd
+    else {
+        $email = $_POST['email'];
+        $emails = Database::getInstance()->delete('Gebruiker', array('emailadres', '=', $email));
     }
     Redirect::to('index.php');
 }
