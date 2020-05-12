@@ -58,7 +58,6 @@
         <?php if(Session::exists('username')) { ?>
         <!-- nearby -->
         <h2>In de buurt</h2>
-            <!--TODO Add rows specifically targeted at users interests -->
         <div class="ui stackable five column grid">
             <div class="five column row">
                 <div class="column">
@@ -122,10 +121,23 @@
 
         <!-- Product showcase -->
         <h2>Producten</h2>
-        <!-- Includes the functions random products to pick -->
-        <?php include FUNCTIONS . 'randomProducts.func.php' ?>
+        <?php include FUNCTIONS . 'diverseProducts.func.php' ?>
         <div class="ui stackable five column grid">
-            <?php Product::createRows($randomProducts);?>
+            <?php foreach($stmt->results() as $result) { ?>
+
+                <div class="column">
+                    <div class="ui fluid card">
+                        <a class="image" href=<?php echo 'product.php?p=' . $result->voorwerpnummer ?> >
+                            <img src="https://place-hold.it/150x150">
+                        </a>
+                        <div class="content">
+                            <a class="header" href="<?php echo 'product.php?p=' . $result->voorwerpnummer ?>"><?php echo $result->titel; ?></a>
+                            <div class="description"><?php echo $result->beschrijving; ?></div>
+                            <div class="description bold">€<?php echo $result->startprijs; ?></div>
+                        </div>
+                    </div>
+                </div>
+                <?php } ?>
             </div>
     </div>
 </main>
