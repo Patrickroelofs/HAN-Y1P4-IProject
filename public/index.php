@@ -136,8 +136,7 @@
                 <div class="column">
                     <div class="ui fluid card">
                         <a class="image" href="product.php?p=<?= $result->voorwerpnummer; ?>">
-                            <!-- <img src="<?= $result->voorwerpAfbeelding; ?>" alt="Foto van <?= $result->titel; ?>">-->
-                            <img src="https://place-hold.it/150x150">
+                            <img src="http://iproject19.icasites.nl/pics/dt_1_<?= $result->thumbnail; ?>" alt="Foto van <?= $result->titel; ?>">
                         </a>
                         <div class="content">
                             <a class="header" href="product.php?p=<?= $result->voorwerpnummer; ?>"><?= $result->titel; ?></a>

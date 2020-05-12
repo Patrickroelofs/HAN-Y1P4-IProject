@@ -118,8 +118,9 @@ create table Verkoper
     CONSTRAINT PK_verkoper PRIMARY KEY (gebruikersnaam),
 
     CONSTRAINT FK_gebruiker FOREIGN KEY (gebruikersnaam) REFERENCES Gebruiker(gebruikersnaam)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE,
+        --TODO: 4:35
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
 
     --TODO: ADD Controleopties
     CONSTRAINT CHK_controloptie CHECK (controleoptie = 'Creditcard' OR controleoptie = 'Post')
@@ -130,12 +131,15 @@ GO
 /* Voorwerp */
 CREATE TABLE Voorwerp
 (
-    voorwerpnummer          INT                 NOT NULL IDENTITY,
+    voorwerpnummer          BIGINT              NOT NULL IDENTITY,
     titel                   VARCHAR(255)        NOT NULL,
     beschrijving            VARCHAR(MAX)        NOT NULL,
+    thumbnail               VARCHAR(255)        NOT NULL,
+    rubriek                 INT                 NOT NULL,
     startprijs              DECIMAL(18,2)       NOT NULL,
     betalingswijzenaam      VARCHAR(255)        NOT NULL,
     betalingsinstructies    VARCHAR(255)        NULL,
+    postcode                VARCHAR(255)        NOT NULL,
     plaatsnaam              VARCHAR(255)        NOT NULL,
     landnaam                VARCHAR(40)         NOT NULL,
     looptijd                INT                 NOT NULL DEFAULT 7,
@@ -152,9 +156,9 @@ CREATE TABLE Voorwerp
 
     CONSTRAINT PK_voorwerp PRIMARY KEY (voorwerpnummer),
 
-    CONSTRAINT FK_verkoperGebruiker FOREIGN KEY (verkoper) REFERENCES Verkoper (gebruikersnaam)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE,
+--     CONSTRAINT FK_verkoperGebruiker FOREIGN KEY (verkoper) REFERENCES Verkoper (gebruikersnaam)
+--         ON UPDATE NO ACTION
+--         ON DELETE NO ACTION,
 
     --CONSTRAINT:: TODO: Look up if this one is needed :)
     CONSTRAINT FK_koperGebruiker FOREIGN KEY (koper) REFERENCES Gebruiker (gebruikersnaam)
@@ -167,7 +171,7 @@ GO
 /* Voorwerp in Rubriek */
 CREATE TABLE VoorwerpInRubriek
 (
-    voorwerpnummer  INT     NOT NULL,
+    voorwerpnummer  BIGINT  NOT NULL,
     rubrieknummer   INT     NOT NULL,
 
     CONSTRAINT PK_voorwerpnummerRubrieknummer PRIMARY KEY (voorwerpnummer, rubrieknummer),
@@ -186,7 +190,7 @@ GO
 /* Feedback */
 CREATE TABLE Feedback
 (
-    voorwerpnummer      INT             NOT NULL,
+    voorwerpnummer      BIGINT          NOT NULL,
     verkoper            BIT             NOT NULL    DEFAULT 0,
     feedbacksoortnaam   VARCHAR(50)     NOT NULL,
     datum               DATE            NOT NULL    DEFAULT GETDATE(),
@@ -209,7 +213,7 @@ GO
 CREATE TABLE Bestanden
 (
     bestandnaam     VARCHAR(255)    NOT NULL    PRIMARY KEY,
-    voorwerpnummer  INT             NOT NULL,
+    voorwerpnummer  BIGINT          NOT NULL,
 
     CONSTRAINT FK_bestandVoorwerp FOREIGN KEY (voorwerpnummer) REFERENCES Voorwerp (voorwerpnummer)
         ON UPDATE CASCADE
@@ -221,7 +225,7 @@ GO
 CREATE TABLE Bod
 (
     id              INT                 NOT NULL IDENTITY,
-    voorwerpnummer  INT                 NOT NULL,
+    voorwerpnummer  BIGINT              NOT NULL,
     -- CONSTRAINT:: Bodbedrag MUST be higher than an existing one
     bodbedrag       DECIMAL(18,2)       NOT NULL,
     gebruikersnaam  VARCHAR(255)        NULL,
