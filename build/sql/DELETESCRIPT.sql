@@ -3,6 +3,12 @@
 /* ***************************** */
 USE iproject19
 GO
+
+
+DROP FUNCTION IF EXISTS udf_StripHTML
+GO
+
+
 DROP TABLE IF EXISTS Bestand
 GO
 DROP TABLE IF EXISTS  Bod
