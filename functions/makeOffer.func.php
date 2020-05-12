@@ -4,25 +4,7 @@
 //======================================================================
 $productID = '1';
 
-// Check if user has filled in all credentials
-if(Session::exists('username')) {
-    try {
-        $stmt = Database::getInstance()->query("SELECT compleet FROM Gebruiker WHERE gebruikersnaam = '".Session::get('username')."' ",array());
-
-        if($stmt->first()->compleet == 1) {
-            $completedProfile = 1;
-        } else {
-            $completedProfile = 0;
-        }
-    } catch (PDOException $e) {
-        //Error during select
-        echo $e->getMessage();
-    }
-}
-
 // Figure out highest bid
-$highestBid = '0';
-
 try {
     $stmt = Database::getInstance()->query("SELECT TOP 1 bodbedrag FROM Bod WHERE voorwerpnummer = '1' ORDER BY bodbedrag DESC",array());
 

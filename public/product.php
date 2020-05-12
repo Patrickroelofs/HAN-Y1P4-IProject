@@ -1,7 +1,8 @@
 <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . '/core/init.php';
     include INCLUDES . 'head.inc.php';
-    include FUNCTIONS . 'makeOffer.func.php'
+    include FUNCTIONS . 'makeOffer.func.php';
+    include 'includes/modals/makeOffer.inc.php';
 ?>
 
 <main>
@@ -34,7 +35,6 @@
                             <i class="gavel icon"></i>
                             Bieden
                         </button>
-                        <?php include 'includes/modals/makeOffer.inc.php' ?>
                     </div>
                 </div>
             </div>

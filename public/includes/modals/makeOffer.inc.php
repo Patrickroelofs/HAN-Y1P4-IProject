@@ -17,8 +17,8 @@ if (!Session::exists('username')) { ?>
     </div>
 <?php
 }
-
-elseif ($completedProfile == 0) { ?>
+// Check if user profile is complete
+elseif ($user->first()->compleet == 0) { ?>
     <div class="ui mini modal makeOffer">
       <div class="ui header">
         Profiel niet compleet

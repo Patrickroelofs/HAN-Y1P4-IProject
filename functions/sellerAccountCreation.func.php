@@ -1,15 +1,5 @@
 <?php
 
-if(Session::exists('username')) {
-    try {
-        $stmt = Database::getInstance()->query("SELECT compleet FROM Gebruiker WHERE gebruikersnaam = '".Session::get('username')."' ",array());
-
-    } catch (PDOException $e) {
-        //Error during select
-        echo $e->getMessage();
-    }
-}
-
 if(isset($_POST['updateBankgegevens'])) {
 
     //save data in temporary variables
@@ -19,7 +9,7 @@ if(isset($_POST['updateBankgegevens'])) {
     $creditcard     = $_POST['creditcard'];
 
     // TODO: Error messages and other invalid register checks. (koen)
-    if(empty($bank) || empty($bankNummer) || empty($controleOptie) || empty($creditcard || $stmt->first()->compleet == 0)){
+    if(empty($bank) || empty($bankNummer) || empty($controleOptie) || empty($creditcard || $user->first()->compleet == 0)){
         //error
         if(empty($bank) || empty($bankNummer) || empty($controleOptie) || empty($creditcard)) {
             echo 'Fill in all information';
