@@ -5,6 +5,9 @@
 USE iproject19
 GO
 
+/* ***************************** */
+/**  DROP TABLES AND FUNCTIONS   */
+/* ***************************** */
 DROP FUNCTION IF EXISTS udf_StripHTML
 GO
 
@@ -26,20 +29,30 @@ GO
 DROP TABLE IF EXISTS Gebruiker
 GO
 
+/* ***************************** */
+/**        CREATE TABLES         */
+/* ***************************** */
+
+/* LAND */
 CREATE TABLE Land
 (
-  code          CHAR(4) NOT NULL,
-  naam          VARCHAR(40) NOT NULL,
-  begindatum    DATE NULL,
-  einddatum     DATE NULL,
-  eer_lid       BIT NOT NULL DEFAULT 0,
-  CONSTRAINT PK_tblIMAOLand PRIMARY KEY (naam),
-  CONSTRAINT UQ_tblIMAOLand UNIQUE (code),
-  CONSTRAINT CHK_CODE CHECK ( LEN(code) = 4 ),
-  CONSTRAINT CHK_DATUM CHECK ( BEGINDATUM < EINDDATUM )
-)
+  code          CHAR(4)         NOT NULL,
+  naam          VARCHAR(40)     NOT NULL,
+  begindatum    DATE            NULL,
+  einddatum     DATE            NULL,
+  eer_lid       BIT             NOT NULL    DEFAULT 0,
+
+
+  CONSTRAINT PK_landnaam        PRIMARY KEY (naam),
+  CONSTRAINT UQ_code            UNIQUE (code),
+  CONSTRAINT CHK_code           CHECK (LEN(code) = 4),
+  CONSTRAINT CH_datum           CHECK (BEGINDATUM < EINDDATUM)
+);
 GO
 
+
+
+/* Gebruiker */
 CREATE TABLE Gebruiker
 (
     id             INT          NOT NULL UNIQUE IDENTITY,
@@ -63,6 +76,8 @@ CREATE TABLE Gebruiker
 );
 GO
 
+
+/* Rubriek */
 CREATE TABLE Rubriek
 (
     rubrieknummer INT          NOT NULL PRIMARY KEY,
@@ -71,6 +86,8 @@ CREATE TABLE Rubriek
 );
 GO
 
+
+/* Voorwerp */
 CREATE TABLE Voorwerp
 (
     voorwerpnummer          INT                 NOT NULL IDENTITY PRIMARY KEY,
@@ -94,7 +111,7 @@ CREATE TABLE Voorwerp
 );
 GO
 
-/* TABLE: Verkoper */
+/* Verkoper */
 create table Verkoper
 (
     gebruiker       VARCHAR(255)        NOT NULL    PRIMARY KEY,
@@ -109,7 +126,7 @@ create table Verkoper
 );
 GO
 
-/* TABLE: Bod */
+/* Bod */
 CREATE TABLE Bod
 (
     id              INT                 NOT NULL    IDENTITY    PRIMARY KEY,
@@ -118,5 +135,5 @@ CREATE TABLE Bod
     gebruiker       VARCHAR(255)        NULL,
     boddag          DATE                NOT NULL    DEFAULT     GETDATE(),
     bodtijd         TIME                NOT NULL    DEFAULT     CURRENT_TIMESTAMP
-)
+);
 GO

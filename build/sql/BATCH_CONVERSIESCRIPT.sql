@@ -1,4 +1,4 @@
-use iproject19
+USE iproject19
 GO
 
 DROP FUNCTION IF EXISTS dbo.udf_StripHTML
