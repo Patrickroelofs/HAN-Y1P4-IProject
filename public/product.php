@@ -3,12 +3,25 @@
     include INCLUDES . 'head.inc.php';
     include FUNCTIONS . 'makeOffer.func.php';
     include 'includes/modals/makeOffer.inc.php';
+
+    // Get data from database
+    try {
+        $stmt = Database::getInstance()->query("SELECT * FROM Voorwerp WHERE voorwerpnummer = $productID",array());
+
+        foreach($stmt->results() as $result) {
+            $title = $result->titel;
+            $description = $result->beschrijving;
+        }
+    } catch (PDOException $e) {
+        //Error during insert
+        echo $e->getMessage();
+    }
 ?>
 
 <main>
     <div class="ui container">
 
-        <h2>Product</h2>
+        <h2><?php echo $title ?></h2>
         <div class="vertical-margin-12">
             <div class="ui label">
                 <i>Lorem Ipsum</i>
@@ -28,7 +41,7 @@
             <div class="eight wide column">
                 <div class="ui segment">
                     <h2>Beschrijving</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi dignissimos eligendi quo.</p>
+                    <p><?php echo $description ?></p>
 
                     <div class="ui input labeled input">
                         <button type="submit" id="makeOffer" class="ui primary labeled icon button">
