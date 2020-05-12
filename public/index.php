@@ -134,7 +134,7 @@
 
             foreach($randomProducts->results() as $result) { ?>
                 <div class="column">
-                    <div class="ui fluid card">
+                    <div class="ui fluid card productcards">
                         <a class="image" href="product.php?p=<?= $result->voorwerpnummer; ?>">
                             <img src="http://iproject19.icasites.nl/pics/dt_1_<?= $result->thumbnail; ?>" alt="Foto van <?= $result->titel; ?>">
                         </a>
