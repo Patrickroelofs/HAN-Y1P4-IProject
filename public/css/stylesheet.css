@@ -152,6 +152,12 @@ footer .footer.title h1 {
         padding-bottom: 16px !important;
     }
 }
+
+/* --- SYSTEM MESSAGES ----------------------------------------- */
+.systemMessage {
+    margin: 32px 0;
+}
+
 /* --- ADD Auction page ----------------------------------------- */
 .addAuction label{
     display: block;

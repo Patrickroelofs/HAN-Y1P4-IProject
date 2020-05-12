@@ -75,4 +75,4 @@
         </div>
     </div>
 </nav>
-
+<?php include INCLUDES . 'systemMessage.inc.php'; ?>
