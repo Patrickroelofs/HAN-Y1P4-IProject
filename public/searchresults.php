@@ -13,11 +13,11 @@ include INCLUDES . 'head.inc.php';
                 <?php foreach($stmt->results() as $result) { ?>
                 <div class="column">
                     <div class="ui fluid card">
-                        <a class="image" href="#">
+                        <a class="image" href="<?php echo 'product.php?p=' . $result->voorwerpnummer ?>">
                             <img src="https://place-hold.it/150x150" alt="product-image">
                         </a>
                         <div class="content">
-                            <a class="header" href="#"><?php echo $result->titel; ?></a>
+                            <a class="header" href="<?php echo 'product.php?p=' . $result->voorwerpnummer ?>"><?php echo $result->titel; ?></a>
                             <div class="description"><?php echo $result->beschrijving; ?></div>
                             <div class="description bold">€<?php echo $result->startprijs; ?></div>
                         </div>
