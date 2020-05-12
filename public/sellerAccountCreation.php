@@ -28,8 +28,15 @@ include FUNCTIONS . 'sellerAccountCreation.func.php';
                     <input type="text" name="bankNummer" id="bankNummer" placeholder="Vul uw banknummer in">
                 </div>
                 <div class="field">
-                    <label for="control option">Controle optie</label>
-                    <input type="text" name="controleOptie" id="controleOptie" placeholder="Geef een controle optie">
+                    <label for="controleOptie">Controle optie</label>
+                    <div class="ui selection dropdown">
+                        <input type="hidden" name="controleOptie" id="controleOptie">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Controle optie</div>
+                        <div class="menu">
+                            <div class="item" data-value="creditcard">Creditcard</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="field">
                     <label for="credit card">Credit card</label>
