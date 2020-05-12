@@ -158,13 +158,6 @@ footer .footer.title h1 {
     margin: 32px 0;
 }
 
-/* --- PRODUCT CARDS -------------------------------------------- */
-.ui.card>.image>img {
-    height: 200px;
-    object-fit: contain;
-    background: white;
-}
-
 /* --- ADD Auction page ----------------------------------------- */
 .addAuction label{
     display: block;
