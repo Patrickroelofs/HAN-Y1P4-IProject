@@ -3,26 +3,10 @@
 // Offer
 //======================================================================
 // Figure out highest bid
-try {
-    $stmt = Database::getInstance()->query("SELECT TOP 1 bodbedrag FROM Bod WHERE voorwerpnummer = $productID ORDER BY bodbedrag DESC",array());
-
-    foreach($stmt->results() as $result) {
-        $highestBid = $result->bodbedrag;
-    }
-} catch (PDOException $e) {
-    //Error during insert
-    echo $e->getMessage();
-}
+$bidHigh = Database::getInstance()->query("SELECT TOP 1 bodbedrag FROM Bod WHERE voorwerpnummer = $productID ORDER BY bodbedrag DESC",array());
 
 // Check if bid is still open
-try {
-    $stmt = Database::getInstance()->query("SELECT gesloten FROM Voorwerp WHERE voorwerpnummer = $productID",array());
-
-    $bidClosed = $stmt->first()->gesloten;
-} catch (PDOException $e) {
-    //Error during select
-    echo $e->getMessage();
-}
+$bidClosed = Database::getInstance()->query("SELECT gesloten FROM Voorwerp WHERE voorwerpnummer = $productID",array());
 
 // Is submit pressed?
 if(isset($_POST['offer-submit'])) {
@@ -35,11 +19,11 @@ if(isset($_POST['offer-submit'])) {
         echo "Bedrag te laag";
     }
     // Check if amount is bigger than startprice
-    elseif (isset($highestBid) && $amount < $highestBid) {
+    elseif (isset($bidHigh->first()->bodbedrag) && $amount < $bidHigh->first()->bodbedrag) {
         echo "Bedrag is te laag";
     }
     // Check if amount is smaller than 10x the highest bid
-    elseif (isset($highestBid) && $amount > $highestBid*10) {
+    elseif (isset($bidHigh->first()->bodbedrag) && $amount > $bidHigh->first()->bodbedrag*10) {
         echo "Bedrag is te hoog";
     }
     else {

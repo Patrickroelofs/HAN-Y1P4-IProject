@@ -15,7 +15,7 @@ if(!Session::exists('username')) {
     $error = true;
     $errorTitle = $errorProfileTitle;
     $errorText = $errorProfileText;
-} elseif ($bidClosed == true) {
+} elseif ($bidClosed->first()->gesloten == true) {
     $error = true;
     $errorTitle = $errorBidTitle;
     $errorText = $errorBidTitle;

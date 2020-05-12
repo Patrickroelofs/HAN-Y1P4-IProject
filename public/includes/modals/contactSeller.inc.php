@@ -5,7 +5,7 @@ $sellerName = Database::getInstance()->query("SELECT verkoper FROM Voorwerp WHER
 $sellerName = $sellerName->first()->verkoper;
 
 // Retrieve user info
-    $usrInfo = Database::getInstance()->query("SELECT * FROM Gebruiker WHERE gebruikersnaam = '$sellerName'", array());
+$usrInfo = Database::getInstance()->query("SELECT * FROM Gebruiker WHERE gebruikersnaam = '$sellerName'", array());
 
 // Check if user is logged in
 if (!Session::exists('username')) { ?>
@@ -50,11 +50,19 @@ else { ?>
                 <a href="<?php echo 'mailto:' .$usrInfo->first()->emailadres ?>">
                     <?php echo $usrInfo->first()->emailadres ?></a></p>
 
-                <p><span class="bold">Plaats:</span>
+                <p><span class="bold">Plaats: </span>
                     <?php if(empty($usrInfo->first()->plaatsnaam)) {
                         echo "niet beschikbaar";
                     } else {
                     echo $usrInfo->first()->plaatsnaam;
+                    }  ?>
+                </p>
+
+                <p><span class="bold">Telefoonnummer: </span>
+                    <?php if(empty($usrInfo->first()->telefoonnummer)) {
+                        echo "niet beschikbaar";
+                    } else {
+                        echo $usrInfo->first()->telefoonnummer;
                     }  ?>
                 </p>
             </div>
