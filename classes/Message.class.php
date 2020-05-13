@@ -68,4 +68,8 @@ class Message {
 
         Redirect::to($location.$set);
     }
+
+    public static function data($insert) {
+        return escape($_GET[$insert]);
+    }
 }
