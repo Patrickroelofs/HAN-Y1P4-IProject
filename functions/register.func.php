@@ -35,17 +35,22 @@ if(isset($_POST['register-submit'])) {
 
     } else if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
         Message::error('index.php', array(
-            'm' => 'Emailadres is niet een correcte emailadres'
+            'm' => 'Emailadres is niet een correcte emailadres...'
         ));
 
     } else if ($users->count() > 0 || $emails->count() > 0) {
         Message::error('index.php', array(
-            'm' => 'Gebruikersnaam of email is al in gebruik'
+            'm' => 'Gebruikersnaam of email is al in gebruik...'
         ));
 
     } else if (strlen($password) < 6 || strlen($password_repeat < 6)) {
         Message::error('index.php', array(
-            'm' => 'Wachtwoord te kort'
+            'm' => 'Wachtwoord te kort...'
+        ));
+
+    } else if (strlen($username) < 4) {
+        Message::error('index.php', array(
+            'm' => 'Gebruikersnaam te kort...'
         ));
     }
 
