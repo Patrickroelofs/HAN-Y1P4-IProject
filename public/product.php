@@ -67,31 +67,30 @@ include INCLUDES . 'modals/contactseller.inc.php';
 
             <div class="ui segment">
                 <h2>Meer zoals</h2>
-                <div class="ui grid">
-                    <div class="two wide column">
-                        <img src="https://place-hold.it/90x90">
-                    </div>
-                    <div class="two wide column">
-                        <img src="https://place-hold.it/90x90">
-                    </div>
-                    <div class="two wide column">
-                        <img src="https://place-hold.it/90x90">
-                    </div>
-                    <div class="two wide column">
-                        <img src="https://place-hold.it/90x90">
-                    </div>
-                    <div class="two wide column">
-                        <img src="https://place-hold.it/90x90">
-                    </div>
-                    <div class="two wide column">
-                        <img src="https://place-hold.it/90x90">
-                    </div>
-                    <div class="two wide column">
-                        <img src="https://place-hold.it/90x90">
-                    </div>
-                    <div class="two wide column">
-                        <img src="https://place-hold.it/90x90">
-                    </div>
+                <!-- Includes the functions random products to pick -->
+                <div class="ui stackable grid">
+                    <?php
+                    $randomProducts = Database::getInstance()->query("SELECT TOP 8 * FROM Voorwerp ORDER BY NEWID()");
+
+                    if ($randomProducts->count() < 1) {
+                        // no data passed by get
+                        echo "<p>Geen resultaten</p>";
+                    }
+
+                    foreach($randomProducts->results() as $result) { ?>
+                        <div class="two wide column">
+                            <div class="ui fluid card productcards">
+                                <a class="image" href="product.php?p=<?= $result->voorwerpnummer; ?>">
+                                    <img src="http://iproject19.icasites.nl/pics/dt_1_<?= $result->thumbnail; ?>" alt="Foto van <?= $result->titel; ?>">
+                                </a>
+                                <div class="content">
+                                    <a class="header" href="product.php?p=<?= $result->voorwerpnummer; ?>"><?= $result->titel; ?></a>
+                                    <div class="description"><?= $result->beschrijving; ?></div>
+                                    <div class="description bold">€<?= $result->startprijs; ?></div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
 
