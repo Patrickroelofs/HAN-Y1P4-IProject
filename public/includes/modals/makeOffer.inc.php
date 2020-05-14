@@ -35,8 +35,11 @@ if (!$error) { ?>
             <div class="description">
                 <div class="ui header">Product</div>
                 <p> <?php
-                    //TODO: check if product exists in bod table
+                    if(!empty($bidHigh)) {
+                        echo '<span class="bold">Hoogste bod: €' . $bidHigh->first()->bodbedrag . '!</span>';
+                    } else {
                         echo '<span class="bold">Maak nu het startbod van €' . $stmt->first()->startprijs . '!</span>';
+                    }
                     ?>
                 </p>
 
