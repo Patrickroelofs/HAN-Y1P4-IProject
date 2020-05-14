@@ -69,7 +69,7 @@ class Message {
         Redirect::to($location.$set);
     }
 
-    public static function data($insert) {
+    public static function get($insert) {
         return escape($_GET[$insert]);
     }
 }
