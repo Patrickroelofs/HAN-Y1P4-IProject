@@ -95,11 +95,6 @@ CREATE TABLE Rubriek
     rubriek       INT          NULL,
 
     CONSTRAINT PK_rubriek PRIMARY KEY (rubrieknummer),
-
-    --CONSTRAINT:: TODO: Look up if this one is needed :)
-    CONSTRAINT FK_rubriekRubrieknummer FOREIGN KEY (rubriek) REFERENCES Rubriek (rubrieknummer)
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION,
 );
 GO
 
@@ -152,16 +147,6 @@ CREATE TABLE Voorwerp
     verkoopprijs            DECIMAL(18,2)       NULL,
 
     CONSTRAINT PK_voorwerp PRIMARY KEY (voorwerpnummer),
-
---     CONSTRAINT FK_verkoperGebruiker FOREIGN KEY (verkoper) REFERENCES Verkoper (gebruikersnaam)
---         ON UPDATE NO ACTION
---         ON DELETE NO ACTION,
-
-    --CONSTRAINT:: TODO: Look up if this one is needed :)
-    CONSTRAINT FK_koperGebruiker FOREIGN KEY (koper) REFERENCES Gebruiker (gebruikersnaam)
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION,
-
 );
 GO
 
@@ -196,7 +181,6 @@ CREATE TABLE Feedback
 
     CONSTRAINT PK_feedback PRIMARY KEY (voorwerpnummer),
 
-    CONSTRAINT  CHK_verkoper            CHECK (verkoper = 0 OR verkoper = 1),
     CONSTRAINT  CHK_feedbacksoortnaam   CHECK (feedbacksoortnaam = 'negatief' OR feedbacksoortnaam = 'neutraal' OR feedbacksoortnaam = 'positief'),
 
     CONSTRAINT  FK_FeedbackvoorwerpVoorwerpnummer FOREIGN KEY (voorwerpnummer) REFERENCES Voorwerp (voorwerpnummer)
