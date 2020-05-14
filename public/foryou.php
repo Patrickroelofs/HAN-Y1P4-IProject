@@ -2,6 +2,10 @@
     require_once $_SERVER['DOCUMENT_ROOT'] . '/core/init.php';
     include INCLUDES . 'head.inc.php';
 
+    if(!Session::exists('username')){
+        Redirect::to('index.php');
+    }
+
     $usrname = Session::get('username');
 
     // Get user products from database
