@@ -6,15 +6,13 @@
         Redirect::to('index.php');
     }
 
-    $usrname = Session::get('username');
-
     // Get user products from database
-    $userProducts = Database::getInstance()->query("SELECT TOP 5 * FROM Voorwerp WHERE verkoper = '$usrname'",array());
+    $userProducts = Database::getInstance()->query("SELECT TOP 5 * FROM Voorwerp WHERE verkoper = ". Session::get('username'), array());
 ?>
 
 <main>
     <div class="ui container">
-        <!--Jouw lopende biedingen-->
+        <?php if($user->first()->verkoper && !$userProducts->count() <= 0) { ?>
         <h2>Jouw lopende biedingen</h2>
         <div class="ui stackable five column grid">
             <div class="five column row">
@@ -43,6 +41,7 @@
                 <?php } ?>
             </div>
         </div>
+    <?php } ?>
 
         <!--Aanbevolen rubrieken voor jou-->
         <h2>Aanbevolen rubrieken voor jou</h2>
