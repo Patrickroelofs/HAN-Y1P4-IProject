@@ -1,5 +1,4 @@
 <?php
-
 // If user is not logged in display error message
 if(!Session::exists('username')) {
     $error = true;
@@ -35,6 +34,11 @@ if (!$error) { ?>
             </div>
             <div class="description">
                 <div class="ui header">Product</div>
+                <p> <?php
+                    //TODO: check if product exists in bod table
+                        echo '<span class="bold">Maak nu het startbod van €' . $stmt->first()->startprijs . '!</span>';
+                    ?>
+                </p>
 
                 <form method="post" id="offer-form">
                     <div class="ui input labeled input required">

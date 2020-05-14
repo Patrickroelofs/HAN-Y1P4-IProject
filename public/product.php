@@ -10,18 +10,8 @@ if (isset($_GET['p'])) {
 }
 
 // Get data from database
-try {
-    $stmt = Database::getInstance()->query("SELECT * FROM Voorwerp WHERE voorwerpnummer = $productID",array());
+$stmt = Database::getInstance()->query("SELECT * FROM Voorwerp WHERE voorwerpnummer = $productID",array());
 
-    foreach($stmt->results() as $result) {
-        $title = $result->titel;
-        $description = $result->beschrijving;
-        $startPrice = $result->startprijs;
-    }
-} catch (PDOException $e) {
-    //Error during insert
-    echo $e->getMessage();
-}
 
 include FUNCTIONS . 'makeOffer.func.php';
 include INCLUDES . 'modals/makeoffer.inc.php';
@@ -31,7 +21,7 @@ include INCLUDES . 'modals/contactseller.inc.php';
     <main>
         <div class="ui container">
 
-            <h2><?php echo $title ?></h2>
+            <h2><?php echo $stmt->first()->titel ?></h2>
             <div class="vertical-margin-12">
                 <div class="ui label">
                     <i>Lorem Ipsum</i>
@@ -51,7 +41,10 @@ include INCLUDES . 'modals/contactseller.inc.php';
                 <div class="eight wide column">
                     <div class="ui segment">
                         <h2>Beschrijving</h2>
-                        <p><?php echo $description ?></p>
+
+                        <p><?php echo $stmt->first()->beschrijving ?></p>
+
+                        <p>v.a. <span class="bold">€<?php echo $stmt->first()->startprijs ?></span> </p>
 
                         <!-- bidding -->
                         <div class="ui input labeled input">

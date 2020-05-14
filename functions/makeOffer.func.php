@@ -15,8 +15,8 @@ if(isset($_POST['offer-submit'])) {
     // Save data in temporary variables
     $amount = $_POST['amount'];
 
-    if($amount < $startPrice){
-        echo "Bedrag te laag";
+    if($amount < $stmt->first()->startprijs && $amount != $stmt->first()->startprijs){
+        echo "Bedrag lager dan de startprijs";
     }
     // Check if amount is bigger than startprice
     elseif (isset($bidHigh->first()->bodbedrag) && $amount < $bidHigh->first()->bodbedrag) {
