@@ -43,7 +43,7 @@ if (!$error) { ?>
                 <form method="post" id="offer-form">
                     <div class="ui input labeled input required">
                         <label for="amount" class="ui label">€</label>
-                        <input type="text" autocomplete="off" placeholder="Uw bod" name="amount">
+                        <input type="text" required autocomplete="off" placeholder="Uw bod" name="amount">
                     </div>
                 </form>
             </div>
