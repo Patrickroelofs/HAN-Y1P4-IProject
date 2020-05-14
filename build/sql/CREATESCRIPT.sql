@@ -209,8 +209,10 @@ GO
 /* Bestanden */
 CREATE TABLE Bestanden
 (
-    bestandnaam     VARCHAR(255)    NOT NULL    PRIMARY KEY,
+    bestandnaam     VARCHAR(255)    NOT NULL,
     voorwerpnummer  BIGINT          NOT NULL,
+
+    CONSTRAINT PK_bestanden PRIMARY KEY (bestandnaam),
 
     CONSTRAINT FK_bestandVoorwerp FOREIGN KEY (voorwerpnummer) REFERENCES Voorwerp (voorwerpnummer)
         ON UPDATE CASCADE
