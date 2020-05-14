@@ -8,6 +8,8 @@ $bidHigh = Database::getInstance()->query("SELECT TOP 1 bodbedrag FROM Bod WHERE
 // Check if bid is still open
 $bidClosed = Database::getInstance()->query("SELECT gesloten FROM Voorwerp WHERE voorwerpnummer = $productID",array());
 
+$bidExists = Database::getInstance()->query("SELECT bodbedrag FROM Bod WHERE voorwerpnummer = $productID",array());
+
 // Is submit pressed?
 if(isset($_POST['offer-submit'])) {
     $username = Session::get('username');
@@ -15,17 +17,24 @@ if(isset($_POST['offer-submit'])) {
     // Save data in temporary variables
     $amount = $_POST['amount'];
 
-    if($amount < $stmt->first()->startprijs && $amount != $stmt->first()->startprijs){
+    // Check if amount is less than starting price
+    if($amount < $stmt->first()->startprijs){
         echo "Bedrag lager dan de startprijs";
     }
-    // Check if amount is bigger than startprice
-    elseif (isset($bidHigh->first()->bodbedrag) && $amount < $bidHigh->first()->bodbedrag) {
+
+    // Check if product exists in bid table and
+    // bid is less than the current highest bid
+    elseif ($bidExists->count(1) == 1 && $amount < $bidHigh->first()->bodbedrag) {
         echo "Bedrag is te laag";
     }
-    // Check if amount is smaller than 10x the highest bid
-    elseif (isset($bidHigh->first()->bodbedrag) && $amount > $bidHigh->first()->bodbedrag*10) {
+
+    // Check if product exists in bid table and
+    // bid is more than 10* the current bid
+    elseif ($bidExists->count(1) == 1 && $amount > $bidHigh->first()->bodbedrag*10) {
         echo "Bedrag is te hoog";
     }
+
+    // Everything is correct
     else {
         //Insert into database
         try {

@@ -35,13 +35,13 @@ if (!$error) { ?>
             <div class="description">
                 <div class="ui header">Product</div>
                 <p> <?php
-                    if(!empty($bidHigh)) {
-                        echo '<span class="bold">Hoogste bod: €' . $bidHigh->first()->bodbedrag . '!</span>';
+                    // Show current highest bid if product exists in bod table
+                    if($bidExists->count(1) == 1) {
+                        echo '<span class="bold">Hoogste bod: €' . $bidHigh->first()->bodbedrag . '</span>';
                     } else {
                         echo '<span class="bold">Maak nu het startbod van €' . $stmt->first()->startprijs . '!</span>';
                     }
-                    ?>
-                </p>
+                    ?></p>
 
                 <form method="post" id="offer-form">
                     <div class="ui input labeled input required">
