@@ -42,6 +42,11 @@ if(isset($_POST['register-submit'])) {
         Message::error('index.php', array(
             'm' => 'Gebruikersnaam of email is al in gebruik'
         ));
+
+    } else if (strlen($password) < 6 || strlen($password_repeat < 6)) {
+        Message::error('index.php', array(
+            'm' => 'Wachtwoord te kort'
+        ));
     }
 
     else {
