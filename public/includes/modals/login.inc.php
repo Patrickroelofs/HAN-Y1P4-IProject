@@ -12,7 +12,7 @@
                         <br>
                         <div class="field">
                             <label for="username">Gebruikersnaam</label>
-                            <input type="text" name="username" id="username" placeholder="Username" required>
+                            <input type="text" value="<?php if(isset($_GET['username'])) { echo Message::get('username'); } ?>" name="username" id="username" placeholder="Username" required>
                         </div>
                         <div class="field">
                             <label for="password">Wachtwoord</label>

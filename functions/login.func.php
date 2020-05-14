@@ -22,12 +22,16 @@ if(isset($_POST['login-submit'])) {
 
     // TODO: Error messages and other invalid register checks.
     if(empty($username) || empty($password)){
-        //error
-        echo 'error - empty';
+        Message::error('index.php', array(
+            'm' => 'Een van de verplichte velden zijn leeg...',
+            'username' => $username
+        ));
 
     } else if(!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
-        echo 'error - username has incorrect characters';
-
+        Message::error('index.php', array(
+            'm' => 'Incorrecte karakter in gebruikersnaam...',
+            'username' => $username,
+        ));
     }
 
     //Verify password hash
@@ -37,6 +41,9 @@ if(isset($_POST['login-submit'])) {
         Redirect::to('index.php');
 
     } else {
-        echo 'error - password or username incorrect';
+        Message::error('index.php', array(
+            'm' => 'Wachtwoord of gebruikersnaam incorrect.',
+            'username' => $username,
+        ));
     }
 }
