@@ -14,7 +14,7 @@ include INCLUDES . 'head.inc.php';
                 <div class="column">
                     <div class="ui fluid card">
                         <a class="image" href="<?php echo 'product.php?p=' . $result->voorwerpnummer ?>">
-                            <img src="https://place-hold.it/150x150" alt="product-image">
+                            <img src="http://iproject19.icasites.nl/pics/dt_1_<?= $result->thumbnail; ?>" alt="Foto van <?= $result->titel; ?>">
                         </a>
                         <div class="content">
                             <a class="header" href="<?php echo 'product.php?p=' . $result->voorwerpnummer ?>"><?php echo $result->titel; ?></a>
