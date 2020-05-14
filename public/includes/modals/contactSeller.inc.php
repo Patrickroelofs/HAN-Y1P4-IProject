@@ -7,6 +7,8 @@ $sellerName = $sellerName->first()->verkoper;
 // Retrieve user info
 $usrInfo = Database::getInstance()->query("SELECT * FROM Gebruiker WHERE gebruikersnaam = '$sellerName'", array());
 
+$usrExits = Database::getInstance()->query("SELECT gebruikersnaam FROM Gebruiker WHERE gebruikersnaam = '$sellerName'",array());
+
 // Check if user is logged in
 if (!Session::exists('username')) { ?>
     <div class="ui mini modal contactSeller">
@@ -20,6 +22,22 @@ if (!Session::exists('username')) { ?>
             <div class="ui green ok inverted button">
                 <i class='checkmark icon'></i>
                 Okay
+            </div>
+        </div>
+    </div>
+<?php }
+elseif($usrExits->count(1) == 0) { ?>
+    <div class="ui mini modal contactSeller">
+        <div class="ui header">
+    Er is iets misgegaan
+    </div>
+        <div class="content">
+    Gebruikersinformatie niet gevonden
+        </div>
+        <div class="actions">
+            <div class="ui green ok inverted button">
+                <i class='checkmark icon'></i>
+    Okay
             </div>
         </div>
     </div>

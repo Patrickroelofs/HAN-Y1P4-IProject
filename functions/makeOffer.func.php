@@ -8,6 +8,7 @@ $bidHigh = Database::getInstance()->query("SELECT TOP 1 bodbedrag FROM Bod WHERE
 // Check if bid is still open
 $bidClosed = Database::getInstance()->query("SELECT gesloten FROM Voorwerp WHERE voorwerpnummer = $productID",array());
 
+// Check if bid exists in database
 $bidExists = Database::getInstance()->query("SELECT bodbedrag FROM Bod WHERE voorwerpnummer = $productID",array());
 
 // Is submit pressed?
