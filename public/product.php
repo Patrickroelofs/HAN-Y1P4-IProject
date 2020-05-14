@@ -12,6 +12,14 @@ if (isset($_GET['p'])) {
 // Get data from database
 $stmt = Database::getInstance()->query("SELECT * FROM Voorwerp WHERE voorwerpnummer = $productID",array());
 
+// Calculate time left in offer
+$currentDate = new DateTime(date("Y-m-d"));
+$endDate = new DateTime($stmt->first()->looptijdeindedag);
+if ($endDate > $currentDate) {
+    $timeLeft = $currentDate->diff($endDate)->format("%d");
+} else {
+    $timeLeft = 0;
+}
 
 include FUNCTIONS . 'makeOffer.func.php';
 include INCLUDES . 'modals/makeoffer.inc.php';
@@ -45,6 +53,8 @@ include INCLUDES . 'modals/contactseller.inc.php';
                         <p><?php echo $stmt->first()->beschrijving ?></p>
 
                         <p>v.a. <span class="bold">€<?php echo $stmt->first()->startprijs ?></span> </p>
+
+                        <p><span class="bold">Tijd over om te bieden:</span> <?= $timeLeft ?> dagen</p>
 
                         <!-- bidding -->
                         <div class="ui input labeled input">

@@ -18,7 +18,11 @@
                     // Calculate time left in offer
                     $currentDate = new DateTime(date("Y-m-d"));
                     $endDate = new DateTime($result->looptijdeindedag);
-                    $timeLeft = $currentDate->diff($endDate)->format("%d");
+                    if ($endDate > $currentDate) {
+                        $timeLeft = $currentDate->diff($endDate)->format("%d");
+                    } else {
+                        $timeLeft = 0;
+                    }
                     ?>
                     <div class="column">
                         <div class="ui fluid card">
@@ -27,7 +31,7 @@
                             </a>
                             <div class="content">
                                 <a class="header" href="product.php?p=<?= $result->voorwerpnummer; ?>"><?= $result->titel; ?></a>
-                                <div class="description">Tijd tot verkoop: <?= $timeLeft ?></div>
+                                <div class="description">Tijd tot verkoop: <?= $timeLeft ?> dagen</div>
                                 <div class="description">Vanaf <span class="bold">€ <?= $result->startprijs ?></span></div>
                             </div>
                         </div>
