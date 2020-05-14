@@ -34,9 +34,9 @@ include INCLUDES . 'modals/contactseller.inc.php';
                 </div>
             </div>
 
-            <div class="ui grid" >
+            <div class="ui stackable grid" >
                 <div class="eight wide column">
-                    <img src="https://place-hold.it/400x400">
+                    <img class="fluid image" src="http://iproject19.icasites.nl/pics/dt_1_<?= $stmt->first()->thumbnail; ?>" >
                 </div>
                 <div class="eight wide column">
                     <div class="ui segment">
