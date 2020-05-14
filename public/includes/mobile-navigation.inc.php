@@ -61,9 +61,13 @@
             }
             ?>
             <a class="item" href="categories.php">Alle categorieën</a>
-            <a class="item" href="foryou.php">Voor Jou</a>
-            <a class="item" href="nearby.php">Dichtbij</a>
-            <a class="item" href="#">Nieuw</a>
+
+            <?php if(Session::exists('username')) { ?>
+                <a class="item" href="foryou.php">Voor Jou</a>
+                <a class="item" href="nearby.php">Dichtbij</a>
+            <?php } ?>
+
+            <a class="item" href="new.php">Nieuw</a>
         </div>
     </div>
 </div>
