@@ -78,9 +78,9 @@ include INCLUDES . 'modals/contactseller.inc.php';
             <div class="ui segment">
                 <h2>Meer zoals</h2>
                 <!-- Includes the functions random products to pick -->
-                <div class="ui stackable grid">
+                <div class="ui stackable five column grid">
                     <?php
-                    $randomProducts = Database::getInstance()->query("SELECT TOP 8 * FROM Voorwerp ORDER BY NEWID()");
+                    $randomProducts = Database::getInstance()->query("SELECT TOP 5 * FROM Voorwerp ORDER BY NEWID()");
 
                     if ($randomProducts->count() < 1) {
                         // no data passed by get
@@ -88,7 +88,7 @@ include INCLUDES . 'modals/contactseller.inc.php';
                     }
 
                     foreach($randomProducts->results() as $result) { ?>
-                        <div class="two wide column">
+                        <div class="column">
                             <div class="ui fluid card productcards">
                                 <a class="image" href="product.php?p=<?= $result->voorwerpnummer; ?>">
                                     <img src="http://iproject19.icasites.nl/pics/dt_1_<?= $result->thumbnail; ?>" alt="Foto van <?= $result->titel; ?>">
