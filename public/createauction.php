@@ -9,7 +9,9 @@
 
     // If user account is not complete
     if($user->first()->compleet == 0) {
-        Redirect::to('profile.php?err=notComplete');
+        Message::warning('profile.php', array(
+                'm' => 'Vul eerst alle gegevens in voordat je een advertentie plaatst!'
+        ));
     }
 ?>
 
