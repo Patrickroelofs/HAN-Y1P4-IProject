@@ -60,7 +60,7 @@ if(isset($_POST['auction-submit'])) {
             for($i = 0; $i < $countfiles; $i++) {
                 $ext = pathinfo($_FILES['images']['name'][$i], PATHINFO_EXTENSION);
                 $filename = md5(uniqid($_FILES['images']['name'][$i], true));
-                $target = 'upload/productfiles/' . $filename . '.' . $ext;
+                $target = 'upload/productpictures/' . $filename . '.' . $ext;
                 $size = $_FILES['images']['size'][$i];
 
                 $images[] = $target;

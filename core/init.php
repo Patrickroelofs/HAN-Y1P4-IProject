@@ -9,12 +9,18 @@ ob_start();
 session_start();
 
 //Define folder structures
-define('ROOT', $_SERVER['DOCUMENT_ROOT']);
-define('PUBLIC_ROOT', ROOT . 'public');
+$onProduction = false;
+
+if($onProduction == true) {
+    define('ROOT', $_SERVER['DOCUMENT_ROOT']);
+} else {
+    define('ROOT', '');
+}
+
 define('CORE', __DIR__);
-define('CLASSES', '../classes/');
-define('FUNCTIONS', '../functions/');
-define('INCLUDES', '../public/includes/');
+define('CLASSES', 'classes/');
+define('FUNCTIONS', 'functions/');
+define('INCLUDES', 'includes/');
 define('MODALS', INCLUDES . 'modals/');
 
 //Define inaccessible picture folder
@@ -23,7 +29,7 @@ define('PICTURES',  "http://iproject19.icasites.nl/pics");
 
 //Load all classes
 spl_autoload_register(function($class) {
-    require_once CORE . DIRECTORY_SEPARATOR . CLASSES . $class . '.class.php';
+    require_once CLASSES . $class . '.class.php';
 });
 
 //Include sanitize function

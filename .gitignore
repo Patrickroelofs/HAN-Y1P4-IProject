@@ -14,9 +14,15 @@ package-lock.json
 semantic.json
 build/semantic
 
-public/upload/profilepictures/*.png
-public/upload/profilepictures/*.jpg
-public/upload/profilepictures/*.gif
-public/upload/productfiles/*.png
-public/upload/productfiles/*.jpg
-public/upload/productfiles/*.jpeg
+upload/*.png
+upload/*.jpg
+upload/*.gif
+upload/*.jpeg
+upload/profilepictures/*.png
+upload/profilepictures/*.jpg
+upload/profilepictures/*.gif
+upload/profilepictures/*.jpeg
+upload/productpictures/*.png
+upload/productpictures/*.jpg
+upload/productpictures/*.gif
+upload/productpictures/*.jpeg

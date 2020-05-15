@@ -228,20 +228,3 @@ CREATE TABLE Bod
         ON DELETE NO ACTION,
 );
 GO
-
-insert into Gebruiker (gebruikersnaam, emailadres, wachtwoord, profielfoto, voornaam, achternaam, telefoonnummer, geboortedag, adresregel1, adresregel2, postcode, plaatsnaam, landnaam, compleet, verkoper)
-values('Stolenbows',
-       'stolenbows@gmail.com',
-       '$2y$10$fIEtfixoQQa372CjGEQ7wef4KAXI1EP9c954Wf4UapmIk7cD7LQXe',
-       'upload/profilepictures/8206e9979431e3b726b065fdcdeba9d0.gif',
-       'Patrick',
-       'Roelofs',
-       '',
-       '1997-02-06',
-       'Zellersacker 1227',
-       '',
-       '6546HJ',
-       'Gelderland',
-       'Nederland',
-       1,
-       1);

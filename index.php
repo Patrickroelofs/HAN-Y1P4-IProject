@@ -11,14 +11,14 @@
             <div class="column">
                 <div class="ui fluid card">
                     <a class="image" href="category.php?cat=160">
-                        <img src="images/highlightedCategories/Computers.png" alt="categorie computers">
+                        <img src="upload/highlightedCategories/Computers.png" alt="categorie computers">
                     </a>
                 </div>
             </div>
             <div class="column">
                 <div class="ui fluid card">
                     <a class="image" href="category.php?cat=9800">
-                        <img src="images/highlightedCategories/Autos.png" alt="categorie autos">
+                        <img src="upload/highlightedCategories/Autos.png" alt="categorie autos">
                     </a>
                 </div>
             </div>
@@ -27,28 +27,28 @@
             <div class="column">
                 <div class="ui fluid card">
                     <a class="image" href="category.php?cat=12081">
-                        <img src="images/highlightedCategories/Baby.png">
+                        <img src="upload/highlightedCategories/Baby.png">
                     </a>
                 </div>
             </div>
             <div class="column">
                 <div class="ui fluid card">
                     <a class="image" href="category.php?cat=281">
-                        <img src="images/highlightedCategories/SieradenHorloge.png">
+                        <img src="upload/highlightedCategories/SieradenHorloge.png">
                     </a>
                 </div>
             </div>
             <div class="column">
                 <div class="ui fluid card">
                     <a class="image" href="category.php?cat=11233">
-                        <img src="images/highlightedCategories/Muziek.png">
+                        <img src="upload/highlightedCategories/Muziek.png">
                     </a>
                 </div>
             </div>
             <div class="column">
                 <div class="ui fluid card">
                     <a class="image" href="category.php?cat=11232">
-                        <img src="images/highlightedCategories/FilmDVD.png">
+                        <img src="upload/highlightedCategories/FilmDVD.png">
                     </a>
                 </div>
             </div>
@@ -136,7 +136,7 @@
                 <div class="column">
                     <div class="ui fluid card productcards">
                         <a class="image" href="product.php?p=<?= $result->voorwerpnummer; ?>">
-                            <img src="http://iproject19.icasites.nl/pics/dt_1_<?= $result->thumbnail; ?>" alt="Foto van <?= $result->titel; ?>">
+                            <img src="<?= ROOT . $result->thumbnail; ?>" alt="Foto van <?= $result->titel; ?>">
                         </a>
                         <div class="content">
                             <a class="header" href="product.php?p=<?= $result->voorwerpnummer; ?>"><?= $result->titel; ?></a>
