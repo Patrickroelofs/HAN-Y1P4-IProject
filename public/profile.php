@@ -11,7 +11,7 @@
 
     <main>
         <div class="ui container">
-            <img class="ui small circular image" src="<?= $user->first()->profielfoto ?>">
+            <img class="ui small circular image profilepicture" src="<?= $user->first()->profielfoto ?>">
             <h1>Hoi,
                 <?php if(empty($user->first()->voornaam) || empty($user->first()->achternaam)) {
                     echo $user->first()->gebruikersnaam;
@@ -61,19 +61,19 @@
                             <input type="file" name="profilepicture" id="profilepicture">
                         </div>
                         <div class="field">
-                            <label for="firstname">Voornaam</label>
-                            <input type="text" name="firstname" id="firstname" placeholder="<?= $user->first()->voornaam ?>" value="<?= $user->first()->voornaam ?>">
+                            <label for="firstname">Voornaam *</label>
+                            <input required type="text" name="firstname" id="firstname" placeholder="<?= $user->first()->voornaam ?>" value="<?= $user->first()->voornaam ?>">
                         </div>
                         <div class="field">
-                            <label for="lastname">Achternaam</label>
-                            <input type="text" name="lastname" id="lastname" placeholder="<?= $user->first()->achternaam ?>" value="<?= $user->first()->achternaam ?>">
+                            <label for="lastname">Achternaam *</label>
+                            <input required type="text" name="lastname" id="lastname" placeholder="<?= $user->first()->achternaam ?>" value="<?= $user->first()->achternaam ?>">
                         </div>
                         <div class="field">
-                            <label for="dob">Geboortedatum</label>
+                            <label for="dob">Geboortedatum  *</label>
                             <div class="ui calendar" id="dob_calendar">
                                 <div class="ui input left icon">
                                     <i class="calendar icon"></i>
-                                    <input name="dob" type="text" autocomplete="off" placeholder="<?= $user->first()->geboortedag ?>" value="<?= $user->first()->geboortedag ?>">
+                                    <input required name="dob" type="text" autocomplete="off" placeholder="<?= $user->first()->geboortedag ?>" value="<?= $user->first()->geboortedag ?>">
                                 </div>
                             </div>
                         </div>
@@ -85,24 +85,24 @@
                     <form class="ui large form" action="" method="post">
                         <h2>Locatiegegevens</h2>
                         <div class="field">
-                            <label for="adresregel1">Adresregel 1</label>
-                            <input type="text" name="adresregel1" id="adresregel1" placeholder="<?= $user->first()->adresregel1 ?>" value="<?= $user->first()->adresregel1 ?>">
+                            <label for="adresregel1">Adresregel 1 *</label>
+                            <input required type="text" name="adresregel1" id="adresregel1" placeholder="<?= $user->first()->adresregel1 ?>" value="<?= $user->first()->adresregel1 ?>">
                         </div>
                         <div class="field">
                             <label for="adresregel2">Adresregel 2</label>
                             <input type="text" name="adresregel2" id="adresregel2" placeholder="<?= $user->first()->adresregel2 ?>" value="<?= $user->first()->adresregel2 ?>">
                         </div>
                         <div class="field">
-                            <label for="postcode">Postcode</label>
-                            <input type="text" name="postcode" id="postcode" placeholder="<?= $user->first()->postcode ?>" value="<?= $user->first()->postcode ?>">
+                            <label for="postcode">Postcode *</label>
+                            <input required type="text" name="postcode" id="postcode" placeholder="<?= $user->first()->postcode ?>" value="<?= $user->first()->postcode ?>">
                         </div>
                         <div class="field">
-                            <label for="plaatsnaam">Plaatsnaam</label>
-                            <input type="text" name="plaatsnaam" id="plaatsnaam" placeholder="<?= $user->first()->plaatsnaam ?>" value="<?= $user->first()->plaatsnaam ?>">
+                            <label for="plaatsnaam">Plaatsnaam *</label>
+                            <input required type="text" name="plaatsnaam" id="plaatsnaam" placeholder="<?= $user->first()->plaatsnaam ?>" value="<?= $user->first()->plaatsnaam ?>">
                         </div>
                         <div class="field">
-                            <label for="land">Land</label>
-                            <input type="text" name="land" id="land" placeholder="<?= $user->first()->landnaam ?>" value="<?= $user->first()->landnaam ?>">
+                            <label for="land">Land *</label>
+                            <input required type="text" name="land" id="land" placeholder="<?= $user->first()->landnaam ?>" value="<?= $user->first()->landnaam ?>">
                         </div>
                         <input class="ui button" type="submit" name="update-locatiegegevens-submit" value="Locatiegegevens aanpassen">
                     </form>

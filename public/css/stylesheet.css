@@ -86,6 +86,11 @@ nav .ui.input > input {
 .categories-navbar-list .column a:hover{
     color: #3772FF;
 }
+.ui.small.image, .ui.small.images .image, .ui.small.images img, .ui.small.images svg .profilepicture{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
 
 
 /* --- Category dropdown in Category.php ---------------- */
