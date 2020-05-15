@@ -169,6 +169,12 @@ footer .footer.title h1 {
     min-height: 165px;
 }
 
+.product.productcards{
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-sizing: unset;
+}
+
 /* --- ADD Auction page ----------------------------------------- */
 .addAuction label{
     display: block;
