@@ -39,7 +39,7 @@ if(isset($_POST['offer-submit'])) {
     else {
         //Insert into database
         try {
-            $stmt = Database::getInstance()->query("INSERT INTO Bod (voorwerpnummer, bodbedrag, gebruiker) VALUES ($productID, $amount, '".Session::get('username')."')",array());
+            $bidInsert = Database::getInstance()->query("INSERT INTO Bod (voorwerpnummer, bodbedrag, gebruikersnaam) VALUES ($productID, $amount, '".Session::get('username')."')",array());
 
             Redirect::to('index.php');
 
