@@ -17,3 +17,6 @@ build/semantic
 public/upload/profilepictures/*.png
 public/upload/profilepictures/*.jpg
 public/upload/profilepictures/*.gif
+public/upload/productfiles/*.png
+public/upload/productfiles/*.jpg
+public/upload/productfiles/*.jpeg

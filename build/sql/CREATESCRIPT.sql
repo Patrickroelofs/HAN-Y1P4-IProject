@@ -124,9 +124,10 @@ GO
 CREATE TABLE Voorwerp
 (
     voorwerpnummer          BIGINT              NOT NULL IDENTITY,
+    token                   VARCHAR(255)        NULL,
     titel                   VARCHAR(255)        NOT NULL,
     beschrijving            VARCHAR(MAX)        NOT NULL,
-    thumbnail               VARCHAR(255)        NOT NULL,
+    thumbnail               VARCHAR(255)        NULL,
     rubriek                 INT                 NOT NULL,
     startprijs              DECIMAL(18,2)       NOT NULL,
     betalingswijzenaam      VARCHAR(255)        NOT NULL,
@@ -134,16 +135,16 @@ CREATE TABLE Voorwerp
     postcode                VARCHAR(255)        NOT NULL,
     plaatsnaam              VARCHAR(255)        NOT NULL,
     landnaam                VARCHAR(40)         NOT NULL,
-    looptijd                INT                 NOT NULL DEFAULT 7,
-    looptijdbegindag        DATE                NOT NULL DEFAULT GETDATE(),
-    looptijdbegintijdstip   TIME                NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    verzendkosten           DECIMAL(18,2)       NULL,
+    looptijd                INT                 NULL DEFAULT 7,
+    looptijdbegindag        DATE                NULL DEFAULT GETDATE(),
+    looptijdbegintijdstip   TIME                NULL DEFAULT CURRENT_TIMESTAMP,
+    verzendkosten           DECIMAL(18,2)       NOT NULL,
     verzendinstructies      VARCHAR(MAX)        NULL,
     verkoper                VARCHAR(255)        NOT NULL,
     koper                   VARCHAR(255)        NULL,
     looptijdeindedag        DATE                NULL, --TODO: Function looptijdbegindag + looptijd
     looptijdeindetijdstip   TIME                NULL,
-    gesloten                BIT                 NOT NULL DEFAULT 0,
+    gesloten                BIT                 NULL DEFAULT 0,
     verkoopprijs            DECIMAL(18,2)       NULL,
 
     CONSTRAINT PK_voorwerp PRIMARY KEY (voorwerpnummer),
@@ -227,3 +228,20 @@ CREATE TABLE Bod
         ON DELETE NO ACTION,
 );
 GO
+
+insert into Gebruiker (gebruikersnaam, emailadres, wachtwoord, profielfoto, voornaam, achternaam, telefoonnummer, geboortedag, adresregel1, adresregel2, postcode, plaatsnaam, landnaam, compleet, verkoper)
+values('Stolenbows',
+       'stolenbows@gmail.com',
+       '$2y$10$fIEtfixoQQa372CjGEQ7wef4KAXI1EP9c954Wf4UapmIk7cD7LQXe',
+       'upload/profilepictures/8206e9979431e3b726b065fdcdeba9d0.gif',
+       'Patrick',
+       'Roelofs',
+       '',
+       '1997-02-06',
+       'Zellersacker 1227',
+       '',
+       '6546HJ',
+       'Gelderland',
+       'Nederland',
+       1,
+       1);
