@@ -12,7 +12,7 @@ session_start();
 $onProduction = false;
 
 if($onProduction == true) {
-    define('ROOT', 'http://iproject19.icasites.nl');
+    define('ROOT', 'http://iproject19.icasites.nl/');
 } else {
     define('ROOT', '');
 }

@@ -44,7 +44,7 @@ include INCLUDES . 'modals/contactseller.inc.php';
 
             <div class="ui stackable grid" >
                 <div class="eight wide column">
-                    <img class="fluid image" src="http://iproject19.icasites.nl/pics/dt_1_<?= $stmt->first()->thumbnail; ?>" >
+                    <img class="fluid image" src="<?= ROOT . $stmt->first()->thumbnail; ?>" >
                 </div>
                 <div class="eight wide column">
                     <div class="ui segment">
@@ -91,7 +91,7 @@ include INCLUDES . 'modals/contactseller.inc.php';
                         <div class="column">
                             <div class="ui fluid card product productcards">
                                 <a class="image" href="product.php?p=<?= $result->voorwerpnummer; ?>">
-                                    <img src="http://iproject19.icasites.nl/pics/dt_1_<?= $result->thumbnail; ?>" alt="Foto van <?= $result->titel; ?>">
+                                    <img src="<?= ROOT . $result->thumbnail; ?>" alt="Foto van <?= $result->titel; ?>">
                                 </a>
                                 <div class="content">
                                     <a class="header" href="product.php?p=<?= $result->voorwerpnummer; ?>"><?= $result->titel; ?></a>
