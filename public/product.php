@@ -11,12 +11,12 @@ if (isset($_GET['p'])) {
 
 // Get data from database
 
-$product = Database::getInstance()->query("SELECT * FROM Voorwerp WHERE voorwerpnummer = $productID",array());
-$rubriek = Database::getInstance()->query("SELECT * FROM Rubriek WHERE rubrieknummer = '". $product->first()->rubriek . "'");
+$stmt = Database::getInstance()->query("SELECT * FROM Voorwerp WHERE voorwerpnummer = $productID",array());
+$rubriek = Database::getInstance()->query("SELECT * FROM Rubriek WHERE rubrieknummer = '". $stmt->first()->rubriek . "'", array());
 
 // Calculate time left in offer
 $currentDate = new DateTime(date("Y-m-d"));
-$endDate = new DateTime($product->first()->looptijdeindedag);
+$endDate = new DateTime($stmt->first()->looptijdeindedag);
 if ($endDate > $currentDate) {
     $timeLeft = $currentDate->diff($endDate)->format("%d");
 } else {
@@ -31,7 +31,7 @@ include INCLUDES . 'modals/contactseller.inc.php';
     <main>
         <div class="ui container">
 
-            <h2><?php echo $product->first()->titel ?></h2>
+            <h2><?php echo $stmt->first()->titel ?></h2>
             <div class="vertical-margin-12">
                 <div class="ui breadcrumb">
                     <a href="index.php" class="section">Home</a>
@@ -44,15 +44,15 @@ include INCLUDES . 'modals/contactseller.inc.php';
 
             <div class="ui stackable grid" >
                 <div class="eight wide column">
-                    <img class="fluid image" src="http://iproject19.icasites.nl/pics/dt_1_<?= $product->first()->thumbnail; ?>" >
+                    <img class="fluid image" src="http://iproject19.icasites.nl/pics/dt_1_<?= $stmt->first()->thumbnail; ?>" >
                 </div>
                 <div class="eight wide column">
                     <div class="ui segment">
                         <h2>Beschrijving</h2>
 
-                        <p><?php echo $product->first()->beschrijving ?></p>
+                        <p><?php echo $stmt->first()->beschrijving ?></p>
 
-                        <p>v.a. <span class="bold">€<?php echo $product->first()->startprijs ?></span> </p>
+                        <p>v.a. <span class="bold">€<?php echo $stmt->first()->startprijs ?></span> </p>
 
                         <p><span class="bold">Tijd over om te bieden:</span> <?= $timeLeft ?> dagen</p>
 

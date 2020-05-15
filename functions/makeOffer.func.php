@@ -13,7 +13,6 @@ $bidExists = Database::getInstance()->query("SELECT bodbedrag FROM Bod WHERE voo
 
 // Is submit pressed?
 if(isset($_POST['offer-submit'])) {
-    $username = Session::get('username');
 
     // Save data in temporary variables
     $amount = $_POST['amount'];
@@ -25,13 +24,13 @@ if(isset($_POST['offer-submit'])) {
 
     // Check if product exists in bid table and
     // bid is less than the current highest bid
-    elseif ($bidExists->count(1) == 1 && $amount < $bidHigh->first()->bodbedrag) {
+    elseif ($bidExists->count() == 1 && $amount < $bidHigh->first()->bodbedrag) {
         echo "Bedrag is te laag";
     }
 
     // Check if product exists in bid table and
     // bid is more than 10* the current bid
-    elseif ($bidExists->count(1) == 1 && $amount > $bidHigh->first()->bodbedrag*10) {
+    elseif ($bidExists->count() == 1 && $amount > $bidHigh->first()->bodbedrag*10) {
         echo "Bedrag is te hoog";
     }
 
