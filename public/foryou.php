@@ -7,7 +7,7 @@
     }
 
     // Get user products from database
-    $userProducts = Database::getInstance()->query("SELECT TOP 5 * FROM Voorwerp WHERE verkoper = ". Session::get('username'), array());
+    $userProducts = Database::getInstance()->query("SELECT TOP 5 * FROM Voorwerp WHERE verkoper = '". Session::get('username') . "'", array());
 ?>
 
 <main>
