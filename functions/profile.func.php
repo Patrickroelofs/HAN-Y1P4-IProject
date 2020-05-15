@@ -54,7 +54,7 @@ if(isset($_POST['update-persoonsgegevens-submit'])) {
     //Randomly hash filename
     $ext = pathinfo($_FILES['profilepicture']['name'], PATHINFO_EXTENSION);
     $filename = md5(basename($profilepicture));
-    $target = 'upload/profilepictures/' . $filename . '.' . $ext;
+    $target = '/upload/profilepictures/' . $filename . '.' . $ext;
     $supported_image = array('gif','jpg','jpeg','png');
     $size = getimagesize($target);
 

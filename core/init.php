@@ -12,7 +12,7 @@ session_start();
 $onProduction = false;
 
 if($onProduction == true) {
-    define('ROOT', $_SERVER['DOCUMENT_ROOT']);
+    define('ROOT', 'http://iproject19.icasites.nl');
 } else {
     define('ROOT', '');
 }
