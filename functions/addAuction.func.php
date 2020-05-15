@@ -22,6 +22,9 @@ if(isset($_POST['auction-submit'])) {
     $acceptedfiles = array("png", "jpg");
     $images = array();
 
+    $date = date("Y-m-d");
+    $time = date("H:i:s");
+
     for($i = 0; $i < $countfiles; $i++) {
         $ext = pathinfo($_FILES['images']['name'][$i], PATHINFO_EXTENSION);
         $filename = md5(uniqid($_FILES['images']['name'][$i], true));
@@ -78,6 +81,10 @@ if(isset($_POST['auction-submit'])) {
                 'plaatsnaam' => $user->first()->plaatsnaam,
                 'landnaam' => $user->first()->landnaam,
                 'looptijd' => $looptijd,
+                'looptijdbegindag' => $date,
+                'looptijdbegintijdstip' => $time,
+                'looptijdeindedag' => date("Y-m-d", strtotime($date. ' + '. $looptijd .' days')),
+                'looptijdeindetijdstip' => $time,
                 'verzendkosten' => $verzendkosten,
                 'verzendinstructies' => $verzendinstructies,
                 'verkoper' => $user->first()->gebruikersnaam
