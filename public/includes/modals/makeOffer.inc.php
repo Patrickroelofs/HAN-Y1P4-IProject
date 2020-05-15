@@ -30,7 +30,7 @@ if (!$error) { ?>
         </div>
         <div class="image content">
             <div class="ui medium image">
-                <img src="https://place-hold.it/400x400">
+                <img src="http://iproject19.icasites.nl/pics/dt_1_<?= $stmt->first()->thumbnail; ?>">
             </div>
             <div class="description">
                 <div class="ui header">Product</div>
