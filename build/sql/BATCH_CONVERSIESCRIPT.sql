@@ -27,7 +27,7 @@ SELECT id,
     Verkoper,
     Prijs,
     '',
-    RIGHT(Thumbnail, 16)
+    concat('pics/dt_1_',RIGHT(Thumbnail, 16))
 FROM [batch-iproject19].dbo.Items
 SET IDENTITY_INSERT Voorwerp OFF
 

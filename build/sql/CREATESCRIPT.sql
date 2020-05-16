@@ -138,7 +138,7 @@ CREATE TABLE Voorwerp
     looptijd                INT                 NULL DEFAULT 7,
     looptijdbegindag        DATE                NULL DEFAULT GETDATE(),
     looptijdbegintijdstip   TIME                NULL DEFAULT CURRENT_TIMESTAMP,
-    verzendkosten           DECIMAL(18,2)       NOT NULL,
+    verzendkosten           DECIMAL(18,2)       NOT NULL DEFAULT 6.75,
     verzendinstructies      VARCHAR(MAX)        NULL,
     verkoper                VARCHAR(255)        NOT NULL,
     koper                   VARCHAR(255)        NULL,
