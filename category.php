@@ -16,8 +16,8 @@
     <div class="ui container">
         <h2>
             <?php
-                $category = Database::getInstance()->get('Rubriek', array('rubrieknummer', '=', $selectedCategory));
-                echo $category->first()->rubrieknaam;
+                $category = Database::getInstance()->get('Categories', array('id', '=', $selectedCategory));
+                echo $category->first()->name;
             ?>
         </h2>
         <div class="ui stackable two column grid">
@@ -27,7 +27,7 @@
                 <h3>Categorieën</h3>
                 <?php
                     //Get all subcategories
-                    $categories = Database::getInstance()->get('Rubriek', array('Rubriek', '=', $selectedCategory));
+                    $categories = Database::getInstance()->get('Categories', array('within', '=', $selectedCategory));
                     // Load all subcategories that this category has
                     if($categories->count() > 0) {
                 ?>
@@ -35,7 +35,7 @@
                     <?php
 
                     foreach($categories->results() as $subcategory) {
-                        echo "<a href='category.php?cat=$subcategory->rubrieknummer'>" . $subcategory->rubrieknaam . '</a>';
+                        echo "<a href='category.php?cat=$subcategory->id'>" . $subcategory->name . '</a>';
                     }
 
                     ?>

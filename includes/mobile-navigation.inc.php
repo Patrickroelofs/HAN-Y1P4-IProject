@@ -3,10 +3,10 @@
     <span class="image">
         <img width="48" height="48" alt="user profile picture" class="ui circular image vertical-margin-12" src="
         <?php
-        if(!Session::exists('username') || empty($user->first()->profielfoto)) {
+        if(!Session::exists('username') || empty($user->first()->profilepicture)) {
             echo 'https://place-hold.it/64x64';
         } else {
-            echo $user->first()->profielfoto;
+            echo $user->first()->profilepicture;
         }
         ?>">
     </span>
@@ -30,10 +30,10 @@
             <?php
             if(!Session::exists('username')) {
                 echo 'Gebruiker';
-            } else if(empty($user->first()->voornaam) || empty($user->first()->achternaam)) {
-                echo $user->first()->gebruikersnaam;
+            } else if(empty($user->first()->firstname) || empty($user->first()->lastname)) {
+                echo $user->first()->username;
             } else {
-                echo $user->first()->voornaam . ' ' . $user->first()->achternaam;
+                echo $user->first()->firstname . ' ' . $user->first()->lastname;
             } ?>
         </span>
         </div>
@@ -50,7 +50,7 @@
                 ?>
                 <a class="item" href="profile.php">Mijn Profiel</a>
                 <?php
-                if($user->first()->verkoper == false) {
+                if($user->first()->trader == false) {
                     echo '<a class="item" href="selleraccountcreation.php">Word een verkoper</a>';
                 } else {
                     echo '<a class="item" href="createauction.php">Advertentie plaatsen</a>';

@@ -7,19 +7,19 @@
     }
 
     // Get user products from database
-    $userProducts = Database::getInstance()->query("SELECT TOP 5 * FROM Voorwerp WHERE verkoper = '". Session::get('username') . "'", array());
+    $userProducts = Database::getInstance()->query("SELECT TOP 5 * FROM Items WHERE trader = '". Session::get('username') . "'", array());
 ?>
 
 <main>
     <div class="ui container">
-        <?php if($user->first()->verkoper && !$userProducts->count() <= 0) { ?>
+        <?php if($user->first()->trader && !$userProducts->count() <= 0) { ?>
         <h2>Jouw lopende biedingen</h2>
         <div class="ui stackable five column grid">
             <div class="five column row">
                 <?php foreach ($userProducts->results() as $result) {
                     // Calculate time left in offer
                     $currentDate = new DateTime(date("Y-m-d"));
-                    $endDate = new DateTime($result->looptijdeindedag);
+                    $endDate = new DateTime($result->durationenddate);
                     if ($endDate > $currentDate) {
                         $timeLeft = $currentDate->diff($endDate)->format("%d");
                     } else {
@@ -28,13 +28,13 @@
                     ?>
                     <div class="column">
                         <div class="ui fluid card">
-                            <a class="image" href="product.php?p=<?= $result->voorwerpnummer; ?>">
-                                <img src="http://iproject19.icasites.nl/pics/dt_1_<?= $result->thumbnail; ?>" alt="Foto van <?= $result->titel; ?>">
+                            <a class="image" href="product.php?p=<?= $result->id; ?>">
+                                <img src="http://iproject19.icasites.nl/pics/dt_1_<?= $result->thumbnail; ?>" alt="Foto van <?= $result->title; ?>">
                             </a>
                             <div class="content">
-                                <a class="header" href="product.php?p=<?= $result->voorwerpnummer; ?>"><?= $result->titel; ?></a>
+                                <a class="header" href="product.php?p=<?= $result->id; ?>"><?= $result->title; ?></a>
                                 <div class="description">Tijd tot verkoop: <?= $timeLeft ?> dagen</div>
-                                <div class="description">Vanaf <span class="bold">€ <?= $result->startprijs ?></span></div>
+                                <div class="description">Vanaf <span class="bold">€ <?= $result->startprice ?></span></div>
                             </div>
                         </div>
                     </div>

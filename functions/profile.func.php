@@ -24,8 +24,8 @@ if(isset($_POST['update-inloggegevens-submit'])) {
     else {
         //Insert into database
         try{
-            $stmt = Database::getInstance()->update('Gebruiker', 'gebruikersnaam', Session::get('username'), array(
-                'wachtwoord' => Hash::make($password)
+            $stmt = Database::getInstance()->update('Users', 'username', Session::get('username'), array(
+                'password' => Hash::make($password)
             ));
 
             Redirect::to('profile.php');
@@ -75,19 +75,19 @@ if(isset($_POST['update-persoonsgegevens-submit'])) {
 
             // If there is no profile picture uploaded
             if(empty($profilepicture)) {
-                $stmt = Database::getInstance()->update('Gebruiker', 'gebruikersnaam', Session::get('username'), array(
-                    'voornaam' => $firstname,
-                    'achternaam' => $lastname,
-                    'geboortedag' => $dob,
+                $stmt = Database::getInstance()->update('Users', 'username', Session::get('username'), array(
+                    'firstname' => $firstname,
+                    'lastname' => $lastname,
+                    'birthdate' => $dob,
                 ));
             }
             // If there is a profile picture uploaded
             else {
-                $stmt = Database::getInstance()->update('Gebruiker', 'gebruikersnaam', Session::get('username'), array(
-                    'voornaam' => $firstname,
-                    'achternaam' => $lastname,
-                    'geboortedag' => $dob,
-                    'profielfoto' => $target
+                $stmt = Database::getInstance()->update('Users', 'username', Session::get('username'), array(
+                    'firstname' => $firstname,
+                    'lastname' => $lastname,
+                    'birthdate' => $dob,
+                    'profilepicture' => $target
                 ));
             }
 
@@ -124,13 +124,13 @@ if(isset($_POST['update-locatiegegevens-submit'])) {
     else {
         // Insert into database
         try {
-            $stmt = Database::getInstance()->update('Gebruiker', 'gebruikersnaam', Session::get('username'), array(
-                'adresregel1' => $adresregel1,
-                'adresregel2' => $adresregel2,
-                'postcode' => $postcode,
-                'plaatsnaam' => $plaatsnaam,
-                'landnaam' => $land,
-                'compleet' => true
+            $stmt = Database::getInstance()->update('Users', 'username', Session::get('username'), array(
+                'address1' => $adresregel1,
+                'address2' => $adresregel2,
+                'postalcode' => $postcode,
+                'city' => $plaatsnaam,
+                'country' => $land,
+                'complete' => true
                 //TODO: Compleet goed in database zetten
             ));
 
@@ -152,7 +152,7 @@ if(isset($_POST['delete-account-submit'])) {
     $email = $_POST['email'];
     // Logged in, delete account from database
     if(Session::exists('username')){
-        $user = Database::getInstance()->delete('Gebruiker', array('gebruikersnaam', '=', Session::get('username')));
+        $user = Database::getInstance()->delete('Users', array('username', '=', Session::get('username')));
 
         session_unset();
         session_destroy();
@@ -160,7 +160,7 @@ if(isset($_POST['delete-account-submit'])) {
 
     // Logged out, delete account from database
     else {
-        $emails = Database::getInstance()->delete('Gebruiker', array('emailadres', '=', $email));
+        $emails = Database::getInstance()->delete('Users', array('email', '=', $email));
     }
     Redirect::to('index.php');
 }

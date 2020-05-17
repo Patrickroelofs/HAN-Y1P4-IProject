@@ -12,7 +12,7 @@ if(isset($_POST['login-submit'])) {
     $password           =  $_POST['password'];
 
     // Get (hashed) password from $username
-    $stmt = Database::getInstance()->prepare('SELECT wachtwoord FROM Gebruiker WHERE gebruikersnaam=:username');
+    $stmt = Database::getInstance()->prepare('SELECT password FROM Users WHERE username=:username');
     $stmt->execute(array(
         ':username' => $username
     ));

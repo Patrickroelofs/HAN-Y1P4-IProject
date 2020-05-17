@@ -125,7 +125,7 @@
         <!-- Includes the functions random products to pick -->
         <div class="ui stackable five column grid">
             <?php
-            $randomProducts = Database::getInstance()->query("SELECT TOP 10 * FROM Voorwerp ORDER BY NEWID()");
+            $randomProducts = Database::getInstance()->query("SELECT TOP 10 * FROM Items ORDER BY NEWID()");
 
             if ($randomProducts->count() < 1) {
                 // no data passed by get
@@ -135,13 +135,13 @@
             foreach($randomProducts->results() as $result) { ?>
                 <div class="column">
                     <div class="ui fluid card productcards">
-                        <a class="image" href="product.php?p=<?= $result->voorwerpnummer; ?>">
-                            <img src="<?= ROOT . $result->thumbnail; ?>" alt="Foto van <?= $result->titel; ?>">
+                        <a class="image" href="product.php?p=<?= $result->id; ?>">
+                            <img src="<?= ROOT . $result->thumbnail; ?>" alt="Foto van <?= $result->title; ?>">
                         </a>
                         <div class="content">
-                            <a class="header" href="product.php?p=<?= $result->voorwerpnummer; ?>"><?= $result->titel; ?></a>
-                            <div class="description"><?= $result->beschrijving; ?></div>
-                            <div class="description bold">€<?= $result->startprijs; ?></div>
+                            <a class="header" href="product.php?p=<?= $result->id; ?>"><?= $result->title; ?></a>
+                            <div class="description"><?= $result->description; ?></div>
+                            <div class="description bold">€<?= $result->price; ?></div>
                         </div>
                     </div>
                 </div>

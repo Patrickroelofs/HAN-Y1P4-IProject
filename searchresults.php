@@ -13,13 +13,13 @@ include INCLUDES . 'head.inc.php';
                 <?php foreach($stmt->results() as $result) { ?>
                 <div class="column">
                     <div class="ui fluid card">
-                        <a class="image" href="<?php echo 'product.php?p=' . $result->voorwerpnummer ?>">
-                            <img src="http://iproject19.icasites.nl/pics/dt_1_<?= $result->thumbnail; ?>" alt="Foto van <?= $result->titel; ?>">
+                        <a class="image" href="<?php echo 'product.php?p=' . $result->id ?>">
+                            <img src="<?= ROOT .  $result->thumbnail; ?>" alt="Foto van <?= $result->title; ?>">
                         </a>
                         <div class="content">
-                            <a class="header" href="<?php echo 'product.php?p=' . $result->voorwerpnummer ?>"><?php echo $result->titel; ?></a>
-                            <div class="description"><?php echo $result->beschrijving; ?></div>
-                            <div class="description bold">€<?php echo $result->startprijs; ?></div>
+                            <a class="header" href="<?php echo 'product.php?p=' . $result->id ?>"><?php echo $result->title; ?></a>
+                            <div class="description"><?php echo $result->description; ?></div>
+                            <div class="description bold">€<?php echo $result->price; ?></div>
                         </div>
                     </div>
                 </div>

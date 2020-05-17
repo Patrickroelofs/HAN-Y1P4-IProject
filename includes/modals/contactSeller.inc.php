@@ -1,13 +1,13 @@
 <?php
 // Retrieve correct user
-$sellerName = Database::getInstance()->query("SELECT verkoper FROM Voorwerp WHERE voorwerpnummer = $productID", array());
+$sellerName = Database::getInstance()->query("SELECT trader FROM Items WHERE id = $productID", array());
 
-$sellerName = $sellerName->first()->verkoper;
+$sellerName = $sellerName->first()->trader;
 
 // Retrieve user info
-$usrInfo = Database::getInstance()->query("SELECT * FROM Gebruiker WHERE gebruikersnaam = '$sellerName'", array());
+$usrInfo = Database::getInstance()->query("SELECT * FROM Users WHERE username = '$sellerName'", array());
 
-$usrExits = Database::getInstance()->query("SELECT gebruikersnaam FROM Gebruiker WHERE gebruikersnaam = '$sellerName'",array());
+$usrExits = Database::getInstance()->query("SELECT username FROM Users WHERE username = '$sellerName'",array());
 
 // Check if user is logged in
 if (!Session::exists('username')) { ?>
@@ -26,7 +26,7 @@ if (!Session::exists('username')) { ?>
         </div>
     </div>
 <?php }
-elseif($usrExits->count(1) == 0) { ?>
+elseif($usrExits->count() == 0) { ?>
     <div class="ui mini modal contactSeller">
         <div class="ui header">
     Er is iets misgegaan
@@ -53,34 +53,34 @@ else { ?>
             <div class="ui medium image">
             <img src="
                 <?php
-                if(empty($usrInfo->first()->profielfoto)) {
+                if(empty($usrInfo->first()->profilepicture)) {
                     echo 'https://place-hold.it/400';
                 } else {
-                echo $usrInfo->first()->profielfoto;
+                echo $usrInfo->first()->profilepicture;
                 } ?>">
             </div>
             <div class="description">
                 <div class="ui header">
-                    <?php echo $usrInfo->first()->gebruikersnaam ?>
+                    <?php echo $usrInfo->first()->username ?>
                 </div>
 
                 <p><span class="bold">Emailadres: </span>
-                <a href="<?php echo 'mailto:' .$usrInfo->first()->emailadres ?>">
-                    <?php echo $usrInfo->first()->emailadres ?></a></p>
+                <a href="<?php echo 'mailto:' .$usrInfo->first()->email ?>">
+                    <?php echo $usrInfo->first()->email ?></a></p>
 
                 <p><span class="bold">Plaats: </span>
-                    <?php if(empty($usrInfo->first()->plaatsnaam)) {
+                    <?php if(empty($usrInfo->first()->city)) {
                         echo "niet beschikbaar";
                     } else {
-                    echo $usrInfo->first()->plaatsnaam;
+                    echo $usrInfo->first()->city;
                     }  ?>
                 </p>
 
                 <p><span class="bold">Telefoonnummer: </span>
-                    <?php if(empty($usrInfo->first()->telefoonnummer)) {
+                    <?php if(empty($usrInfo->first()->phone)) {
                         echo "niet beschikbaar";
                     } else {
-                        echo $usrInfo->first()->telefoonnummer;
+                        echo $usrInfo->first()->phone;
                     }  ?>
                 </p>
             </div>

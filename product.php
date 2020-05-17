@@ -11,12 +11,12 @@ if (isset($_GET['p'])) {
 
 // Get data from database
 
-$stmt = Database::getInstance()->query("SELECT * FROM Voorwerp WHERE voorwerpnummer = $productID",array());
-$rubriek = Database::getInstance()->query("SELECT * FROM Rubriek WHERE rubrieknummer = '". $stmt->first()->rubriek . "'", array());
+$stmt = Database::getInstance()->query("SELECT * FROM Items WHERE id = $productID",array());
+$rubriek = Database::getInstance()->query("SELECT * FROM Categories WHERE id = '". $stmt->first()->category . "'", array());
 
 // Calculate time left in offer
 $currentDate = new DateTime(date("Y-m-d"));
-$endDate = new DateTime($stmt->first()->looptijdeindedag);
+$endDate = new DateTime($stmt->first()->durationenddate);
 if ($endDate > $currentDate) {
     $timeLeft = $currentDate->diff($endDate)->format("%d");
 } else {
@@ -31,14 +31,14 @@ include INCLUDES . 'modals/contactseller.inc.php';
     <main>
         <div class="ui container">
 
-            <h2><?php echo $stmt->first()->titel ?></h2>
+            <h2><?php echo $stmt->first()->title ?></h2>
             <div class="vertical-margin-12">
                 <div class="ui breadcrumb">
                     <a href="index.php" class="section">Home</a>
                     <div class="divider"> / </div>
                     <a href="categories.php" class="section">Categorieën</a>
                     <div class="divider"> / </div>
-                    <div class="active section"><?= $rubriek->first()->rubrieknaam; ?></div>
+                    <div class="active section"><?= $rubriek->first()->name; ?></div>
                 </div>
             </div>
 
@@ -50,9 +50,9 @@ include INCLUDES . 'modals/contactseller.inc.php';
                     <div class="ui segment">
                         <h2>Beschrijving</h2>
 
-                        <p><?php echo $stmt->first()->beschrijving ?></p>
+                        <p><?php echo $stmt->first()->description ?></p>
 
-                        <p>v.a. <span class="bold">€<?php echo $stmt->first()->startprijs ?></span> </p>
+                        <p>v.a. <span class="bold">€<?php echo $stmt->first()->price ?></span> </p>
 
                         <p><span class="bold">Tijd over om te bieden:</span> <?= $timeLeft ?> dagen</p>
 
@@ -80,7 +80,7 @@ include INCLUDES . 'modals/contactseller.inc.php';
                 <!-- Includes the functions random products to pick -->
                 <div class="ui stackable five column grid">
                     <?php
-                    $randomProducts = Database::getInstance()->query("SELECT TOP 5 * FROM Voorwerp WHERE NOT voorwerpnummer = $productID ORDER BY NEWID()");
+                    $randomProducts = Database::getInstance()->query("SELECT TOP 5 * FROM Items WHERE NOT id = $productID ORDER BY NEWID()");
 
                     if ($randomProducts->count() < 1) {
                         // no data passed by get
@@ -90,13 +90,13 @@ include INCLUDES . 'modals/contactseller.inc.php';
                     foreach($randomProducts->results() as $result) { ?>
                         <div class="column">
                             <div class="ui fluid card product productcards">
-                                <a class="image" href="product.php?p=<?= $result->voorwerpnummer; ?>">
-                                    <img src="<?= ROOT . $result->thumbnail; ?>" alt="Foto van <?= $result->titel; ?>">
+                                <a class="image" href="product.php?p=<?= $result->id; ?>">
+                                    <img src="<?= ROOT . $result->thumbnail; ?>" alt="Foto van <?= $result->title; ?>">
                                 </a>
                                 <div class="content">
-                                    <a class="header" href="product.php?p=<?= $result->voorwerpnummer; ?>"><?= $result->titel; ?></a>
-                                    <div class="description"><?= $result->beschrijving; ?></div>
-                                    <div class="description bold">€<?= $result->startprijs; ?></div>
+                                    <a class="header" href="product.php?p=<?= $result->id; ?>"><?= $result->title; ?></a>
+                                    <div class="description"><?= $result->description; ?></div>
+                                    <div class="description bold">€<?= $result->price; ?></div>
                                 </div>
                             </div>
                         </div>

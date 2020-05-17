@@ -14,8 +14,8 @@ if(isset($_POST['register-submit'])) {
     $password_repeat    =  $_POST['password_repeat'];
 
     // Get usernames if its already taken
-    $users = Database::getInstance()->get('Gebruiker', array('gebruikersnaam', '=', $username));
-    $emails = Database::getInstance()->get('Gebruiker', array('emailadres', '=', $email));
+    $users = Database::getInstance()->get('Users', array('username', '=', $username));
+    $emails = Database::getInstance()->get('Users', array('email', '=', $email));
 
     // TODO: Error messages and other invalid register checks.
     if(empty($username) || empty($email) || empty($password) || empty($password_repeat)){
@@ -69,10 +69,10 @@ if(isset($_POST['register-submit'])) {
     else {
         //Insert into database
         try{
-            $stmt = Database::getInstance()->insert('Gebruiker', array(
-                'gebruikersnaam' => $username,
-                'emailadres' => $email,
-                'wachtwoord' => Hash::make($password)
+            $stmt = Database::getInstance()->insert('Users', array(
+                'username' => $username,
+                'email' => $email,
+                'password' => Hash::make($password)
             ));
 
             Session::put('username', $username);

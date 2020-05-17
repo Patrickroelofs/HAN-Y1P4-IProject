@@ -3,12 +3,12 @@
     include INCLUDES . 'head.inc.php';
 
     // If user is not logged in || User does not have a seller account
-    if(!Session::exists('username') || $user->first()->verkoper == false){
+    if(!Session::exists('username') || $user->first()->trader == false){
         Redirect::to('index.php');
     }
 
     // If user account is not complete
-    if($user->first()->compleet == 0) {
+    if($user->first()->complete == 0) {
         Message::warning('profile.php', array(
                 'm' => 'Vul eerst alle gegevens in voordat je een advertentie plaatst!'
         ));
@@ -49,12 +49,12 @@
                             <div class="divider"></div>
                             <div class="scrolling menu">
                                 <?php
-                                $rubrieken = Database::getInstance()->query("SELECT * FROM Rubriek EXCEPT SELECT * FROM Rubriek WHERE rubrieknummer = -1");
+                                $rubrieken = Database::getInstance()->query("SELECT * FROM Categories EXCEPT SELECT * FROM Categories WHERE id = -1");
                                 foreach($rubrieken->results() as $result) {
                                     ?>
 
-                                    <div class="item" data-value="<?= $result->rubrieknummer; ?>">
-                                        <?= $result->rubrieknaam; ?>
+                                    <div class="item" data-value="<?= $result->id; ?>">
+                                        <?= $result->name; ?>
                                     </div>
 
                                     <?php

@@ -1,230 +1,224 @@
-/* ***************************** */
-/** TEMPORARY CREATESCRIPT FOR DEVELOPMENT */
-/** (DOES NOT HAVE FULL FUNCTIONALITY UNLESS DEVELOPED) */
-/* ***************************** */
 USE iproject19
 GO
 
 /* ***************************** */
 /**  DROP TABLES AND FUNCTIONS   */
 /* ***************************** */
-DROP TABLE IF EXISTS Land
-GO
 
-DROP TABLE IF EXISTS Bod
-GO
-
-DROP TABLE IF EXISTS Bestanden
-GO
-
-DROP TABLE IF EXISTS VoorwerpInRubriek
-GO
-
-DROP TABLE IF EXISTS Rubriek
-GO
-
-DROP TABLE IF EXISTS Feedback
-GO
-
-DROP TABLE IF EXISTS Voorwerp
-GO
-
-DROP TABLE IF EXISTS Verkoper
-GO
-
-DROP TABLE IF EXISTS Gebruiker
-GO
+-- Drop tables
+drop table if exists ItemInCategory     GO
+drop table if exists Files              GO
+drop table if exists Feedback           GO
+drop table if exists Bids               GO
+drop table if exists Users              GO
+drop table if exists Trader             GO
+drop table if exists Items              GO
+drop table if exists Country            GO
+drop table if exists Categories         GO
 
 /* ***************************** */
 /**        CREATE TABLES         */
 /* ***************************** */
 
-/* LAND */
-CREATE TABLE Land
+
+
+-- ************************************** Country
+create table Country
 (
-  code          CHAR(4)         NOT NULL,
-  naam          VARCHAR(40)     NOT NULL,
-  begindatum    DATE            NULL,
-  einddatum     DATE            NULL,
-  eer_lid       BIT             NOT NULL    DEFAULT 0,
+  code          char(4)         not null,
+  name          varchar(40)     not null,
+  startdate     date                null,
+  enddate       date                null,
+  eer_member    bit             not null,
 
-
-  CONSTRAINT PK_landnaam        PRIMARY KEY (naam),
-  CONSTRAINT UQ_code            UNIQUE (code),
-  CONSTRAINT CHK_code           CHECK (LEN(code) = 4),
-  CONSTRAINT CH_datum           CHECK (BEGINDATUM < EINDDATUM)
+    -- ***************** Primary Keys
+  constraint PK_Country primary key (code)
 );
 GO
 
 
 
-/* Gebruiker */
-CREATE TABLE Gebruiker
+
+
+-- ************************************** Categories
+create table Categories
 (
-    id              INT             NOT NULL UNIQUE IDENTITY,
-    gebruikersnaam  VARCHAR(255)    NOT NULL,
-    emailadres      VARCHAR(255)    NOT NULL,
-    wachtwoord      VARCHAR(255)    NOT NULL,
+  id        int             identity    not null,
+  name      varchar(255)                not null,
+  within    int                             null,
 
-    profielfoto     VARCHAR(255)    NULL,
-    voornaam        VARCHAR(255)    NULL,
-    achternaam      VARCHAR(255)    NULL,
-    telefoonnummer  VARCHAR(255)    NULL,
-    geboortedag     DATE            NULL,
-
-    adresregel1     VARCHAR(255)    NULL,
-    adresregel2     VARCHAR(255)    NULL,
-    postcode        VARCHAR(255)    NULL,
-    plaatsnaam      VARCHAR(255)    NULL,
-    landnaam        VARCHAR(255)    NULL,
-
-    verkoper        BIT             NULL    DEFAULT 0,
-    compleet        BIT             NULL    DEFAULT 0,
-
-    CONSTRAINT PK_gebruiker PRIMARY KEY (gebruikersnaam),
-    CONSTRAINT UQ_emailadres UNIQUE (emailadres)
+    -- ***************** Primary Keys
+  constraint PK_Categories primary key (id)
 );
 GO
 
 
-/* Rubriek */
-CREATE TABLE Rubriek
+
+
+
+-- ************************************** Users
+create table Users
 (
-    rubrieknummer INT          NOT NULL,
-    rubrieknaam   VARCHAR(255) NOT NULL,
-    rubriek       INT          NULL,
+    id              int             identity    not null,
+    username        varchar(50)                 not null,
+    email           varchar(255)                not null,
+    password        varchar(255)                not null,
+    profilepicture  varchar(255)                    null,
+    firstname       varchar(50)                     null,
+    lastname        varchar(50)                     null,
+    phone           varchar(50)                     null,
+    birthdate       DATE                            null,
+    address1        varchar(255)                    null,
+    address2        varchar(255)                    null,
+    postalcode      varchar(50)                     null,
+    city            varchar(50)                     null,
+    country         char(4)                         null,
+    trader          bit                             null,
+    complete        bit                             null,
 
-    CONSTRAINT PK_rubriek PRIMARY KEY (rubrieknummer),
-);
-GO
+    -- ***************** Primary Keys
+    constraint PK_Users primary key (username),
 
-/* Verkoper */
-create table Verkoper
-(
-    gebruikersnaam  VARCHAR(255)        NOT NULL,
-    bank            VARCHAR(255)        NULL,
-    bankrekening    VARCHAR(255)        NULL,
-    controleoptie   VARCHAR(255)        NOT NULL,
-    creditcard      VARCHAR(255)        NULL,
-
-    CONSTRAINT PK_verkoper PRIMARY KEY (gebruikersnaam),
-
-    CONSTRAINT FK_gebruiker FOREIGN KEY (gebruikersnaam) REFERENCES Gebruiker(gebruikersnaam)
-        --TODO: 4:35
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION,
-
-    --TODO: ADD Controleopties
-    CONSTRAINT CHK_controloptie CHECK (controleoptie = 'Creditcard' OR controleoptie = 'Post')
-);
-GO
-
-
-/* Voorwerp */
-CREATE TABLE Voorwerp
-(
-    voorwerpnummer          BIGINT              NOT NULL IDENTITY,
-    token                   VARCHAR(255)        NULL,
-    titel                   VARCHAR(255)        NOT NULL,
-    beschrijving            VARCHAR(MAX)        NOT NULL,
-    thumbnail               VARCHAR(255)        NULL,
-    rubriek                 INT                 NOT NULL,
-    startprijs              DECIMAL(18,2)       NOT NULL,
-    betalingswijzenaam      VARCHAR(255)        NOT NULL,
-    betalingsinstructies    VARCHAR(255)        NULL,
-    postcode                VARCHAR(255)        NOT NULL,
-    plaatsnaam              VARCHAR(255)        NOT NULL,
-    landnaam                VARCHAR(40)         NOT NULL,
-    looptijd                INT                 NULL DEFAULT 7,
-    looptijdbegindag        DATE                NULL DEFAULT GETDATE(),
-    looptijdbegintijdstip   TIME                NULL DEFAULT CURRENT_TIMESTAMP,
-    verzendkosten           DECIMAL(18,2)       NOT NULL DEFAULT 6.75,
-    verzendinstructies      VARCHAR(MAX)        NULL,
-    verkoper                VARCHAR(255)        NOT NULL,
-    koper                   VARCHAR(255)        NULL,
-    looptijdeindedag        DATE                NULL, --TODO: Function looptijdbegindag + looptijd
-    looptijdeindetijdstip   TIME                NULL,
-    gesloten                BIT                 NULL DEFAULT 0,
-    verkoopprijs            DECIMAL(18,2)       NULL,
-
-    CONSTRAINT PK_voorwerp PRIMARY KEY (voorwerpnummer),
-);
-GO
-
-/* Voorwerp in Rubriek */
-CREATE TABLE VoorwerpInRubriek
-(
-    voorwerpnummer  BIGINT  NOT NULL,
-    rubrieknummer   INT     NOT NULL,
-
-    CONSTRAINT PK_voorwerpnummerRubrieknummer PRIMARY KEY (voorwerpnummer, rubrieknummer),
-
-    CONSTRAINT FK_voorwerpInRubriekVoorwerpnummer FOREIGN KEY (voorwerpnummer) REFERENCES Voorwerp (voorwerpnummer)
+    -- ***************** Foreign Keys
+    constraint FK_Users_1 foreign key (country) references Country (code)
+        ON DELETE NO ACTION
         ON UPDATE CASCADE
-        ON DELETE CASCADE,
-
-    --CONSTRAINT:: TODO: Look up if this one is needed :)
-    CONSTRAINT FK_rubriekVoorwerpInRubriekRubrieknummer FOREIGN KEY (rubrieknummer) REFERENCES Rubriek (rubrieknummer)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE,
 );
 GO
 
-/* Feedback */
-CREATE TABLE Feedback
+-- ************************************** Trader
+create table Trader
 (
-    voorwerpnummer      BIGINT          NOT NULL,
-    verkoper            BIT             NOT NULL    DEFAULT 0,
-    feedbacksoortnaam   VARCHAR(50)     NOT NULL,
-    datum               DATE            NOT NULL    DEFAULT GETDATE(),
-    tijdstip            TIME            NOT NULL    DEFAULT CURRENT_TIMESTAMP,
-    commentaar          VARCHAR(255)    NOT NULL,
+    username      varchar(50)                 not null,
+    bank          varchar(255)                not null,
+    bankaccount   varchar(255)                not null,
+    controloption varchar(255)                not null,
+    creditcard    varchar(255)                not null,
 
-    CONSTRAINT PK_feedback PRIMARY KEY (voorwerpnummer),
+    -- ***************** Primary Keys
+    constraint pk_Trader primary key (username),
 
-    CONSTRAINT  CHK_feedbacksoortnaam   CHECK (feedbacksoortnaam = 'negatief' OR feedbacksoortnaam = 'neutraal' OR feedbacksoortnaam = 'positief'),
-
-    CONSTRAINT  FK_FeedbackvoorwerpVoorwerpnummer FOREIGN KEY (voorwerpnummer) REFERENCES Voorwerp (voorwerpnummer)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE,
-
+    -- ***************** Foreign Keys
+    constraint FK_Trader_1 foreign key (username) references Users (username),
 );
 GO
 
-/* Bestanden */
-CREATE TABLE Bestanden
+
+
+
+
+-- ************************************** Items
+create table Items
 (
-    bestandnaam     VARCHAR(255)    NOT NULL,
-    voorwerpnummer  BIGINT          NOT NULL,
+    id                      bigint          identity    not null,
+    trader                  varchar(50)                 not null,
+    token                   varchar(255)                    null,
+    title                   varchar(255)                not null,
+    description             varchar(max)                not null,
+    thumbnail               varchar(255)                not null,
+    category                int                         not null,
+    price                   decimal(18,2)               not null,
+    paymentname             varchar(50)                 not null,
+    paymentinstruction      varchar(255)                    null,
+    postalcode              varchar(50)                 not null,
+    city                    varchar(50)                 not null,
+    country                 char(4)                     not null,
+    duration                int                         not null constraint DF_Items_duration default 7,
+    durationbegindate       date                        not null constraint DF_Items_durationbegindate default GETDATE(),
+    durationbegintime       time                        not null constraint DF_Items_durationbegintime default CURRENT_TIMESTAMP,
+    shippingcost            decimal(18,2)               not null constraint DF_Items_shippingcost default 6.75,
+    shippinginstructions    varchar(255)                    null,
+    durationenddate         date                            null,
+    durationendtime         time                            null,
+    closed                  bit                             null,
+    saleprice               decimal(18,2)                   null,
 
-    CONSTRAINT PK_bestanden PRIMARY KEY (bestandnaam),
+    -- ***************** Primary Keys
+    constraint PK_items primary key (id),
 
-    CONSTRAINT FK_bestandVoorwerp FOREIGN KEY (voorwerpnummer) REFERENCES Voorwerp (voorwerpnummer)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE,
+    -- ***************** Foreign Keys
+    constraint FK_Items_1 foreign key (category) references Categories (id),
+    constraint FK_Items_2 foreign key (trader) references Trader (username)
+        ON DELETE NO ACTION
+        ON UPDATE CASCADE,
+    constraint FK_Items_3 foreign key (country) references Country (code)
+        ON DELETE NO ACTION
+        ON UPDATE CASCADE,
 );
 GO
 
-/* Bod */
-CREATE TABLE Bod
+
+
+
+
+-- ************************************** ItemsInCategory
+create table ItemsInCategory
 (
-    id              INT                 NOT NULL IDENTITY,
-    voorwerpnummer  BIGINT              NOT NULL,
-    -- CONSTRAINT:: Bodbedrag MUST be higher than an existing one
-    bodbedrag       DECIMAL(18,2)       NOT NULL,
-    gebruikersnaam  VARCHAR(255)        NULL,
-    boddag          DATE                NOT NULL    DEFAULT     GETDATE(),
-    bodtijd         TIME                NOT NULL    DEFAULT     CURRENT_TIMESTAMP,
+    item        bigint      not null,
+    category    int         not null,
 
-    CONSTRAINT PK_bod PRIMARY KEY (voorwerpnummer, bodbedrag),
+    -- ***************** Foreign Keys
+    constraint FK_ItemsInCategory_1 foreign key (item) references Items (id),
+    constraint FK_ItemsInCategory_2 foreign key (category) references Categories (id)
+);
+GO
 
-    CONSTRAINT FK_voorwerpVoorwerpnummer FOREIGN KEY (voorwerpnummer) REFERENCES Voorwerp(voorwerpnummer)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE,
 
-    --CONSTRAINT:: TODO: 2:29PM NOT WORKING
-    CONSTRAINT FK_gebruikerGebruikersnaam FOREIGN KEY (gebruikersnaam) REFERENCES Gebruiker(gebruikersnaam)
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION,
+
+
+
+
+-- ************************************** Files
+create table Files
+(
+    item        bigint          not null,
+    filename    varchar(255)    not null,
+
+    -- ***************** Foreign Keys
+    constraint FK_Files_1 foreign key (item) references Items (id)
+);
+GO
+
+
+
+
+
+
+-- ************************************** Files
+create table Feedback
+(
+    username    varchar(50)     not null,
+    item        bigint          not null,
+    review      varchar(50)     not null,
+    date        date            not null constraint DF_Feedback_date default GETDATE(),
+    time        time            not null constraint DF_Feedback_time default CURRENT_TIMESTAMP,
+    comment     varchar(255)        null,
+
+    -- ***************** Foreign Keys
+    constraint FK_Feedback_1 foreign key (username) references Trader (username),
+    constraint FK_Feedback_2 foreign key (item) references Items (id),
+
+    -- ***************** Checks
+    constraint CK_Feedback_review CHECK (review in ('negative', 'neutral', 'positive'))
+);
+GO
+
+
+
+
+
+
+-- ************************************** Bids
+create table Bids
+(
+    username    varchar(50) not null,
+    item        bigint          not null,
+    amount      decimal(18,2)   not null,
+    date        date            not null constraint DF_Bids_date default GETDATE(),
+    time        time            not null constraint DF_Bids_time default CURRENT_TIMESTAMP,
+
+    -- ***************** Foreign Keys
+    constraint FK_Bids_1 foreign key (item) references Items (id),
+    constraint FK_Bids_2 foreign key (username) references Users (username),
 );
 GO

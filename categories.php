@@ -11,18 +11,18 @@
             <?php
 
             // Load all root categories
-            $categories = Database::getInstance()->query("SELECT * FROM Rubriek WHERE rubriek = -1", array());
+            $categories = Database::getInstance()->query("SELECT * FROM Categories WHERE within = -1", array());
             foreach($categories->results() as $category) {
               ?>
                 <div class="column">
                     <?php
                     // Echo root categories
-                  echo "<a href='category.php?cat=$category->rubrieknummer'>" . $category->rubrieknaam . '</a>';
+                  echo "<a href='category.php?cat=$category->id'>" . $category->name . '</a>';
 
                   // Load all subcategories based on category's loaded previously
-                  $subcategories = Database::getInstance()->query("SELECT * FROM Rubriek WHERE rubriek = $category->rubrieknummer", array());
+                  $subcategories = Database::getInstance()->query("SELECT * FROM Categories WHERE within = $category->id", array());
                   foreach($subcategories->results() as $subcategory) {
-                      echo "<a href='category.php?cat=$subcategory->rubrieknummer'>" . $subcategory->rubrieknaam . '</a>';
+                      echo "<a href='category.php?cat=$subcategory->id'>" . $subcategory->name . '</a>';
                   }
                   ?>
                 </div>

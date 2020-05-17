@@ -38,11 +38,11 @@
                             <div class="ui fluid vertical tabular menu text-left">
                                 <?php
                                 // Get all ROOT rubrieken
-                                $categories = Database::getInstance()->query("SELECT TOP 6 * FROM Rubriek WHERE rubriek = -1", array());
+                                $categories = Database::getInstance()->query("SELECT TOP 6 * FROM Categories WHERE within = -1", array());
 
                                 // Echo each rubriek
                                 foreach ($categories->results() as $result) {
-                                    echo "<a class='item' data-tab='$result->rubrieknummer'>" . $result->rubrieknaam . "</a>";
+                                    echo "<a class='item' data-tab='$result->id'>" . $result->name . "</a>";
                                 }
                                 ?>
                             </div>
@@ -51,15 +51,15 @@
 
                     <div class="stretched twelve wide column">
                         <?php foreach($categories->results() as $result) { ?>
-                        <div class="ui bottom attached tab" data-tab="<?= $result->rubrieknummer ?>">
+                        <div class="ui bottom attached tab" data-tab="<?= $result->id ?>">
                             <div class="ui stackable three column grid categories-navbar-list">
                             <?php
                                 //Get all rubrieken inside of the rubriek tab
-                                $category = Database::getInstance()->query("SELECT * FROM Rubriek WHERE rubriek = $result->rubrieknummer");
+                                $category = Database::getInstance()->query("SELECT * FROM Categories WHERE within = $result->id");
                                 foreach($category->results() as $cat) {
                             ?>
                             <div class="column">
-                                <a href="category.php?cat=<?= $cat->rubrieknummer ?>"><?= $cat->rubrieknaam; ?></a>
+                                <a href="category.php?cat=<?= $cat->id ?>"><?= $cat->name; ?></a>
                             </div>
                             <?php } ?>
                             </div>

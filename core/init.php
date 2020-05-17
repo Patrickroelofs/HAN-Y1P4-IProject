@@ -37,5 +37,5 @@ include(FUNCTIONS . 'sanitize.func.php');
 
 //Get userdata from current logged in user
 if(Session::exists('username')){
-    $user = Database::getInstance()->get('Gebruiker', array('gebruikersnaam', '=', Session::get('username')));
+    $user = Database::getInstance()->get('Users', array('username', '=', Session::get('username')));
 }

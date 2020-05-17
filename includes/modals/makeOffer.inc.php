@@ -6,13 +6,13 @@ if(!Session::exists('username')) {
     $errorText = "<p>Om te kunnen bieden op producten moet u eerst inloggen of registreren.</p>";
 
 // if user account is not complete display error message
-} else if(!$user->first()->compleet) {
+} else if(!$user->first()->complete) {
     $error = true;
     $errorTitle = "Profiel niet compleet";
     $errorText = "<p>Om te kunnen bieden op producten moet u eerst uw profielgegevens aanvullen op uw <a href='profile.php'>profiel pagina</a>.</p>";
 
 //if bidding for this item is closed display error message
-} else if ($bidClosed->first()->gesloten) {
+} else if ($bidClosed->first()->closed) {
     $error = true;
     $errorTitle = "Bieding gesloten";
     $errorText = "<p>Deze bieding is helaas al gesloten.</p>";
@@ -36,10 +36,10 @@ if (!$error) { ?>
                 <div class="ui header">Product</div>
                 <p> <?php
                     // Show current highest bid if product exists in bod table
-                    if($bidExists->count(1) == 1) {
-                        echo '<span class="bold">Hoogste bod: €' . $bidHigh->first()->bodbedrag . '</span>';
+                    if($bidExists->count() == 1) {
+                        echo '<span class="bold">Hoogste bod: €' . $bidHigh->first()->amount . '</span>';
                     } else {
-                        echo '<span class="bold">Maak nu het startbod van €' . $stmt->first()->startprijs . '!</span>';
+                        echo '<span class="bold">Maak nu het startbod van €' . $stmt->first()->price . '!</span>';
                     }
                     ?></p>
 

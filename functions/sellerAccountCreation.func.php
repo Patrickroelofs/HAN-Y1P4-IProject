@@ -12,23 +12,23 @@ if(isset($_POST['updateBankgegevens'])) {
     if(empty($bank) || empty($bankNummer) || empty($controleOptie) || empty($creditcard)) {
         echo 'Fill in all information';
     }
-    else if($user->first()->compleet == 0) {
+    else if($user->first()->complete == 0) {
         echo 'Fill all your account information in first';
     }
 
     else {
         //insert into database
         try {
-            $stmt = Database::getInstance()->insert('Verkoper', array(
-                'gebruikersnaam' => Session::get('username'),
+            $stmt = Database::getInstance()->insert('Trader', array(
+                'username' => Session::get('username'),
                 'bank' => $bank,
-                'bankrekening' => $bankNummer,
-                'controleoptie' => $controleOptie,
+                'bankaccount' => $bankNummer,
+                'controloption' => $controleOptie,
                 'creditcard' => $creditcard
             ));
 
-            $stmt = Database::getInstance()->update('Gebruiker', 'gebruikersnaam', Session::get('username'), array(
-                'verkoper' => true
+            $stmt = Database::getInstance()->update('Users', 'username', Session::get('username'), array(
+                'trader' => true
             ));
 
             Redirect::to('index.php');

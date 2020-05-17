@@ -68,34 +68,34 @@ if(isset($_POST['auction-submit'])) {
             }
 
 
-            $stmt = Database::getInstance()->insert('Voorwerp', array(
+            $stmt = Database::getInstance()->insert('Items', array(
                 'token' => $token,
-                'titel' => $titel,
-                'beschrijving' => $beschrijving,
+                'title' => $titel,
+                'description' => $beschrijving,
                 'thumbnail' => $images[0],
-                'rubriek' => $rubriek,
-                'startprijs' => $startprijs,
-                'betalingswijzenaam' => $betalingswijzenaam,
-                'betalingsinstructies' => $betalingsintructies,
-                'postcode' => $user->first()->postcode,
-                'plaatsnaam' => $user->first()->plaatsnaam,
-                'landnaam' => $user->first()->landnaam,
-                'looptijd' => $looptijd,
-                'looptijdbegindag' => $date,
-                'looptijdbegintijdstip' => $time,
-                'looptijdeindedag' => date("Y-m-d", strtotime($date. ' + '. $looptijd .' days')),
-                'looptijdeindetijdstip' => $time,
-                'verzendkosten' => $verzendkosten,
-                'verzendinstructies' => $verzendinstructies,
-                'verkoper' => $user->first()->gebruikersnaam
+                'category' => $rubriek,
+                'price' => $startprijs,
+                'paymentname' => $betalingswijzenaam,
+                'paymentinstruction' => $betalingsintructies,
+                'postalcode' => $user->first()->postalcode,
+                'city' => $user->first()->city,
+                'country' => $user->first()->country,
+                'duration' => $looptijd,
+                'durationbegindate' => $date,
+                'durationbegintime' => $time,
+                'durationenddate' => date("Y-m-d", strtotime($date. ' + '. $looptijd .' days')),
+                'durationendtime' => $time,
+                'shippingcost' => $verzendkosten,
+                'shippinginstructions' => $verzendinstructies,
+                'trader' => $user->first()->username
             ));
 
-            $getItemID = Database::getInstance()->query("SELECT voorwerpnummer FROM Voorwerp WHERE token = '". $token ."'");
+            $getItemID = Database::getInstance()->query("SELECT id FROM Items WHERE token = '". $token ."'");
 
             for($i = 0; $i < $countfiles; $i++) {
-                $insertImages = Database::getInstance()->insert('Bestanden', array(
-                    'bestandnaam' => $images[$i],
-                    'voorwerpnummer' => $getItemID->first()->voorwerpnummer
+                $insertImages = Database::getInstance()->insert('Files', array(
+                    'filename' => $images[$i],
+                    'item' => $getItemID->first()->id
                 ));
             }
 
