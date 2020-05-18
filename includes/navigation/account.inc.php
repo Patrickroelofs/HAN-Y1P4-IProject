@@ -52,8 +52,6 @@
         <?php
             if($user->first()->trader == false && !$admin->count() == 1) {
                 echo '<a class="item" href="selleraccountcreation.php">Word een verkoper</a>';
-            } else if ($admin->count() == 1) {
-                echo '<a class="item" href="">Administratiepaneel</a>';
             } else {
                 echo '<a class="item" href="createauction.php">Advertentie plaatsen</a>';
             }
