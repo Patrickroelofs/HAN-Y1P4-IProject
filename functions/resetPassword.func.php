@@ -42,10 +42,14 @@ if (isset($_POST['versturen'])) {
         U heeft een verzoek gedaan om uw wachtwoord te veranderen.
         Klik op de onderstaande link om uw wachtwoord te veranderen:
         https://iproject19.icasites.nl/passwordchange.php?id='.Hash::make($to).'&uid='.$stmt->first()->username.'
-        Bent u dit niet neem dan contact op met example@gmail.com
+        Bent u dit niet neem dan contact op met beveiliging@eenmaalandermaal.nl
         ';
         if ($onProduction) {
             mail($to, $subject, $message);
+            Message::info("passwordchange.php", array(
+                'm' => 'Een email is verstuurd, bekijk ook je spambox!'
+            ));
+
         } else {
             echo '<a href="passwordchange.php?id=' . Hash::make($to) . '&uid=' . $stmt->first()->username . '">Klik hier</a>';
         }
