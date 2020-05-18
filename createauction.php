@@ -14,82 +14,28 @@
         ));
     }
 ?>
+<main>
+    <div class="ui container">
+        <?php include FUNCTIONS . 'addAuction.func.php'; ?>
+        <h2>Advertentie plaatsen</h2>
 
-    <main>
-        <div class="ui container">
-            <?php include FUNCTIONS . 'addAuction.func.php'; ?>
-            <h2>Advertentie plaatsen</h2>
-
-            <form action="" method="post" enctype="multipart/form-data" class="ui large form addAuction">
-                <label for="images">Afbeeldingen toevoegen (maximaal 4)</label>
-                <div class="field">
-                    <input type="file" multiple name="images[]" id="images">
-                </div>
-
+        <form action="" method="post" enctype="multipart/form-data" class="ui large form addAuction">
+            <div class="field">
                 <label for="titel">Titel</label>
-                <div class="fields">
-                    <input class="input" type="text" name="titel" id="titel" placeholder="...">
-                </div>
+                <input class="input" type="text" name="titel" id="titel" placeholder="Titel voor uw advertentie">
+            </div>
 
-                <label for="beschrijving">Beschrijving</label>
+            <div class="three fields">
                 <div class="field">
-                    <textarea name="beschrijving" id="beschrijving"></textarea>
-                </div>
-
-                <label for="rubriek">Rubriek</label>
-                <div class="field">
-                    <div class="ui dropdown">
-                        <input type="hidden" name="rubriek">
-                        <span class="text">Klik hier om een rubriek te kiezen</span>
-                        <div class="menu">
-                            <div class="ui icon search input">
-                                <i class="search icon"></i>
-                                <input type="text" placeholder="Zoeken in rubrieken...">
-                            </div>
-                            <div class="divider"></div>
-                            <div class="scrolling menu">
-                                <?php
-                                $rubrieken = Database::getInstance()->query("SELECT * FROM Categories EXCEPT SELECT * FROM Categories WHERE id = -1");
-                                foreach($rubrieken->results() as $result) {
-                                    ?>
-
-                                    <div class="item" data-value="<?= $result->id; ?>">
-                                        <?= $result->name; ?>
-                                    </div>
-
-                                    <?php
-                                }
-                                ?>
-                            </div>
-                        </div>
+                    <label for="startprijs">Startprijs</label>
+                    <div class="ui labeled input">
+                        <div class="ui label">€</div>
+                        <input type="number" name="startprijs" id="startprijs">
                     </div>
                 </div>
 
-                <label for="startprijs">Startprijs</label>
                 <div class="field">
-                    <input type="number" name="startprijs" id="startprijs">
-                </div>
-
-                <label for="betalingswijze">Betalingswijze</label>
-                <div class="ui input fluid">
-                    <div class="ui selection dropdown fluid">
-                        <input type="hidden" name="betalingswijze">
-                        <i class="dropdown icon"></i>
-                        <div class="default text">Betalingswijze</div>
-                        <div class="menu">
-                            <div class="item" data-value="Bank/giro">Bank/giro</div>
-                            <div class="item" data-value="Paypal">Paypal</div>
-                        </div>
-                    </div>
-                </div>
-
-                <label for="betalingsintructies">Betalingsinstructies</label>
-                <div class="ui input fluid">
-                    <textarea name="betalingsintructies" id="betalingsintructies"></textarea>
-                </div>
-
-                <label for="looptijd" class="top-margin-12">Looptijd</label>
-                <div class="ui input fluid">
+                    <label for="looptijd">Looptijd</label>
                     <div class="ui selection dropdown fluid">
                         <input type="hidden" name="looptijd">
                         <i class="dropdown icon"></i>
@@ -104,24 +50,86 @@
                     </div>
                 </div>
 
-                <label for="verzendkosten">Verzendkosten</label>
-                <div class="ui input field fluid">
-                    <input type="number" name="verzendkosten" id="verzendkosten">
+                <div class="field">
+                    <label for="images">Afbeeldingen toevoegen (maximaal 4)</label>
+                    <input type="file" multiple name="images[]" id="images">
+                </div>
+            </div>
+
+
+            <div class="field">
+                <label for="beschrijving">Beschrijving</label>
+                <textarea name="beschrijving" id="beschrijving"></textarea>
+            </div>
+
+            <div class="field">
+                <label for="rubriek">Rubriek</label>
+                <div class="ui dropdown">
+                    <input type="hidden" name="rubriek">
+                    <span class="text">Klik hier om een rubriek te kiezen<i class="dropdown icon"></i></span>
+                    <div class="menu">
+                        <div class="ui icon search input">
+                            <i class="search icon"></i>
+                            <input type="text" placeholder="Zoeken in rubrieken...">
+                        </div>
+                        <div class="divider"></div>
+                        <div class="scrolling menu">
+                            <?php
+                            $rubrieken = Database::getInstance()->query("SELECT * FROM Categories EXCEPT SELECT * FROM Categories WHERE id = -1");
+                            foreach($rubrieken->results() as $result) {
+                                ?>
+
+                                <div class="item" data-value="<?= $result->id; ?>">
+                                    <?= $result->name; ?>
+                                </div>
+
+                                <?php
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="two fields">
+                <div class="field">
+                    <label for="betalingswijze">Betalingswijze</label>
+                    <div class="ui selection dropdown fluid">
+                        <input type="hidden" name="betalingswijze">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Betalingswijze</div>
+                        <div class="menu">
+                            <div class="item" data-value="Bank/giro">Bank/giro</div>
+                            <div class="item" data-value="Paypal">Paypal</div>
+                        </div>
+                    </div>
                 </div>
 
-                <label for="verzendinstructies">Verzendinstructies</label>
-                <div class="ui input field fluid">
-                    <textarea class="full-width" name="verzendinstructies" id="verzendinstructies"></textarea>
+                <div class="field">
+                    <label for="betalingsintructies">Betalingsinstructies</label>
+                    <textarea name="betalingsintructies" id="betalingsintructies" rows="2"></textarea>
+                </div>
+            </div>
+
+            <div class="two fields">
+                <div class="field">
+                    <label for="verzendkosten">Verzendkosten</label>
+                    <div class="ui labeled input">
+                        <div class="ui label">€</div>
+                        <input type="number" name="verzendkosten" id="verzendkosten">
+                    </div>
                 </div>
 
-
-
-                    <div class="ui input vertical-margin-12">
-                    <input type="submit" name="auction-submit" id="auction-submit" value="Advertentie plaatsen">
+                <div class="field">
+                    <label for="verzendinstructies">Verzendinstructies</label>
+                    <textarea name="verzendinstructies" id="verzendinstructies" rows="2"></textarea>
                 </div>
-            </form>
-        </div>
-    </main>
+            </div>
+
+            <button name="auction-submit" id="auction-submit" class="ui primary button" type="submit">Advertentie plaatsen</button>
+        </form>
+    </div>
+</main>
 
 <?php include INCLUDES . 'footer.inc.php'; ?>
 <?php include INCLUDES . 'foot.inc.php'; ?>
