@@ -36,6 +36,13 @@ ECHO.
 PAUSE
 @CLS
 
+SQLCMD -i "%~dp0\INSERTSCRIPT.sql"
+ECHO.
+ECHO ADMIN USER INSERTED
+ECHO.
+PAUSE
+@CLS
+
 :choice
 set /P c=Rerun script[Y/N]?
 if /I "%c%" EQU "Y" goto :restart

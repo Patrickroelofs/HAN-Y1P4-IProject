@@ -6,15 +6,27 @@ GO
 /* ***************************** */
 
 -- Drop tables
-drop table if exists ItemsInCategory    GO
-drop table if exists Files              GO
-drop table if exists Feedback           GO
-drop table if exists Bids               GO
-drop table if exists Items              GO
-drop table if exists Categories         GO
-drop table if exists Trader             GO
-drop table if exists Users              GO
-drop table if exists Country            GO
+-- (Wont work because of foreign key constrains delete manually)
+drop table if exists Admins
+go
+drop table if exists Bids
+go
+drop table if exists Feedback
+go
+drop table if exists Files
+go
+drop table if exists ItemsInCategory
+go
+drop table if exists Items
+go
+drop table if exists Categories
+go
+drop table if exists Trader
+go
+drop table if exists Users
+go
+drop table if exists Country
+go
 
 /* ***************************** */
 /**        CREATE TABLES         */
@@ -90,20 +102,19 @@ GO
 
 
 -- ************************************** Admins
--- create table Admins
--- (
---     username varchar(50)                    not null,
---
---     -- ***************** Primary Keys
---     constraint PK_Admins primary key (username),
---
---     -- ***************** Foreign Keys
---     constraint FK_Admins_1 foreign key (username) references Users (username)
---         ON DELETE CASCADE
---         ON UPDATE CASCADE
--- );
+create table Admins
+(
+    username    varchar(50)         not null,
+    pin         varchar(255)        not null,
 
+    -- ***************** Primary Keys
+    constraint PK_Admins primary key (username),
 
+    -- ***************** Foreign Keys
+    constraint FK_Admins_1 foreign key (username) references Users (username)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
 
 
 

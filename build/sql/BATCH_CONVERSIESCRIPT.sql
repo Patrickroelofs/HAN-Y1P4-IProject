@@ -6,10 +6,10 @@ SELECT GBA_CODE, NAAM_LAND, BEGINDATUM, EINDDATUM, EER_Lid
 FROM [batch-iproject19].dbo.tblIMAOLand
 GO
 
-INSERT INTO [iproject19].dbo.Users (username, email, password, profilepicture, firstname, lastname, phone, address1, address2, postalcode, city, country, trader, complete)
-SELECT Username, Username + '@eenmaalAndermaal.nl', '', '', '', '', '', '', '', '', '', '0000', 1, 1
-FROM [batch-iproject19].dbo.Users
-GO
+-- INSERT INTO [iproject19].dbo.Users (username, email, password, profilepicture, firstname, lastname, phone, address1, address2, postalcode, city, country, trader, complete)
+-- SELECT Username, Username + '@eenmaalAndermaal.nl', '', '', '', '', '', '', '', '', '', '0000', 1, 1
+-- FROM [batch-iproject19].dbo.Users
+-- GO
 
 SET IDENTITY_INSERT [iproject19].dbo.Categories ON
 INSERT INTO [iproject19].dbo.Categories (id, name, within)
@@ -18,9 +18,9 @@ FROM [batch-iproject19].dbo.Categorieen
 SET IDENTITY_INSERT [iproject19].dbo.Categories OFF
 GO
 
-INSERT INTO [iproject19].dbo.Trader (username, bank, bankaccount, controloption, creditcard, activated)
-SELECT username, '', '', 'Creditcard', '', 1
-FROM [iproject19].dbo.Users
+-- INSERT INTO [iproject19].dbo.Trader (username, bank, bankaccount, controloption, creditcard, activated)
+-- SELECT username, '', '', 'Creditcard', '', 1
+-- FROM [iproject19].dbo.Users
 
 
 -- SET IDENTITY_INSERT Items ON
