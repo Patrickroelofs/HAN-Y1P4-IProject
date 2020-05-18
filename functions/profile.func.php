@@ -46,8 +46,8 @@ if(isset($_POST['update-persoonsgegevens-submit'])) {
 
     // Save data in temporary variables
     //Persoonsgegevens
-    $firstname          =   $_POST['firstname'];
-    $lastname           =   $_POST['lastname'];
+    $firstname          =   escape($_POST['firstname']);
+    $lastname           =   escape($_POST['lastname']);
     $dob                =   $_POST['dob'];
     $profilepicture     =   $_FILES['profilepicture']['name'];
 
@@ -109,10 +109,10 @@ if(isset($_POST['update-locatiegegevens-submit'])) {
 
     // Save data in temporary variables
     //Locatiegegevens
-    $adresregel1        =   $_POST['adresregel1'];
-    $adresregel2        =   $_POST['adresregel2'];
-    $postcode           =   $_POST['postcode'];
-    $plaatsnaam         =   $_POST['plaatsnaam'];
+    $adresregel1        =   escape($_POST['adresregel1']);
+    $adresregel2        =   escape($_POST['adresregel2']);
+    $postcode           =   escape($_POST['postcode']);
+    $plaatsnaam         =   escape($_POST['plaatsnaam']);
     $land               =   $_POST['land'];
 
     // TODO: Error messages and other invalid register checks.
