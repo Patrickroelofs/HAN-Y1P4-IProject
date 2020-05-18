@@ -38,4 +38,5 @@ include(FUNCTIONS . 'sanitize.func.php');
 //Get userdata from current logged in user
 if(Session::exists('username')){
     $user = Database::getInstance()->get('Users', array('username', '=', Session::get('username')));
+    $admin = Database::getInstance()->get('Admins', array('username', '=', Session::get('username')));
 }
