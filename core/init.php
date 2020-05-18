@@ -12,7 +12,7 @@ session_start();
 $onProduction = false;
 
 if($onProduction == true) {
-    define('ROOT', 'http://iproject19.icasites.nl/');
+    define('ROOT', 'https://iproject19.icasites.nl/');
 } else {
     define('ROOT', '');
 }
@@ -25,7 +25,7 @@ define('MODALS', INCLUDES . 'modals/');
 
 //Define inaccessible picture folder
 //TODO: check if it works
-define('PICTURES',  "http://iproject19.icasites.nl/pics");
+define('PICTURES',  "https://iproject19.icasites.nl/pics");
 
 //Load all classes
 spl_autoload_register(function($class) {
