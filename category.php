@@ -43,65 +43,37 @@
                 <input type="checkbox" name="toggle" id="cat-toggle" class="category-toggle">
                 <label for="cat-toggle"></label>
                 <?php } ?>
+
+                <h3>Adjust your price range:</h3>
+
+                <div class="ui labeled ticked range slider" id="slider-range"></div>
+                <div class="ui input">
+                    <input type="text" id="range-slider-input-1" disabled="">
+                    <label for="range-slider-input-1"></label>
+                </div>
             </div>
+
+
 
             <div class="thirteen wide column">
                 <div class="ui stackable five column grid">
+                    <?php
+                    $cat = $_GET['cat'];
+                    $product = Database::getInstance()->query("SELECT * FROM Items where category='$cat'");
+
+                    foreach($product->results() as $result) { ?>
                     <div class="column">
                         <div class="ui fluid card">
-                            <a class="image" href="#">
-                                <img src="https://place-hold.it/150x150" alt="product-image">
+                            <a class="image" href="product.php?p=<?= $result->id; ?>">
+                                <img src="<?= ROOT . $result->thumbnail; ?>" alt="Foto van <?= $result->title; ?>">
                             </a>
                             <div class="content">
-                                <a class="header" href="#">Product</a>
-                                <div class="description">€52,00</div>
+                                <a class="header" href="product.php?p=<?= $result->id; ?>"><?= $result->title; ?></a>
+                                <div class="description"><?= "€".$result->price; ?></div>
                             </div>
                         </div>
                     </div>
-                    <div class="column">
-                        <div class="ui fluid card">
-                            <a class="image" href="#">
-                                <img src="https://place-hold.it/150x150" alt="product-image">
-                            </a>
-                            <div class="content">
-                                <a class="header" href="#">Product</a>
-                                <div class="description">€52,00</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="ui fluid card">
-                            <a class="image" href="#">
-                                <img src="https://place-hold.it/150x150" alt="product-image">
-                            </a>
-                            <div class="content">
-                                <a class="header" href="#">Product</a>
-                                <div class="description">€52,00</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="ui fluid card">
-                            <a class="image" href="#">
-                                <img src="https://place-hold.it/150x150" alt="product-image">
-                            </a>
-                            <div class="content">
-                                <a class="header" href="#">Product</a>
-                                <div class="description">€52,00</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="ui fluid card">
-                            <a class="image" href="#">
-                                <img src="https://place-hold.it/150x150" alt="product-image">
-                            </a>
-                            <div class="content">
-                                <a class="header" href="#">Product</a>
-                                <div class="description">€52,00</div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
@@ -109,4 +81,14 @@
 </main>
 
 <?php include INCLUDES . 'footer.inc.php'; ?>
+    <script type="javascript">
+        $('.ui.slider')
+            .slider({
+                min: 0,
+                max: 100,
+                start: 0,
+                step: 50
+            })
+        ;
+    </script>
 <?php include INCLUDES . 'foot.inc.php'; ?>
