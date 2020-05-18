@@ -23,8 +23,8 @@ if ($endDate > $currentDate) {
     $timeLeft = 0;
 }
 
-include FUNCTIONS . 'makeOffer.func.php';
-include INCLUDES . 'modals/makeoffer.inc.php';
+include FUNCTIONS . 'makeBid.func.php';
+include INCLUDES . 'modals/makeBid.inc.php';
 include INCLUDES . 'modals/contactseller.inc.php';
 ?>
 
