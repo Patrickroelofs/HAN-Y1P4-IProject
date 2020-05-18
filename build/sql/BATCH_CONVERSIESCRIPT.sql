@@ -18,8 +18,8 @@ FROM [batch-iproject19].dbo.Categorieen
 SET IDENTITY_INSERT [iproject19].dbo.Categories OFF
 GO
 
-INSERT INTO [iproject19].dbo.Trader (username, bank, bankaccount, controloption, creditcard)
-SELECT username, '', '', 'Creditcard', ''
+INSERT INTO [iproject19].dbo.Trader (username, bank, bankaccount, controloption, creditcard, activated)
+SELECT username, '', '', 'Creditcard', '', 1
 FROM [iproject19].dbo.Users
 
 
