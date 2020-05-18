@@ -1,24 +1,34 @@
 <?php
 
-if (isset($_POST['updateBankgegevens'])) {
+//check if user completed account
+if ($user->first()->complete == 0) {
+    Message::info('profile.php', array(
+        'm' => 'Maak eerst uw account volledig voordat u een verkoper wordt'
+    ));
 
-    //save data in temporary variables
-    $bank = $_POST['bank'];
-    $bankNummer = $_POST['bankNummer'];
-    $controleOptie = $_POST['controleOptie'];
-    $creditcard = $_POST['creditcard'];
+} else {
+    if (isset($_POST['updateBankgegevens'])) {
 
-    // TODO: Error messages and other invalid register checks. (koen)
-    if (empty($bank) || empty($bankNummer) || empty($controleOptie) || empty($creditcard)) {
-        echo 'Vul alle velden in';
-    } else if ($user->first()->complete == 0) {
-        echo "Maak eerst uw <a href='profile.php'>profiel</a> compleet";
-    } else {
+        //save data in temporary variables
+        $bank = $_POST['bank'];
+        $bankNummer = $_POST['bankNummer'];
+        $controleOptie = $_POST['controleOptie'];
+        $creditcard = $_POST['creditcard'];
 
-        $username = $user->first()->username;
-        $to = $user->first()->email;
-        $subject = "EenmaalAndermaal Wachtwoord aanpassen";
-        $message = '
+        // TODO: Error messages and other invalid register checks. (koen)
+        //check if user filled everything in
+        if (empty($bank) || empty($bankNummer) || empty($controleOptie) || empty($creditcard)) {
+            Message::info('sellerAccountCreation.func.php', array(
+                'm' => 'Vul alle velden in'
+            ));
+
+        } else {
+
+            //fills variables with information for mail function
+            $username = $user->first()->username;
+            $to = $user->first()->email;
+            $subject = "EenmaalAndermaal Wachtwoord aanpassen";
+            $message = '
         
         Beste ' . $username . ',
         
@@ -27,45 +37,48 @@ if (isset($_POST['updateBankgegevens'])) {
         https://iproject19.icasites.nl/sellerAccountCreation.php?id=' . Hash::make(Session::get('username')) . '
         Bent u dit niet neem dan contact op met beveiliging@eenmaalandermaal.nl
         ';
-        $stmt = Database::getInstance()->insert('Trader', array(
-            'username' => Session::get('username'),
-            'bank' => $bank,
-            'bankaccount' => Hash::make($bankNummer),
-            'controloption' => $controleOptie,
-            'creditcard' => Hash::make($creditcard)
-        ));
 
-        if ($onProduction) {
-            mail($to, $subject, $message);
-            Message::info("sellerAccountCreation.php", array(
-                'm' => 'Een email is verstuurd, bekijk ook je spambox!'
+            //insert bank details into database
+            $stmt = Database::getInstance()->insert('Trader', array(
+                'username' => Session::get('username'),
+                'bank' => $bank,
+                'bankaccount' => Hash::make($bankNummer),
+                'controloption' => $controleOptie,
+                'creditcard' => Hash::make($creditcard)
             ));
 
-        } else {
-            echo '<a href="sellerAccountCreation.php?id=' . Hash::make(Session::get('username')) . '">Klik Hier</a>';
+            //send mail or link depending on if its on a production server or not
+            if ($onProduction) {
+                mail($to, $subject, $message);
+                Message::info("sellerAccountCreation.php", array(
+                    'm' => 'Een email is verstuurd, bekijk ook je spambox!'
+                ));
+
+            } else {
+                echo '<a href="sellerAccountCreation.php?id=' . Hash::make(Session::get('username')) . '">Klik Hier</a>';
+            }
         }
     }
-}
 
 //insert into database
-if (isset($_GET['id'])) {
-    if (Hash::verify(Session::get('username'), $_GET['id'])) {
-        try {
-            $stmt = Database::getInstance()->update('Trader', 'username', Session::get('username'), array(
-                'activated' => true
-            ));
-            $stmt = Database::getInstance()->update('Users', 'username', Session::get('username'), array(
-                'trader' => true
-            ));
+    if (isset($_GET['id'])) {
+        if (Hash::verify(Session::get('username'), $_GET['id'])) {
+            try {
+                $stmt = Database::getInstance()->update('Trader', 'username', Session::get('username'), array(
+                    'activated' => true
+                ));
 
+                $stmt = Database::getInstance()->update('Users', 'username', Session::get('username'), array(
+                    'trader' => true
+                ));
 
-            Message::info('index.php', array(
-                'm' => 'Je bent succesvol geactiveerd als verkoper'
-            ));
+                Message::info('index.php', array(
+                    'm' => 'Je bent succesvol geactiveerd als verkoper'
+                ));
 
-        } catch
-        (PDOException $e) {
-            echo $e->getMessage();
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+            }
         }
     }
 }
