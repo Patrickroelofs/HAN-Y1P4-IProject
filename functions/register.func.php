@@ -51,7 +51,14 @@ if(isset($_POST['register-submit'])) {
             'email' => $email
         ));
 
-    } else if (strlen($password) < 6 || strlen($password_repeat < 6)) {
+    } else if (strlen($password) < 6) {
+        Message::error('index.php', array(
+            'm' => 'Wachtwoord te kort...',
+            'username' => $username,
+            'email' => $email
+        ));
+
+    } else if (strlen($password_repeat) < 6) {
         Message::error('index.php', array(
             'm' => 'Wachtwoord te kort...',
             'username' => $username,
