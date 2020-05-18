@@ -86,6 +86,28 @@ create table Users
 );
 GO
 
+
+
+
+-- ************************************** Admins
+-- create table Admins
+-- (
+--     username varchar(50)                    not null,
+--
+--     -- ***************** Primary Keys
+--     constraint PK_Admins primary key (username),
+--
+--     -- ***************** Foreign Keys
+--     constraint FK_Admins_1 foreign key (username) references Users (username)
+--         ON DELETE CASCADE
+--         ON UPDATE CASCADE
+-- );
+
+
+
+
+
+
 -- ************************************** Trader
 create table Trader
 (
@@ -94,6 +116,7 @@ create table Trader
     bankaccount   varchar(255)                not null,
     controloption varchar(255)                not null,
     creditcard    varchar(255)                not null,
+    activated     bit                         not null,
 
     -- ***************** Primary Keys
     constraint pk_Trader primary key (username),
