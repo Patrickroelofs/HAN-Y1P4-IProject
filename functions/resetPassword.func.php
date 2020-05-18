@@ -13,6 +13,7 @@ if (isset($_POST['veranderen'])) {
                 Database::getInstance()->update('Users', 'username', $uid, array(
                     'password' => Hash::make($password)
                 ));
+                Redirect::to('index.php');
             } else {
                 Redirect::to('index.php');
             }
@@ -20,8 +21,7 @@ if (isset($_POST['veranderen'])) {
             //Error during insert
             echo $e->getMessage();
         }
-    }
-    else {
+    } else {
         echo "Ingevulde wachtwoorden komen niet overeen";
     }
 }
@@ -32,11 +32,23 @@ if (isset($_POST['versturen'])) {
     if ($stmt->count() == 0) {
         echo "<p>Voer een geldig emailadres in.</p>";
     } else {
+        $username = $stmt->first()->username;
         $to = $stmt->first()->email;
-        $subject = "Wachtwoord aanpassen";
-        $message = "Hello world!";
-        //mail($to, $subject, $message);
-        echo '<a href="passwordreset.php?id=' . Hash::make($to) . '&uid=' . $stmt->first()->username . '">Klik hier</a>';
+        $subject = "EenmaalAndermaal Wachtwoord aanpassen";
+        $message = '
+        
+        Beste '.$username.',
+        
+        U heeft een verzoek gedaan om uw wachtwoord te veranderen.
+        Klik op de onderstaande link om uw wachtwoord te veranderen:
+        https://iproject19.icasites.nl/passwordchange.php?id='.Hash::make($to).'&uid='.$stmt->first()->username.'
+        Bent u dit niet neem dan contact op met example@gmail.com
+        ';
+        if ($onProduction) {
+            mail($to, $subject, $message);
+        } else {
+            echo '<a href="passwordchange.php?id=' . Hash::make($to) . '&uid=' . $stmt->first()->username . '">Klik hier</a>';
+        }
     }
 }
 ?>
