@@ -44,7 +44,8 @@ if ($user->first()->complete == 0) {
                 'bank' => $bank,
                 'bankaccount' => Hash::make($bankNummer),
                 'controloption' => $controleOptie,
-                'creditcard' => Hash::make($creditcard)
+                'creditcard' => Hash::make($creditcard),
+                'activated' => false
             ));
 
             //send mail or link depending on if its on a production server or not
