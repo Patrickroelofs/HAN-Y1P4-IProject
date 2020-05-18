@@ -72,7 +72,7 @@ else { ?>
                     <?php if(empty($usrInfo->first()->city)) {
                         echo "niet beschikbaar";
                     } else {
-                    echo $usrInfo->first()->city;
+                    echo ucfirst($usrInfo->first()->city);
                     }  ?>
                 </p>
 
