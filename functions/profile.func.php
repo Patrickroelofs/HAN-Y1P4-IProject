@@ -153,6 +153,11 @@ if(isset($_POST['delete-account-submit'])) {
 
     // Logged in, delete account from database
     if(Session::exists('username')){
+
+        //Get the users profilepicture and delete it
+        $stmt = Database::getInstance()->get('Users', array('username', '=', Session::get('username')));
+        unlink($stmt->first()->profilepicture);
+
         // if the user is a trader delete that user
         if($user->first()->trader == true){
             $trader = Database::getInstance()->delete('Trader', array('username', '=', Session::get('username')));
@@ -168,5 +173,8 @@ if(isset($_POST['delete-account-submit'])) {
     else {
         $emails = Database::getInstance()->delete('Users', array('email', '=', $email));
     }
-    Redirect::to('index.php');
+
+    Message::info('index.php', array(
+        'm' => 'Jouw account is succesvol verwijderd.'
+    ));
 }
