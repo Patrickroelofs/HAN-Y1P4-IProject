@@ -6,15 +6,15 @@ GO
 /* ***************************** */
 
 -- Drop tables
-drop table if exists ItemInCategory     GO
+drop table if exists ItemsInCategory    GO
 drop table if exists Files              GO
 drop table if exists Feedback           GO
 drop table if exists Bids               GO
-drop table if exists Users              GO
-drop table if exists Trader             GO
 drop table if exists Items              GO
-drop table if exists Country            GO
 drop table if exists Categories         GO
+drop table if exists Trader             GO
+drop table if exists Users              GO
+drop table if exists Country            GO
 
 /* ***************************** */
 /**        CREATE TABLES         */
