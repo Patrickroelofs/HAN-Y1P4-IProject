@@ -29,12 +29,12 @@
                     <div class="column">
                         <div class="ui fluid card">
                             <a class="image" href="product.php?p=<?= $result->id; ?>">
-                                <img src="http://iproject19.icasites.nl/pics/dt_1_<?= $result->thumbnail; ?>" alt="Foto van <?= $result->title; ?>">
+                                <img src="<?= ROOT . $result->thumbnail; ?>" alt="Foto van <?= $result->title; ?>">
                             </a>
                             <div class="content">
                                 <a class="header" href="product.php?p=<?= $result->id; ?>"><?= $result->title; ?></a>
                                 <div class="description">Tijd tot verkoop: <?= $timeLeft ?> dagen</div>
-                                <div class="description">Vanaf <span class="bold">€ <?= $result->startprice ?></span></div>
+                                <div class="description">Vanaf <span class="bold">€ <?= $result->price ?></span></div>
                             </div>
                         </div>
                     </div>
