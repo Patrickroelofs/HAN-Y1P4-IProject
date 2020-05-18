@@ -3,7 +3,7 @@
         <img width="48" height="48" alt="user profile picture" class="ui circular image" src="
         <?php
             if(!Session::exists('username') || empty($user->first()->profilepicture)) {
-                echo 'https://place-hold.it/64x64';
+                echo ROOT . 'upload/profilepictures/default.jpg';
             } else {
                 echo $user->first()->profilepicture;
             }

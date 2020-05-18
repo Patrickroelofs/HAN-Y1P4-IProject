@@ -26,3 +26,6 @@ upload/productpictures/*.png
 upload/productpictures/*.jpg
 upload/productpictures/*.gif
 upload/productpictures/*.jpeg
+
+!upload/profilepictures/admin.png
+!upload/profilepictures/default.jpg
