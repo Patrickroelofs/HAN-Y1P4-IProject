@@ -8,8 +8,8 @@ if(isset($_POST['auction-submit'])) {
 
     $token = md5(uniqid(Session::get('username'), true));
 
-    $titel = $_POST['titel'];
-    $beschrijving = $_POST['beschrijving'];
+    $titel = escape($_POST['titel']);
+    $beschrijving = escape($_POST['beschrijving']);
     $rubriek = $_POST['rubriek'];
     $startprijs = $_POST['startprijs'];
     $betalingswijzenaam = $_POST['betalingswijze'];
