@@ -150,8 +150,14 @@ if(isset($_POST['update-locatiegegevens-submit'])) {
 // Is submit pressed
 if(isset($_POST['delete-account-submit'])) {
     $email = $_POST['email'];
+
     // Logged in, delete account from database
     if(Session::exists('username')){
+        // if the user is a trader delete that user
+        if($user->first()->trader == true){
+            $trader = Database::getInstance()->delete('Trader', array('username', '=', Session::get('username')));
+        }
+
         $user = Database::getInstance()->delete('Users', array('username', '=', Session::get('username')));
 
         session_unset();
