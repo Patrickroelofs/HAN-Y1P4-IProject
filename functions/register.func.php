@@ -71,6 +71,13 @@ if(isset($_POST['register-submit'])) {
             'username' => $username,
             'email' => $email
         ));
+
+    } else if (strlen($username) >= 50) {
+        Message::error('index.php', array(
+            'm' => 'Gebruikersnaam te lang...',
+            'username' => $username,
+            'email' => $email
+        ));
     }
 
     else {
