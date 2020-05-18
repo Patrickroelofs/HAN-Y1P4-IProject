@@ -10,10 +10,10 @@ if(isset($_POST['updateBankgegevens'])) {
 
     // TODO: Error messages and other invalid register checks. (koen)
     if(empty($bank) || empty($bankNummer) || empty($controleOptie) || empty($creditcard)) {
-        echo 'Fill in all information';
+        echo 'Vul alle velden in';
     }
     else if($user->first()->complete == 0) {
-        echo 'Fill all your account information in first';
+        echo "Maak eerst uw <a href='profile.php'>profiel</a> compleet";
     }
 
     else {
