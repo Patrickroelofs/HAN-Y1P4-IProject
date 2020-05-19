@@ -8,7 +8,7 @@
 if(isset($_POST['register-submit'])) {
 
     // Save data in temporary variables
-    $username           =  escpae($_POST['username']);
+    $username           =  escape($_POST['username']);
     $email              =  escape($_POST['email']);
     $password           =  $_POST['password'];
     $password_repeat    =  $_POST['password_repeat'];
