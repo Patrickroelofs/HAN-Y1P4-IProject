@@ -9,7 +9,7 @@ include INCLUDES . 'head.inc.php';
             <?php
 
             //getting all bids
-            $yourBids = Database::getInstance()->query("SELECT * FROM Bids WHERE username = '".Session::get('username')."' ORDER BY date");
+            $yourBids = Database::getInstance()->query("SELECT * FROM Bids WHERE username = '".Session::get('username')."' ORDER BY date DESC");
 
             if ($yourBids->count() <= 0) {
                 // no data passed by get
