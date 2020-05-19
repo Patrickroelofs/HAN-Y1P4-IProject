@@ -13,7 +13,7 @@ include INCLUDES . 'head.inc.php';
 
             if ($yourBids->count() <= 0) {
                 // no data passed by get
-                echo "<p>U heeft geen lopende boden gedaan</p>";
+                echo "<p>U heeft geen biedingen gedaan</p>";
             }
 
             foreach($yourBids->results() as $yourBid) {
