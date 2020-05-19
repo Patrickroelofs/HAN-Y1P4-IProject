@@ -23,6 +23,15 @@ if ($endDate > $currentDate) {
     $timeLeft = 0;
 }
 
+// Figure out highest bid
+$bidHigh = Database::getInstance()->query("SELECT TOP 1 amount FROM Bids WHERE item = $productID ORDER BY amount DESC",array());
+
+// Check if bid is still open
+$bidClosed = Database::getInstance()->query("SELECT closed FROM Items WHERE id = $productID",array());
+
+// Check if bid exists in database
+$bidExists = Database::getInstance()->query("SELECT amount FROM Bids WHERE item = $productID",array());
+
 include FUNCTIONS . 'makeBid.func.php';
 include INCLUDES . 'modals/makeBid.inc.php';
 include INCLUDES . 'modals/contactseller.inc.php';
@@ -52,7 +61,15 @@ include INCLUDES . 'modals/contactseller.inc.php';
 
                         <p><?php echo $thisItem->first()->description ?></p>
 
-                        <p>v.a. <span class="bold">€<?php echo escape($thisItem->first()->price) ?></span> <br>
+                        <p>v.a. <span class="bold">€
+                                <?php
+                                if ($bidExists->count() >= 1) {
+                                    echo $bidHigh->first()->amount;
+                                } else {
+                                    echo escape($thisItem->first()->price);
+                                }
+                                ?>
+                            </span> <br>
                         <em>Exclusief €<?= escape($thisItem->first()->shippingcost) ?> verzendkosten</em></p>
 
                         <p><span class="bold">Tijd over om te bieden:</span> <?= $timeLeft ?> dagen</p>
