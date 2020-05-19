@@ -11,7 +11,13 @@ session_start();
 //Define folder structures
 $onProduction = false;
 
-define('ROOT', $_SERVER['DOCUMENT_ROOT']);
+if($onProduction == true) {
+    define('ROOT', $_SERVER['DOCUMENT_ROOT']);
+} else {
+    define('ROOT', '');
+}
+
+
 define('CORE', __DIR__);
 define('CLASSES', 'classes/');
 define('FUNCTIONS', 'functions/');
@@ -20,15 +26,15 @@ define('MODALS', INCLUDES . 'modals/');
 
 //Define inaccessible picture folder
 //TODO: check if it works
-define('PICTURES',  "https://iproject19.icasites.nl/");
+define('PICTURES',  "https://iproject19.icasites.nl/pics");
 
 //Load all classes
 spl_autoload_register(function($class) {
-    require_once ROOT . DIRECTORY_SEPARATOR . CLASSES . $class . '.class.php';
+    require_once CLASSES . $class . '.class.php';
 });
 
 //Include sanitize function
-include(ROOT . DIRECTORY_SEPARATOR . FUNCTIONS . 'sanitize.func.php');
+include(FUNCTIONS . 'sanitize.func.php');
 
 //Get userdata from current logged in user
 if(Session::exists('username')){
