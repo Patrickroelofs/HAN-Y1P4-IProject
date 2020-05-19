@@ -11,7 +11,7 @@ values
 ('Admin',
  'Administrator@eenmaalandermaal.nl',
  '$2y$10$qYlBcwQ5UC.iX5Mc8TLrnOp6wLRsX5nv5p4VTP2k9jsejO/RkJuJW',
- '/upload/admin.png',
+ '/upload/profilepictures/admin.png',
  'Administrator',
  'Eenmaal',
  '',
