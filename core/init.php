@@ -14,7 +14,7 @@ $onProduction = false;
 if($onProduction == true) {
     define('ROOT', 'https://iproject19.icasites.nl/');
 } else {
-    define('ROOT', '');
+    define('ROOT', $_SERVER['DOCUMENT_ROOT']);
 }
 
 define('CORE', __DIR__);
@@ -29,11 +29,11 @@ define('PICTURES',  "https://iproject19.icasites.nl/pics");
 
 //Load all classes
 spl_autoload_register(function($class) {
-    require_once CLASSES . $class . '.class.php';
+    require_once ROOT . DIRECTORY_SEPARATOR . CLASSES . $class . '.class.php';
 });
 
 //Include sanitize function
-include(FUNCTIONS . 'sanitize.func.php');
+include(ROOT . DIRECTORY_SEPARATOR . FUNCTIONS . 'sanitize.func.php');
 
 //Get userdata from current logged in user
 if(Session::exists('username')){
