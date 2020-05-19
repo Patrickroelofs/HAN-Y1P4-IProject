@@ -110,7 +110,12 @@ if(isset($_POST['auction-submit'])) {
                 ));
             }
 
-            Redirect::to('product.php?p='.$getItemID->first()->id.'');
+//            Redirect::to('product.php?p='.$getItemID->first()->id.'');
+
+            // succes message
+            Message::noticeMulti('product.php?p='.$getItemID->first()->id.'&', array(
+                'm' => 'Product succesvol toegevoegd'
+            ));
 
         } catch(PDOException $e){
             echo $e;
