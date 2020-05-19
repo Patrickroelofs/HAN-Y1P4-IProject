@@ -18,7 +18,10 @@ if (isset($_POST['update-inloggegevens-submit'])) {
         echo 'error - empty';
 
     } else if ($password !== $password_repeat) {
-        echo 'error - password not same';
+        // succes message
+        Message::error('profile.php', array(
+            'm' => 'Wachtwoorden zijn niet hetzelfde'
+        ));
     } else {
         //Insert into database
         try {
@@ -26,7 +29,10 @@ if (isset($_POST['update-inloggegevens-submit'])) {
                 'password' => Hash::make($password)
             ));
 
-            Redirect::to('profile.php');
+            // succes message
+            Message::notice('profile.php', array(
+                'm' => 'Wachtwoorden succesvol aangepast'
+            ));
 
         } catch (PDOException $e) {
             //Error during insert
@@ -90,7 +96,10 @@ if (isset($_POST['update-persoonsgegevens-submit'])) {
                 ));
             }
 
-            Redirect::to('profile.php');
+            // succes message
+            Message::notice('profile.php', array(
+                'm' => 'Uw persoonsgegevens zijn succesvol bijgewerkt'
+            ));
 
         } catch (PDOException $e) {
             //Error during insert
@@ -117,7 +126,9 @@ if (isset($_POST['update-locatiegegevens-submit'])) {
     // TODO: Error messages and other invalid register checks.
     if (empty($adresregel1) || empty($postcode) || empty($postcode) || empty($land)) {
         //error
-        echo 'error - empty';
+        Message::error('profile.php', array(
+            'm' => 'Vul alle locatiegegevens in'
+        ));
     } else {
         // Insert into database
         try {
@@ -131,7 +142,10 @@ if (isset($_POST['update-locatiegegevens-submit'])) {
                 //TODO: Compleet goed in database zetten
             ));
 
-            Redirect::to('profile.php');
+            // succes message
+            Message::notice('profile.php', array(
+                'm' => 'Uw locatiegegevens zijn succesvol bijgewerkt'
+            ));
 
         } catch (PDOException $e) {
             //Error during insert

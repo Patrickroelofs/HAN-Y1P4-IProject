@@ -48,12 +48,12 @@
                             </div>
                         </div>
                         <div class="field">
-                            <label for="password">Wachtwoord</label>
-                            <input type="password" name="password" id="password" placeholder="...">
+                            <label for="password">Wachtwoord *</label>
+                            <input required type="password" name="password" id="password">
                         </div>
                         <div class="field">
-                            <label for="password_repeat">Wachtwoord herhalen</label>
-                            <input type="password" name="password_repeat" id="password_repeat" placeholder="...">
+                            <label for="password_repeat">Wachtwoord herhalen *</label>
+                            <input required type="password" name="password_repeat" id="password_repeat">
                         </div>
                         <input class="ui button" type="submit" name="update-inloggegevens-submit" value="Inloggegevens aanpassen">
                     </form>
@@ -114,7 +114,7 @@
 
                             <label for="land">Land *</label>
                             <div class="ui fluid search selection dropdown">
-                                <input type="hidden" name="land">
+                                <input required type="hidden" name="land">
                                 <i class="dropdown icon"></i>
                                 <div class="default text">
                                     <?php if ($user->first()->complete == true) {
