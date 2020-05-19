@@ -11,7 +11,13 @@
 
     <main>
         <div class="ui container">
-            <img class="ui small circular image profilepicture" src="<?= escape($user->first()->profilepicture) ?>">
+            <img class="ui small circular image profilepicture" src="<?php
+            if(empty($user->first()->profilepicture)) {
+                echo ROOT . 'upload/profilepictures/default.jpg';
+            } else {
+                echo escape($user->first()->profilepicture);
+            }
+            ?>">
             <h1>Hoi,
                 <?php if(empty($user->first()->firstname) || empty($user->first()->lastname)) {
                     echo escape($user->first()->username);
