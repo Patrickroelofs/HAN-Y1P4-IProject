@@ -37,9 +37,9 @@ if (!$error) { ?>
                 <p> <?php
                     // Show current highest bid if product exists in bod table
                     if($bidExists->count() >= 1) {
-                        echo '<span class="bold">Hoogste bod: €' . $bidHigh->first()->amount . '</span>';
+                        echo '<span class="bold">Hoogste bod: €' . escape($bidHigh->first()->amount) . '</span>';
                     } else {
-                        echo '<span class="bold">Maak nu het startbod van €' . $stmt->first()->price . '!</span>';
+                        echo '<span class="bold">Maak nu het startbod van €' . escape($stmt->first()->price) . '!</span>';
                     }
                     ?></p>
 

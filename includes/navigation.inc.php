@@ -42,7 +42,7 @@
 
                                 // Echo each rubriek
                                 foreach ($categories->results() as $result) {
-                                    echo "<a class='item' data-tab='$result->id'>" . $result->name . "</a>";
+                                    echo "<a class='item' data-tab='$result->id'>" . escape($result->name) . "</a>";
                                 }
                                 ?>
                             </div>
@@ -59,7 +59,7 @@
                                 foreach($category->results() as $cat) {
                             ?>
                             <div class="column">
-                                <a href="category.php?cat=<?= $cat->id ?>"><?= $cat->name; ?></a>
+                                <a href="category.php?cat=<?= $cat->id ?>"><?= escape($cat->name); ?></a>
                             </div>
                             <?php } ?>
                             </div>

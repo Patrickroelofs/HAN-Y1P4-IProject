@@ -8,7 +8,7 @@
 if(isset($_POST['login-submit'])) {
 
     // Save data in temporary variables
-    $username           =  $_POST['username'];
+    $username           =  escape($_POST['username']);
     $password           =  $_POST['password'];
 
     // Get (hashed) password from $username

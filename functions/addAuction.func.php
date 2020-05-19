@@ -10,13 +10,13 @@ if(isset($_POST['auction-submit'])) {
 
     $titel = escape($_POST['titel']);
     $beschrijving = escape($_POST['beschrijving']);
-    $rubriek = $_POST['rubriek'];
-    $startprijs = $_POST['startprijs'];
-    $betalingswijzenaam = $_POST['betalingswijze'];
-    $betalingsintructies = $_POST['betalingsintructies'];
-    $looptijd = $_POST['looptijd'];
-    $verzendkosten = $_POST['verzendkosten'];
-    $verzendinstructies = $_POST['verzendinstructies'];
+    $rubriek = escape($_POST['rubriek']);
+    $startprijs = escape($_POST['startprijs']);
+    $betalingswijzenaam = escape($_POST['betalingswijze']);
+    $betalingsintructies = escape($_POST['betalingsintructies']);
+    $looptijd = escape($_POST['looptijd']);
+    $verzendkosten = escape($_POST['verzendkosten']);
+    $verzendinstructies = escape($_POST['verzendinstructies']);
 
     $countfiles = count(array_filter($_FILES['images']['name']));
     $acceptedfiles = array("png", "jpg");

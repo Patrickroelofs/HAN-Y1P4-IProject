@@ -10,10 +10,10 @@ if ($user->first()->complete == 0) {
     if (isset($_POST['updateBankgegevens'])) {
 
         //save data in temporary variables
-        $bank = $_POST['bank'];
-        $bankNummer = $_POST['bankNummer'];
-        $controleOptie = $_POST['controleOptie'];
-        $creditcard = $_POST['creditcard'];
+        $bank = escape($_POST['bank']);
+        $bankNummer = escape($_POST['bankNummer']);
+        $controleOptie = escape($_POST['controleOptie']);
+        $creditcard = escape($_POST['creditcard']);
 
         // TODO: Error messages and other invalid register checks. (koen)
         //check if user filled everything in
@@ -30,7 +30,7 @@ if ($user->first()->complete == 0) {
             $subject = "EenmaalAndermaal Wachtwoord aanpassen";
             $message = '
         
-        Beste ' . $username . ',
+        Beste ' . escape($username) . ',
         
         U heeft een verzoek gedaan om een verkoper te worden.
         Klik op de onderstaande link om een verkoper te worden:

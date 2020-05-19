@@ -12,10 +12,11 @@ session_start();
 $onProduction = false;
 
 if($onProduction == true) {
-    define('ROOT', 'https://iproject19.icasites.nl/');
+    define('ROOT', $_SERVER['DOCUMENT_ROOT']);
 } else {
     define('ROOT', '');
 }
+
 
 define('CORE', __DIR__);
 define('CLASSES', 'classes/');

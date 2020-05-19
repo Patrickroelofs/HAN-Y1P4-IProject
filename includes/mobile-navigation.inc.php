@@ -6,7 +6,7 @@
         if(!Session::exists('username') || empty($user->first()->profilepicture)) {
             echo ROOT . 'upload/profilepictures/default.jpg';
         } else {
-            echo $user->first()->profilepicture;
+            echo escape($user->first()->profilepicture);
         }
         ?>">
     </span>
@@ -31,9 +31,9 @@
             if(!Session::exists('username')) {
                 echo 'Gebruiker';
             } else if(empty($user->first()->firstname) || empty($user->first()->lastname)) {
-                echo $user->first()->username;
+                echo escape($user->first()->username);
             } else {
-                echo $user->first()->firstname . ' ' . $user->first()->lastname;
+                echo escape($user->first()->firstname) . ' ' . escape($user->first()->lastname);
             } ?>
         </span>
         </div>
@@ -49,6 +49,7 @@
             } else {
                 ?>
                 <a class="item" href="profile.php">Mijn Profiel</a>
+                <a class="item" href="yourbids.php">Jouw biedingen</a>
                 <?php
                 if($user->first()->trader == false) {
                     echo '<a class="item" href="selleraccountcreation.php">Word een verkoper</a>';

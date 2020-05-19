@@ -1,10 +1,12 @@
 <?php
 if (isset($_POST['veranderen'])) {
-    $password = $_POST['password'];
-    $password_repeat = $_POST['password_repeat'];
-    $email = $_GET['id'];
-    $uid = $_GET['uid'];
+    $password = escape($_POST['password']);
+    $password_repeat = escape($_POST['password_repeat']);
+    $email = escape($_GET['id']);
+    $uid = escape($_GET['uid']);
+
     $stmt = Database::getInstance()->query("SELECT * FROM Users WHERE username = '$uid'", array());
+
     // TODO: Error messages and other invalid register checks.
     if ($password == $password_repeat) {
         try {
@@ -32,7 +34,7 @@ if (isset($_POST['versturen'])) {
     if ($stmt->count() == 0) {
         echo "<p>Voer een geldig emailadres in.</p>";
     } else {
-        $username = $stmt->first()->username;
+        $username = escape($stmt->first()->username);
         $to = $stmt->first()->email;
         $subject = "EenmaalAndermaal Wachtwoord aanpassen";
         $message = '

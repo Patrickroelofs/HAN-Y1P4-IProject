@@ -19,7 +19,7 @@ if(isset($_POST['offer-submit'])) {
     $bidExists = Database::getInstance()->query("SELECT amount FROM Bids WHERE item = $productID",array());
 
     // Save data in temporary variables
-    $amount = $_POST['amount'];
+    $amount = escape($_POST['amount']);
 
     if($bidClosed->first()->closed == true) {
         echo "biedingen zijn gesloten";
