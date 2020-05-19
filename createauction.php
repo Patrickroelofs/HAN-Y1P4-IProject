@@ -21,21 +21,21 @@
 
         <form action="" method="post" enctype="multipart/form-data" class="ui large form addAuction">
             <div class="field">
-                <label for="titel">Titel</label>
+                <label for="titel">Titel *</label>
                 <input class="input" type="text" name="titel" id="titel" placeholder="Titel voor uw advertentie">
             </div>
 
             <div class="three fields">
                 <div class="field">
-                    <label for="startprijs">Startprijs</label>
+                    <label for="startprijs">Startprijs *</label>
                     <div class="ui labeled input">
                         <div class="ui label">€</div>
-                        <input type="number" min="0" name="startprijs" id="startprijs">
+                        <input required type="number" min="0" name="startprijs" id="startprijs">
                     </div>
                 </div>
 
                 <div class="field">
-                    <label for="looptijd">Looptijd</label>
+                    <label for="looptijd">Looptijd *</label>
                     <div class="ui selection dropdown fluid">
                         <input type="hidden" name="looptijd">
                         <i class="dropdown icon"></i>
@@ -51,19 +51,19 @@
                 </div>
 
                 <div class="field">
-                    <label for="images">Afbeeldingen toevoegen (maximaal 4)</label>
+                    <label for="images">Afbeeldingen toevoegen (maximaal 4) *</label>
                     <input type="file" multiple name="images[]" id="images">
                 </div>
             </div>
 
 
             <div class="field">
-                <label for="beschrijving">Beschrijving</label>
-                <textarea name="beschrijving" id="beschrijving"></textarea>
+                <label for="beschrijving">Beschrijving *</label>
+                <textarea required name="beschrijving" id="beschrijving"></textarea>
             </div>
 
             <div class="field">
-                <label for="rubriek">Rubriek</label>
+                <label for="rubriek">Rubriek *</label>
                 <div class="ui dropdown">
                     <input type="hidden" name="rubriek">
                     <span class="text">Klik hier om een rubriek te kiezen<i class="dropdown icon"></i></span>
@@ -93,7 +93,7 @@
 
             <div class="two fields">
                 <div class="field">
-                    <label for="betalingswijze">Betalingswijze</label>
+                    <label for="betalingswijze">Betalingswijze *</label>
                     <div class="ui selection dropdown fluid">
                         <input type="hidden" name="betalingswijze">
                         <i class="dropdown icon"></i>
@@ -113,10 +113,10 @@
 
             <div class="two fields">
                 <div class="field">
-                    <label for="verzendkosten">Verzendkosten</label>
+                    <label for="verzendkosten">Verzendkosten *</label>
                     <div class="ui labeled input">
                         <div class="ui label">€</div>
-                        <input type="number" min="0" name="verzendkosten" id="verzendkosten">
+                        <input required type="number" min="0" name="verzendkosten" id="verzendkosten">
                     </div>
                 </div>
 

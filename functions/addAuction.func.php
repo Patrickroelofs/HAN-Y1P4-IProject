@@ -32,26 +32,36 @@ if(isset($_POST['auction-submit'])) {
         $size = $_FILES['images']['size'][$i];
 
         if($size > 2097152) {
-            //TODO: Error message
-            Redirect::to('createauction.php?r=1');
+            // error message
+            Message::error('createauction.php', array(
+                'm' => 'Afbeeldingen zijn te groot'
+            ));
 
         } else if (!in_array($ext, $acceptedfiles)) {
-            //TODO: Error message
-            Redirect::to('createauction.php?r=2');
+            // error message
+            Message::error('createauction.php', array(
+                'm' => 'Afbeeldingsextensie niet geaccepteerd'
+            ));
         }
     }
 
     if($countfiles > 4) {
-        //TODO: Error message
-        Redirect::to('createauction.php?r=3');
+        // error message
+        Message::error('createauction.php', array(
+            'm' => 'Te veel afbeeldingen!'
+        ));
 
     } else if ($countfiles == 0) {
-        //TODO: Error message
-        Redirect::to('createauction.php?r=4');
+        // error message
+        Message::error('createauction.php', array(
+            'm' => 'U moet ten minste 1 afbeelding toevoegen'
+        ));
 
     } else if (empty($titel)) {
-        //TODO: Error message
-        Redirect::to('createauction.php?r=5');
+        // error message
+        Message::error('createauction.php', array(
+            'm' => 'U moet een titel toevoegen'
+        ));
 
     }
 
