@@ -13,14 +13,17 @@ if(isset($_POST['offer-submit'])) {
     // Save data in temporary variables
     $amount = escape($_POST['amount']);
 
-    if($bidClosed->first()->closed == true) {
-        echo "biedingen zijn gesloten";
-
-    } else if($amount <= $thisItem->first()->price){
-        echo "Bedrag lager dan de startprijs";
+    if($amount <= $thisItem->first()->price){
+        // error message
+        Message::errorMulti('product.php?p='.$productID.'', array(
+            'm' => 'Bedrag is lager dan de startprijs'
+        ));
 
     } else if ($bidExists->count() >= 1 && $amount <= $bidHigh->first()->amount) {
-        echo "Bedrag is te laag";
+        // error message
+        Message::errorMulti('product.php?p='.$productID.'', array(
+            'm' => 'Bedrag is te laag'
+        ));
 
     } else {
         //Insert into database
@@ -34,5 +37,10 @@ if(isset($_POST['offer-submit'])) {
             //Error during insert
             echo $e->getMessage();
         }
+
+        // succes message
+        Message::noticeMulti('product.php?p='.$productID.'', array(
+            'm' => 'Bieding succesvol'
+        ));
     }
 }
