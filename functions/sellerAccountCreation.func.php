@@ -18,7 +18,7 @@ if ($user->first()->complete == 0) {
         // TODO: Error messages and other invalid register checks. (koen)
         //check if user filled everything in
         if (empty($bank) || empty($bankNummer) || empty($controleOptie) || empty($creditcard)) {
-            Message::info('sellerAccountCreation.func.php', array(
+            Message::info('sellerAccountCreation.php', array(
                 'm' => 'Vul alle velden in'
             ));
 
@@ -73,8 +73,8 @@ if ($user->first()->complete == 0) {
                     'trader' => true
                 ));
 
-                Message::info('index.php', array(
-                    'm' => 'Je bent succesvol geactiveerd als verkoper'
+                Message::notice('createauction.php', array(
+                    'm' => 'U bent nu een verkoper!'
                 ));
 
             } catch (PDOException $e) {
