@@ -30,7 +30,7 @@
                     <label for="startprijs">Startprijs</label>
                     <div class="ui labeled input">
                         <div class="ui label">€</div>
-                        <input type="number" name="startprijs" id="startprijs">
+                        <input type="number" min="0" name="startprijs" id="startprijs">
                     </div>
                 </div>
 
@@ -116,7 +116,7 @@
                     <label for="verzendkosten">Verzendkosten</label>
                     <div class="ui labeled input">
                         <div class="ui label">€</div>
-                        <input type="number" name="verzendkosten" id="verzendkosten">
+                        <input type="number" min="0" name="verzendkosten" id="verzendkosten">
                     </div>
                 </div>
 
