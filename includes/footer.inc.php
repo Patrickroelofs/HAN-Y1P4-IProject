@@ -42,7 +42,7 @@
                 <div class="three wide column">
                     <h4 class="ui header">Informatie</h4>
                     <div class="ui link list">
-                        <a href="#" class="item">Over Ons</a>
+                        <a href="aboutUs.php" class="item">Over Ons</a>
                         <a href="#" class="item">Info en Hulp</a>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                 <div class="seven wide column">
                     <h4 class="ui header">Jouw online Veilingsite.</h4>
                     <p>Je hoor het! U bevindt zich momenteel op de nieuwe veilingsite genaamd EenmaalAndermaal. Hier kunt u producten aanschaffen en ook zelf producten veilen.</p>
-                    <p>Deze site is ontwikkeld door het bedrijf <a class="item" href="#">iConcepts</a></p>
+                    <p>Deze site is ontwikkeld door het bedrijf <a class="item" href="aboutUs.php">iConcepts</a></p>
                 </div>
             </div>
             <div class="ui section divider"></div>
@@ -76,8 +76,8 @@
                     <?php if (Session::exists('username')) {
                         echo '<a class="item" href="removeaccount.php">Verwijder Account</a>';
                     } ?>
-                    <p class="vertical-margin-6">iConcepts (EenmaalAndermaal) is niet aansprakelijk voor (gevolg)schade die voortkomt uit het gebruik van deze site. <br>Copyright © 2020 EenmaalAndermaal B.V.</p>
                 </div>
+                <p>iConcepts (EenmaalAndermaal) is niet aansprakelijk voor (gevolg)schade die voortkomt uit het gebruik van deze site. <br>Copyright © 2020 EenmaalAndermaal B.V.</p>
             </div>
         </div>
     </section>
