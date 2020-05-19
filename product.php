@@ -93,18 +93,16 @@ include INCLUDES . 'modals/contactseller.inc.php';
                 </div>
             </div>
 
+            <?php
+            $randomProducts = Database::getInstance()->query("SELECT TOP 5 * FROM Items WHERE NOT id = $productID ORDER BY NEWID()");
+
+            if($randomProducts->count() >= 1) {
+            ?>
             <div class="ui segment">
                 <h2>Meer zoals</h2>
                 <!-- Includes the functions random products to pick -->
                 <div class="ui stackable five column grid">
                     <?php
-                    $randomProducts = Database::getInstance()->query("SELECT TOP 5 * FROM Items WHERE NOT id = $productID ORDER BY NEWID()");
-
-                    if ($randomProducts->count() < 1) {
-                        // no data passed by get
-                        echo "<p>Geen resultaten</p>";
-                    }
-
                     foreach($randomProducts->results() as $result) { ?>
                         <div class="column">
                             <div class="ui fluid card product productcards">
@@ -121,7 +119,7 @@ include INCLUDES . 'modals/contactseller.inc.php';
                     <?php } ?>
                 </div>
             </div>
-
+        <?php } ?>
         </div>
     </main>
 
