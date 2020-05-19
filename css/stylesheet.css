@@ -91,6 +91,9 @@ nav .ui.input > input {
     height: 150px;
     object-fit: cover;
 }
+.changeprice{
+    margin-top: 32px;
+}
 
 
 /* --- Category dropdown in Category.php ---------------- */

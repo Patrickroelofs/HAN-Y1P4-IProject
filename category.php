@@ -3,6 +3,10 @@
     include INCLUDES . 'head.inc.php';
 
     $selectedCategory = $_GET['cat'];
+
+    if(empty($_GET['cat'])) {
+        Redirect::to("index.php");
+    }
 ?>
 
 <main>
@@ -37,7 +41,7 @@
                 <label for="cat-toggle"></label>
                 <?php } ?>
 
-                <form class="ui form" method="post">
+                <form class="ui form changeprice" method="post">
                     <h3>Prijs aanpassen:</h3>
                     <div class="field">
                         <label for="min-price">Minimum</label>
