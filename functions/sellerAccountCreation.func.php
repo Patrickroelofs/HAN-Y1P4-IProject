@@ -30,7 +30,7 @@ if ($user->first()->complete == 0) {
             $subject = "EenmaalAndermaal Wachtwoord aanpassen";
             $message = '
         
-        Beste ' . $username . ',
+        Beste ' . escape($username) . ',
         
         U heeft een verzoek gedaan om een verkoper te worden.
         Klik op de onderstaande link om een verkoper te worden:

@@ -34,7 +34,7 @@ if (isset($_POST['versturen'])) {
     if ($stmt->count() == 0) {
         echo "<p>Voer een geldig emailadres in.</p>";
     } else {
-        $username = $stmt->first()->username;
+        $username = escape($stmt->first()->username);
         $to = $stmt->first()->email;
         $subject = "EenmaalAndermaal Wachtwoord aanpassen";
         $message = '

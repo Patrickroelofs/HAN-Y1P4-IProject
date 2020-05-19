@@ -11,12 +11,12 @@
 
     <main>
         <div class="ui container">
-            <img class="ui small circular image profilepicture" src="<?= $user->first()->profilepicture ?>">
+            <img class="ui small circular image profilepicture" src="<?= escape($user->first()->profilepicture) ?>">
             <h1>Hoi,
                 <?php if(empty($user->first()->firstname) || empty($user->first()->lastname)) {
-                    echo $user->first()->username;
+                    echo escape($user->first()->username);
                 } else {
-                    echo $user->first()->firstname . ' ' . $user->first()->lastname;
+                    echo escape($user->first()->firstname) . ' ' . escape($user->first()->lastname);
                 }
                 ?>
             </h1>
@@ -32,13 +32,13 @@
                         <div class="field">
                             <label for="username">Gebruikersnaam</label>
                             <div class="ui disabled input">
-                                <input type="text" name="username" id="username" placeholder="<?= $user->first()->username ?>">
+                                <input type="text" name="username" id="username" placeholder="<?= escape($user->first()->username) ?>">
                             </div>
                         </div>
                         <div class="field">
                             <label for="email">Emailadres</label>
                             <div class="ui disabled input">
-                                <input type="email" name="email" id="email" placeholder="<?= $user->first()->email ?>">
+                                <input type="email" name="email" id="email" placeholder="<?= escape($user->first()->email) ?>">
                             </div>
                         </div>
                         <div class="field">
@@ -62,18 +62,18 @@
                         </div>
                         <div class="field">
                             <label for="firstname">Voornaam *</label>
-                            <input required type="text" name="firstname" id="firstname" placeholder="<?= $user->first()->firstname ?>" value="<?= $user->first()->firstname ?>">
+                            <input required type="text" name="firstname" id="firstname" placeholder="<?= escape($user->first()->firstname) ?>" value="<?= escape($user->first()->firstname) ?>">
                         </div>
                         <div class="field">
                             <label for="lastname">Achternaam *</label>
-                            <input required type="text" name="lastname" id="lastname" placeholder="<?= $user->first()->lastname ?>" value="<?= $user->first()->lastname ?>">
+                            <input required type="text" name="lastname" id="lastname" placeholder="<?= escape($user->first()->lastname) ?>" value="<?= escape($user->first()->lastname) ?>">
                         </div>
                         <div class="field">
                             <label for="dob">Geboortedatum  *</label>
                             <div class="ui calendar" id="dob_calendar">
                                 <div class="ui input left icon">
                                     <i class="calendar icon"></i>
-                                    <input required name="dob" type="text" autocomplete="off" placeholder="<?= $user->first()->birthdate ?>" value="<?= $user->first()->birthdate ?>">
+                                    <input required name="dob" type="text" autocomplete="off" placeholder="<?= escape($user->first()->birthdate) ?>" value="<?= escape($user->first()->birthdate) ?>">
                                 </div>
                             </div>
                         </div>
@@ -86,19 +86,19 @@
                         <h2>Locatiegegevens</h2>
                         <div class="field">
                             <label for="adresregel1">Adresregel 1 *</label>
-                            <input required type="text" name="adresregel1" id="adresregel1" placeholder="<?= $user->first()->address1 ?>" value="<?= $user->first()->address1 ?>">
+                            <input required type="text" name="adresregel1" id="adresregel1" placeholder="<?= escape($user->first()->address1) ?>" value="<?= escape($user->first()->address1) ?>">
                         </div>
                         <div class="field">
                             <label for="adresregel2">Adresregel 2</label>
-                            <input type="text" name="adresregel2" id="adresregel2" placeholder="<?= $user->first()->address2 ?>" value="<?= $user->first()->address2 ?>">
+                            <input type="text" name="adresregel2" id="adresregel2" placeholder="<?= escape($user->first()->address2) ?>" value="<?= escape($user->first()->address2) ?>">
                         </div>
                         <div class="field">
                             <label for="postcode">Postcode *</label>
-                            <input required type="text" name="postcode" id="postcode" placeholder="<?= $user->first()->postalcode ?>" value="<?= $user->first()->postalcode ?>">
+                            <input required type="text" name="postcode" id="postcode" placeholder="<?= escape($user->first()->postalcode) ?>" value="<?= escape($user->first()->postalcode) ?>">
                         </div>
                         <div class="field">
                             <label for="plaatsnaam">Plaatsnaam *</label>
-                            <input required type="text" name="plaatsnaam" id="plaatsnaam" placeholder="<?= $user->first()->city ?>" value="<?= $user->first()->city ?>">
+                            <input required type="text" name="plaatsnaam" id="plaatsnaam" placeholder="<?= escape($user->first()->city) ?>" value="<?= escape($user->first()->city) ?>">
                         </div>
                         <div class="field">
 
@@ -113,7 +113,7 @@
 
                                     foreach($countries->results() as $country) {
                                             ?>
-                                            <div class="item" data-value="<?= $country->code ?>"><?= $country->name ?></div>
+                                            <div class="item" data-value="<?= $country->code ?>"><?= escape($country->name) ?></div>
                                             <?php
                                         }
                                     ?>

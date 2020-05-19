@@ -2,7 +2,7 @@
 // Retrieve correct user
 $sellerName = Database::getInstance()->query("SELECT trader FROM Items WHERE id = $productID", array());
 
-$sellerName = $sellerName->first()->trader;
+$sellerName = escape($sellerName->first()->trader);
 
 // Retrieve user info
 $usrInfo = Database::getInstance()->query("SELECT * FROM Users WHERE username = '$sellerName'", array());
@@ -61,18 +61,18 @@ else { ?>
             </div>
             <div class="description">
                 <div class="ui header">
-                    <?php echo $usrInfo->first()->username ?>
+                    <?php echo escape($usrInfo->first()->username) ?>
                 </div>
 
                 <p><span class="bold">Emailadres: </span>
-                <a href="<?php echo 'mailto:' .$usrInfo->first()->email ?>">
-                    <?php echo $usrInfo->first()->email ?></a></p>
+                <a href="<?php echo 'mailto:' .escape($usrInfo->first()->email) ?>">
+                    <?php echo escape($usrInfo->first()->email) ?></a></p>
 
                 <p><span class="bold">Plaats: </span>
-                    <?php if(empty($usrInfo->first()->city)) {
+                    <?php if(empty(escape($usrInfo->first()->city))) {
                         echo "niet beschikbaar";
                     } else {
-                    echo ucfirst($usrInfo->first()->city);
+                    echo ucfirst(escape($usrInfo->first()->city));
                     }  ?>
                 </p>
 
@@ -80,7 +80,7 @@ else { ?>
                     <?php if(empty($usrInfo->first()->phone)) {
                         echo "niet beschikbaar";
                     } else {
-                        echo $usrInfo->first()->phone;
+                        echo escape($usrInfo->first()->phone);
                     }  ?>
                 </p>
             </div>
