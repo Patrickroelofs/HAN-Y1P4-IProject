@@ -62,7 +62,8 @@
                 </div>
                 <div class="seven wide column">
                     <h4 class="ui header">Jouw online Veilingsite.</h4>
-                    <p>Je hoor het! U bevindt zich momenteel op de nieuwe veilingsite genaamd EenmaalAndermaal. Hier kunt u producten aanschaffen en ook zelf producten veilen.</p>
+                    <p>Je hoor het! U bevindt zich momenteel op de nieuwe veilingsite genaamd EenmaalAndermaal. Hier
+                        kunt u producten aanschaffen en ook zelf producten veilen.</p>
                     <p>Deze site is ontwikkeld door het bedrijf <a class="item" href="aboutUs.php">iConcepts</a></p>
                 </div>
             </div>
@@ -73,11 +74,10 @@
                     <a class="item" href="#">Algemene voorwaarden</a>
                     <a class="item" href="#">Privacy</a>
                     <a class="item" href="#">Cookies</a>
-                    <?php if (Session::exists('username')) {
-                        echo '<a class="item" href="removeaccount.php">Verwijder Account</a>';
-                    } ?>
+                    <a class="item" href="removeaccount.php">Verwijder Account</a>
                 </div>
-                <p>iConcepts (EenmaalAndermaal) is niet aansprakelijk voor (gevolg)schade die voortkomt uit het gebruik van deze site. <br>Copyright © 2020 EenmaalAndermaal B.V.</p>
+                <p>iConcepts (EenmaalAndermaal) is niet aansprakelijk voor (gevolg)schade die voortkomt uit het gebruik
+                    van deze site. <br>Copyright © 2020 EenmaalAndermaal B.V.</p>
             </div>
         </div>
     </section>

@@ -16,9 +16,16 @@ include FUNCTIONS . 'profile.func.php';
 
                             <!-- Ingelogd -->
                             <?php if (Session::exists('username')) { ?>
-                                <input class="ui negative button" type="submit" name="delete-account-submit" value="Verwijder je Account">
+                                <input class="ui negative button" type="submit" name="delete-account-submit"
+                                       value="Verwijder je Account">
                             <?php } else {
-                                Redirect::to('index.php');
+                                ?>
+                                <div clas="ui input">
+                                    <input type="email" name="email" id="email" placeholder="email">
+                                    <input class="ui negative button" type="submit" name="delete-account-submit"
+                                           value="Verwijder je Account">
+                                </div>
+                                <?php
                             } ?>
                         </div>
                     </form>

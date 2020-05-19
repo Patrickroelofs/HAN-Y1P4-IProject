@@ -5,32 +5,30 @@
 //======================================================================
 
 // Is submit pressed
-if(isset($_POST['update-inloggegevens-submit'])) {
+if (isset($_POST['update-inloggegevens-submit'])) {
 
     // Save data in temporary variables
     // Inloggegevens
-    $password           =   $_POST['password'];
-    $password_repeat    =   $_POST['password_repeat'];
+    $password = $_POST['password'];
+    $password_repeat = $_POST['password_repeat'];
 
     // TODO: Error messages and other invalid register checks.
-    if(empty($password) || empty($password_repeat)){
+    if (empty($password) || empty($password_repeat)) {
         //error
         echo 'error - empty';
 
-    } else if($password !== $password_repeat) {
+    } else if ($password !== $password_repeat) {
         echo 'error - password not same';
-    }
-
-    else {
+    } else {
         //Insert into database
-        try{
+        try {
             $stmt = Database::getInstance()->update('Users', 'username', Session::get('username'), array(
                 'password' => Hash::make($password)
             ));
 
             Redirect::to('profile.php');
 
-        } catch(PDOException $e){
+        } catch (PDOException $e) {
             //Error during insert
             echo $e->getMessage();
         }
@@ -42,48 +40,46 @@ if(isset($_POST['update-inloggegevens-submit'])) {
 //======================================================================
 
 // Is submit pressed
-if(isset($_POST['update-persoonsgegevens-submit'])) {
+if (isset($_POST['update-persoonsgegevens-submit'])) {
 
     // Save data in temporary variables
     //Persoonsgegevens
-    $firstname          =   escape($_POST['firstname']);
-    $lastname           =   escape($_POST['lastname']);
-    $dob                =   $_POST['dob'];
-    $profilepicture     =   $_FILES['profilepicture']['name'];
-    $phone              =   $_POST['phone'];
+    $firstname = escape($_POST['firstname']);
+    $lastname = escape($_POST['lastname']);
+    $dob = $_POST['dob'];
+    $profilepicture = $_FILES['profilepicture']['name'];
+    $phone = $_POST['phone'];
 
     //Randomly hash filename
     $ext = pathinfo($_FILES['profilepicture']['name'], PATHINFO_EXTENSION);
     $filename = md5(basename($profilepicture));
     $target = 'upload/profilepictures/' . $filename . '.' . $ext;
-    $supported_image = array('gif','jpg','jpeg','png');
-    
+    $supported_image = array('gif', 'jpg', 'jpeg', 'png');
+
 
     // TODO: Error messages and other invalid register checks.
-    if(empty($firstname) || empty($lastname) || empty($dob) || empty($phone)) {
+    if (empty($firstname) || empty($lastname) || empty($dob) || empty($phone)) {
         //error
         echo 'error - empty';
-    } if(!in_array($ext, $supported_image)) {
-        echo 'error - unsupported file format';
     }
-
-    else {
+    if (!in_array($ext, $supported_image)) {
+        echo 'error - unsupported file format';
+    } else {
         // Insert into database
-        try{
+        try {
             //Move uploaded profilepicture to folder
             //TODO: Secure image upload
             move_uploaded_file($_FILES['profilepicture']['tmp_name'], $target);
 
             // If there is no profile picture uploaded
-            if(empty($profilepicture)) {
+            if (empty($profilepicture)) {
                 $stmt = Database::getInstance()->update('Users', 'username', Session::get('username'), array(
                     'firstname' => $firstname,
                     'lastname' => $lastname,
                     'birthdate' => $dob,
                     'phone' => $phone
                 ));
-            }
-            // If there is a profile picture uploaded
+            } // If there is a profile picture uploaded
             else {
                 $stmt = Database::getInstance()->update('Users', 'username', Session::get('username'), array(
                     'firstname' => $firstname,
@@ -96,7 +92,7 @@ if(isset($_POST['update-persoonsgegevens-submit'])) {
 
             Redirect::to('profile.php');
 
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
             //Error during insert
             echo $e->getMessage();
         }
@@ -108,23 +104,21 @@ if(isset($_POST['update-persoonsgegevens-submit'])) {
 //======================================================================
 
 // Is submit pressed
-if(isset($_POST['update-locatiegegevens-submit'])) {
+if (isset($_POST['update-locatiegegevens-submit'])) {
 
     // Save data in temporary variables
     //Locatiegegevens
-    $adresregel1        =   escape($_POST['adresregel1']);
-    $adresregel2        =   escape($_POST['adresregel2']);
-    $postcode           =   escape($_POST['postcode']);
-    $plaatsnaam         =   escape($_POST['plaatsnaam']);
-    $land               =   $_POST['land'];
+    $adresregel1 = escape($_POST['adresregel1']);
+    $adresregel2 = escape($_POST['adresregel2']);
+    $postcode = escape($_POST['postcode']);
+    $plaatsnaam = escape($_POST['plaatsnaam']);
+    $land = $_POST['land'];
 
     // TODO: Error messages and other invalid register checks.
-    if(empty($adresregel1) || empty($postcode) || empty($postcode) || empty($land)){
+    if (empty($adresregel1) || empty($postcode) || empty($postcode) || empty($land)) {
         //error
         echo 'error - empty';
-    }
-
-    else {
+    } else {
         // Insert into database
         try {
             $stmt = Database::getInstance()->update('Users', 'username', Session::get('username'), array(
@@ -139,7 +133,7 @@ if(isset($_POST['update-locatiegegevens-submit'])) {
 
             Redirect::to('profile.php');
 
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
             //Error during insert
             echo $e->getMessage();
         }
@@ -151,18 +145,18 @@ if(isset($_POST['update-locatiegegevens-submit'])) {
 //======================================================================
 
 // Is submit pressed
-if(isset($_POST['delete-account-submit'])) {
+if (isset($_POST['delete-account-submit'])) {
     $email = $_POST['email'];
 
     // Logged in, delete account from database
-    if(Session::exists('username')){
+    if (Session::exists('username')) {
 
         //Get the users profilepicture and delete it
         $stmt = Database::getInstance()->get('Users', array('username', '=', Session::get('username')));
         unlink($stmt->first()->profilepicture);
 
         // if the user is a trader delete that user
-        if($user->first()->trader == true){
+        if ($user->first()->trader == true) {
             $trader = Database::getInstance()->delete('Trader', array('username', '=', Session::get('username')));
         }
 
@@ -170,14 +164,60 @@ if(isset($_POST['delete-account-submit'])) {
 
         session_unset();
         session_destroy();
-    }
 
-    // Logged out, delete account from database
+        Message::notice('index.php', array(
+            'm' => 'Uw account is succesvol verwijderd'
+        ));
+        
+    } // Logged out, delete account from database
     else {
-        $emails = Database::getInstance()->delete('Users', array('email', '=', $email));
+        if ($onProduction) {
+            $stmt = Database::getInstance()->query("SELECT * FROM Users WHERE email = '" . escape($email) . "'");
+            $username = escape($stmt->first()->username);
+            $to = escape($stmt->first()->email);
+            $subject = "EenmaalAndermaal Account Verwijderen";
+            $message = '
+
+        Beste ' . escape($username) . ',
+
+        U heeft een verzoek gedaan om uw EenmaalAndermaal account te verwijderen.
+        Klik op de onderstaande link om uw gegevens te verwijderen:
+        https://iproject19.icasites.nl/removeaccount.php?rmid=' . Hash::make(escape($username)) . '
+        Bent u dit niet neem dan contact op met beveiliging@eenmaalandermaal.nl
+        ';
+
+            mail($to, $subject, $message);
+            Message::info("removeaccount.php", array(
+                'm' => 'Een email is verstuurd, bekijk ook je spambox!'
+            ));
+        } else {
+            $stmt = Database::getInstance()->query("SELECT * FROM Users WHERE email = '" . escape($email) . "'");
+            $username = escape($stmt->first()->username);
+            $email = escape($stmt->first()->email);
+            echo '<a href="removeaccount.php?rmid=' . Hash::make(escape($email)) . '&rmuid=' . escape($username) . '">Klik Hier</a>';
+        }
     }
 
-    Message::info('index.php', array(
-        'm' => 'Jouw account is succesvol verwijderd.'
-    ));
+}
+
+if (isset($_GET['rmid'])) {
+
+    $stmt = Database::getInstance()->get('Users', array('username', '=', $_GET['rmuid']));
+
+    if (Hash::verify($stmt->first()->email, $_GET['rmid'])) {
+
+        unlink($stmt->first()->profilepicture);
+
+        // if the user is a trader delete that user
+        if ($stmt->first()->trader == true) {
+            $trader = Database::getInstance()->delete('Trader', array('username', '=', $_GET['rmuid']));
+        }
+
+        $user = Database::getInstance()->delete('Users', array('username', '=', $_GET['rmuid']));
+
+        Message::notice('index.php', array(
+            'm' => 'Uw account is succesvol verwijderd'
+        ));
+    }
+
 }
