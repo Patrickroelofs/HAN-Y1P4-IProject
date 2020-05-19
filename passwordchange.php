@@ -1,14 +1,11 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/core/init.php';
-if (Session::exists('username')) {
-    Redirect::to('index.php');
-}
 include INCLUDES . 'head.inc.php';
 include FUNCTIONS . 'resetPassword.func.php';
 
 ?>
 
-<?php if (isset($_GET['id'])) { ?>
+<?php if (isset($_GET['pid'])) { ?>
     <main>
         <div class="ui container">
             <form class="ui form" method="post" action="">

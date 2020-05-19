@@ -1,13 +1,15 @@
 <?php
+//check if user pressed change password
 if (isset($_POST['veranderen'])) {
-    $password = escape($_POST['password']);
-    $password_repeat = escape($_POST['password_repeat']);
-    $email = escape($_GET['id']);
+    $password = $_POST['password'];
+    $password_repeat = $_POST['password_repeat'];
+    $email = $_GET['pid'];
     $uid = escape($_GET['uid']);
 
     $stmt = Database::getInstance()->query("SELECT * FROM Users WHERE username = '$uid'", array());
 
     // TODO: Error messages and other invalid register checks.
+    //check if email is correct and then add new password to database
     if ($password == $password_repeat) {
         try {
             if (Hash::verify($stmt->first()->email, $email)) {
@@ -27,10 +29,12 @@ if (isset($_POST['veranderen'])) {
         echo "Ingevulde wachtwoorden komen niet overeen";
     }
 }
-
+//check if user pressed send mail
 if (isset($_POST['versturen'])) {
     $query = $_POST['email'];
+
     $stmt = Database::getInstance()->query("SELECT * FROM Users WHERE email = '$query'", array());
+    //check if the emailadres is in the database and that it is valid
     if ($stmt->count() == 0) {
         echo "<p>Voer een geldig emailadres in.</p>";
     } else {
@@ -43,9 +47,11 @@ if (isset($_POST['versturen'])) {
         
         U heeft een verzoek gedaan om uw wachtwoord te veranderen.
         Klik op de onderstaande link om uw wachtwoord te veranderen:
-        https://iproject19.icasites.nl/passwordchange.php?id='.Hash::make($to).'&uid='.$stmt->first()->username.'
+        https://iproject19.icasites.nl/passwordchange.php?pid='.Hash::make($to).'&uid='.$stmt->first()->username.'
         Bent u dit niet neem dan contact op met beveiliging@eenmaalandermaal.nl
         ';
+
+        //check if on production server and use mail function otherwise use echo as verification
         if ($onProduction) {
             mail($to, $subject, $message);
             Message::info("passwordchange.php", array(
@@ -53,8 +59,9 @@ if (isset($_POST['versturen'])) {
             ));
 
         } else {
-            echo '<a href="passwordchange.php?id=' . Hash::make($to) . '&uid=' . $stmt->first()->username . '">Klik hier</a>';
+            echo '<a href="passwordchange.php?pid=' . Hash::make($to) . '&uid=' . $stmt->first()->username . '">Klik hier</a>';
         }
     }
 }
+
 ?>

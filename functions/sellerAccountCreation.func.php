@@ -24,20 +24,6 @@ if ($user->first()->complete == 0) {
 
         } else {
 
-            //fills variables with information for mail function
-            $username = $user->first()->username;
-            $to = $user->first()->email;
-            $subject = "EenmaalAndermaal Wachtwoord aanpassen";
-            $message = '
-        
-        Beste ' . escape($username) . ',
-        
-        U heeft een verzoek gedaan om een verkoper te worden.
-        Klik op de onderstaande link om een verkoper te worden:
-        https://iproject19.icasites.nl/sellerAccountCreation.php?id=' . Hash::make(Session::get('username')) . '
-        Bent u dit niet neem dan contact op met beveiliging@eenmaalandermaal.nl
-        ';
-
             //insert bank details into database
             $stmt = Database::getInstance()->insert('Trader', array(
                 'username' => Session::get('username'),
@@ -50,6 +36,20 @@ if ($user->first()->complete == 0) {
 
             //send mail or link depending on if its on a production server or not
             if ($onProduction) {
+                //fills variables with information for mail function
+                $username = escape($user->first()->username);
+                $to = escape ($user->first()->email);
+                $subject = "EenmaalAndermaal Wachtwoord aanpassen";
+                $message = '
+        
+        Beste ' . escape($username) . ',
+        
+        U heeft een verzoek gedaan om een verkoper te worden.
+        Klik op de onderstaande link om een verkoper te worden:
+        https://iproject19.icasites.nl/sellerAccountCreation.php?id=' . Hash::make(Session::get('username')) . '
+        Bent u dit niet neem dan contact op met beveiliging@eenmaalandermaal.nl
+        ';
+
                 mail($to, $subject, $message);
                 Message::info("sellerAccountCreation.php", array(
                     'm' => 'Een email is verstuurd, bekijk ook je spambox!'

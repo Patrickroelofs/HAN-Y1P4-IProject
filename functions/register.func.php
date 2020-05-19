@@ -8,10 +8,10 @@
 if (isset($_POST['register-submit'])) {
 
     // Save data in temporary variables
-    $username           =  escape($_POST['username']);
-    $email              =  escape($_POST['email']);
-    $password           =  $_POST['password'];
-    $password_repeat    =  $_POST['password_repeat'];
+    $username = escape($_POST['username']);
+    $email = escape($_POST['email']);
+    $password = $_POST['password'];
+    $password_repeat = $_POST['password_repeat'];
 
     // Get usernames if its already taken
     $users = Database::getInstance()->get('Users', array('username', '=', $username));
@@ -88,7 +88,7 @@ if (isset($_POST['register-submit'])) {
             ));
 
             Session::put('username', $username);
-            Redirect::to('index.php?doorsturen=1');
+            Redirect::to('index.php?verifieren=1');
 
         } catch (PDOException $e) {
             //Error during insert
@@ -97,42 +97,47 @@ if (isset($_POST['register-submit'])) {
     }
 }
 
-if (isset($_GET['doorsturen'])) {
+//TODO make it so that the user can't continually request for emails by typing in verifiëren=1 in the search bar
+if (isset($_GET['verifieren'])) {
 
-    //fills variables with information for mail function
-    $username = $user->first()->username;
-    $to = $user->first()->email;
-    $subject = "EenmaalAndermaal Wachtwoord aanpassen";
-    $message = '
+    //check if on production server and use mail function  otherwise use echo as verification
+    if ($onProduction) {
+
+        //fills variables with information for mail function
+        $username = escape($user->first()->username);
+        $to = escape($user->first()->email);
+        $subject = "EenmaalAndermaal Account verifiëren";
+        $message = '
         
-        Beste ' . escape($username) . ',
+        Beste ' . $username . ',
         
         U heeft een verzoek gedaan om een gebruiker te worden op EenmaalAndermaal.
         Klik op de onderstaande link om uw account te bevestigen.
-        https://iproject19.icasites.nl/sellerAccountCreation.php?id=' . Hash::make(Session::get('username')) . '
+        https://iproject19.icasites.nl/index.php?rid=' . Hash::make(Session::get('username')) . '
         Bent u dit niet neem dan contact op met beveiliging@eenmaalandermaal.nl
         ';
 
-
-    if ($onProduction) {
         mail($to, $subject, $message);
-        Message::info("sellerAccountCreation.php", array(
+        Message::notice("sellerAccountCreation.php", array(
             'm' => 'Een email is verstuurd, bekijk ook je spambox!'
         ));
 
     } else {
-        echo '<a href="index.php?id=' . Hash::make(Session::get('username')) . '">Klik Hier</a>';
+        echo '<a href="index.php?rid=' . Hash::make(Session::get('username')) . '">Klik Hier</a>';
     }
 }
 
 //insert into database
-if (isset($_GET['id'])) {
-    if (Hash::verify(Session::get('username'), $_GET['id'])) {
+if (isset($_GET['rid'])) {
+    if (Hash::verify(Session::get('username'), $_GET['rid'])) {
         try {
             $stmt = Database::getInstance()->update('Users', 'username', Session::get('username'), array(
                 'verified' => true
             ));
 
+            Message::info('index.php', array(
+                'm' => 'Uw account is succesvol geactiveerd'
+            ));
 
         } catch (PDOException $e) {
             echo $e->getMessage();
