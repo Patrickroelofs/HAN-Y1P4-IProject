@@ -52,7 +52,8 @@ include INCLUDES . 'modals/contactseller.inc.php';
 
                         <p><?php echo $thisItem->first()->description ?></p>
 
-                        <p>v.a. <span class="bold">€<?php echo escape($thisItem->first()->price) ?></span> </p>
+                        <p>v.a. <span class="bold">€<?php echo escape($thisItem->first()->price) ?></span> <br>
+                        <em>Exclusief €<?= escape($thisItem->first()->shippingcost) ?> verzendkosten</em></p>
 
                         <p><span class="bold">Tijd over om te bieden:</span> <?= $timeLeft ?> dagen</p>
 
