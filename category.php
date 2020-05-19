@@ -10,7 +10,7 @@
         <h2>
             <?php
                 $category = Database::getInstance()->get('Categories', array('id', '=', $selectedCategory));
-                echo $category->first()->name;
+                echo escape($category->first()->name);
             ?>
         </h2>
         <div class="ui stackable two column grid">
@@ -28,7 +28,7 @@
                     <?php
 
                     foreach($categories->results() as $subcategory) {
-                        echo "<a href='category.php?cat=$subcategory->id'>" . $subcategory->name . '</a>';
+                        echo "<a href='category.php?cat=$subcategory->id'>" . escape($subcategory->name) . '</a>';
                     }
 
                     ?>
@@ -58,10 +58,10 @@
                 <div class="ui stackable five column grid">
                     <?php
                     // Post to get the min and max price submitted
-                    $min = escape($_POST['min-price']);
-                    $max = escape($_POST['max-price']);
                     // Check if a min and max price is submitted
                     if (isset($_POST['submit-price'])) {
+                        $min = escape($_POST['min-price']);
+                        $max = escape($_POST['max-price']);
                         Redirect::to('category.php?cat='.$selectedCategory.'&min-price='.$min.'&max-price='.$max);
                     }
 
