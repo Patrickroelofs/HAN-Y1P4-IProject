@@ -94,16 +94,17 @@ include INCLUDES . 'modals/contactseller.inc.php';
             </div>
 
             <?php
-            $randomProducts = Database::getInstance()->query("SELECT TOP 5 * FROM Items WHERE NOT id = $productID ORDER BY NEWID()");
+            $randomCatProducts = Database::getInstance()->query("SELECT TOP 5 * FROM Items WHERE NOT id = $productID AND category = '".escape($rubriek->first()->id)."' ORDER BY NEWID()");
 
-            if($randomProducts->count() >= 1) {
+            // If the current category has >= 5 products show them
+            if($randomCatProducts->count() >= 5) {
             ?>
             <div class="ui segment">
                 <h2>Meer zoals</h2>
                 <!-- Includes the functions random products to pick -->
                 <div class="ui stackable five column grid">
                     <?php
-                    foreach($randomProducts->results() as $result) { ?>
+                    foreach($randomCatProducts->results() as $result) { ?>
                         <div class="column">
                             <div class="ui fluid card product productcards">
                                 <a class="image" href="product.php?p=<?= escape($result->id); ?>">
@@ -119,7 +120,40 @@ include INCLUDES . 'modals/contactseller.inc.php';
                     <?php } ?>
                 </div>
             </div>
-        <?php } ?>
+
+        <?php } // if  the current category has < 5 products show random products
+            elseif ($randomCatProducts->count() < 5) {
+                $randomProducts = Database::getInstance()->query("SELECT TOP 5 * FROM Items WHERE NOT id = $productID ORDER BY NEWID()");
+
+                // if there are no products, show none
+                if ($randomProducts->count() < 1) {
+                } else {
+
+                ?>
+
+                <div class="ui segment">
+                    <h2>Meer zoals</h2>
+                    <!-- Includes the functions random products to pick -->
+                    <div class="ui stackable five column grid">
+                        <?php
+                        foreach($randomProducts->results() as $result) { ?>
+                            <div class="column">
+                                <div class="ui fluid card product productcards">
+                                    <a class="image" href="product.php?p=<?= escape($result->id); ?>">
+                                        <img src="<?= ROOT . $result->thumbnail; ?>" alt="Foto van <?= escape($result->title); ?>">
+                                    </a>
+                                    <div class="content">
+                                        <a class="header" href="product.php?p=<?= escape($result->id); ?>"><?= escape($result->title); ?></a>
+                                        <div class="description"><?= escape($result->description); ?></div>
+                                        <div class="description bold">€<?= escape($result->price); ?></div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    </div>
+                </div>
+
+                <?php } } ?>
         </div>
     </main>
 
