@@ -106,7 +106,16 @@
                             <div class="ui fluid search selection dropdown">
                                 <input type="hidden" name="land">
                                 <i class="dropdown icon"></i>
-                                <div class="default text">Land kiezen</div>
+                                <div class="default text">
+                                    <?php if ($user->first()->complete == true) {
+                                        $countryCode = $user->first()->country;
+                                        $countryName = Database::getInstance()->query("SELECT * FROM Country WHERE code = $countryCode",array());
+                                        echo $countryName->first()->name;
+                                    } else {
+                                        echo "Land kiezen";
+                                    } ?>
+
+                                </div>
                                 <div class="menu">
                                     <?php
                                     $countries = Database::getInstance()->query("SELECT * FROM Country");
