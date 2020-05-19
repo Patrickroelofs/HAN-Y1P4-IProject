@@ -85,6 +85,7 @@ create table Users
     postalcode      varchar(50)                     null,
     city            varchar(50)                     null,
     country         char(4)                         null,
+    verified        bit                         not null default 0,
     trader          bit                             null,
     complete        bit                             null,
 

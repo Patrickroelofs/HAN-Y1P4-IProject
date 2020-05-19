@@ -6,7 +6,7 @@ use iproject19
 go
 
 -- Insert admin user
-insert into Users (username, email, password, profilepicture, firstname, lastname, phone, birthdate, address1, address2, postalcode, city, country, trader, complete)
+insert into Users (username, email, password, profilepicture, firstname, lastname, phone, birthdate, address1, address2, postalcode, city, country, verified, trader, complete)
 values
 ('Admin',
  'Administrator@eenmaalandermaal.nl',
@@ -21,6 +21,7 @@ values
  '6826 CC',
  'Arnhem',
  6030,
+ 0,
  0,
  1);
 GO
