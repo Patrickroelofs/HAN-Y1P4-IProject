@@ -52,6 +52,23 @@ class Message {
         Redirect::to($location.$set);
     }
 
+    public static function noticeMulti($location, $fields) {
+        $set = '';
+        $x = 1;
+
+        $set .= "&notice&";
+
+        foreach($fields as $name => $value) {
+            $set .= "{$name}=".escape($value)."";
+            if ($x < count($fields)) {
+                $set .= '&';
+            }
+            $x++;
+        }
+
+        Redirect::to($location.$set);
+    }
+
     public static function info ($location, $fields) {
         $set = '';
         $x = 1;
