@@ -9,8 +9,8 @@ if(isset($_POST['update-inloggegevens-submit'])) {
 
     // Save data in temporary variables
     // Inloggegevens
-    $password           =   $_POST['password'];
-    $password_repeat    =   $_POST['password_repeat'];
+    $password           =   escape($_POST['password']);
+    $password_repeat    =   escape($_POST['password_repeat']);
 
     // TODO: Error messages and other invalid register checks.
     if(empty($password) || empty($password_repeat)){

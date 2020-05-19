@@ -15,7 +15,7 @@ $bidExists = Database::getInstance()->query("SELECT amount FROM Bids WHERE item 
 if(isset($_POST['offer-submit'])) {
 
     // Save data in temporary variables
-    $amount = $_POST['amount'];
+    $amount = escape($_POST['amount']);
 
     // Check if amount is less than starting price
     if($amount < $stmt->first()->startprijs){
