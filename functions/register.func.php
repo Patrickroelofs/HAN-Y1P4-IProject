@@ -129,11 +129,9 @@ if (isset($_GET['doorsturen'])) {
 if (isset($_GET['id'])) {
     if (Hash::verify(Session::get('username'), $_GET['id'])) {
         try {
-            echo 1;
             $stmt = Database::getInstance()->update('Users', 'username', Session::get('username'), array(
                 'verified' => true
             ));
-            echo 2;
 
 
         } catch (PDOException $e) {
