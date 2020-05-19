@@ -75,6 +75,10 @@
                             <input required type="text" name="lastname" id="lastname" placeholder="<?= escape($user->first()->lastname) ?>" value="<?= escape($user->first()->lastname) ?>">
                         </div>
                         <div class="field">
+                            <label for="lastname">Telefoonnummer</label>
+                            <input required type="number" name="phone" id="phone" placeholder="<?= escape($user->first()->phone) ?>" value="<?= escape($user->first()->phone) ?>">
+                        </div>
+                        <div class="field">
                             <label for="dob">Geboortedatum  *</label>
                             <div class="ui calendar" id="dob_calendar">
                                 <div class="ui input left icon">

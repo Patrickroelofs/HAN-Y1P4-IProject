@@ -50,6 +50,7 @@ if(isset($_POST['update-persoonsgegevens-submit'])) {
     $lastname           =   escape($_POST['lastname']);
     $dob                =   $_POST['dob'];
     $profilepicture     =   $_FILES['profilepicture']['name'];
+    $phone              =   $_POST['phone'];
 
     //Randomly hash filename
     $ext = pathinfo($_FILES['profilepicture']['name'], PATHINFO_EXTENSION);
@@ -59,7 +60,7 @@ if(isset($_POST['update-persoonsgegevens-submit'])) {
     
 
     // TODO: Error messages and other invalid register checks.
-    if(empty($firstname) || empty($lastname) || empty($dob)) {
+    if(empty($firstname) || empty($lastname) || empty($dob) || empty($phone)) {
         //error
         echo 'error - empty';
     } if(!in_array($ext, $supported_image)) {
@@ -79,6 +80,7 @@ if(isset($_POST['update-persoonsgegevens-submit'])) {
                     'firstname' => $firstname,
                     'lastname' => $lastname,
                     'birthdate' => $dob,
+                    'phone' => $phone
                 ));
             }
             // If there is a profile picture uploaded
@@ -87,7 +89,8 @@ if(isset($_POST['update-persoonsgegevens-submit'])) {
                     'firstname' => $firstname,
                     'lastname' => $lastname,
                     'birthdate' => $dob,
-                    'profilepicture' => $target
+                    'profilepicture' => $target,
+                    'phone' => $phone
                 ));
             }
 
