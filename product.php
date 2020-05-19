@@ -11,12 +11,12 @@ if (isset($_GET['p'])) {
 
 // Get data from database
 
-$stmt = Database::getInstance()->query("SELECT * FROM Items WHERE id = $productID",array());
-$rubriek = Database::getInstance()->query("SELECT * FROM Categories WHERE id = '". $stmt->first()->category . "'", array());
+$thisItem = Database::getInstance()->query("SELECT * FROM Items WHERE id = $productID",array());
+$rubriek = Database::getInstance()->query("SELECT * FROM Categories WHERE id = '". $thisItem->first()->category . "'", array());
 
 // Calculate time left in offer
 $currentDate = new DateTime(date("Y-m-d"));
-$endDate = new DateTime($stmt->first()->durationenddate);
+$endDate = new DateTime($thisItem->first()->durationenddate);
 if ($endDate > $currentDate) {
     $timeLeft = $currentDate->diff($endDate)->format("%d");
 } else {
@@ -31,7 +31,7 @@ include INCLUDES . 'modals/contactseller.inc.php';
     <main>
         <div class="ui container">
 
-            <h2><?php echo escape($stmt->first()->title) ?></h2>
+            <h2><?php echo escape($thisItem->first()->title) ?></h2>
             <div class="vertical-margin-12">
                 <div class="ui breadcrumb">
                     <a href="index.php" class="section">Home</a>
@@ -44,15 +44,15 @@ include INCLUDES . 'modals/contactseller.inc.php';
 
             <div class="ui stackable grid" >
                 <div class="eight wide column">
-                    <img class="fluid image" src="<?= ROOT . $stmt->first()->thumbnail; ?>" >
+                    <img class="fluid image" src="<?= ROOT . $thisItem->first()->thumbnail; ?>" >
                 </div>
                 <div class="eight wide column">
                     <div class="ui segment">
                         <h2>Beschrijving</h2>
 
-                        <p><?php echo $stmt->first()->description ?></p>
+                        <p><?php echo $thisItem->first()->description ?></p>
 
-                        <p>v.a. <span class="bold">€<?php echo escape($stmt->first()->price) ?></span> </p>
+                        <p>v.a. <span class="bold">€<?php echo escape($thisItem->first()->price) ?></span> </p>
 
                         <p><span class="bold">Tijd over om te bieden:</span> <?= $timeLeft ?> dagen</p>
 

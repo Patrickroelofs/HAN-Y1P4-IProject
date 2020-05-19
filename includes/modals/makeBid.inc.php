@@ -30,7 +30,7 @@ if (!$error) { ?>
         </div>
         <div class="image content">
             <div class="ui medium image">
-                <img src="<?= ROOT . $stmt->first()->thumbnail; ?>">
+                <img src="<?= ROOT . $thisItem->first()->thumbnail; ?>">
             </div>
             <div class="description">
                 <div class="ui header">Product</div>
@@ -39,7 +39,7 @@ if (!$error) { ?>
                     if($bidExists->count() >= 1) {
                         echo '<span class="bold">Hoogste bod: €' . escape($bidHigh->first()->amount) . '</span>';
                     } else {
-                        echo '<span class="bold">Maak nu het startbod van €' . escape($stmt->first()->price) . '!</span>';
+                        echo '<span class="bold">Maak nu het startbod van €' . escape($thisItem->first()->price) . '!</span>';
                     }
                     ?></p>
 

@@ -2,6 +2,7 @@
 //======================================================================
 // Offer
 //======================================================================
+
 // Figure out highest bid
 $bidHigh = Database::getInstance()->query("SELECT TOP 1 amount FROM Bids WHERE item = $productID ORDER BY amount DESC",array());
 
@@ -24,7 +25,7 @@ if(isset($_POST['offer-submit'])) {
     if($bidClosed->first()->closed == true) {
         echo "biedingen zijn gesloten";
 
-    } else if($amount <= $stmt->first()->startprijs){
+    } else if($amount <= $thisItem->first()->price){
         echo "Bedrag lager dan de startprijs";
 
     } else if ($bidExists->count() >= 1 && $amount <= $bidHigh->first()->amount) {
@@ -34,8 +35,9 @@ if(isset($_POST['offer-submit'])) {
         //Insert into database
         try {
             $bidInsert = Database::getInstance()->query("INSERT INTO Bids (item, amount, username) VALUES ($productID, $amount, '".Session::get('username')."')",array());
+            $thisID = $thisItem->first()->id;
 
-            Redirect::to('index.php');
+            header("Location:product.php?p=$thisID&notice&m=Uw bod is uitgebracht!");
 
         } catch (PDOException $e) {
             //Error during insert
