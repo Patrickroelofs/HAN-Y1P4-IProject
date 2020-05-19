@@ -76,7 +76,7 @@
                         </div>
                         <div class="field">
                             <label for="lastname">Telefoonnummer</label>
-                            <input required type="number" name="phone" id="phone" placeholder="<?= escape($user->first()->phone) ?>" value="<?= escape($user->first()->phone) ?>">
+                            <input type="tel" min="0" name="phone" id="phone" placeholder="<?= escape($user->first()->phone) ?>" value="<?= escape($user->first()->phone) ?>">
                         </div>
                         <div class="field">
                             <label for="dob">Geboortedatum  *</label>

@@ -48,7 +48,7 @@ if (isset($_POST['update-persoonsgegevens-submit'])) {
     $lastname = escape($_POST['lastname']);
     $dob = $_POST['dob'];
     $profilepicture = $_FILES['profilepicture']['name'];
-    $phone = $_POST['phone'];
+    $phone = escape($_POST['phone']);
 
     //Randomly hash filename
     $ext = pathinfo($_FILES['profilepicture']['name'], PATHINFO_EXTENSION);
@@ -58,11 +58,11 @@ if (isset($_POST['update-persoonsgegevens-submit'])) {
 
 
     // TODO: Error messages and other invalid register checks.
-    if (empty($firstname) || empty($lastname) || empty($dob) || empty($phone)) {
+    if (empty($firstname) || empty($lastname) || empty($dob)) {
         //error
         echo 'error - empty';
     }
-    if (!in_array($ext, $supported_image)) {
+    if (!empty($profilepicture) && !in_array($ext, $supported_image)) {
         echo 'error - unsupported file format';
     } else {
         // Insert into database
