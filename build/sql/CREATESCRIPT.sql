@@ -85,6 +85,7 @@ create table Users
     postalcode      varchar(50)                     null,
     city            varchar(50)                     null,
     country         char(4)                         null,
+    verified        bit                         not null default 0,
     trader          bit                             null,
     complete        bit                             null,
 
@@ -164,7 +165,7 @@ create table Items
     shippinginstructions    varchar(255)                    null,
     durationenddate         date                            null,
     durationendtime         time                            null,
-    closed                  bit                             null,
+    closed                  bit                         not null constraint DF_Items_closed default 0,
     saleprice               decimal(18,2)                   null,
 
     -- ***************** Primary Keys
