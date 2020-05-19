@@ -87,6 +87,7 @@ if(isset($_POST['auction-submit'])) {
                 'durationendtime' => $time,
                 'shippingcost' => $verzendkosten,
                 'shippinginstructions' => $verzendinstructies,
+                'closed' => false,
                 'trader' => $user->first()->username
             ));
 
