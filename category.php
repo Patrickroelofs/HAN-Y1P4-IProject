@@ -3,13 +3,6 @@
     include INCLUDES . 'head.inc.php';
 
     $selectedCategory = $_GET['cat'];
-
-    if(!is_numeric($selectedCategory) || $selectedCategory < 0) {
-        Redirect::to('index.php');
-    }
-
-
-
 ?>
 
 <main>
@@ -44,22 +37,54 @@
                 <label for="cat-toggle"></label>
                 <?php } ?>
 
-                <h3>Adjust your price range:</h3>
-
-                <div class="ui labeled ticked range slider" id="slider-range"></div>
-                <div class="ui input">
-                    <input type="text" id="range-slider-input-1" disabled="">
-                    <label for="range-slider-input-1"></label>
-                </div>
+                <form class="ui form" method="post">
+                    <h3>Prijs aanpassen:</h3>
+                    <div class="field">
+                        <label for="min-price">Minimum</label>
+                        <input type="number" name="min-price" placeholder="Minimum" required>
+                    </div>
+                    <div class="field">
+                        <label for="max-price">Maximum</label>
+                        <input type="number" name="max-price" placeholder="Maximum" required>
+                    </div>
+                    <button class="ui button" type="submit" name="submit-price">Pas aan</button>
+                </form>
             </div>
+
 
 
 
             <div class="thirteen wide column">
                 <div class="ui stackable five column grid">
                     <?php
-                    $cat = $_GET['cat'];
-                    $product = Database::getInstance()->query("SELECT * FROM Items where category='$cat'");
+                    // Post to get the min and max price submitted
+                    $min = escape($_POST['min-price']);
+                    $max = escape($_POST['max-price']);
+                    // Check if a min and max price is submitted
+                    if (isset($_POST['submit-price'])) {
+                        Redirect::to('category.php?cat='.$selectedCategory.'&min-price='.$min.'&max-price='.$max);
+                    }
+
+                    // Check if there is a category. If that is the case get all products from that category out of the database
+                    if (isset($_GET['cat']) && !isset($_GET['min-price']) && !isset($_GET['max-price'])) {
+                        $product = Database::getInstance()->query("SELECT * FROM Items where category='". escape($selectedCategory) ."'");
+                        // If there are no products let the user know that there are no results found
+                        if($product->count() <= 0) {
+                            echo "Geen resultaten";
+                        }
+                    }
+                    // Check if there is a category, minimum price and maximum price. If so get all products from that category within that price range out of the database
+                    elseif (isset($_GET['cat']) && isset($_GET['min-price']) && isset($_GET['max-price'])) {
+                        $product = Database::getInstance()->query("SELECT * FROM Items where category='". escape($selectedCategory) ."' AND price BETWEEN '". escape($_GET['min-price']) ."' AND '". escape($_GET['max-price']) ."'");
+                        // If there are no products let the user know that there are no results found
+                        if($product->count() <= 0) {
+                            echo "Geen resultaten";
+                        }
+                    }
+                    // If there isn't a category entered the user will get redirected to index.php
+                    else {
+                        header('Location:index.php');
+                    }
 
                     foreach($product->results() as $result) { ?>
                     <div class="column">
@@ -81,14 +106,4 @@
 </main>
 
 <?php include INCLUDES . 'footer.inc.php'; ?>
-    <script type="javascript">
-        $('.ui.slider')
-            .slider({
-                min: 0,
-                max: 100,
-                start: 0,
-                step: 50
-            })
-        ;
-    </script>
 <?php include INCLUDES . 'foot.inc.php'; ?>
