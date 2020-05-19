@@ -53,7 +53,7 @@ include INCLUDES . 'modals/contactseller.inc.php';
 
             <div class="ui stackable grid" >
                 <div class="eight wide column">
-                    <img class="fluid image" src="<?= ROOT . $thisItem->first()->thumbnail; ?>" >
+                    <img class="ui centered image" style="max-width: 100%; max-height: 450px;"  src="<?= ROOT . $thisItem->first()->thumbnail; ?>" >
                 </div>
                 <div class="eight wide column">
                     <div class="ui segment">
