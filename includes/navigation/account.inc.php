@@ -49,6 +49,7 @@
     } else {
 ?>
         <a class="item" href="profile.php">Mijn Profiel</a>
+        <a class="item" href="yourbids.php">Jouw biedingen</a>
         <?php
             if($user->first()->trader == false) {
                 echo '<a class="item" href="selleraccountcreation.php">Word een verkoper</a>';
