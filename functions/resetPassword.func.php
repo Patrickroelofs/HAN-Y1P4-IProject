@@ -17,16 +17,25 @@ if (isset($_POST['veranderen'])) {
                 Database::getInstance()->update('Users', 'username', $uid, array(
                     'password' => Hash::make($password)
                 ));
-                Redirect::to('index.php');
+                // succes message
+                Message::notice('index.php', array(
+                    'm' => 'Wachtwoord is bijgewerkt'
+                ));
             } else {
-                Redirect::to('index.php');
+                // error message
+                Message::errorMulti('passwordChange.php?pid='.$_GET['pid'].'&uid='.$uid.'', array(
+                    'm' => 'Er is iets fout gegaan'
+                ));
             }
         } catch (PDOException $e) {
             //Error during insert
             echo $e->getMessage();
         }
     } else {
-        echo "Ingevulde wachtwoorden komen niet overeen";
+        // error message
+        Message::errorMulti('passwordChange.php?pid='.$_GET['pid'].'&uid='.$uid.'', array(
+            'm' => 'Wachtwoorden komen niet overeen'
+        ));
     }
 }
 //check if user pressed send mail
@@ -36,7 +45,10 @@ if (isset($_POST['versturen'])) {
     $stmt = Database::getInstance()->query("SELECT * FROM Users WHERE email = '$query'", array());
     //check if the emailadres is in the database and that it is valid
     if ($stmt->count() == 0) {
-        echo "<p>Voer een geldig emailadres in.</p>";
+        // error message
+        Message::error('passwordChange.php', array(
+            'm' => 'Voer een geldig emailadres in'
+        ));
     } else {
         $username = escape($stmt->first()->username);
         $to = $stmt->first()->email;
