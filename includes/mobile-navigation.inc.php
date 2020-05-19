@@ -4,7 +4,7 @@
         <img width="48" height="48" alt="user profile picture" class="ui circular image vertical-margin-12" src="
         <?php
         if(!Session::exists('username') || empty($user->first()->profilepicture)) {
-            echo ROOT . 'upload/profilepictures/default.jpg';
+            echo 'upload/profilepictures/default.jpg';
         } else {
             echo escape($user->first()->profilepicture);
         }
