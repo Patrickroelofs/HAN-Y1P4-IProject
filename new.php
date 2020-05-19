@@ -8,7 +8,7 @@ include INCLUDES . 'head.inc.php';
             <h1>Nieuwe producten op de site</h1>
             <div class="ui stackable five column grid">
                 <?php
-                $newItems = Database::getInstance()->query("SELECT TOP 20 * FROM Items ORDER BY NEWID()");
+                $newItems = Database::getInstance()->query("SELECT TOP 20 * FROM Items ORDER BY id DESC");
 
                 if ($newItems->count() < 1) {
                     // no data passed by get
