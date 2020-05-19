@@ -10,8 +10,8 @@ if(isset($_POST['register-submit'])) {
     // Save data in temporary variables
     $username           =  escpae($_POST['username']);
     $email              =  escape($_POST['email']);
-    $password           =  escape($_POST['password']);
-    $password_repeat    =  escape($_POST['password_repeat']);
+    $password           =  $_POST['password'];
+    $password_repeat    =  $_POST['password_repeat'];
 
     // Get usernames if its already taken
     $users = Database::getInstance()->get('Users', array('username', '=', $username));
