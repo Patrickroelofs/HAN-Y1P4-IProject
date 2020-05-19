@@ -165,7 +165,7 @@ create table Items
     shippinginstructions    varchar(255)                    null,
     durationenddate         date                            null,
     durationendtime         time                            null,
-    closed                  bit                             null,
+    closed                  bit                         not null constraint DF_Items_closed default 0,
     saleprice               decimal(18,2)                   null,
 
     -- ***************** Primary Keys
