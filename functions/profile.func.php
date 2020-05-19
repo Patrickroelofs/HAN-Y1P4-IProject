@@ -159,7 +159,7 @@ if (isset($_POST['delete-account-submit'])) {
         if ($user->first()->trader == true) {
             $trader = Database::getInstance()->delete('Trader', array('username', '=', Session::get('username')));
         }
-
+        //Delete user and ends session
         $user = Database::getInstance()->delete('Users', array('username', '=', Session::get('username')));
 
         session_unset();
@@ -169,9 +169,12 @@ if (isset($_POST['delete-account-submit'])) {
             'm' => 'Uw account is succesvol verwijderd'
         ));
         
-    } // Logged out, delete account from database
+    }
+
+    // Logged out, delete account from database
     else {
         if ($onProduction) {
+            //Send user the verification mail
             $stmt = Database::getInstance()->query("SELECT * FROM Users WHERE email = '" . escape($email) . "'");
             $username = escape($stmt->first()->username);
             $to = escape($stmt->first()->email);
@@ -191,6 +194,7 @@ if (isset($_POST['delete-account-submit'])) {
                 'm' => 'Een email is verstuurd, bekijk ook je spambox!'
             ));
         } else {
+            //Immediately show verification link if not on production server
             $stmt = Database::getInstance()->query("SELECT * FROM Users WHERE email = '" . escape($email) . "'");
             $username = escape($stmt->first()->username);
             $email = escape($stmt->first()->email);
@@ -199,7 +203,7 @@ if (isset($_POST['delete-account-submit'])) {
     }
 
 }
-
+//If the rmid is valid delete all user information and redirect to index.php
 if (isset($_GET['rmid'])) {
 
     $stmt = Database::getInstance()->get('Users', array('username', '=', $_GET['rmuid']));
