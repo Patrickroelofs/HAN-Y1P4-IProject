@@ -21,13 +21,13 @@
 
 
             <div class="three wide column">
-                <h3>Categorieën</h3>
                 <?php
                     //Get all subcategories
                     $categories = Database::getInstance()->get('Categories', array('within', '=', $selectedCategory));
                     // Load all subcategories that this category has
                     if($categories->count() > 0) {
                 ?>
+                <h3>Categorieën</h3>
                 <div class="cat-list">
                     <?php
 
