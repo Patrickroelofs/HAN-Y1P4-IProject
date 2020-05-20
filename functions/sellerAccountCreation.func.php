@@ -39,7 +39,7 @@ if ($user->first()->complete == 0) {
                 //fills variables with information for mail function
                 $username = escape($user->first()->username);
                 $to = escape ($user->first()->email);
-                $subject = "EenmaalAndermaal Wachtwoord aanpassen";
+                $subject = "EenmaalAndermaal Verkoper worden";
                 $message = '
         
         Beste ' . escape($username) . ',

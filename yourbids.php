@@ -5,6 +5,7 @@ include INCLUDES . 'head.inc.php';
 
 <main>
     <div class="ui container">
+        <h2>Jouw biedingen</h2>
         <div class="ui stackable five column grid">
             <?php
 

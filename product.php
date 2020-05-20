@@ -100,7 +100,7 @@ include INCLUDES . 'modals/contactseller.inc.php';
             if($randomCatProducts->count() >= 5) {
             ?>
             <div class="ui segment">
-                <h2>Meer zoals</h2>
+                <h2>Meer uit <?= escape($rubriek->first()->name) ?></h2>
                 <!-- Includes the functions random products to pick -->
                 <div class="ui stackable five column grid">
                     <?php
@@ -132,7 +132,7 @@ include INCLUDES . 'modals/contactseller.inc.php';
                 ?>
 
                 <div class="ui segment">
-                    <h2>Meer zoals</h2>
+                    <h2>Andere producten</h2>
                     <!-- Includes the functions random products to pick -->
                     <div class="ui stackable five column grid">
                         <?php

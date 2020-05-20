@@ -97,6 +97,7 @@ if (isset($_POST['register-submit'])) {
     }
 }
 
+// Verification
 //TODO make it so that the user can't continually request for emails by typing in verifiëren=1 in the search bar
 if (isset($_GET['verifieren'])) {
 
@@ -106,7 +107,7 @@ if (isset($_GET['verifieren'])) {
         //fills variables with information for mail function
         $username = escape($user->first()->username);
         $to = escape($user->first()->email);
-        $subject = "EenmaalAndermaal Account verifiëren";
+        $subject = "EenmaalAndermaal Account Verifiëren";
         $message = '
         
         Beste ' . $username . ',
@@ -118,7 +119,7 @@ if (isset($_GET['verifieren'])) {
         ';
 
         mail($to, $subject, $message);
-        Message::notice("sellerAccountCreation.php", array(
+        Message::notice("index.php", array(
             'm' => 'Een email is verstuurd, bekijk ook je spambox!'
         ));
 
@@ -135,7 +136,7 @@ if (isset($_GET['rid'])) {
                 'verified' => true
             ));
 
-            Message::info('index.php', array(
+            Message::info('profile.php', array(
                 'm' => 'Uw account is succesvol geactiveerd'
             ));
 
