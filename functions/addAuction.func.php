@@ -93,6 +93,8 @@ if(isset($_POST['auction-submit'])) {
                 'duration' => $looptijd,
                 'durationbegindate' => $date,
                 'durationbegintime' => $time,
+                'durationenddate' => date("Y-m-d", strtotime($date. ' + '. $looptijd .' days')),
+                'durationendtime' => $time,
                 'shippingcost' => $verzendkosten,
                 'shippinginstructions' => $verzendinstructies,
                 'closed' => false,
