@@ -11,4 +11,11 @@
 <?php include 'mobile-navigation.inc.php'; ?>
 
 <div class="pusher">
+<?php
+    if(Session::exists('username')){
+        if($admin->count() >= 1) {
+            include 'adminbar.inc.php';
+        }
+    }
+?>
 <?php include 'navigation.inc.php'; ?>

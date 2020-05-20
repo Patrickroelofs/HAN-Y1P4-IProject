@@ -106,7 +106,6 @@ GO
 create table Admins
 (
     username    varchar(50)         not null,
-    pin         varchar(255)        not null,
 
     -- ***************** Primary Keys
     constraint PK_Admins primary key (username),
