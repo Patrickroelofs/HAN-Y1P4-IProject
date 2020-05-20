@@ -227,7 +227,7 @@ if (isset($_POST['delete-account-submit'])) {
 
         U heeft een verzoek gedaan om uw EenmaalAndermaal account te verwijderen.
         Klik op de onderstaande link om uw gegevens te verwijderen:
-        https://iproject19.icasites.nl/removeaccount.php?rmid=' . Hash::make(escape($username)) . '
+        https://iproject19.icasites.nl/removeaccount.php?rmid=' . Hash::make($email) . '&rmuid=' . $username . '
         Bent u dit niet neem dan contact op met beveiliging@eenmaalandermaal.nl
         ';
 
