@@ -53,7 +53,17 @@ include INCLUDES . 'modals/contactseller.inc.php';
 
             <div class="ui stackable grid" >
                 <div class="eight wide column">
-                    <img class="ui centered image" style="max-width: 100%; max-height: 450px;"  src="<?= ROOT . $thisItem->first()->thumbnail; ?>" >
+                    <?php $images = Database::getInstance()->query("SELECT * FROM Files WHERE item = '". $thisItem->first()->id ."'"); ?>
+                    <div class="product-gallery">
+                        <div class="product-image">
+                            <img class="active" src="<?= $images->first()->filename; ?>">
+                        </div>
+                        <ul class="image-list">
+                            <?php foreach($images->results() as $image) { ?>
+                            <li class="image-item"><img src="<?php echo $image->filename; ?>"></li>
+                            <?php } ?>
+                        </ul>
+                    </div>
                 </div>
                 <div class="eight wide column">
                     <div class="ui segment">
