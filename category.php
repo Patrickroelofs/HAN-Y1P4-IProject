@@ -59,7 +59,7 @@
 
 
             <div class="thirteen wide column">
-                <div class="ui stackable five column grid">
+                <div class="ui stackable four column grid">
                     <?php
                     // Post to get the min and max price submitted
                     // Check if a min and max price is submitted
@@ -98,7 +98,8 @@
                             </a>
                             <div class="content">
                                 <a class="header" href="product.php?p=<?= $result->id; ?>"><?= $result->title; ?></a>
-                                <div class="description"><?= "€".$result->price; ?></div>
+                                <div class="description"><?= Modifiers::textlength($result->description, 100); ?>...</div>
+                                <div class="description bold"><?= "€".$result->price; ?></div>
                             </div>
                         </div>
                     </div>

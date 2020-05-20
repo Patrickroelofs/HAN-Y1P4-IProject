@@ -23,7 +23,7 @@ include INCLUDES . 'head.inc.php';
                             </a>
                             <div class="content">
                                 <a class="header" href="product.php?p=<?= $result->id; ?>"><?= $result->title; ?></a>
-                                <div class="description"><?= $result->description; ?></div>
+                                <div class="description"><?= Modifiers::textlength($result->description, 100); ?>...</div>
                                 <div class="description bold">€<?= $result->price; ?></div>
                             </div>
                         </div>
