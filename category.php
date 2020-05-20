@@ -45,11 +45,11 @@
                     <h3>Prijs aanpassen:</h3>
                     <div class="field">
                         <label for="min-price">Minimum</label>
-                        <input type="number" name="min-price" placeholder="Minimum" required>
+                        <input type="number" step="0.1" name="min-price" placeholder="Minimum" required>
                     </div>
                     <div class="field">
                         <label for="max-price">Maximum</label>
-                        <input type="number" name="max-price" placeholder="Maximum" required>
+                        <input type="number" step="0.1" name="max-price" placeholder="Maximum" required>
                     </div>
                     <button class="ui button" type="submit" name="submit-price">Pas aan</button>
                 </form>

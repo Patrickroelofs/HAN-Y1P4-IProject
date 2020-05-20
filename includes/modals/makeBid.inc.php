@@ -46,7 +46,7 @@ if (!$error) { ?>
                 <form method="post" id="offer-form">
                     <div class="ui input labeled input required">
                         <label for="amount" class="ui label">€</label>
-                        <input type="num" required autocomplete="off" placeholder="Uw bod" name="amount">
+                        <input type="number" step="0.1" required autocomplete="off" placeholder="Uw bod" name="amount">
                     </div>
                 </form>
             </div>
