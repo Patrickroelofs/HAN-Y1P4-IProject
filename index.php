@@ -136,12 +136,12 @@
                 <div class="column">
                     <div class="ui fluid card productcards">
                         <a class="image" href="product.php?p=<?= $result->id; ?>">
-                            <img src="<?= ROOT . $result->thumbnail; ?>" alt="Foto van <?= $result->title; ?>">
+                            <img src="<?= ROOT . $result->thumbnail; ?>" alt="Foto van <?= escape($result->title); ?>">
                         </a>
                         <div class="content">
-                            <a class="header" href="product.php?p=<?= $result->id; ?>"><?= $result->title; ?></a>
-                            <div class="description"><?= Modifiers::textlength($result->description, 100); ?>...</div>
-                            <div class="description bold">€<?= $result->price; ?></div>
+                            <a class="header" href="product.php?p=<?= $result->id; ?>"><?= escape($result->title); ?></a>
+                            <div class="description"><?= escape(Modifiers::textlength($result->description, 100)); ?>...</div>
+                            <div class="description bold">€<?= escape($result->price); ?></div>
                         </div>
                     </div>
                 </div>
