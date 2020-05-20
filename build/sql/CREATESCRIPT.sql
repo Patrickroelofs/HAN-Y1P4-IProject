@@ -86,8 +86,9 @@ create table Users
     city            varchar(50)                     null,
     country         char(4)                         null,
     verified        bit                         not null default 0,
-    trader          bit                             null,
-    complete        bit                             null,
+    trader          bit                         not null default 0,
+    complete        bit                         not null default 0,
+    banned          bit                         not null default 0,
 
     -- ***************** Primary Keys
     constraint PK_Users primary key (username),
@@ -166,6 +167,7 @@ create table Items
     durationendtime         time                            null,
     closed                  bit                         not null constraint DF_Items_closed default 0,
     saleprice               decimal(18,2)                   null,
+    hidden                  bit                         not null constraint DF_Items_hidden default 0
 
     -- ***************** Primary Keys
     constraint PK_items primary key (id),
