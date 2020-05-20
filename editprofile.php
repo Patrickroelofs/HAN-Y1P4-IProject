@@ -27,6 +27,7 @@
                 ?>
             </h1>
             <p>Pas hier je gegevens aan, zo kunnen verkopers beter zien wie jij bent!</p>
+            <em>Geïnteresseerd in hoe je profiel er voor anderen uit ziet? <a href="profile.php?user=<?= $user->first()->id; ?>">Bekijk je profiel</a></em>
             <div class="ui horizontal divider">
                 Gegevens aanpassen
             </div>
