@@ -18,7 +18,7 @@ include INCLUDES . 'head.inc.php';
                         </a>
                         <div class="content">
                             <a class="header" href="<?php echo 'product.php?p=' . escape($result->id) ?>"><?php echo escape($result->title); ?></a>
-                            <div class="description"><?php echo escape($result->description); ?></div>
+                            <div class="description"><?php echo escape(Modifiers::textlength($result->description, 100)); ?></div>
                             <div class="description bold">€<?php echo escape($result->price); ?></div>
                         </div>
                     </div>
