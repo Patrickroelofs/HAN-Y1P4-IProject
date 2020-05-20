@@ -18,13 +18,17 @@ include FUNCTIONS . 'profile.func.php';
                             <?php if (Session::exists('username')) { ?>
                                 <input class="ui negative button" type="submit" name="delete-account-submit"
                                        value="Verwijder je Account">
-                            <?php } else {
+                            <?php }
+                            //Uitgelogd
+                            else {
                                 ?>
-                                <div clas="ui input">
-                                    <input type="email" name="email" id="email" placeholder="email">
-                                    <input class="ui negative button" type="submit" name="delete-account-submit"
-                                           value="Verwijder je Account">
-                                </div>
+                                <form method="post">
+                                    <div clas="ui input">
+                                        <input type="email" name="email" id="email" placeholder="Voer uw email in">
+                                        <input class="ui negative button" type="submit" name="delete-account-submit"
+                                               value="Verwijder je Account">
+                                    </div>
+                                </form>
                                 <?php
                             } ?>
                         </div>

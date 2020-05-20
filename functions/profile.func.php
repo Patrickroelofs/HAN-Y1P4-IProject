@@ -160,19 +160,46 @@ if (isset($_POST['update-locatiegegevens-submit'])) {
 
 // Is submit pressed
 if (isset($_POST['delete-account-submit'])) {
-    $email = $_POST['email'];
-
     // Logged in, delete account from database
     if (Session::exists('username')) {
-
         //Get the users profilepicture and delete it
         $stmt = Database::getInstance()->get('Users', array('username', '=', Session::get('username')));
-        unlink($stmt->first()->profilepicture);
 
-        // if the user is a trader delete that user
+        //Check if user has profilepicture and if so remove it
+        if (!empty($stmt->first()->profilepicture)) {
+            unlink($stmt->first()->profilepicture);
+        }
+
+        //Delete user bids (if they exist)
+        $yourBids = Database::getInstance()->query("SELECT * FROM Bids WHERE username = '".Session::get('username')."' ORDER BY date DESC");
+
+        if ($yourBids->count() > 0) {
+            $bidsDel = Database::getInstance()->delete('Bids', array('username', '=', Session::get('username')));
+        }
+
+        // if the user is a trader delete that trader & items, files, bids associated
         if ($user->first()->trader == true) {
+            $itemsID = Database::getInstance()->query("SELECT id FROM Items WHERE trader = '".Session::get('username')."'",array());
+
+            //Remove bids, files, items, trader from database
+            foreach ($itemsID->results() as $result) {
+                $id             = $result->id;
+
+                $productBids = Database::getInstance()->delete('Bids', array('item', '=', $id));
+
+                $filePath = Database::getInstance()->query("SELECT * FROM Files WHERE item = $id");
+                foreach ($filePath->results() as $pathResult) {
+                    $path       = $pathResult->filename;
+
+                    unlink($path);
+                }
+
+                $files = Database::getInstance()->delete('Files', array('item', '=', $id));
+            }
+            $items = Database::getInstance()->delete('Items', array('trader', '=', Session::get('username')));
             $trader = Database::getInstance()->delete('Trader', array('username', '=', Session::get('username')));
         }
+
         //Delete user and ends session
         $user = Database::getInstance()->delete('Users', array('username', '=', Session::get('username')));
 
@@ -182,14 +209,15 @@ if (isset($_POST['delete-account-submit'])) {
         Message::notice('index.php', array(
             'm' => 'Uw account is succesvol verwijderd'
         ));
-        
+
     }
 
     // Logged out, delete account from database
     else {
+        $email = escape($_POST['email']);
+        $stmt = Database::getInstance()->query("SELECT * FROM Users WHERE email = '" . $email . "'");
         if ($onProduction) {
             //Send user the verification mail
-            $stmt = Database::getInstance()->query("SELECT * FROM Users WHERE email = '" . escape($email) . "'");
             $username = escape($stmt->first()->username);
             $to = escape($stmt->first()->email);
             $subject = "EenmaalAndermaal Account Verwijderen";
@@ -204,32 +232,58 @@ if (isset($_POST['delete-account-submit'])) {
         ';
 
             mail($to, $subject, $message);
-            Message::info("removeaccount.php", array(
+            Message::info("index.php", array(
                 'm' => 'Een email is verstuurd, bekijk ook je spambox!'
             ));
         } else {
             //Immediately show verification link if not on production server
-            $stmt = Database::getInstance()->query("SELECT * FROM Users WHERE email = '" . escape($email) . "'");
             $username = escape($stmt->first()->username);
-            $email = escape($stmt->first()->email);
-            echo '<a href="removeaccount.php?rmid=' . Hash::make(escape($email)) . '&rmuid=' . escape($username) . '">Klik Hier</a>';
+            echo '<a href="removeaccount.php?rmid=' . Hash::make(escape($email)) . '&rmuid=' . $username . '">Klik Hier</a>';
         }
     }
 
 }
+
 //If the rmid is valid delete all user information and redirect to index.php
 if (isset($_GET['rmid'])) {
-
     $stmt = Database::getInstance()->get('Users', array('username', '=', $_GET['rmuid']));
 
     if (Hash::verify($stmt->first()->email, $_GET['rmid'])) {
 
-        unlink($stmt->first()->profilepicture);
+        //Check if user has profilepicture and if so remove it
+        if (!empty($stmt->first()->profilepicture)) {
+            unlink($stmt->first()->profilepicture);
+        }
 
-        // if the user is a trader delete that user
+        //Delete user bids (if they exist)
+        $yourBids = Database::getInstance()->query("SELECT * FROM Bids WHERE username = '".$_GET['rmuid']."' ORDER BY date DESC");
+
+        if ($yourBids->count() > 0) {
+            $bidsDel = Database::getInstance()->delete('Bids', array('username', '=', $_GET['rmuid']));
+        }
+
+        // if the user is a trader delete that trader & items, files, bids associated
         if ($stmt->first()->trader == true) {
+            $itemsID = Database::getInstance()->query("SELECT id FROM Items WHERE trader = '".$_GET['rmuid']."'",array());
+
+            foreach ($itemsID->results() as $result) {
+                $id             = $result->id;
+
+                $productBids = Database::getInstance()->delete('Bids', array('item', '=', $id));
+
+                $filePath = Database::getInstance()->query("SELECT * FROM Files WHERE item = $id");
+                foreach ($filePath->results() as $pathResult) {
+                    $path       = $pathResult->filename;
+
+                    unlink($path);
+                }
+
+                $files = Database::getInstance()->delete('Files', array('item', '=', $id));
+            }
+            $items = Database::getInstance()->delete('Items', array('trader', '=', $_GET['rmuid']));
             $trader = Database::getInstance()->delete('Trader', array('username', '=', $_GET['rmuid']));
         }
+
 
         $user = Database::getInstance()->delete('Users', array('username', '=', $_GET['rmuid']));
 
