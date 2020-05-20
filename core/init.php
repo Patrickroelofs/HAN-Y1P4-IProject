@@ -17,12 +17,12 @@ if($onProduction == true) {
     define('ROOT', '');
 }
 
-
-define('CORE', __DIR__);
-define('CLASSES', 'classes/');
-define('FUNCTIONS', 'functions/');
-define('INCLUDES', 'includes/');
-define('MODALS', INCLUDES . 'modals/');
+define('DS', '/');
+define('DIR', dirname(__DIR__));
+define('CLASSES', 'classes' . DS);
+define('FUNCTIONS', 'functions'. DS);
+define('INCLUDES', 'includes' . DS);
+define('MODALS', INCLUDES . 'modals' . DS);
 
 //Define inaccessible picture folder
 //TODO: check if it works
@@ -30,11 +30,11 @@ define('PICTURES',  "https://iproject19.icasites.nl/pics");
 
 //Load all classes
 spl_autoload_register(function($class) {
-    require_once CLASSES . $class . '.class.php';
+    require_once DIR . DS . CLASSES . $class . '.class.php';
 });
 
 //Include sanitize function
-include(FUNCTIONS . 'sanitize.func.php');
+include(DIR . DS . FUNCTIONS . 'sanitize.func.php');
 
 //Get userdata from current logged in user
 if(Session::exists('username')){
