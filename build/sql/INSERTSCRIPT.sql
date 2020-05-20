@@ -6,7 +6,7 @@ use iproject19
 go
 
 -- Insert admin user
-insert into Users (username, email, password, profilepicture, firstname, lastname, phone, birthdate, address1, address2, postalcode, city, country, verified, trader, complete)
+insert into Users (username, email, password, profilepicture, firstname, lastname, phone, birthdate, address1, address2, postalcode, city, country, verified, trader, complete, banned)
 values
 ('Admin',
  'Administrator@eenmaalandermaal.nl',
@@ -23,9 +23,10 @@ values
  6030,
  0,
  0,
- 1);
+ 1,
+ 0);
 GO
 
-insert into Admins (username, pin)
-values ('Admin', '$2y$10$vJz60rzBQ.dysrCkZjhgjebfEjvsfpbdGA97HqAMA2ol19vDdVbzK')
+insert into Admins (username)
+values ('Admin')
 GO
