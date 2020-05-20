@@ -18,7 +18,7 @@ if ($user->first()->complete == 0) {
         // TODO: Error messages and other invalid register checks. (koen)
         //check if user filled everything in
         if (empty($bank) || empty($bankNummer) || empty($controleOptie) || empty($creditcard)) {
-            Message::info('sellerAccountCreation.php', array(
+            Message::info('selleraccountcreation.php', array(
                 'm' => 'Vul alle velden in'
             ));
 
@@ -46,17 +46,17 @@ if ($user->first()->complete == 0) {
         
         U heeft een verzoek gedaan om een verkoper te worden.
         Klik op de onderstaande link om een verkoper te worden:
-        https://iproject19.icasites.nl/sellerAccountCreation.php?id=' . Hash::make(Session::get('username')) . '
+        https://iproject19.icasites.nl/selleraccountcreation.php?id=' . Hash::make(Session::get('username')) . '
         Bent u dit niet neem dan contact op met beveiliging@eenmaalandermaal.nl
         ';
 
                 mail($to, $subject, $message);
-                Message::info("sellerAccountCreation.php", array(
+                Message::info("selleraccountcreation.php", array(
                     'm' => 'Een email is verstuurd, bekijk ook je spambox!'
                 ));
 
             } else {
-                echo '<a href="sellerAccountCreation.php?id=' . Hash::make(Session::get('username')) . '">Klik Hier</a>';
+                echo '<a href="selleraccountcreation.php?id=' . Hash::make(Session::get('username')) . '">Klik Hier</a>';
             }
         }
     }

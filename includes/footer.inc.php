@@ -42,7 +42,7 @@
                 <div class="three wide column">
                     <h4 class="ui header">Informatie</h4>
                     <div class="ui link list">
-                        <a href="aboutUs.php" class="item">Over Ons</a>
+                        <a href="../aboutus.php" class="item">Over Ons</a>
                         <a href="#" class="item">Info en Hulp</a>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                     <h4 class="ui header">Jouw online Veilingsite.</h4>
                     <p>Je hoor het! U bevindt zich momenteel op de nieuwe veilingsite genaamd EenmaalAndermaal. Hier
                         kunt u producten aanschaffen en ook zelf producten veilen.</p>
-                    <p>Deze site is ontwikkeld door het bedrijf <a class="item" href="aboutUs.php">iConcepts</a></p>
+                    <p>Deze site is ontwikkeld door het bedrijf <a class="item" href="../aboutus.php">iConcepts</a></p>
                 </div>
             </div>
             <div class="ui section divider"></div>
