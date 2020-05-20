@@ -154,7 +154,7 @@ include INCLUDES . 'modals/contactseller.inc.php';
                                     </a>
                                     <div class="content">
                                         <a class="header" href="product.php?p=<?= escape($result->id); ?>"><?= escape($result->title); ?></a>
-                                        <div class="description"><?= escape($result->description); ?></div>
+                                        <div class="description"><?= escape(Modifiers::textlength($result->description, 100)); ?>...</div>
                                         <div class="description bold">€<?= escape($result->price); ?></div>
                                     </div>
                                 </div>
