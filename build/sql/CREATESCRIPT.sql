@@ -188,16 +188,16 @@ GO
 
 
 -- ************************************** ItemsInCategory
-create table ItemsInCategory
-(
-    item        bigint      not null,
-    category    int         not null,
-
-    -- ***************** Foreign Keys
-    constraint FK_ItemsInCategory_1 foreign key (item) references Items (id),
-    constraint FK_ItemsInCategory_2 foreign key (category) references Categories (id)
-);
-GO
+-- create table ItemsInCategory
+-- (
+--     item        bigint      not null,
+--     category    int         not null,
+--
+--     -- ***************** Foreign Keys
+--     constraint FK_ItemsInCategory_1 foreign key (item) references Items (id),
+--     constraint FK_ItemsInCategory_2 foreign key (category) references Categories (id)
+-- );
+-- GO
 
 
 
