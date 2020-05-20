@@ -9,7 +9,7 @@
 
     // If user account is not complete
     if($user->first()->complete == 0) {
-        Message::warning('profile.php', array(
+        Message::warning('editprofile.php', array(
                 'm' => 'Vul eerst alle gegevens in voordat je een advertentie plaatst!'
         ));
     }

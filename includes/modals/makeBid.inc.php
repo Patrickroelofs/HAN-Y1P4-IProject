@@ -9,7 +9,7 @@ if(!Session::exists('username')) {
 } else if(!$user->first()->complete) {
     $error = true;
     $errorTitle = "Profiel niet compleet";
-    $errorText = "<p>Om te kunnen bieden op producten moet u eerst uw profielgegevens aanvullen op uw <a href='profile.php'>profiel pagina</a>.</p>";
+    $errorText = "<p>Om te kunnen bieden op producten moet u eerst uw profielgegevens aanvullen op uw <a href='editprofile.php'>profiel pagina</a>.</p>";
 
 //if bidding for this item is closed display error message
 } else if ($bidClosed->first()->closed) {

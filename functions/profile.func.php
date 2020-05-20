@@ -19,7 +19,7 @@ if (isset($_POST['update-inloggegevens-submit'])) {
 
     } else if ($password !== $password_repeat) {
         // succes message
-        Message::error('profile.php', array(
+        Message::error('editprofile.php', array(
             'm' => 'Wachtwoorden zijn niet hetzelfde'
         ));
     } else {
@@ -30,7 +30,7 @@ if (isset($_POST['update-inloggegevens-submit'])) {
             ));
 
             // succes message
-            Message::notice('profile.php', array(
+            Message::notice('editprofile.php', array(
                 'm' => 'Wachtwoorden succesvol aangepast'
             ));
 
@@ -97,7 +97,7 @@ if (isset($_POST['update-persoonsgegevens-submit'])) {
             }
 
             // succes message
-            Message::notice('profile.php', array(
+            Message::notice('editprofile.php', array(
                 'm' => 'Uw persoonsgegevens zijn succesvol bijgewerkt'
             ));
 
@@ -126,7 +126,7 @@ if (isset($_POST['update-locatiegegevens-submit'])) {
     // TODO: Error messages and other invalid register checks.
     if (empty($adresregel1) || empty($postcode) || empty($postcode) || empty($land)) {
         //error
-        Message::error('profile.php', array(
+        Message::error('editprofile.php', array(
             'm' => 'Vul alle locatiegegevens in'
         ));
     } else {
@@ -143,7 +143,7 @@ if (isset($_POST['update-locatiegegevens-submit'])) {
             ));
 
             // succes message
-            Message::notice('profile.php', array(
+            Message::notice('editprofile.php', array(
                 'm' => 'Uw locatiegegevens zijn succesvol bijgewerkt'
             ));
 

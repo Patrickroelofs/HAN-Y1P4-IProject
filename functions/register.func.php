@@ -136,7 +136,7 @@ if (isset($_GET['rid'])) {
                 'verified' => true
             ));
 
-            Message::info('profile.php', array(
+            Message::info('editprofile.php', array(
                 'm' => 'Uw account is succesvol geactiveerd'
             ));
 

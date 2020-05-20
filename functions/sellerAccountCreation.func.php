@@ -2,7 +2,7 @@
 
 //check if user completed account
 if ($user->first()->complete == 0) {
-    Message::info('profile.php', array(
+    Message::info('editprofile.php', array(
         'm' => 'Maak eerst uw account volledig voordat u een verkoper wordt'
     ));
 
