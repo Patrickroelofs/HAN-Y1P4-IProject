@@ -43,12 +43,18 @@ if (!$error) { ?>
                     }
                     ?></p>
 
+                <?php
+                    if(Session::get('username') == $thisItem->first()->trader) {
+
+                    } else {
+                ?>
                 <form method="post" id="offer-form">
                     <div class="ui input labeled input required">
                         <label for="amount" class="ui label">€</label>
                         <input type="number" step="0.1" required autocomplete="off" placeholder="Uw bod" name="amount">
                     </div>
                 </form>
+                <?php } ?>
             </div>
         </div>
         <div class="actions">
