@@ -59,9 +59,12 @@ include INCLUDES . 'modals/contactseller.inc.php';
                             <img class="active" src="<?= $images->first()->filename; ?>">
                         </div>
                         <ul class="image-list">
-                            <?php foreach($images->results() as $image) { ?>
-                            <li class="image-item"><img src="<?php echo $image->filename; ?>"></li>
-                            <?php } ?>
+                            <?php
+                            if($images->count() > 1) {
+                                foreach($images->results() as $image) { ?>
+                                    <li class="image-item"><img src="<?php echo $image->filename; ?>"></li>
+                            <?php }
+                            } ?>
                         </ul>
                     </div>
                 </div>
