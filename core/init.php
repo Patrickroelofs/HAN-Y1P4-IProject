@@ -39,5 +39,12 @@ include(DIR . DS . FUNCTIONS . 'sanitize.func.php');
 //Get userdata from current logged in user
 if(Session::exists('username')){
     $user = Database::getInstance()->get('Users', array('username', '=', Session::get('username')));
-    $admin = Database::getInstance()->get('Admins', array('username', '=', Session::get('username')));
+
+    // if the user is banned from the site
+    if($user->first()->banned) {
+        Session::delete('username');
+        Session::destroy('username');
+
+        Message::warning('index.php', array('m' => 'Dit account is geblokeert, neem contact op met de klantenservice'));
+    }
 }

@@ -24,29 +24,43 @@ if(!is_numeric($_GET['user'])) {
 }
 
 
-
-
 //Get data from this user
 $thisUser = Database::getInstance()->query("SELECT * FROM Users WHERE id = '". escape($_GET['user']) ."'");
+
+include FUNCTIONS . 'admin.func.php';
 ?>
 
 <main>
     <div class="ui container">
-        <img class="ui small circular image profilepicture" src="<?php
-        if(empty($thisUser->first()->profilepicture)) {
-            echo ROOT . 'upload/profilepictures/default.jpg';
-        } else {
-            echo escape($thisUser->first()->profilepicture);
-        }
-        ?>">
-        <h1>
-            <?php if(empty($thisUser->first()->firstname) || empty($thisUser->first()->lastname)) {
-                echo escape($thisUser->first()->username);
-            } else {
-                echo escape($thisUser->first()->firstname) . ' ' . escape($thisUser->first()->lastname);
-            }
-            ?>
-        </h1>
+        <div class="ui stackable two column grid">
+            <div class="column">
+
+                <img class="ui small circular image profilepicture" src="<?php
+                if(empty($thisUser->first()->profilepicture)) {
+                    echo ROOT . 'upload/profilepictures/default.jpg';
+                } else {
+                    echo escape($thisUser->first()->profilepicture);
+                }
+                ?>">
+                <h1>
+                    <?php if(empty($thisUser->first()->firstname) || empty($thisUser->first()->lastname)) {
+                        echo escape($thisUser->first()->username);
+                    } else {
+                        echo escape($thisUser->first()->firstname) . ' ' . escape($thisUser->first()->lastname);
+                    }
+                    ?>
+                </h1>
+
+            </div>
+
+            <?php if(Admin::isLoggedIn()) { ?>
+            <div class="column">
+                <form class="ui form vertical-margin-12" action="" method="post">
+                    <input type="submit" name="banuser" id="banuser" class="negative ui button" value="Blokkeer gebruiker">
+                </form>
+            </div>
+            <?php } ?>
+        </div>
     </div>
 </main>
 
