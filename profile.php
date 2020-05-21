@@ -53,13 +53,22 @@ include FUNCTIONS . 'admin.func.php';
 
             </div>
 
-            <?php if(Admin::isLoggedIn()) { ?>
+            <?php if(Admin::isLoggedIn()) {
+                if($thisUser->first()->banned == false) {
+                ?>
             <div class="column">
                 <form class="ui form vertical-margin-12" action="" method="post">
                     <input type="submit" name="banuser" id="banuser" class="negative ui button" value="Blokkeer gebruiker">
                 </form>
             </div>
-            <?php } ?>
+            <?php } else { ?>
+
+                <div class="column">
+                    <form class="ui form vertical-margin-12" action="" method="post">
+                        <input type="submit" name="unbanuser" id="unbanuser" class="positive ui button" value="Deblokkeer gebruiker">
+                    </form>
+                </div>
+            <?php } } ?>
         </div>
     </div>
 </main>

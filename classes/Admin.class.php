@@ -41,6 +41,19 @@ class Admin {
         Database::getInstance()->update("Users", "id", $userID, array(
             'banned' => false
         ));
+
+        //Get user data
+        $getUser = Database::getInstance()->query("SELECT * FROM Users WHERE id = '". $userID ."'");
+
+        //Get product data connected to user
+        $getItems = Database::getInstance()->query("SELECT * FROM Items WHERE trader = '". $getUser->first()->username ."'");
+
+        //Loop through users items and mark them as visible
+        foreach ($getItems->results() as $item) {
+            Database::getInstance()->update("Items", "id", $item->id, array(
+                'hidden' => false
+            ));
+        }
     }
 
     public static function hideItem($itemID) {
