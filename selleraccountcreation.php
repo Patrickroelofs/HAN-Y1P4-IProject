@@ -35,12 +35,13 @@ include FUNCTIONS . 'selleraccountcreation.func.php';
                         <div class="default text">Controle optie</div>
                         <div class="menu">
                             <div class="item" data-value="Creditcard">Creditcard</div>
+                            <div class="item" data-value="Post">Post</div>
                         </div>
                     </div>
                 </div>
                 <div class="field">
-                    <label for="credit card">Credit card</label>
-                    <input type="text" name="creditcard" id="creditcard" placeholder="Vul uw creditcard nummer in">
+                    <label for="credit card">Creditcard / postnummer</label>
+                    <input type="text" name="creditcard" id="creditcard" placeholder="Vul uw creditcard / post nummer in">
                 </div>
                 <input class="ui button" type="submit" name="updateBankgegevens" value="Update bankgegevens">
             </form>
