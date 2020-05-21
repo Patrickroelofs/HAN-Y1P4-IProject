@@ -79,6 +79,38 @@ include FUNCTIONS . 'admin.func.php';
             }
             ?>
         </div>
+        <br><br><br>
+
+        <div>
+            <h2>Deze gebruikers producten</h2>
+            <div class="ui stackable five column grid">
+                <?php
+                $products = Database::getInstance()->query("SELECT * FROM Items WHERE trader = '". $thisUser->first()->username ."'");
+
+                if ($products->count() < 1) {
+                    // no data passed by get
+                    echo "<p>Geen resultaten</p>";
+                }
+
+                foreach($products->results() as $result) {
+                    if(!$result->hidden || Admin::isLoggedIn()) {
+                    ?>
+                    <div class="column">
+                        <div class="ui fluid card productcards <?php if($result->hidden) { echo 'itemhidden'; } ?>">
+                            <a class="image" href="product.php?p=<?= $result->id; ?>">
+                                <img src="<?= ROOT . $result->thumbnail; ?>" alt="Foto van <?= escape($result->title); ?>">
+                            </a>
+                            <div class="content">
+                                <a class="header" href="product.php?p=<?= $result->id; ?>"><?= escape($result->title); ?></a>
+                                <div class="description"><?= escape(Modifiers::textlength($result->description, 100)); ?>...</div>
+                                <div class="description bold">€<?= escape($result->price); ?></div>
+                            </div>
+                        </div>
+                    </div>
+                <?php }
+                } ?>
+            </div>
+        </div>
     </div>
 </main>
 
