@@ -2,10 +2,14 @@
 
 class Admin {
     public static function isLoggedIn() {
+        // if a session exists
         if(Session::exists('username')) {
+            //get admin data
             $admin = Database::getInstance()->query("SELECT * FROM Admins where username = '". Session::get('username') ."'");
 
+            //if an admin is returned
             if($admin->count() >= 1) {
+                //if the session and the admin are the same
                 if(strtolower(Session::get('username')) === strtolower($admin->first()->username)) {
                     return true;
                 }
@@ -14,6 +18,23 @@ class Admin {
             }
         }
 
+        return false;
+    }
+
+    public static function adminID() {
+        if(Session::exists('username')) {
+            $admin = Database::getInstance()->query("SELECT * FROM Admins where username = '". Session::get('username') ."'");
+
+            if($admin->count() >= 1) {
+                //if the session and the admin are the same
+                if(strtolower(Session::get('username')) === strtolower($admin->first()->username)) {
+                    $adminID = Database::getInstance()->query("SELECT * FROM Users where username = '". $admin->first()->username ."'");
+                    return $adminID->first()->id;
+                }
+            } else {
+                return false;
+            }
+        }
         return false;
     }
 
