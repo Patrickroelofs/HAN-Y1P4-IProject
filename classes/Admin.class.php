@@ -18,9 +18,23 @@ class Admin {
     }
 
     public static function banUser($userID) {
+        // marks the user as banned
         Database::getInstance()->update("Users", "id", $userID, array(
            'banned' => true
         ));
+
+        //Get user data
+        $getUser = Database::getInstance()->query("SELECT * FROM Users WHERE id = '". $userID ."'");
+
+        //Get product data connected to user
+        $getItems = Database::getInstance()->query("SELECT * FROM Items WHERE trader = '". $getUser->first()->username ."'");
+
+        //Loop through users items and mark them as hidden
+        foreach ($getItems->results() as $item) {
+            Database::getInstance()->update("Items", "id", $item->id, array(
+               'hidden' => true
+            ));
+        }
     }
 
     public static function unbanUser($userID) {
