@@ -49,12 +49,16 @@
     } else {
 ?>
         <a class="item" href="editprofile.php">Mijn Profiel</a>
-        <a class="item" href="yourbids.php">Jouw biedingen</a>
+
         <?php
-            if($user->first()->trader == false) {
-                echo '<a class="item" href="selleraccountcreation.php">Word een verkoper</a>';
-            } else {
-                echo '<a class="item" href="createauction.php">Advertentie plaatsen</a>';
+            if(!Admin::isLoggedIn()) {
+                echo '<a class="item" href="yourbids.php">Jouw biedingen</a>';
+                
+                if($user->first()->trader == false) {
+                    echo '<a class="item" href="selleraccountcreation.php">Word een verkoper</a>';
+                } else {
+                    echo '<a class="item" href="createauction.php">Advertentie plaatsen</a>';
+                }
             }
         ?>
         <a class="item" href="includes/navigation/logout.inc.php">Uitloggen</a>
