@@ -35,12 +35,42 @@ $bidExists = Database::getInstance()->query("SELECT amount FROM Bids WHERE item 
 include FUNCTIONS . 'makeBid.func.php';
 include INCLUDES . 'modals/makeBid.inc.php';
 include INCLUDES . 'modals/contactseller.inc.php';
+include FUNCTIONS . 'admin.func.php';
 ?>
 
     <main>
         <div class="ui container">
+            <div class="ui stackable two column grid">
+                <div class="column">
+                    <h2><?php echo escape($thisItem->first()->title) ?></h2>
+                </div>
 
-            <h2><?php echo escape($thisItem->first()->title) ?></h2>
+                <div class="column">
+                    <?php
+                        //if an admin is logged in
+                        if(Admin::isLoggedIn()) {
+                            //if this banned user is false display banuser otherwise unbanuser.
+                            if($thisItem->first()->hidden == false) {
+                                ?>
+                                <div class="column">
+                                    <form class="ui form vertical-margin-12" action="" method="post">
+                                        <input type="submit" name="hideitem" id="hideitem" class="negative ui button" value="Blokkeer product">
+                                    </form>
+                                </div>
+                            <?php } else { ?>
+
+                                <div class="column">
+                                    <form class="ui form vertical-margin-12" action="" method="post">
+                                        <input type="submit" name="unhideitem" id="unhideitem" class="positive ui button" value="Deblokkeer product">
+                                    </form>
+                                </div>
+                                <?php
+                            }
+                        }
+                    ?>
+                </div>
+            </div>
+
             <div class="vertical-margin-12">
                 <div class="ui breadcrumb">
                     <a href="index.php" class="section">Home</a>

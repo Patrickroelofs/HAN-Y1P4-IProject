@@ -84,7 +84,7 @@ class Admin {
     }
 
     public static function showItem($itemID) {
-        Database::getInstance()->update("", "id", $itemID, array(
+        Database::getInstance()->update("Items", "id", $itemID, array(
            'hidden' => false
         ));
     }
