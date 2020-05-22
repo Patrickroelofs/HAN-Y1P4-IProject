@@ -174,7 +174,7 @@ include FUNCTIONS . 'admin.func.php';
                             ?>
                             <p><span class="bold">Dit artikel is gesloten voor biedingen</span></p>
                             <p>En is verkocht voor: € <?= $thisItem->first()->saleprice; ?></p>
-                            <em>Exclusief €<?= escape($thisItem->first()->shippingcost) ?> verzendkosten</em></p>
+                            <em>Exclusief €<?= escape($thisItem->first()->shippingcost) ?> verzendkosten</em>
 
                         <?php
                         } else {
@@ -182,7 +182,7 @@ include FUNCTIONS . 'admin.func.php';
                         }
                         ?>
                         <!-- bidding -->
-                        <?php if ($thisItem->first()->closed != false || Session::get('username') != $thisItem->first()->trader) { ?>
+                        <?php if ($thisItem->first()->closed != false || Session::exists('username') != $thisItem->first()->trader) { ?>
                         <div class="ui input labeled input">
                             <button type="submit" id="makeOffer" class="ui primary labeled icon button">
                                 <i class="gavel icon"></i>
