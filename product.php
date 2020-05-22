@@ -6,11 +6,12 @@ include INCLUDES . 'head.inc.php';
 if (isset($_GET['p'])) {
     $productID = escape($_GET['p']);
 } else {
-    Redirect::to('index.php');
+    Message::error('index.php', array(
+        'm' => 'Product bestaat niet'
+    ));
 }
 
 // Get data from database
-
 $thisItem = Database::getInstance()->query("SELECT * FROM Items WHERE id = $productID", array());
 $thisUser = Database::getInstance()->query("SELECT * FROM Users where username = '". $thisItem->first()->trader ."'", array());
 $rubriek = Database::getInstance()->query("SELECT * FROM Categories WHERE id = '". $thisItem->first()->category . "'", array());
@@ -26,6 +27,13 @@ $bidExists = Database::getInstance()->query("SELECT amount FROM Bids WHERE item 
 
 // Get all bids
 $bidAll = Database::getInstance()->query("SELECT TOP (5) * FROM Bids WHERE item = $productID ORDER BY amount DESC",array());
+
+// Check if product exists
+if ($thisItem->count() == false) {
+    Message::error('index.php', array(
+        'm' => 'Product bestaat niet'
+    ));
+}
 
 // Calculate time left in offer
 $currentDate = new DateTime(date("Y-m-d"));
