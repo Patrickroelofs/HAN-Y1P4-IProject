@@ -51,13 +51,14 @@
                     <div class="ui link list">
                         <a href="foryou.php" class="item">Voor Jou</a>
                         <a href="nearby.php" class="item">Dichtbij</a>
+                        <a href="yourbids.php" class="item">Jouw Biedingen</a>
                     </div>
                 </div>
                 <div class="three wide column">
                     <h4 class="ui header">Verkoper</h4>
                     <div class="ui link list">
-                        <a href="yourbids.php" class="item">Jouw Biedingen</a>
                         <a href="createauction.php" class="item">Advertentie Plaatsen</a>
+                        <a href="foryou.php#yourAuctions" class="item">Jouw Advertenties</a>
                     </div>
                 </div>
                 <div class="seven wide column">

@@ -13,7 +13,7 @@
 <main>
     <div class="ui container">
         <?php if($user->first()->trader && !$userProducts->count() <= 0) { ?>
-        <h2>Jouw lopende biedingen</h2>
+        <h2 id="yourAuctions">Lopende advertenties</h2>
         <div class="ui stackable five column grid">
             <div class="five column row">
                 <?php foreach ($userProducts->results() as $result) {
