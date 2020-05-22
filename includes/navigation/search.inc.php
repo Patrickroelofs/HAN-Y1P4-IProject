@@ -1,5 +1,5 @@
 <?php
-include FUNCTIONS . 'searchSubmit.func.php';
+include FUNCTIONS . 'search.func.php';
 ?>
 
 <form id="search" method="post" action="">

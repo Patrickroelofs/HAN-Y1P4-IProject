@@ -6,7 +6,7 @@ include INCLUDES . 'head.inc.php';
 <main>
     <div class="ui container">
         <h2>Zoekresultaten</h2>
-        <?php include FUNCTIONS . 'searchResults.func.php' ?>
+        <?php include FUNCTIONS . 'search.func.php' ?>
 
         <div class="thirteen wide column">
             <div class="ui stackable five column grid">
