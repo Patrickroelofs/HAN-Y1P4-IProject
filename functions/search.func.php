@@ -8,6 +8,7 @@
 if (isset($_POST['search-submit'])) {
 
     // Save data in temporary variables
+    // Replace spaces with +
     $query = escape(str_replace(" ", "+", $_POST['query']));
 
     // Redirect to search results page
@@ -23,7 +24,7 @@ if (isset($_POST['search-submit'])) {
 if (isset($_GET['search'])) {
     $search = escape($_GET['search']);
 
-    // Check database if it contains $query
+    // Explode query and loop through each request
     $condition = '';
     $query = explode(" ", $search);
     foreach($query as $text) {
@@ -33,9 +34,4 @@ if (isset($_GET['search'])) {
     $condition = substr($condition, 0,-4);
 
     $stmt = Database::getInstance()->query("SELECT * FROM Items WHERE $condition",array());
-
-    if ($stmt->count() < 1) {
-        // no data passed by get
-        echo "<p>Geen resultaten</p>";
-    }
 }

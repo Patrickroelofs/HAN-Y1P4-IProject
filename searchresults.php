@@ -10,6 +10,12 @@ include INCLUDES . 'head.inc.php';
 
         <div class="thirteen wide column">
             <div class="ui stackable five column grid">
+                <?php
+                    if ($stmt->count() < 1) {
+                        // no data passed by get
+                        echo "<p>Geen resultaten</p>";
+                    }
+                ?>
                 <?php foreach($stmt->results() as $result) { ?>
                 <div class="column">
                     <div class="ui fluid card">

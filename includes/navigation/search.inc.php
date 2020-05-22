@@ -5,7 +5,7 @@ include FUNCTIONS . 'search.func.php';
 <form id="search" method="post" action="">
     <div class="ui search fluid">
         <div class="ui icon input">
-                <input class="prompt" autocomplete="off" type="text" placeholder="Zoeken..." name="query">
+                <input class="prompt" autocomplete="off" type="text" placeholder="Zoeken..." name="query" value="<?php if(isset($_GET['search'])) {echo escape($_GET['search']); } ?>">
                 <i class="search icon"></i>
                 <input  class="hidden-element" type="submit" name="search-submit">
         </div>
