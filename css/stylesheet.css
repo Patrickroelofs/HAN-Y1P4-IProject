@@ -281,6 +281,11 @@ footer .footer.title h1 {
     padding: 8px 0;
 }
 
+.bidlist > li a {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
 .bidlist > li :first-child{
     color: white;
     font-weight: bold;
@@ -294,6 +299,10 @@ footer .footer.title h1 {
     width: 100% !important;
 }
 
+/* Profile */
+.profileDivider {
+    margin-top: 32px;
+}
 
 /* --- Text modifiers ------------------------------------------- */
 .bold {

@@ -79,17 +79,17 @@ include FUNCTIONS . 'admin.func.php';
             }
             ?>
         </div>
-        <br><br><br>
 
-        <div>
+        <div class="profileDivider">
             <h2>Deze gebruikers producten</h2>
+            <br>
             <div class="ui stackable five column grid">
                 <?php
                 $products = Database::getInstance()->query("SELECT * FROM Items WHERE trader = '". $thisUser->first()->username ."'");
 
-                if ($products->count() < 1) {
+                if ($products->count() <= 0) {
                     // no data passed by get
-                    echo "<p>Geen resultaten</p>";
+                    echo "<p>Geen producten gevonden...</p>";
                 }
 
                 foreach($products->results() as $result) {
@@ -109,6 +109,36 @@ include FUNCTIONS . 'admin.func.php';
                     </div>
                 <?php }
                 } ?>
+            </div>
+        </div>
+
+        <div class="profileDivider">
+            <h2>Deze gebruikers biedingen</h2>
+            <div>
+                <?php
+                    $bids = Database::getInstance()->query("SELECT top(10) * FROM Bids WHERE username = '". Session::get('username') ."' ORDER BY date DESC");
+                    if($bids->count() <= 0) {
+                        echo '<p>Geen biedingen gevonden...</p>';
+                    }
+                    ?>
+                <ul class="bidlist">
+                <?php
+                    foreach($bids->results() as $bid) {
+                        ?>
+                        <li>
+                            <span>
+                                <a href="product.php?p=<?= $bid->item; ?>">
+                                    <?php $item = Database::getInstance()->query("SELECT * FROM Items where id = '". $bid->item ."'");
+                                        echo substr($item->first()->title, 0, 25);
+                                    ?>
+                                </a>
+                            </span>
+
+                            <span>€ <?= $bid->amount; ?></span></li>
+                        <?php
+                    }
+                ?>
+                </ul>
             </div>
         </div>
     </div>
