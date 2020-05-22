@@ -270,6 +270,31 @@ footer .footer.title h1 {
     border: 2px solid red !important;
 }
 
+/* --- Bidlist -------------------------------------------------- */
+.bidlist {
+    list-style: none;
+    padding: 0;
+}
+
+.bidlist > li {
+    list-style: none;
+    padding: 8px 0;
+}
+
+.bidlist > li :first-child{
+    color: white;
+    font-weight: bold;
+    padding: 6px 12px;
+    background: #3772FF;
+    margin-right: 6px;
+    border-radius: 5px;
+}
+
+.makebid.description{
+    width: 100% !important;
+}
+
+
 /* --- Text modifiers ------------------------------------------- */
 .bold {
     font-weight: bold;

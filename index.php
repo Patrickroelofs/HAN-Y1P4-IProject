@@ -125,7 +125,7 @@
         <!-- Includes the functions random products to pick -->
         <div class="ui stackable five column grid">
             <?php
-            $randomProducts = Database::getInstance()->query("SELECT TOP 10 * FROM Items ORDER BY NEWID()");
+            $randomProducts = Database::getInstance()->query("SELECT TOP 10 * FROM Items WHERE NOT hidden = 'true' ORDER BY NEWID()");
 
             if ($randomProducts->count() < 1) {
                 // no data passed by get

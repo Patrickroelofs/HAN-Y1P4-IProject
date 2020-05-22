@@ -32,7 +32,7 @@ if (!$error) { ?>
             <div class="ui medium image">
                 <img src="<?= ROOT . $thisItem->first()->thumbnail; ?>">
             </div>
-            <div class="description">
+            <div class="description makebid">
                 <div class="ui header">Product</div>
                 <p> <?php
                     // Show current highest bid if product exists in bod table
@@ -42,6 +42,17 @@ if (!$error) { ?>
                         echo '<span class="bold">Maak nu het startbod van €' . escape($thisItem->first()->price) . '!</span>';
                     }
                     ?></p>
+
+                <div class="ui divider"></div>
+
+                <h3>Biedingen</h3>
+                <ul class="bidlist">
+                    <?php foreach($bidAll->results() as $bid) { ?>
+
+                        <li><span><?= $bid->username; ?></span> <span>€ <?= $bid->amount; ?></span></li>
+
+                    <?php } ?>
+                </ul>
 
                 <?php
                     if(Session::get('username') == $thisItem->first()->trader) {
