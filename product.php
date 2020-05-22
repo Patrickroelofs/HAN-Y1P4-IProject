@@ -174,7 +174,7 @@ include FUNCTIONS . 'admin.func.php';
                             ?>
                             <p><span class="bold">Dit artikel is gesloten voor biedingen</span></p>
                             <p>En is verkocht voor: € <?= $thisItem->first()->saleprice; ?></p>
-                            <em>Exclusief €<?= escape($thisItem->first()->shippingcost) ?> verzendkosten</em>
+                            <p><em>Exclusief €<?= escape($thisItem->first()->shippingcost) ?> verzendkosten</em></p>
 
                         <?php
                         } else {
