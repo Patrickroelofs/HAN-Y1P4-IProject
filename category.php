@@ -71,7 +71,7 @@
 
                     // Check if there is a category. If that is the case get all products from that category out of the database
                     if (isset($_GET['cat']) && !isset($_GET['min-price']) && !isset($_GET['max-price'])) {
-                        $product = Database::getInstance()->query("SELECT * FROM Items where category='". escape($selectedCategory) ."'");
+                        $product = Database::getInstance()->query("SELECT * FROM Items where category='". escape($selectedCategory) ."' AND NOT hidden = 'true' AND NOT closed = 'true'");
                         // If there are no products let the user know that there are no results found
                         if($product->count() <= 0) {
                             echo "Geen resultaten";
@@ -79,7 +79,7 @@
                     }
                     // Check if there is a category, minimum price and maximum price. If so get all products from that category within that price range out of the database
                     elseif (isset($_GET['cat']) && isset($_GET['min-price']) && isset($_GET['max-price'])) {
-                        $product = Database::getInstance()->query("SELECT * FROM Items where category='". escape($selectedCategory) ."' AND price BETWEEN '". escape($_GET['min-price']) ."' AND '". escape($_GET['max-price']) ."'");
+                        $product = Database::getInstance()->query("SELECT * FROM Items where category='". escape($selectedCategory) ."' AND price BETWEEN '". escape($_GET['min-price']) ."' AND '". escape($_GET['max-price']) ."' AND NOT hidden = 'true' AND NOT closed = 'true'");
                         // If there are no products let the user know that there are no results found
                         if($product->count() <= 0) {
                             echo "Geen resultaten";

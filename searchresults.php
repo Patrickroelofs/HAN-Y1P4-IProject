@@ -15,10 +15,12 @@ include INCLUDES . 'head.inc.php';
                         // no data passed by get
                         echo "<p>Geen resultaten</p>";
                     }
+                    print_r($stmt);
                 ?>
-                <?php foreach($stmt->results() as $result) { ?>
+                <?php foreach($stmt->results() as $result) {
+                    if($result->hidden == false && $result->closed == false || Admin::isLoggedIn()) { ?>
                 <div class="column">
-                    <div class="ui fluid card">
+                    <div class="ui fluid card productcards <?php if($result->hidden) { echo 'itemhidden'; } ?>">
                         <a class="image" href="<?php echo 'product.php?p=' . $result->id ?>">
                             <img src="<?= ROOT .  escape($result->thumbnail); ?>" alt="Foto van <?= escape($result->title); ?>">
                         </a>
@@ -29,7 +31,8 @@ include INCLUDES . 'head.inc.php';
                         </div>
                     </div>
                 </div>
-                <?php } ?>
+                <?php }
+                } ?>
             </div>
         </div>
 
