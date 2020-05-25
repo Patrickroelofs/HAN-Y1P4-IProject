@@ -13,12 +13,15 @@ if(isset($_POST['offer-submit'])) {
     // Save data in temporary variables
     $amount = escape($_POST['amount']);
 
-    if($amount <= $thisItem->first()->price){
+    // Check if amount is less than starting price
+    if($amount < $thisItem->first()->price){
         // error message
         Message::errorMulti('product.php?p='.$productID.'', array(
             'm' => 'Bedrag is lager dan de startprijs'
         ));
 
+        // Check if product exists in Bids table and
+        // amount is higher than the previous highest amount
     } else if ($bidExists->count() >= 1 && $amount <= $bidHigh->first()->amount) {
         // error message
         Message::errorMulti('product.php?p='.$productID.'', array(
