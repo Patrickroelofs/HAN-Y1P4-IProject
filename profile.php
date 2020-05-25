@@ -123,7 +123,8 @@ include FUNCTIONS . 'admin.func.php';
             <h2>Recente biedingen van deze gebruiker</h2>
             <div>
                 <?php
-                    $bids = Database::getInstance()->query("SELECT top(10) * FROM Bids WHERE username = '". Session::get('username') ."' ORDER BY date DESC");
+                    $bids = Database::getInstance()->query("SELECT TOP 10 * FROM Bids WHERE username = '". $thisUser->first()->username ."' ORDER BY date DESC");
+
                     if($bids->count() <= 0) {
                         echo '<p>Geen biedingen gevonden...</p>';
                     }
@@ -131,7 +132,7 @@ include FUNCTIONS . 'admin.func.php';
                 <ul class="bidlist">
                 <?php
                     foreach($bids->results() as $bid) {
-                        $bidBlocked = Database::getInstance()->query("SELECT * FROM Items WHERE id = $bid->item",array());
+                        $bidBlocked = Database::getInstance()->query("SELECT * FROM Items WHERE id = '$bid->item'",array());
                         if($bidBlocked->first()->hidden == true) {
                             echo "Geen biedingen gevonden";
                         } else {
