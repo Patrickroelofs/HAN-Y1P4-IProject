@@ -182,7 +182,7 @@ include FUNCTIONS . 'admin.func.php';
                         }
                         ?>
                         <!-- bidding -->
-                        <?php if ($thisItem->first()->closed != false || Session::exists('username') != $thisItem->first()->trader) { ?>
+                        <?php if ($thisItem->first()->closed != false || strtolower(Session::exists('username')) != strtolower($thisItem->first()->trader)) { ?>
                         <div class="ui input labeled input">
                             <button type="submit" id="makeOffer" class="ui primary labeled icon button">
                                 <i class="gavel icon"></i>
@@ -249,7 +249,7 @@ include FUNCTIONS . 'admin.func.php';
 
         <?php } // if  the current category has < 5 products show random products
             elseif ($randomCatProducts->count() < 5) {
-                $randomProducts = Database::getInstance()->query("SELECT TOP 5 * FROM Items WHERE NOT id = $productID ORDER BY NEWID()");
+                $randomProducts = Database::getInstance()->query("SELECT TOP 5 * FROM Items WHERE NOT id = $productID AND NOT hidden = 'true' AND NOT closed = 'true' ORDER BY NEWID()");
 
                 // if there are no products, show none
                 if ($randomProducts->count() < 1) {
