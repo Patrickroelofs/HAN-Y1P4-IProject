@@ -15,7 +15,6 @@ include INCLUDES . 'head.inc.php';
                         // no data passed by get
                         echo "<p>Geen resultaten</p>";
                     }
-                    print_r($stmt);
                 ?>
                 <?php foreach($stmt->results() as $result) {
                     if($result->hidden == false && $result->closed == false || Admin::isLoggedIn()) { ?>

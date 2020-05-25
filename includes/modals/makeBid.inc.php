@@ -35,6 +35,7 @@ if (!$error) { ?>
             <div class="description makebid">
                 <div class="ui header">Product</div>
                 <p> <?php
+
                     // Show current highest bid if product exists in bod table
                     if($bidExists->count() >= 1) {
                         echo '<span class="bold">Hoogste bod: €' . escape($bidHigh->first()->amount) . '</span>';
@@ -47,6 +48,11 @@ if (!$error) { ?>
 
                 <h3>Biedingen</h3>
                 <ul class="bidlist">
+                    <?php
+                        if ($bidAll->count() <= 0) {
+                            echo 'Geen biedingen uitgebracht.';
+                        }
+                    ?>
                     <?php foreach($bidAll->results() as $bid) { ?>
 
                         <li><span><?= $bid->username; ?></span> <span>€ <?= $bid->amount; ?></span></li>
