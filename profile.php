@@ -4,23 +4,19 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/core/init.php';
 include FUNCTIONS . 'profile.func.php';
 include INCLUDES . 'head.inc.php';
 
-// Count the amount of users registered
-$amountOfUsers = Database::getInstance()->prepare("SELECT count(*) FROM Users");
-$amountOfUsers->execute();
-$amount = $amountOfUsers->fetch(PDO::FETCH_COLUMN);
-
-//These statements have been seperated because they error on production server
+// These statements have been seperated because they error on production server
 // If $_GET user is not a numeric character
 if(!is_numeric($_GET['user'])) {
-    Redirect::to('index.php');
+    Message::error('index.php', array(
+        'm' => 'Gebruiker bestaat niet'
+    ));
 
 // If $_GET user is empty
 } else if(empty($_GET['user'])) {
-    Redirect::to('index.php');
+    Message::error('index.php', array(
+        'm' => 'Gebruiker bestaat niet'
+    ));
 
-// If $_GET user is not a numeric character or is < then 0
-} else if ($_GET['user'] > $amount || $_GET['user'] < 0) {
-    Redirect::to('index.php');
 }
 
 
@@ -31,6 +27,12 @@ $thisUser = Database::getInstance()->query("SELECT * FROM Users WHERE id = '". e
 if ($thisUser->first()->banned == true && Admin::isLoggedIn() == false) {
     Message::error('index.php', array(
         'm' => 'Account geblokkeerd door admin'
+    ));
+}
+
+if ($thisUser->count() < 1) {
+    Message::error('index.php', array(
+        'm' => 'Gebruiker bestaat niet'
     ));
 }
 
