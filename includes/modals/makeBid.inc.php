@@ -53,9 +53,11 @@ if (!$error) { ?>
                             echo 'Geen biedingen uitgebracht.';
                         }
                     ?>
-                    <?php foreach($bidAll->results() as $bid) { ?>
+                    <?php foreach($bidAll->results() as $bid) {
+                        // Get link to user profile
+                        $linkUser = Database::getInstance()->query("SELECT id FROM Users WHERE username = '$bid->username'",array());?>
 
-                        <li><span><?= $bid->username; ?></span> <span>€ <?= $bid->amount; ?></span></li>
+                        <li><span><a href="profile.php?user=<?= $linkUser->first()->id ?>"><?= $bid->username; ?></a></span> <span>€ <?= $bid->amount; ?></span></li>
 
                     <?php } ?>
                 </ul>

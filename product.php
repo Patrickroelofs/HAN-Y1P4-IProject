@@ -16,6 +16,13 @@ $thisItem = Database::getInstance()->query("SELECT * FROM Items WHERE id = $prod
 $thisUser = Database::getInstance()->query("SELECT * FROM Users where username = '". $thisItem->first()->trader ."'", array());
 $rubriek = Database::getInstance()->query("SELECT * FROM Categories WHERE id = '". $thisItem->first()->category . "'", array());
 
+// Check if item is blocked
+if ($thisItem->first()->hidden == true && Admin::isLoggedIn() == false) {
+    Message::error('index.php', array(
+        'm' => 'Product geblokkeerd door admin'
+    ));
+}
+
 // Figure out highest bid
 $bidHigh = Database::getInstance()->query("SELECT TOP 1 amount FROM Bids WHERE item = $productID ORDER BY amount DESC",array());
 
@@ -109,7 +116,7 @@ include FUNCTIONS . 'admin.func.php';
                     <div class="divider"> / </div>
                     <a href="categories.php" class="section">Categorieën</a>
                     <div class="divider"> / </div>
-                    <div class="active section"><?= escape($rubriek->first()->name); ?></div>
+                    <div class="active section"><a href="category.php?cat=<?= $rubriek->first()->id ?>"> <?= escape($rubriek->first()->name); ?> </a></div>
                 </div>
             </div>
 
@@ -209,9 +216,11 @@ include FUNCTIONS . 'admin.func.php';
                                 echo 'Geen biedingen uitgebracht.';
                             } 
                         ?>
-                        <?php foreach($bidAll->results() as $bid) { ?>
+                        <?php foreach($bidAll->results() as $bid) {
+                            // Get link to user profile
+                            $linkUser = Database::getInstance()->query("SELECT id FROM Users WHERE username = '$bid->username'",array());?>
 
-                            <li><span><?= $bid->username; ?></span> <span>€ <?= $bid->amount; ?></span></li>
+                            <li><span><a href="profile.php?user=<?= $linkUser->first()->id ?>"><?= $bid->username; ?></a></span> <span>€ <?= $bid->amount; ?></span></li>
 
                         <?php } ?>
                         </ul>

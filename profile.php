@@ -27,6 +27,13 @@ if(!is_numeric($_GET['user'])) {
 //Get data from this user
 $thisUser = Database::getInstance()->query("SELECT * FROM Users WHERE id = '". escape($_GET['user']) ."'");
 
+// Check if user is banned
+if ($thisUser->first()->banned == true && Admin::isLoggedIn() == false) {
+    Message::error('index.php', array(
+        'm' => 'Account geblokkeerd door admin'
+    ));
+}
+
 include FUNCTIONS . 'admin.func.php';
 ?>
 
@@ -81,7 +88,7 @@ include FUNCTIONS . 'admin.func.php';
         </div>
 
         <div class="profileDivider">
-            <h2>Deze gebruikers producten</h2>
+            <h2>Recente advertenties van deze gebruiker</h2>
             <br>
             <div class="ui stackable five column grid">
                 <?php
@@ -113,17 +120,21 @@ include FUNCTIONS . 'admin.func.php';
         </div>
 
         <div class="profileDivider">
-            <h2>Deze gebruikers biedingen</h2>
+            <h2>Recente biedingen van deze gebruiker</h2>
             <div>
                 <?php
                     $bids = Database::getInstance()->query("SELECT top(10) * FROM Bids WHERE username = '". Session::get('username') ."' ORDER BY date DESC");
                     if($bids->count() <= 0) {
                         echo '<p>Geen biedingen gevonden...</p>';
                     }
-                    ?>
+                ?>
                 <ul class="bidlist">
                 <?php
                     foreach($bids->results() as $bid) {
+                        $bidBlocked = Database::getInstance()->query("SELECT * FROM Items WHERE id = $bid->item",array());
+                        if($bidBlocked->first()->hidden == true) {
+                            echo "Geen biedingen gevonden";
+                        } else {
                         ?>
                         <li>
                             <span>
@@ -136,7 +147,7 @@ include FUNCTIONS . 'admin.func.php';
 
                             <span>€ <?= $bid->amount; ?></span></li>
                         <?php
-                    }
+                    } }
                 ?>
                 </ul>
             </div>
