@@ -14,7 +14,7 @@ if (isset($_GET['p'])) {
 // Retrieve product info from db
 $thisItem = Database::getInstance()->query("SELECT * FROM Items WHERE id = $productID", array());
 // Figure out highest bid
-$bidHigh = Database::getInstance()->query("SELECT TOP 1 amount FROM Bids WHERE item = $productID ORDER BY amount DESC",array());
+$bidHigh = Database::getInstance()->query("SELECT TOP 1 * FROM Bids WHERE item = $productID ORDER BY amount DESC",array());
 // Check if bid is still open
 $bidClosed = Database::getInstance()->query("SELECT closed FROM Items WHERE id = $productID",array());
 // Check if bid exists in database
@@ -54,6 +54,7 @@ if ($endDate > $currentDate) {
             if($bidExists->count() >= 1) {
                 Database::getInstance()->update("Items", "id", "$productID", array(
                     'closed' => true,
+                    'buyer' => $bidHigh->first()->username,
                     'saleprice' => $bidHigh->first()->amount
                 ));
             }
@@ -183,17 +184,28 @@ include FUNCTIONS . 'admin.func.php';
                             </div>
                         <?php } // Check if product IS closed
                             elseif ($thisItem->first()->closed) { ?>
+                                <?php $buyer = Database::getInstance()->query("SELECT * FROM Users where username = '". $thisItem->first()->buyer ."'"); ?>
                                 <!-- Saleprice -->
                                 <p><strong>Dit artikel is verkocht voor €<?= $thisItem->first()->saleprice ?></strong><br>
+                                    aan: <a href="profile.php?user=<?= $buyer->first()->id ?>"><?= $thisItem->first()->buyer ?></a><br>
                                 <!-- Product shipping cost -->
                                 <em>Exclusief €<?= escape($thisItem->first()->shippingcost) ?> verzendkosten</em></p>
                                 <!-- Contact -->
+                                <?php if(strtolower(Session::get('username')) == strtolower($thisItem->first()->trader)) { ?>
                                 <div class="ui input labeled input">
                                     <button type="submit" id="contactSeller" class="ui primary labeled icon button">
                                         <i class="envelope icon"></i>
-                                        Neem contact op
+                                        Neem contact op met koper
                                     </button>
                                 </div>
+                                <?php } else { ?>
+                                    <div class="ui input labeled input">
+                                        <button type="submit" id="contactSeller" class="ui primary labeled icon button">
+                                            <i class="envelope icon"></i>
+                                            Neem contact op met verkoper
+                                        </button>
+                                    </div>
+                                    <?php } ?>
                             <?php }
                         ?>
                 </div>
@@ -254,6 +266,7 @@ include FUNCTIONS . 'admin.func.php';
 
             // if there are no products, show none
             if ($randomProducts->count() < 1) {
+
             } else {
 
                 ?>

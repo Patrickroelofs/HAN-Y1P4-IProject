@@ -51,6 +51,8 @@
                     } else {
                         $timeLeft = 0;
                     }
+
+                    if(!$result->closed) {
                     ?>
                     <div class="column">
                         <div class="ui fluid card">
@@ -64,7 +66,8 @@
                             </div>
                         </div>
                     </div>
-                <?php } ?>
+                <?php } else { echo '<div class="column"><p>Geen lopende advertenties...</p></div>'; }
+                } ?>
             </div>
         </div>
     <?php } ?>

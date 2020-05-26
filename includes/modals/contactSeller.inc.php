@@ -44,52 +44,109 @@ elseif($usrExits->count() == 0) { ?>
 <?php }
 // Show contact info if user is logged in
 else { ?>
-    <div class="ui modal contactSeller">
-        <i class="close icon"></i>
-        <div class="header">
-            Neem contact op
-        </div>
-        <div class="image content">
-            <div class="ui medium image">
-            <img src="
+
+    <?php if(strtolower(Session::get('username')) == strtolower($thisItem->first()->trader)) {
+        $buyer = Database::getInstance()->query("SELECT * FROM Users where username = '". $thisItem->first()->buyer ."'"); ?>
+        <div class="ui modal contactSeller">
+            <i class="close icon"></i>
+            <div class="header">
+                Neem contact op met koper
+            </div>
+            <div class="image content">
+                <div class="ui medium image">
+                    <img src="
                 <?php
-                if(empty($usrInfo->first()->profilepicture)) {
-                    echo 'https://place-hold.it/400';
-                } else {
-                echo $usrInfo->first()->profilepicture;
-                } ?>">
-            </div>
-            <div class="description">
-                <div class="ui header">
-                    <?php echo escape($usrInfo->first()->username) ?>
+                    if(empty($buyer->first()->profilepicture)) {
+                        echo 'https://place-hold.it/400';
+                    } else {
+                        echo $buyer->first()->profilepicture;
+                    } ?>">
                 </div>
+                <div class="description">
+                    <div class="ui header">
+                        <?php echo escape($buyer->first()->username) ?>
+                    </div>
 
-                <p><span class="bold">Emailadres: </span>
-                <a href="<?php echo 'mailto:' .escape($usrInfo->first()->email) ?>">
-                    <?php echo escape($usrInfo->first()->email) ?></a></p>
+                    <p><span class="bold">Emailadres: </span>
+                        <a href="<?php echo 'mailto:' .escape($buyer->first()->email) ?>">
+                            <?php echo escape($buyer->first()->email) ?></a></p>
 
-                <p><span class="bold">Plaats: </span>
-                    <?php if(empty(escape($usrInfo->first()->city))) {
-                        echo "niet beschikbaar";
-                    } else {
-                    echo ucfirst(escape($usrInfo->first()->city));
-                    }  ?>
-                </p>
+                    <p><span class="bold">Plaats: </span>
+                        <?php if(empty(escape($buyer->first()->city))) {
+                            echo "niet beschikbaar";
+                        } else {
+                            echo ucfirst(escape($buyer->first()->city));
+                        }  ?>
+                    </p>
 
-                <p><span class="bold">Telefoonnummer: </span>
-                    <?php if(empty($usrInfo->first()->phone)) {
-                        echo "niet beschikbaar";
-                    } else {
-                        echo escape($usrInfo->first()->phone);
-                    }  ?>
-                </p>
+                    <p><span class="bold">Telefoonnummer: </span>
+                        <?php if(empty($buyer->first()->phone)) {
+                            echo "niet beschikbaar";
+                        } else {
+                            echo escape($buyer->first()->phone);
+                        }  ?>
+                    </p>
+                </div>
+            </div>
+            <div class="actions">
+                <div class="ui positive right labeled icon button">
+                    Sluiten
+                    <i class="checkmark icon"></i>
+                </div>
             </div>
         </div>
-        <div class="actions">
-            <div class="ui positive right labeled icon button">
-                Sluiten
-                <i class="checkmark icon"></i>
+        <?php
+    } else {
+        ?>
+        <div class="ui modal contactSeller">
+            <i class="close icon"></i>
+            <div class="header">
+                Neem contact op met verkoper
+            </div>
+            <div class="image content">
+                <div class="ui medium image">
+                    <img src="
+                <?php
+                    if(empty($usrInfo->first()->profilepicture)) {
+                        echo 'https://place-hold.it/400';
+                    } else {
+                        echo $usrInfo->first()->profilepicture;
+                    } ?>">
+                </div>
+                <div class="description">
+                    <div class="ui header">
+                        <?php echo escape($usrInfo->first()->username) ?>
+                    </div>
+
+                    <p><span class="bold">Emailadres: </span>
+                        <a href="<?php echo 'mailto:' .escape($usrInfo->first()->email) ?>">
+                            <?php echo escape($usrInfo->first()->email) ?></a></p>
+
+                    <p><span class="bold">Plaats: </span>
+                        <?php if(empty(escape($usrInfo->first()->city))) {
+                            echo "niet beschikbaar";
+                        } else {
+                            echo ucfirst(escape($usrInfo->first()->city));
+                        }  ?>
+                    </p>
+
+                    <p><span class="bold">Telefoonnummer: </span>
+                        <?php if(empty($usrInfo->first()->phone)) {
+                            echo "niet beschikbaar";
+                        } else {
+                            echo escape($usrInfo->first()->phone);
+                        }  ?>
+                    </p>
+                </div>
+            </div>
+            <div class="actions">
+                <div class="ui positive right labeled icon button">
+                    Sluiten
+                    <i class="checkmark icon"></i>
+                </div>
             </div>
         </div>
-    </div>
-<?php }
+        <?php
+    }
+    ?>
+<?php } ?>
