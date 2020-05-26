@@ -45,18 +45,24 @@ $endTime = new DateTime($thisItem->first()->durationendtime);
 
 $timeLeft = $currentDate->diff($endDate)->format("%d");
 
-// Check time remaining
-if($endDate < $currentDate && $endTime <= $currentTime && !$thisItem->first()->closed) {
-    if($bidExists->count() >= 1) {
-        Database::getInstance()->update("Items", "id", "$productID", array(
+if ($endDate > $currentDate) {
+
+} else {
+    //close item
+    if($endTime <= $currentTime) {
+        if(!$thisItem->first()->closed) {
+            if($bidExists->count() >= 1) {
+                Database::getInstance()->update("Items", "id", "$productID", array(
                     'closed' => true,
                     'saleprice' => $bidHigh->first()->amount
-        ));
-    }
+                ));
+            }
 
-    Database::getInstance()->update("Items", "id", "$productID", array(
+            Database::getInstance()->update("Items", "id", "$productID", array(
                 'closed' => true
-    ));
+            ));
+        }
+    }
 }
 
 include FUNCTIONS . 'makeBid.func.php';
