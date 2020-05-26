@@ -188,6 +188,7 @@ create table Items
     durationenddate         date                            null,
     durationendtime         time                            null,
     closed                  bit                         not null constraint DF_Items_closed default 0,
+    buyer                   varchar(50)                     null,
     saleprice               decimal(18,2)                   null,
     hidden                  bit                         not null constraint DF_Items_hidden default 0
 
@@ -204,26 +205,6 @@ create table Items
         ON UPDATE CASCADE,
 );
 GO
-
-
-
-
-
--- ************************************** ItemsInCategory
--- create table ItemsInCategory
--- (
---     item        bigint      not null,
---     category    int         not null,
---
---     -- ***************** Foreign Keys
---     constraint FK_ItemsInCategory_1 foreign key (item) references Items (id),
---     constraint FK_ItemsInCategory_2 foreign key (category) references Categories (id)
--- );
--- GO
-
-
-
-
 
 
 -- ************************************** Files
