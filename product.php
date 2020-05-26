@@ -92,7 +92,28 @@ include FUNCTIONS . 'admin.func.php';
 
             <!-- Admin buttons -->
             <div class="column">
-                <?php //TODO: add admin buttons ?>
+                <?php
+                    //if an admin is logged in
+                    if(Admin::isLoggedIn()) {
+                        //if this banned user is false display banuser otherwise unbanuser.
+                        if($thisItem->first()->hidden == false) {
+                            ?>
+                            <div class="column">
+                                <form class="ui form vertical-margin-12" action="" method="post">
+                                    <input type="submit" name="hideitem" id="hideitem" class="negative ui button" value="Blokkeer product">
+                                </form>
+                            </div>
+                        <?php } else { ?>
+
+                            <div class="column">
+                                <form class="ui form vertical-margin-12" action="" method="post">
+                                    <input type="submit" name="unhideitem" id="unhideitem" class="positive ui button" value="Deblokkeer product">
+                                </form>
+                            </div>
+                            <?php
+                        }
+                    }
+                ?>
             </div>
 
             <!-- Breadcrumbs with link to category -->
