@@ -155,6 +155,25 @@ include FUNCTIONS . 'admin.func.php';
                 </ul>
             </div>
         </div>
+        <div class="profileDivider">
+            <h2>Recente reviews van deze gebruiker</h2>
+            <?php
+            // Get reviews from the database
+            $reviews = Database::getInstance()->query("SELECT TOP 5 * FROM Feedback where username = '". $thisUser->first()->username ."' ORDER BY date DESC");
+            if($reviews->count() <= 0) {
+                echo '<p>Geen reviews gevonden...</p>';
+            }
+            ?>
+            <?php
+            // Display the top 5 reviews from the user
+            foreach ($reviews->results() as $review) {?>
+            <div class="ui segment">
+                <h3><?= ucfirst($review->review) ?></h3>
+                <p><?= ucfirst($review->comment) ?></p>
+                <p><?= $review->date ?></p>
+            </div>
+            <?php }?>
+        </div>
     </div>
 </main>
 
