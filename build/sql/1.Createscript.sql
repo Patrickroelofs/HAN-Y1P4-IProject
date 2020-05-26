@@ -7,26 +7,40 @@ GO
 
 -- Drop tables
 -- (Wont work because of foreign key constrains delete manually)
+alter table Users drop constraint FK_Users_1
+GO
+alter table Admins drop constraint FK_Admins_1
+GO
+alter table Trader drop constraint FK_Trader_1
+GO
+alter table Items drop constraint FK_Items_1, FK_Items_2, FK_Items_3
+GO
+alter table Files drop constraint FK_Files_1
+GO
+alter table Feedback drop constraint FK_Feedback_1, FK_Feedback_2
+GO
+alter table Bids drop constraint FK_Bids_1, FK_Bids_2
+GO
 drop table if exists Admins
-go
+GO
 drop table if exists Bids
-go
+GO
 drop table if exists Feedback
-go
+GO
 drop table if exists Files
-go
+GO
 drop table if exists ItemsInCategory
-go
+GO
 drop table if exists Items
-go
+GO
 drop table if exists Categories
-go
+GO
 drop table if exists Trader
-go
+GO
 drop table if exists Users
-go
+GO
 drop table if exists Country
-go
+GO
 
 /* ***************************** */
 /**        CREATE TABLES         */
