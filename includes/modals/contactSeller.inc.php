@@ -120,17 +120,14 @@ else { ?>
 
                     <p><span class="bold">Emailadres: </span>
                         <a href="<?php echo 'mailto:' .escape($usrInfo->first()->email) ?>">
-                            <?php echo escape($usrInfo->first()->email) ?></a></p>
-
-                    <p><span class="bold">Plaats: </span>
+                            <?php echo escape($usrInfo->first()->email) ?></a><br>
+                    <span class="bold">Plaats: </span>
                         <?php if(empty(escape($usrInfo->first()->city))) {
                             echo "niet beschikbaar";
                         } else {
                             echo ucfirst(escape($usrInfo->first()->city));
-                        }  ?>
-                    </p>
-
-                    <p><span class="bold">Telefoonnummer: </span>
+                        }  ?><br>
+                    <span class="bold">Telefoonnummer: </span>
                         <?php if(empty($usrInfo->first()->phone)) {
                             echo "niet beschikbaar";
                         } else {
@@ -138,12 +135,18 @@ else { ?>
                         }  ?>
                     </p>
                     <p>
-                        <span class="bold">Verkoopinstructies, betalen met <?php echo $thisItem->first()->paymentname; ?>: </span>
-                        <?php echo $thisItem->first()->paymentinstruction; ?>
+                        <span class="bold">Betaalmethode: </span><?= $thisItem->first()->paymentname ?><br>
+                        <?php // if payment instructions exist
+                            if (!empty($thisItem->first()->paymentinstruction)) { ?>
+                                <span class="bold">Betaalinstructies: </span><?= $thisItem->first()->paymentinstruction; ?>
+                        <?php } ?>
                     </p>
                     <p>
-                        <span class="bold">Verzendinstructies, kosten zijn €<?php echo $thisItem->first()->shippingcost; ?>: </span>
-                        <?php echo $thisItem->first()->shippinginstructions; ?>
+                        <span class="bold">Verzendkosten: </span><?= $thisItem->first()->shippingcost ?><br>
+                        <?php // if shipping instrucitons exist
+                            if (!empty($thisItem->first()->shippinginstructions)) { ?>
+                                <span class="bold">Verzendinstructies: </span><?= $thisItem->first()->shippinginstructions; ?>
+                            <?php } ?>
                     </p>
                 </div>
             </div>
