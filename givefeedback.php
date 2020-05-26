@@ -12,11 +12,10 @@ if (isset($_GET['p'])) {
 }
 
 // Get data from database
-$thisItem = Database::getInstance()->query("SELECT * FROM Items WHERE id = $productID", array());
+$thisItem = Database::getInstance()->query("SELECT * FROM Items WHERE id = '$productID'", array());
 
 //Check if the product auction has been closed. If not direct user to index.php with the according error.
 if (!$thisItem->first()->closed) {
-    // echo("Product is gesloten voor nieuwe biedingen");
     Message::error('index.php', array(
         'm' => 'Product bestaat niet'
     ));
@@ -42,6 +41,10 @@ if (!$thisItem->first()->closed) {
                     'comment' => $feedback
 
                 ));
+
+                Message::noticeMulti("product.php?p=1", array(
+                        'm' => 'Feedback succesvol verzonden'
+                ));
             } catch (PDOException $e) {
                 echo $e;
             }
@@ -58,9 +61,9 @@ if (!$thisItem->first()->closed) {
                     <i class="dropdown icon"></i>
                     <div class="default text">Beoordeling</div>
                     <div class="menu">
-                        <div class="item" data-value="negative">Negative</div>
-                        <div class="item" data-value="neutral">Neutral</div>
-                        <div class="item" data-value="positive">Positive</div>
+                        <div class="item" data-value="negative">Negatief</div>
+                        <div class="item" data-value="neutral">Neutraal</div>
+                        <div class="item" data-value="positive">Positief</div>
                     </div>
                 </div>
             </div>

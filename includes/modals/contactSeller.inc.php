@@ -108,7 +108,7 @@ else { ?>
                     <img src="
                 <?php
                     if(empty($usrInfo->first()->profilepicture)) {
-                        echo 'https://place-hold.it/400';
+                        echo 'upload/profilepictures/default.jpg';
                     } else {
                         echo $usrInfo->first()->profilepicture;
                     } ?>">
@@ -148,6 +148,10 @@ else { ?>
                 </div>
             </div>
             <div class="actions">
+                <a href="givefeedback.php?p=<?=$thisItem->first()->id ?>" class="ui primary right labeled icon button">
+                    Feedback achterlaten
+                    <i class="balance scale icon"></i>
+                </a>
                 <div class="ui positive right labeled icon button">
                     Sluiten
                     <i class="checkmark icon"></i>
