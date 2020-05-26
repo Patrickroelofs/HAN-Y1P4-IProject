@@ -56,6 +56,8 @@ if (isset($_POST['update-persoonsgegevens-submit'])) {
     $profilepicture = $_FILES['profilepicture']['name'];
     $phone = escape($_POST['phone']);
 
+    $getuserinfo = Database::getInstance()->query("SELECT * FROM Users WHERE username = '". Session::get('username') ."'");
+
     //Randomly hash filename
     $ext = pathinfo($_FILES['profilepicture']['name'], PATHINFO_EXTENSION);
     $filename = md5(basename($profilepicture));
@@ -79,29 +81,57 @@ if (isset($_POST['update-persoonsgegevens-submit'])) {
 
             // If there is no profile picture uploaded
             if (empty($profilepicture)) {
-                $stmt = Database::getInstance()->update('Users', 'username', Session::get('username'), array(
-                    'firstname' => $firstname,
-                    'lastname' => $lastname,
-                    'birthdate' => $dob,
-                    'phone' => $phone
-                ));
+                if (empty($getuserinfo->first()->address1) || empty($getuserinfo->first()->postalcode) || empty($getuserinfo->first()->city) || empty($getuserinfo->first()->country) || empty($getuserinfo->first()->verified)) {
+                    $stmt = Database::getInstance()->update('Users', 'username', Session::get('username'), array(
+                        'firstname' => $firstname,
+                        'lastname' => $lastname,
+                        'birthdate' => $dob,
+                        'phone' => $phone
+                    ));
+                    Message::notice('editprofile.php', array(
+                        'm' => 'Uw persoonsgegevens zijn succesvol bijgewerkt, maar uw profiel is nog niet compleet. Vul ook uw locatiegegevens in.'
+                    ));
+                } else {
+                    $stmt = Database::getInstance()->update('Users', 'username', Session::get('username'), array(
+                        'firstname' => $firstname,
+                        'lastname' => $lastname,
+                        'birthdate' => $dob,
+                        'phone' => $phone,
+                        'complete' => true
+                    ));
+                    Message::notice('editprofile.php', array(
+                        'm' => 'Uw persoonsgegevens zijn succesvol bijgewerkt en uw profiel is compleet.'
+                    ));
+                }
             } // If there is a profile picture uploaded
             else {
-                $stmt = Database::getInstance()->update('Users', 'username', Session::get('username'), array(
-                    'firstname' => $firstname,
-                    'lastname' => $lastname,
-                    'birthdate' => $dob,
-                    'profilepicture' => $target,
-                    'phone' => $phone
-                ));
+                if (empty($getuserinfo->first()->address1) || empty($getuserinfo->first()->postalcode) || empty($getuserinfo->first()->city) || empty($getuserinfo->first()->country)) {
+                    $stmt = Database::getInstance()->update('Users', 'username', Session::get('username'), array(
+                        'firstname' => $firstname,
+                        'lastname' => $lastname,
+                        'birthdate' => $dob,
+                        'profilepicture' => $target,
+                        'phone' => $phone
+                    ));
+                    Message::notice('editprofile.php', array(
+                        'm' => 'Uw persoonsgevens zijn succesvol bijgewerkt, maar uw profiel is nog niet compleet. Vul ook uw locatiegegevens in.'
+                    ));
+                } else {
+                    $stmt = Database::getInstance()->update('Users', 'username', Session::get('username'), array(
+                        'firstname' => $firstname,
+                        'lastname' => $lastname,
+                        'birthdate' => $dob,
+                        'profilepicture' => $target,
+                        'phone' => $phone,
+                        'complete' => true
+                    ));
+                    Message::notice('editprofile.php', array(
+                        'm' => 'Uw persoonsgegevens zijn succesvol bijgewerkt en uw profiel is compleet.'
+                    ));
+                }
             }
-
-            // succes message
-            Message::notice('editprofile.php', array(
-                'm' => 'Uw persoonsgegevens zijn succesvol bijgewerkt'
-            ));
-
-        } catch (PDOException $e) {
+        } catch
+        (PDOException $e) {
             //Error during insert
             echo $e->getMessage();
         }
@@ -123,14 +153,37 @@ if (isset($_POST['update-locatiegegevens-submit'])) {
     $plaatsnaam = escape($_POST['plaatsnaam']);
     $land = $_POST['land'];
 
+    $getuserinfo = Database::getInstance()->query("SELECT * FROM Users WHERE username = '". Session::get('username') ."'");
+
     // TODO: Error messages and other invalid register checks.
-    if (empty($adresregel1) || empty($postcode) || empty($postcode) || empty($land)) {
+    if (empty($adresregel1) || empty($postcode) || empty($plaatsnaam) || empty($land)) {
         //error
         Message::error('editprofile.php', array(
             'm' => 'Vul alle locatiegegevens in'
         ));
+    } else if (empty($getuserinfo->first()->firstname) || empty($getuserinfo->first()->lastname) || empty($getuserinfo->first()->birthdate) || empty($getuserinfo->first()->verified)) {
+        // Insert into data
+        try {
+            $stmt = Database::getInstance()->update('Users', 'username', Session::get('username'), array(
+                'address1' => $adresregel1,
+                'address2' => $adresregel2,
+                'postalcode' => $postcode,
+                'city' => $plaatsnaam,
+                'country' => $land
+                //TODO: Compleet goed in database zetten
+            ));
+
+            // succes message
+            Message::notice('editprofile.php', array(
+                'm' => 'Uw locatiegegevens zijn succesvol bijgewerkt, maar uw profiel is nog niet compleet. Vul ook uw persoonsgegevens in.'
+            ));
+
+        } catch (PDOException $e) {
+            //Error during insert
+            echo $e->getMessage();
+        }
     } else {
-        // Insert into database
+        // Insert into data
         try {
             $stmt = Database::getInstance()->update('Users', 'username', Session::get('username'), array(
                 'address1' => $adresregel1,
@@ -144,7 +197,7 @@ if (isset($_POST['update-locatiegegevens-submit'])) {
 
             // succes message
             Message::notice('editprofile.php', array(
-                'm' => 'Uw locatiegegevens zijn succesvol bijgewerkt'
+                'm' => 'Uw locatiegegevens zijn succesvol bijgewerkt en uw profiel is compleet.'
             ));
 
         } catch (PDOException $e) {
@@ -171,7 +224,7 @@ if (isset($_POST['delete-account-submit'])) {
         }
 
         //Delete user bids (if they exist)
-        $yourBids = Database::getInstance()->query("SELECT * FROM Bids WHERE username = '".Session::get('username')."' ORDER BY date DESC");
+        $yourBids = Database::getInstance()->query("SELECT * FROM Bids WHERE username = '" . Session::get('username') . "' ORDER BY date DESC");
 
         if ($yourBids->count() > 0) {
             $bidsDel = Database::getInstance()->delete('Bids', array('username', '=', Session::get('username')));
@@ -179,17 +232,17 @@ if (isset($_POST['delete-account-submit'])) {
 
         // if the user is a trader delete that trader & items, files, bids associated
         if ($user->first()->trader == true) {
-            $itemsID = Database::getInstance()->query("SELECT id FROM Items WHERE trader = '".Session::get('username')."'",array());
+            $itemsID = Database::getInstance()->query("SELECT id FROM Items WHERE trader = '" . Session::get('username') . "'", array());
 
             //Remove bids, files, items, trader from database
             foreach ($itemsID->results() as $result) {
-                $id             = $result->id;
+                $id = $result->id;
 
                 $productBids = Database::getInstance()->delete('Bids', array('item', '=', $id));
 
                 $filePath = Database::getInstance()->query("SELECT * FROM Files WHERE item = $id");
                 foreach ($filePath->results() as $pathResult) {
-                    $path       = $pathResult->filename;
+                    $path = $pathResult->filename;
 
                     unlink($path);
                 }
@@ -210,9 +263,7 @@ if (isset($_POST['delete-account-submit'])) {
             'm' => 'Uw account is succesvol verwijderd'
         ));
 
-    }
-
-    // Logged out, delete account from database
+    } // Logged out, delete account from database
     else {
         $email = escape($_POST['email']);
         $stmt = Database::getInstance()->query("SELECT * FROM Users WHERE email = '" . $email . "'");
@@ -256,7 +307,7 @@ if (isset($_GET['rmid'])) {
         }
 
         //Delete user bids (if they exist)
-        $yourBids = Database::getInstance()->query("SELECT * FROM Bids WHERE username = '".$_GET['rmuid']."' ORDER BY date DESC");
+        $yourBids = Database::getInstance()->query("SELECT * FROM Bids WHERE username = '" . $_GET['rmuid'] . "' ORDER BY date DESC");
 
         if ($yourBids->count() > 0) {
             $bidsDel = Database::getInstance()->delete('Bids', array('username', '=', $_GET['rmuid']));
@@ -264,16 +315,16 @@ if (isset($_GET['rmid'])) {
 
         // if the user is a trader delete that trader & items, files, bids associated
         if ($stmt->first()->trader == true) {
-            $itemsID = Database::getInstance()->query("SELECT id FROM Items WHERE trader = '".$_GET['rmuid']."'",array());
+            $itemsID = Database::getInstance()->query("SELECT id FROM Items WHERE trader = '" . $_GET['rmuid'] . "'", array());
 
             foreach ($itemsID->results() as $result) {
-                $id             = $result->id;
+                $id = $result->id;
 
                 $productBids = Database::getInstance()->delete('Bids', array('item', '=', $id));
 
                 $filePath = Database::getInstance()->query("SELECT * FROM Files WHERE item = $id");
                 foreach ($filePath->results() as $pathResult) {
-                    $path       = $pathResult->filename;
+                    $path = $pathResult->filename;
 
                     unlink($path);
                 }
