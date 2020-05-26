@@ -22,12 +22,17 @@
                if(Session::exists('username')) {?>
                 <div class="vertical-margin-12">
                     <button class="ui icon top left pointing circular basic dropdown button">
+                        <?php
+                            $notifications = Database::getInstance()->query("SELECT * FROM Notifications WHERE username = '". escape(Session::get('username')) . "'");
+                            if($notifications->count() < 1) {
+                        ?>
+                        <i class="bell outline icon"></i>
+                        <?php } else {?>
                         <i class="bell icon"></i>
+                        <?php } ?>
                         <div class="menu">
                             <div class="header">Notificaties</div>
                             <?php
-                                $notifications = Database::getInstance()->query("SELECT * FROM Notifications WHERE username = '". escape(Session::get('username')) . "'");
-
                                 if($notifications->count() < 1) {
                                     echo"<div class='item'>U heeft geen meldingen</div>";
                                 }
