@@ -12,6 +12,32 @@
 
 <main>
     <div class="ui container">
+        <h2 id="yourSoldAuctions">Gesloten advertenties</h2>
+        <?php if($user->first()->trader) { ?>
+        <div class="ui stackable five column grid">
+            <?php foreach($userProducts->results() as $result) {
+                if($result->closed) {
+                    ?>
+
+                    <div class="column">
+                        <div class="ui fluid card">
+                            <a class="image" href="product.php?p=<?= $result->id; ?>">
+                                <img src="<?= ROOT . $result->thumbnail; ?>" alt="Foto van <?= $result->title; ?>">
+                            </a>
+                            <div class="content">
+                                <a class="header" href="product.php?p=<?= $result->id; ?>"><?= $result->title; ?></a>
+                                <div class="description">Verkocht voor <span class="bold">€ <?= $result->saleprice ?></span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <?php
+                } else { echo '<p>Geen gesloten advertenties...</p><br><br><br>'; }
+            }
+            ?>
+        </div>
+        <?php } ?>
+
         <?php if($user->first()->trader && !$userProducts->count() <= 0) { ?>
         <h2 id="yourAuctions">Lopende advertenties</h2>
         <div class="ui stackable five column grid">
