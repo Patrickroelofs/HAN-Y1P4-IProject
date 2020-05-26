@@ -34,13 +34,25 @@ if(isset($_POST['auction-submit'])) {
         if($size > 2097152) {
             // error message
             Message::error('createauction.php', array(
-                'm' => 'Afbeeldingen zijn te groot'
+                'm' => 'Afbeeldingen zijn te groot',
+                'titel' => $titel,
+                'startprijs' => $startprijs,
+                'beschrijving' => $beschrijving,
+                'betalingsinstructies' => $betalingsintructies,
+                'verzendkosten' => $verzendkosten,
+                'verzendinstructies' => $verzendinstructies
             ));
 
         } else if (!in_array($ext, $acceptedfiles)) {
             // error message
             Message::error('createauction.php', array(
-                'm' => 'Afbeeldingsextensie niet geaccepteerd'
+                'm' => 'Afbeeldingsextensie niet geaccepteerd',
+                'titel' => $titel,
+                'startprijs' => $startprijs,
+                'beschrijving' => $beschrijving,
+                'betalingsinstructies' => $betalingsintructies,
+                'verzendkosten' => $verzendkosten,
+                'verzendinstructies' => $verzendinstructies
             ));
         }
     }
@@ -48,21 +60,104 @@ if(isset($_POST['auction-submit'])) {
     if($countfiles > 4) {
         // error message
         Message::error('createauction.php', array(
-            'm' => 'Te veel afbeeldingen!'
+            'm' => 'Te veel afbeeldingen!',
+            'titel' => $titel,
+            'startprijs' => $startprijs,
+            'beschrijving' => $beschrijving,
+            'betalingsinstructies' => $betalingsintructies,
+            'verzendkosten' => $verzendkosten,
+            'verzendinstructies' => $verzendinstructies
         ));
 
     } else if ($countfiles == 0) {
         // error message
         Message::error('createauction.php', array(
-            'm' => 'U moet ten minste 1 afbeelding toevoegen'
+            'm' => 'U moet ten minste 1 afbeelding toevoegen',
+            'titel' => $titel,
+            'startprijs' => $startprijs,
+            'beschrijving' => $beschrijving,
+            'betalingsinstructies' => $betalingsintructies,
+            'verzendkosten' => $verzendkosten,
+            'verzendinstructies' => $verzendinstructies
         ));
 
-    } else if (empty($titel)) {
+    }
+    // Check if fields are filled
+    else if (empty($titel)) {
         // error message
         Message::error('createauction.php', array(
-            'm' => 'U moet een titel toevoegen'
+            'm' => 'U moet een titel toevoegen',
+            'startprijs' => $startprijs,
+            'beschrijving' => $beschrijving,
+            'betalingsinstructies' => $betalingsintructies,
+            'verzendkosten' => $verzendkosten,
+            'verzendinstructies' => $verzendinstructies
         ));
 
+    } elseif (empty($startprijs)) {
+        // error message
+        Message::error('createauction.php', array(
+            'm' => 'U moet een startprijs opgeven',
+            'titel' => $titel,
+            'beschrijving' => $beschrijving,
+            'betalingsinstructies' => $betalingsintructies,
+            'verzendkosten' => $verzendkosten,
+            'verzendinstructies' => $verzendinstructies
+        ));
+
+    } elseif (empty($looptijd)) {
+        // error message
+        Message::error('createauction.php', array(
+            'm' => 'U moet een looptijd opgeven',
+            'titel' => $titel,
+            'startprijs' => $startprijs,
+            'beschrijving' => $beschrijving,
+            'betalingsinstructies' => $betalingsintructies,
+            'verzendkosten' => $verzendkosten,
+            'verzendinstructies' => $verzendinstructies
+        ));
+    } elseif (empty($beschrijving)) {
+        // error message
+        Message::error('createauction.php', array(
+            'm' => 'U moet een beschrijving opgeven',
+            'titel' => $titel,
+            'startprijs' => $startprijs,
+            'betalingsinstructies' => $betalingsintructies,
+            'verzendkosten' => $verzendkosten,
+            'verzendinstructies' => $verzendinstructies
+        ));
+    } elseif (empty($rubriek)) {
+        // error message
+        Message::error('createauction.php', array(
+            'm' => 'U moet een rubriek opgeven',
+            'titel' => $titel,
+            'startprijs' => $startprijs,
+            'beschrijving' => $beschrijving,
+            'betalingsinstructies' => $betalingsintructies,
+            'verzendkosten' => $verzendkosten,
+            'verzendinstructies' => $verzendinstructies
+        ));
+    } elseif (empty($betalingswijzenaam)) {
+        // error message
+        Message::error('createauction.php', array(
+            'm' => 'U moet een betalingswijze opgeven',
+            'titel' => $titel,
+            'startprijs' => $startprijs,
+            'beschrijving' => $beschrijving,
+            'betalingsinstructies' => $betalingsintructies,
+            'verzendkosten' => $verzendkosten,
+            'verzendinstructies' => $verzendinstructies
+        ));
+    } elseif (empty($verzendkosten)) {
+        // error message
+        Message::error('createauction.php', array(
+            'm' => 'U moet de verzendkosten opgeven',
+            'titel' => $titel,
+            'startprijs' => $startprijs,
+            'beschrijving' => $beschrijving,
+            'betalingsinstructies' => $betalingsintructies,
+            'verzendinstructies' => $verzendinstructies
+        ));
     }
 
     else {

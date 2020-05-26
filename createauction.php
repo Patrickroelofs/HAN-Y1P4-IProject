@@ -16,13 +16,15 @@
 ?>
 <main>
     <div class="ui container">
-        <?php include FUNCTIONS . 'addAuction.func.php'; ?>
+        <?php
+            include FUNCTIONS . 'addAuction.func.php';
+        ?>
         <h2>Advertentie plaatsen</h2>
 
         <form action="" method="post" enctype="multipart/form-data" class="ui large form addAuction">
             <div class="field">
                 <label for="titel">Titel *</label>
-                <input class="input" type="text" name="titel" id="titel" placeholder="Titel voor uw advertentie">
+                <input class="input" type="text" name="titel" id="titel" <?php if (isset($_GET['titel'])){$titel = $_GET['titel']; echo "value='$titel'";} ?>>
             </div>
 
             <div class="three fields">
@@ -30,7 +32,7 @@
                     <label for="startprijs">Startprijs *</label>
                     <div class="ui labeled input">
                         <div class="ui label">€</div>
-                        <input required type="number" step="0.1" min="0" name="startprijs" id="startprijs">
+                        <input type="number" step="0.1" min="0" name="startprijs" id="startprijs" <?php if (isset($_GET['startprijs'])){$startprijs = $_GET['startprijs']; echo "value='$startprijs'";} ?>>
                     </div>
                 </div>
 
@@ -59,7 +61,7 @@
 
             <div class="field">
                 <label for="beschrijving">Beschrijving *</label>
-                <textarea required name="beschrijving" id="beschrijving"></textarea>
+                <textarea name="beschrijving" id="beschrijving"><?php if (isset($_GET['beschrijving'])){ echo $_GET['beschrijving'];} ?></textarea>
             </div>
 
             <div class="field">
@@ -97,7 +99,7 @@
                     <div class="ui selection dropdown fluid">
                         <input type="hidden" name="betalingswijze">
                         <i class="dropdown icon"></i>
-                        <div class="default text">Betalingswijze</div>
+                        <div class="default text">Selecteer betalingswijze</div>
                         <div class="menu">
                             <div class="item" data-value="Bank/giro">Bank/giro</div>
                             <div class="item" data-value="Paypal">Paypal</div>
@@ -107,7 +109,7 @@
 
                 <div class="field">
                     <label for="betalingsintructies">Betalingsinstructies</label>
-                    <textarea name="betalingsintructies" id="betalingsintructies" rows="2"></textarea>
+                    <textarea name="betalingsintructies" id="betalingsintructies" rows="2"> <?php if (isset($_GET['betalingsinstructies'])){ echo $_GET['betalingsinstructies'];} ?></textarea>
                 </div>
             </div>
 
@@ -116,13 +118,13 @@
                     <label for="verzendkosten">Verzendkosten *</label>
                     <div class="ui labeled input">
                         <div class="ui label">€</div>
-                        <input required type="number" step="0.1" min="0" name="verzendkosten" id="verzendkosten">
+                        <input type="number" step="0.1" min="0" name="verzendkosten" id="verzendkosten" <?php if (isset($_GET['verzendkosten'])){$verzendkosten = $_GET['verzendkosten']; echo "value='$verzendkosten'";} ?>>
                     </div>
                 </div>
 
                 <div class="field">
                     <label for="verzendinstructies">Verzendinstructies</label>
-                    <textarea name="verzendinstructies" id="verzendinstructies" rows="2"></textarea>
+                    <textarea name="verzendinstructies" id="verzendinstructies" rows="2"> <?php if (isset($_GET['verzendinstructies'])) { echo $_GET['verzendinstructies'];} ?></textarea>
                 </div>
             </div>
 
