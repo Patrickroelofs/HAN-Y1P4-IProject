@@ -18,15 +18,28 @@
             </div>
 
             <div class="computer or lower hidden item three wide column right aligned nopadding">
+               <?php
+               if(Session::exists('username')) {?>
                 <div class="vertical-margin-12">
-                        <button class="ui icon top left pointing circular basic dropdown button"">
-                            <i class="bell icon"></i>
-                            <div class="menu">
-                                <div class="header">Notificaties</div>
-                                <div class="item">Melding 1 voorbeeld</div>
-                            </div>
-                        </button>
+                    <button class="ui icon top left pointing circular basic dropdown button">
+                        <i class="bell icon"></i>
+                        <div class="menu">
+                            <div class="header">Notificaties</div>
+                            <?php
+                                $notifications = Database::getInstance()->query("SELECT * FROM Notifications WHERE username = '". escape(Session::get('username')) . "'");
+
+                                if($notifications->count() < 1) {
+                                    echo"<div class='item'>U heeft geen meldingen</div>";
+                                }
+
+                                foreach($notifications->results() as $notification) {
+                            ?>
+                                <div class="item"><?php echo escape($notification->message);?></div>
+                            <?php } ?>
+                        </div>
+                    </button>
                 </div>
+                <?php } ?>
                 <?php include_once 'navigation/account.inc.php'; ?>
             </div>
         </div>
