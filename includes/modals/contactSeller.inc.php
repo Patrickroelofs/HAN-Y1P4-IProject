@@ -137,6 +137,14 @@ else { ?>
                             echo escape($usrInfo->first()->phone);
                         }  ?>
                     </p>
+                    <p>
+                        <span class="bold">Verkoopinstructies, betalen met <?php echo $thisItem->first()->paymentname; ?>: </span>
+                        <?php echo $thisItem->first()->paymentinstruction; ?>
+                    </p>
+                    <p>
+                        <span class="bold">Verzendinstructies, kosten zijn €<?php echo $thisItem->first()->shippingcost; ?>: </span>
+                        <?php echo $thisItem->first()->shippinginstructions; ?>
+                    </p>
                 </div>
             </div>
             <div class="actions">
