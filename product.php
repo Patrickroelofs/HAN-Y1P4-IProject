@@ -62,6 +62,16 @@ if ($endDate > $currentDate) {
             Database::getInstance()->update("Items", "id", "$productID", array(
                 'closed' => true
             ));
+
+            Database::getInstance()->insert("Notifications", array(
+                'username' => $bidHigh->first()->username,
+                'message' => 'U heeft het bod gewonnen op' . $thisItem->first()->title
+            ));
+
+            Database::getInstance()->insert("Notifications", array(
+                'username' => $thisItem->first()->trader,
+                'message' =>  $thisItem->first()->title . 'is succesvol verkocht'
+            ));
         }
     }
 }
