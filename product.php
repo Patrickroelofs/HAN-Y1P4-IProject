@@ -176,12 +176,14 @@ include FUNCTIONS . 'admin.func.php';
                                 </div>
                             <?php } ?>
                             <!-- Contact -->
+                            <?php if(strtolower(Session::get('username')) != strtolower($thisItem->first()->trader)) { ?>
                             <div class="ui input labeled input">
                                 <button type="submit" id="contactSeller" class="ui primary labeled icon button">
                                     <i class="envelope icon"></i>
                                     Neem contact op
                                 </button>
                             </div>
+                            <?php } ?>
                         <?php } // Check if product IS closed
                             elseif ($thisItem->first()->closed) { ?>
                                 <?php $buyer = Database::getInstance()->query("SELECT * FROM Users where username = '". $thisItem->first()->buyer ."'"); ?>

@@ -12,8 +12,8 @@
 
 <main>
     <div class="ui container">
-        <h2 id="yourSoldAuctions">Gesloten advertenties</h2>
         <?php if($user->first()->trader) { ?>
+        <h2 id="yourSoldAuctions">Gesloten advertenties</h2>
         <div class="ui stackable five column grid">
             <?php foreach($userProducts->results() as $result) {
                 if($result->closed) {
