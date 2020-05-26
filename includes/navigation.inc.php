@@ -21,7 +21,7 @@
                <?php
                if(Session::exists('username')) {?>
                 <div class="vertical-margin-12">
-                    <button class="ui icon top left pointing circular basic dropdown button">
+                    <button class="ui icon top left pointing circular white dropdown button">
                         <?php
                             $notifications = Database::getInstance()->query("SELECT * FROM Notifications WHERE username = '". escape(Session::get('username')) . "'");
                             if($notifications->count() < 1) {
