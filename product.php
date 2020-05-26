@@ -22,6 +22,20 @@ $bidExists = Database::getInstance()->query("SELECT amount FROM Bids WHERE item 
 // Get all bids
 $bidAll = Database::getInstance()->query("SELECT TOP (5) * FROM Bids WHERE item = $productID ORDER BY amount DESC",array());
 
+// Check if item is blocked
+if ($thisItem->first()->hidden == true && Admin::isLoggedIn() == false) {
+    Message::error('index.php', array(
+        'm' => 'Product geblokkeerd door admin'
+    ));
+}
+
+// Check if items exists in db
+if ($thisItem->count() < 1) {
+    Message::error('index.php', array(
+        'm' => 'Product bestaat niet'
+    ));
+}
+
 // Calculate time left in offer
 $currentDate = new DateTime(date("Y-m-d"));
 $currentTime = new DateTime(strftime("%H:%M:%S"));
@@ -191,6 +205,69 @@ include FUNCTIONS . 'admin.func.php';
                 </div>
             </div>
         </div>
+
+        <!-- Show related products, if they exist -->
+        <?php
+        $randomCatProducts = Database::getInstance()->query("SELECT TOP 5 * FROM Items WHERE NOT id = $productID AND category = '".escape($rubriek->first()->id)."' ORDER BY NEWID()");
+
+        // If the current category has >= 5 products show them
+        if($randomCatProducts->count() >= 5) {
+            ?>
+            <div class="ui segment">
+                <h2>Meer uit <?= escape($rubriek->first()->name) ?></h2>
+                <!-- Includes the functions random products to pick -->
+                <div class="ui stackable five column grid">
+                    <?php
+                    foreach($randomCatProducts->results() as $result) { ?>
+                        <div class="column">
+                            <div class="ui fluid card product productcards">
+                                <a class="image" href="product.php?p=<?= escape($result->id); ?>">
+                                    <img src="<?= ROOT . $result->thumbnail; ?>" alt="Foto van <?= escape($result->title); ?>">
+                                </a>
+                                <div class="content">
+                                    <a class="header" href="product.php?p=<?= escape($result->id); ?>"><?= escape($result->title); ?></a>
+                                    <div class="description"><?= escape($result->description); ?></div>
+                                    <div class="description bold">€<?= escape($result->price); ?></div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+
+        <?php } // if  the current category has < 5 products show random products
+        elseif ($randomCatProducts->count() < 5) {
+            $randomProducts = Database::getInstance()->query("SELECT TOP 5 * FROM Items WHERE NOT id = $productID AND NOT hidden = 'true' AND NOT closed = 'true' ORDER BY NEWID()");
+
+            // if there are no products, show none
+            if ($randomProducts->count() < 1) {
+            } else {
+
+                ?>
+
+                <div class="ui segment">
+                    <h2>Andere producten</h2>
+                    <!-- Includes the functions random products to pick -->
+                    <div class="ui stackable five column grid">
+                        <?php
+                        foreach($randomProducts->results() as $result) { ?>
+                            <div class="column">
+                                <div class="ui fluid card product productcards">
+                                    <a class="image" href="product.php?p=<?= escape($result->id); ?>">
+                                        <img src="<?= ROOT . $result->thumbnail; ?>" alt="Foto van <?= escape($result->title); ?>">
+                                    </a>
+                                    <div class="content">
+                                        <a class="header" href="product.php?p=<?= escape($result->id); ?>"><?= escape($result->title); ?></a>
+                                        <div class="description"><?= escape(Modifiers::textlength($result->description, 100)); ?>...</div>
+                                        <div class="description bold">€<?= escape($result->price); ?></div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    </div>
+                </div>
+
+            <?php } } ?>
     </div>
 </main>
 
