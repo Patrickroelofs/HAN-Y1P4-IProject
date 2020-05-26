@@ -49,6 +49,8 @@ drop table if exists Users
 GO
 drop table if exists Country
 GO
+drop table if exists Notifications
+GO
 
 /* ***************************** */
 /**        CREATE TABLES         */
@@ -259,5 +261,18 @@ create table Bids
     -- ***************** Foreign Keys
     constraint FK_Bids_1 foreign key (item) references Items (id),
     constraint FK_Bids_2 foreign key (username) references Users (username),
+);
+GO
+
+
+
+--*************************************** Notifications
+create table Notifications
+(
+    username    varchar(50)     not null,
+    message     varchar(255)    not null,
+
+    --****************** Foreign Keys
+    constraint FK_Notifications_1 foreign key (username) references Users (username),
 );
 GO
