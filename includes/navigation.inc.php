@@ -18,6 +18,11 @@
             </div>
 
             <div class="computer or lower hidden item three wide column right aligned nopadding">
+                <form action="notifications.php" method="get">
+                    <button class="circular ui icon basic button">
+                        <i class="bell icon"></i>
+                    </button>
+                </form>
                 <?php include_once 'navigation/account.inc.php'; ?>
             </div>
         </div>

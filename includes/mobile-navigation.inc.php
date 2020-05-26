@@ -48,6 +48,7 @@
                 // If user is logged in
             } else {
                 ?>
+                <a class="item" href="notifications.php">Meldingen</a>
                 <a class="item" href="editprofile.php">Mijn Profiel</a>
                 <a class="item" href="yourbids.php">Jouw biedingen</a>
                 <?php
