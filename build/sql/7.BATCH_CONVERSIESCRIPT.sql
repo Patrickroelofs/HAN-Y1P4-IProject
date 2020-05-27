@@ -6,10 +6,24 @@ SELECT GBA_CODE, NAAM_LAND, BEGINDATUM, EINDDATUM, EER_Lid
 FROM tblIMAOLand
 GO
 
--- INSERT INTO [iproject19].dbo.Users (username, email, password, profilepicture, firstname, lastname, phone, address1, address2, postalcode, city, country, trader, complete)
--- SELECT Username, Username + '@eenmaalAndermaal.nl', '', '', '', '', '', '', '', '', '', '0000', 1, 1
--- FROM [batch-iproject19].dbo.Users
--- GO
+INSERT INTO Users (username, email, password, profilepicture, firstname, lastname, phone, address1, address2, postalcode, city, country, trader, complete)
+SELECT DISTINCT
+                batchUsers.Username,
+                batchUsers.Username + '@eenmaalAndermaal.nl',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                batchUsers.Postalcode,
+                '',
+                '0000',
+                1,
+                1
+FROM batchUsers
+GO
 
 SET IDENTITY_INSERT Categories ON
 INSERT INTO Categories (id, name, within)
@@ -18,24 +32,47 @@ FROM batchCategorieen
 SET IDENTITY_INSERT Categories OFF
 GO
 
--- INSERT INTO [iproject19].dbo.Trader (username, bank, bankaccount, controloption, creditcard, activated)
--- SELECT username, '', '', 'Creditcard', '', 1
--- FROM [iproject19].dbo.Users
+INSERT INTO Trader (username, bank, bankaccount, controloption, creditcard, activated)
+SELECT DISTINCT
+                username,
+                '',
+                '',
+                'Creditcard',
+                '',
+                1
+FROM batchUsers
+GO
+
+SET IDENTITY_INSERT Items ON
+INSERT INTO Items (id, trader, title, description, thumbnail, category, price, paymentname, paymentinstruction, postalcode, city, country, duration, shippinginstructions, closed, hidden, durationbegindate, durationbegintime, durationenddate, durationendtime)
+SELECT
+    ID,
+    Verkoper,
+    LEFT(Titel, 255),
+    '',
+    concat('http://iproject19.icasites.nl/thumbnails/',Thumbnail),
+    Categorie,
+    Prijs,
+    '',
+    '',
+    '',
+    '',
+    0000,
+    7,
+    '',
+    0,
+    0,
+    getdate(),
+    '12:00:00',
+    DATEADD(day, 30, getdate()),
+    '12:00:00'
+FROM batchItems
+SET IDENTITY_INSERT Items OFF
+GO
 
 
--- SET IDENTITY_INSERT Items ON
--- INSERT INTO [iproject19].dbo.Items (id, title, description, category, postalcode, city, country, trader, price, paymentname, thumbnail)
--- SELECT id,
---     LEFT(Titel, 255),
---     '',
---     Categorie,
---     Postcode,
---     '',
---     '0000',
---     Verkoper,
---     Prijs,
---     '',
---     concat('pics/dt_1_',RIGHT(Thumbnail, 16))
--- FROM [batch-iproject19].dbo.Items
--- SET IDENTITY_INSERT Items OFF
--- GO
+INSERT INTO Files (ITEM, FILENAME)
+SELECT ItemID,
+       concat('http://iproject19.icasites.nl/pics/', IllustratieFile)
+FROM batchIllustraties
+GO

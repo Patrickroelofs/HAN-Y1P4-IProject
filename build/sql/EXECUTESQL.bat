@@ -27,8 +27,6 @@ ECHO.
 PAUSE
 @CLS
 
-NOCOUNT=OFF
-
 SQLCMD -d iproject19 -x -i "%~dp0\3.BATCH_INSERT_CATEGORIES.sql"
 SQLCMD -d iproject19 -x -i "%~dp0\4.BATCH_INSERT_COUNTRIES.sql"
 SQLCMD -d iproject19 -x -i "%~dp0\5.BATCH_INSERT_USERS.sql"

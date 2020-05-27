@@ -204,9 +204,6 @@ create table Items
     constraint FK_Items_2 foreign key (trader) references Trader (username)
         ON DELETE NO ACTION
         ON UPDATE CASCADE,
-    constraint FK_Items_3 foreign key (country) references Country (code)
-        ON DELETE NO ACTION
-        ON UPDATE CASCADE,
 );
 GO
 
