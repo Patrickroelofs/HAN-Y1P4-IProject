@@ -38,9 +38,11 @@ if ($thisItem->count() < 1) {
 
 // Check if the product has been bought by the user
 if (strtolower($thisItem->first()->buyer) != strtolower(Session::get('username')) && $thisItem->first()->closed) {
-    Message::error('index.php', array(
-        'm' => 'Een andere gebruiker heeft dit product gekocht'
-    ));
+    if(strtolower($thisItem->first()->trader) != strtolower(Session::get('username'))) {
+        Message::error('index.php', array(
+            'm' => 'Een andere gebruiker heeft dit product gekocht'
+        ));
+    }
 }
 
 // Calculate time left in offer
