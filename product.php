@@ -36,6 +36,14 @@ if ($thisItem->count() < 1) {
     ));
 }
 
+// Check if the product has been bought by the user
+if ($thisItem->first()->buyer != Session::get('username') && $thisItem->first()->closed) {
+    Message::error('index.php', array(
+        'm' => 'Een andere gebruiker heeft dit product gekocht'
+    ));
+}
+
+
 // Calculate time left in offer
 $currentDate = new DateTime(date("Y-m-d"));
 $currentTime = new DateTime(strftime("%H:%M:%S"));

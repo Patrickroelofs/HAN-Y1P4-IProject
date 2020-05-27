@@ -10,14 +10,19 @@ if (isset($_GET['p'])) {
         'm' => 'Product bestaat niet'
     ));
 }
-
 // Get data from database
 $thisItem = Database::getInstance()->query("SELECT * FROM Items WHERE id = '$productID'", array());
 
-//Check if the product auction has been closed. If not direct user to index.php with the according error.
+// Check if the product auction has been closed. If not direct user to index.php with the according error.
 if (!$thisItem->first()->closed) {
     Message::error('index.php', array(
         'm' => 'Product bestaat niet'
+    ));
+}
+// Check if the product has been bought by the user
+if ($thisItem->first()->buyer != Session::get('username')) {
+    Message::error('index.php', array(
+        'm' => 'Een andere gebruiker heeft dit product gekocht'
     ));
 }
 ?>
