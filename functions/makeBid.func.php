@@ -6,13 +6,12 @@
 // Is submit pressed?
 if(isset($_POST['offer-submit'])) {
 
-    $bidHigh = Database::getInstance()->query("SELECT TOP 1 amount FROM Bids WHERE item = $productID ORDER BY amount DESC",array());
+    $bidHigh = Database::getInstance()->query("SELECT TOP 1 * FROM Bids WHERE item = $productID ORDER BY amount DESC",array());
     $bidClosed = Database::getInstance()->query("SELECT closed FROM Items WHERE id = $productID",array());
     $bidExists = Database::getInstance()->query("SELECT amount FROM Bids WHERE item = $productID",array());
 
     // Save data in temporary variables
     $amount = escape($_POST['amount']);
-
     // Check if amount is less than starting price
     if($amount < $thisItem->first()->price){
         // error message
@@ -40,6 +39,8 @@ if(isset($_POST['offer-submit'])) {
             //Error during insert
             echo $e->getMessage();
         }
+
+        Notification::add($bidHigh->first()->username, 'Je bieding op ' . $thisItem->first()->title . ' is overboden');
 
         // succes message
         Message::noticeMulti('product.php?p='.$productID.'', array(

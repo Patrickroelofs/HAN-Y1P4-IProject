@@ -29,6 +29,8 @@ alter table Bids drop constraint if exists FK_Bids_1
 GO
 alter table Bids drop constraint if exists FK_Bids_2
 GO
+alter table Notifications drop constraint  if exists FK_Notif_1
+GO
 drop table if exists Admins
 GO
 drop table if exists Bids
@@ -271,8 +273,10 @@ create table Notifications
 (
     username    varchar(50)     not null,
     message     varchar(255)    not null,
+    date        date            not null constraint DF_Notif_date default GETDATE(),
+    time        time            not null constraint DF_Notif_time default CURRENT_TIMESTAMP,
 
     --****************** Foreign Keys
-    constraint FK_Notifications_1 foreign key (username) references Users (username),
+    constraint FK_Notif_1 foreign key (username) references Users (username),
 );
 GO
