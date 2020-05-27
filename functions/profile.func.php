@@ -89,7 +89,7 @@ if (isset($_POST['update-persoonsgegevens-submit'])) {
                         'phone' => $phone
                     ));
                     Message::notice('editprofile.php', array(
-                        'm' => 'Uw persoonsgegevens zijn succesvol bijgewerkt, maar uw profiel is nog niet compleet. Vul ook uw locatiegegevens in.'
+                        'm' => 'Uw persoonsgegevens zijn succesvol bijgewerkt. <br> Uw profiel is nog niet compleet, vul ook uw locatiegegevens in.'
                     ));
                 } else {
                     $stmt = Database::getInstance()->update('Users', 'username', Session::get('username'), array(
@@ -114,7 +114,7 @@ if (isset($_POST['update-persoonsgegevens-submit'])) {
                         'phone' => $phone
                     ));
                     Message::notice('editprofile.php', array(
-                        'm' => 'Uw persoonsgevens zijn succesvol bijgewerkt, maar uw profiel is nog niet compleet. Vul ook uw locatiegegevens in.'
+                        'm' => 'Uw persoonsgevens zijn succesvol bijgewerkt. Vul ook uw locatiegegevens in om uw profiel compleet te maken.'
                     ));
                 } else {
                     $stmt = Database::getInstance()->update('Users', 'username', Session::get('username'), array(
@@ -170,12 +170,11 @@ if (isset($_POST['update-locatiegegevens-submit'])) {
                 'postalcode' => $postcode,
                 'city' => $plaatsnaam,
                 'country' => $land
-                //TODO: Compleet goed in database zetten
             ));
 
             // succes message
             Message::notice('editprofile.php', array(
-                'm' => 'Uw locatiegegevens zijn succesvol bijgewerkt, maar uw profiel is nog niet compleet. Vul ook uw persoonsgegevens in.'
+                'm' => 'Uw locatiegegevens zijn succesvol bijgewerkt. Vul ook uw persoonsgegevens in om uw profiel compleet te maken.'
             ));
 
         } catch (PDOException $e) {
@@ -183,7 +182,7 @@ if (isset($_POST['update-locatiegegevens-submit'])) {
             echo $e->getMessage();
         }
     } else {
-        // Insert into data
+        // Insert into db
         try {
             $stmt = Database::getInstance()->update('Users', 'username', Session::get('username'), array(
                 'address1' => $adresregel1,
@@ -192,7 +191,6 @@ if (isset($_POST['update-locatiegegevens-submit'])) {
                 'city' => $plaatsnaam,
                 'country' => $land,
                 'complete' => true
-                //TODO: Compleet goed in database zetten
             ));
 
             // succes message
