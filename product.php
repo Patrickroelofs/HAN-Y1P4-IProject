@@ -326,7 +326,7 @@ include FUNCTIONS . 'admin.func.php';
 
             // If the count down is finished, write some text
             if (distance <= 0) {
-                document.getElementById("timer").innerHTML = 0 + "h " + 0 + "m " + 0 + "s ";
+                clearInterval(x);
                 location.reload();
             } else {
                 document.getElementById("timer").innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
