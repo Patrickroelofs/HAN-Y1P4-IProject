@@ -31,7 +31,7 @@
                     <div class="row">
                         <div class="centered aligned column sixteen wide mobile tablet four wide computer">
                             <div class="vertical-margin-12">
-                                <i class="ui big registered icon"></i>
+                                <i class="ui big pencil icon"></i>
                                 <p class="bold">Registeer</p>
                                 <p class="left aligned">Vul alle benodigde informatie in zodat u zich kan registeren.</p>
                             </div>
