@@ -324,14 +324,12 @@ include FUNCTIONS . 'admin.func.php';
             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Display the result in the element with id="demo"
-            document.getElementById("timer").innerHTML = hours + "h "
-                + minutes + "m " + seconds + "s ";
-
             // If the count down is finished, write some text
-            if (distance < 0) {
-                clearInterval(x);
+            if (distance <= 0) {
+                document.getElementById("timer").innerHTML = 0 + "h " + 0 + "m " + 0 + "s ";
                 location.reload();
+            } else {
+                document.getElementById("timer").innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
             }
         }, 1000);
     </script>
