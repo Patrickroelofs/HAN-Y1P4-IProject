@@ -37,8 +37,16 @@ if ($thisItem->count() < 1) {
 }
 
 // Check if the product has been bought by the user
-if (strtolower($thisItem->first()->buyer) != strtolower(Session::get('username')) && $thisItem->first()->closed) {
-    if(strtolower($thisItem->first()->trader) != strtolower(Session::get('username'))) {
+if(Session::exists('username')) {
+    if (strtolower($thisItem->first()->buyer) != strtolower(Session::get('username')) && $thisItem->first()->closed) {
+        if(strtolower($thisItem->first()->trader) != strtolower(Session::get('username'))) {
+            Message::error('index.php', array(
+                'm' => 'Een andere gebruiker heeft dit product gekocht'
+            ));
+        }
+    }
+} else {
+    if($thisItem->first()->closed) {
         Message::error('index.php', array(
             'm' => 'Een andere gebruiker heeft dit product gekocht'
         ));
@@ -181,14 +189,17 @@ include FUNCTIONS . 'admin.func.php';
                                 </div>
                             <?php } ?>
                             <!-- Contact -->
-                            <?php if(strtolower(Session::get('username')) != strtolower($thisItem->first()->trader)) { ?>
+                            <?php
+                            if(Session::exists('username')) {
+                                if(strtolower(Session::get('username')) != strtolower($thisItem->first()->trader)) { ?>
                             <div class="ui input labeled input">
                                 <button type="submit" id="contactSeller" class="ui primary labeled icon button">
                                     <i class="envelope icon"></i>
                                     Neem contact op
                                 </button>
                             </div>
-                            <?php } ?>
+                            <?php }
+                            } ?>
                         <?php } // Check if product IS closed
                             elseif ($thisItem->first()->closed) { ?>
                                 <?php $buyer = Database::getInstance()->query("SELECT * FROM Users where username = '". $thisItem->first()->buyer ."'"); ?>
