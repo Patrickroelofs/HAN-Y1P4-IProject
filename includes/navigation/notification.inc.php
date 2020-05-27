@@ -13,14 +13,14 @@ if(Session::exists('username')) {?>
             <div class="menu">
                 <div class="header">Notificaties</div>
                 <?php
-                if($notifications->count() < 1) {
+                if($notifications->count() < 1) { // check notifications
                     echo"<div class='item'>U heeft geen meldingen</div>";
-                }
-
-                foreach($notifications->results() as $notification) {
-                    ?>
-                    <div class="item"><?php echo escape($notification->message);?></div>
-                <?php } ?>
+                } else {
+                    foreach($notifications->results() as $notification) {
+                        ?>
+                        <div class="item"><?php echo escape($notification->message);?></div>
+                    <?php }
+                } ?>
             </div>
         </button>
     </div>
