@@ -47,4 +47,8 @@ if(Session::exists('username')){
 
         Message::warning('index.php', array('m' => 'Dit account is geblokeert, neem contact op met de klantenservice'));
     }
+
+    if($user->first()->trader) {
+        Trader::checkItems($user->first()->username);
+    }
 }

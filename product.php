@@ -37,53 +37,11 @@ if ($thisItem->count() < 1) {
 }
 
 // Check if the product has been bought by the user
-if ($thisItem->first()->buyer != Session::get('username') && $thisItem->first()->closed) {
+if (strtolower($thisItem->first()->buyer) != strtolower(Session::get('username')) && $thisItem->first()->closed) {
     Message::error('index.php', array(
         'm' => 'Een andere gebruiker heeft dit product gekocht'
     ));
 }
-
-
-// Calculate time left in offer
-$currentDate = new DateTime(date("Y-m-d"));
-$currentTime = new DateTime(strftime("%H:%M:%S"));
-
-$endDate = new DateTime($thisItem->first()->durationenddate);
-$endTime = new DateTime($thisItem->first()->durationendtime);
-
-$timeLeft = $currentDate->diff($endDate)->format("%d");
-
-if ($endDate > $currentDate) {
-
-} else {
-    //close item
-    if($endTime <= $currentTime) {
-        if(!$thisItem->first()->closed) {
-            if($bidExists->count() >= 1) {
-                Database::getInstance()->update("Items", "id", "$productID", array(
-                    'closed' => true,
-                    'buyer' => $bidHigh->first()->username,
-                    'saleprice' => $bidHigh->first()->amount
-                ));
-            }
-
-            Database::getInstance()->update("Items", "id", "$productID", array(
-                'closed' => true
-            ));
-
-            Database::getInstance()->insert("Notifications", array(
-                'username' => $bidHigh->first()->username,
-                'message' => 'U heeft het bod gewonnen op' . $thisItem->first()->title
-            ));
-
-            Database::getInstance()->insert("Notifications", array(
-                'username' => $thisItem->first()->trader,
-                'message' =>  $thisItem->first()->title . 'is succesvol verkocht'
-            ));
-        }
-    }
-}
-
 include FUNCTIONS . 'makeBid.func.php';
 include INCLUDES . 'modals/makeBid.inc.php';
 include INCLUDES . 'modals/contactseller.inc.php';
