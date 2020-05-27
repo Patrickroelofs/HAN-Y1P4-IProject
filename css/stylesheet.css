@@ -242,7 +242,7 @@ footer .footer.title h1 {
     margin: 0 0.75rem 0 0;
     flex-basis: 100%;
 }
-.image-list li:nth-child(3) {
+.image-list li:last-of-type {
     margin: 0;
 }
 .image-list img {
