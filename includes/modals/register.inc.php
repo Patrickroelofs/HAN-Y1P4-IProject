@@ -25,5 +25,34 @@
             <input type="submit" name="register-submit" class="ui fluid large primary submit button"
                    value="Account aanmaken">
         </form>
+        <section>
+            <div class="ui container selling-point">
+                <div class="centered aligned ui five column grid">
+                    <div class="row">
+                        <div class="centered aligned column sixteen wide mobile tablet four wide computer">
+                            <div class="vertical-margin-12">
+                                <i class="ui big registered icon"></i>
+                                <p class="bold">Registeer</p>
+                                <p class="left aligned">Vul alle benodigde informatie in zodat u zich kan registeren.</p>
+                            </div>
+                        </div>
+                        <div class="centered aligned column sixteen wide mobile tablet four wide computer">
+                            <div class="vertical-margin-12">
+                                <i class="ui big address book icon"></i>
+                                <p class="bold">Account volledig maken</p>
+                                <div class="left floating"><p>Vul verdere benodigde informatie zodat uw account volledig is.</p></div>
+                            </div>
+                        </div>
+                        <div class="centered aligned column sixteen wide mobile tablet four wide computer">
+                            <div class="vertical-margin-12">
+                                <i class="ui big gavel icon"></i>
+                                <p class="bold">Bieden op producten</p>
+                                <p>Bied op producten om zo veilingen te winnen.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 </div>
