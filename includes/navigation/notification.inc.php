@@ -1,7 +1,7 @@
 <?php
 if(Session::exists('username')) {?>
     <div class="vertical-margin-12">
-        <button class="ui icon top left pointing circular white dropdown button">
+        <button class="ui icon top left pointing circular primary dropdown button">
             <?php
             $notifications = Database::getInstance()->query("SELECT * FROM Notifications WHERE username = '". escape(Session::get('username')) . "' ORDER BY date, time DESC");
             if($notifications->count() < 1) {
