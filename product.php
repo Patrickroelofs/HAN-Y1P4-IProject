@@ -42,6 +42,12 @@ if (strtolower($thisItem->first()->buyer) != strtolower(Session::get('username')
         'm' => 'Een andere gebruiker heeft dit product gekocht'
     ));
 }
+
+// Calculate time left in offer
+$currentDate = new DateTime(date("Y-m-d"));
+$endDate = new DateTime($thisItem->first()->durationenddate);
+$timeLeft = $currentDate->diff($endDate)->format("%d");
+
 include FUNCTIONS . 'makeBid.func.php';
 include INCLUDES . 'modals/makeBid.inc.php';
 include INCLUDES . 'modals/contactseller.inc.php';
