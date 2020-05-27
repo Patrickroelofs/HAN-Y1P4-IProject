@@ -11,22 +11,13 @@ session_start();
 //Define folder structures
 $onProduction = false;
 
-if($onProduction == true) {
-    define('ROOT', 'https://iproject19.icasites.nl/');
-} else {
-    define('ROOT', '');
-}
-
+define('ROOT', '');
 define('DS', '/');
 define('DIR', dirname(__DIR__));
 define('CLASSES', 'classes' . DS);
 define('FUNCTIONS', 'functions'. DS);
 define('INCLUDES', 'includes' . DS);
 define('MODALS', INCLUDES . 'modals' . DS);
-
-//Define inaccessible picture folder
-//TODO: check if it works
-define('PICTURES',  "https://iproject19.icasites.nl/pics");
 
 //Load all classes
 spl_autoload_register(function($class) {
