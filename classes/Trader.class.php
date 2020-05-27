@@ -22,15 +22,9 @@ class Trader
             } else {
                 if($endTime <= $currentTime) {
                     if(!$item->closed) {
-                        Database::getInstance()->insert("Notifications", array(
-                            'username' => $bids->first()->username,
-                            'message' => 'U heeft het bod gewonnen op' . $item->title
-                        ));
 
-                        Database::getInstance()->insert("Notifications", array(
-                            'username' => $item->trader,
-                            'message' => $item->title . 'is succesvol verkocht'
-                        ));
+                        Notification::add($bids->first()->username, 'U heeft het bod gewonnen op ' . $item->title);
+                        Notification::add($item->trader, $item->title . ' is succesvol verkocht. Neem contact op met de koper');
 
                         if ($bids->count() >= 1) {
                             Database::getInstance()->update("Items", "id", "$item->id", array(
