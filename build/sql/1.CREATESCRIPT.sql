@@ -63,14 +63,18 @@ GO
 -- ************************************** Country
 create table Country
 (
-  code          char(4)         not null,
+  code          char(4)         not null UNIQUE,
   name          varchar(40)     not null,
   startdate     date                null,
   enddate       date                null,
   eer_member    bit             not null,
 
     -- ***************** Primary Keys
-  constraint PK_Country primary key (code)
+  constraint PK_Country primary key (code),
+
+
+    -- ***************** Checks
+    constraint CK_Country_Code CHECK (LEN(code) = 4)
 );
 GO
 
@@ -98,8 +102,8 @@ GO
 create table Users
 (
     id              int             identity    not null,
-    username        varchar(50)                 not null,
-    email           varchar(255)                not null,
+    username        varchar(50)                 not null UNIQUE,
+    email           varchar(255)                not null UNIQUE,
     password        varchar(255)                not null,
     profilepicture  varchar(255)                    null,
     firstname       varchar(50)                     null,
