@@ -115,7 +115,7 @@ include FUNCTIONS . 'admin.func.php';
         <div class="ui stackable grid">
             <!-- Product image(s) -->
             <div class="eight wide stackable column">
-                <?php $images = Database::getInstance()->query("SELECT * FROM Files WHERE item = '". $thisItem->first()->id ."'"); ?>
+                <?php $images = Database::getInstance()->query("SELECT TOP 4 * FROM Files WHERE item = '". $thisItem->first()->id ."' ORDER BY NEWID()"); ?>
                 <div class="product-gallery">
                     <div class="product-image">
                         <img class="active" src="<?= $images->first()->filename; ?>">
