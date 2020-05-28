@@ -71,7 +71,13 @@
 
                     // Check if there is a category. If that is the case get all products from that category out of the database
                     if (isset($_GET['cat']) && !isset($_GET['min-price']) && !isset($_GET['max-price'])) {
-                        $product = Database::getInstance()->query("SELECT * FROM Items where category='". escape($selectedCategory) ."' AND NOT hidden = 'true' AND NOT closed = 'true'");
+                        if(isset($_GET['amount'])) {
+                            $ammountOfProductsShown = escape($_GET['amount']);
+                        } else {
+                            $ammountOfProductsShown = 16;
+                        }
+                        $allProducts = Database::getInstance()->query("SELECT * FROM Items WHERE category='" . escape($selectedCategory) . "' AND NOT hidden = 'true' AND NOT closed = 'true'");
+                        $product = Database::getInstance()->query("SELECT TOP $ammountOfProductsShown * FROM Items where category='". escape($selectedCategory) ."' AND NOT hidden = 'true' AND NOT closed = 'true'");
                         // If there are no products let the user know that there are no results found
                         if($product->count() <= 0) {
                             echo "Geen resultaten";
@@ -103,6 +109,12 @@
                             </div>
                         </div>
                     </div>
+                    <?php }
+                    $steps = 16;
+                    if($allProducts->count() >= $ammountOfProductsShown) { ?>
+                        <div>
+                            <a href="category.php?cat= <?=$selectedCategory?> &amount= <?=$ammountOfProductsShown + $steps?> ">Laad meer</a>
+                        </div>
                     <?php } ?>
                 </div>
             </div>
