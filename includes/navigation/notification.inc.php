@@ -1,7 +1,7 @@
 <?php
 if(Session::exists('username')) {?>
     <div class="vertical-margin-12">
-        <button class="ui icon top left pointing circular primary dropdown button">
+        <button class="ui icon top left pointing circular primary dropdown button notification">
             <?php
             $notifications = Database::getInstance()->query("SELECT * FROM Notifications WHERE username = '". escape(Session::get('username')) . "' ORDER BY date, time DESC");
             if($notifications->count() < 1) {
@@ -18,7 +18,7 @@ if(Session::exists('username')) {?>
                 } else {
                     foreach($notifications->results() as $notification) {
                         ?>
-                        <div class="item"><?php echo escape($notification->message);?></div>
+                        <div class="item"><?php echo escape($notification->message); ?></div>
                     <?php }
                 } ?>
             </div>
