@@ -121,12 +121,25 @@ else { ?>
                     <p><span class="bold">Emailadres: </span>
                         <a href="<?php echo 'mailto:' .escape($usrInfo->first()->email) ?>">
                             <?php echo escape($usrInfo->first()->email) ?></a><br>
+
                     <span class="bold">Plaats: </span>
                         <?php if(empty(escape($usrInfo->first()->city))) {
                             echo "niet beschikbaar";
                         } else {
                             echo ucfirst(escape($usrInfo->first()->city));
                         }  ?><br>
+
+                        <?php
+                            $countryCode = $usrInfo->first()->country;
+                            $countryName = Database::getInstance()->query("SELECT * FROM Country WHERE code = $countryCode",array());
+                        ?>
+                    <span class="bold">Land: </span>
+                        <?php if(empty(escape($usrInfo->first()->country)) || escape($usrInfo->first()->country) == '0000') {
+                            echo "niet beschikbaar";
+                        } else {
+                            echo ucfirst(escape($countryName->first()->name));
+                        }  ?><br>
+
                     <span class="bold">Telefoonnummer: </span>
                         <?php if(empty($usrInfo->first()->phone)) {
                             echo "niet beschikbaar";
