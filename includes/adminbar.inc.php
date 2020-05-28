@@ -15,10 +15,6 @@
                     </strong>
                 </div>
             </div>
-
-            <div class="column right aligned">
-                <a target="_blank" href="admin/index.php" class="ui inverted button">Admin Paneel</a>
-            </div>
         </div>
     </div>
 </div>
