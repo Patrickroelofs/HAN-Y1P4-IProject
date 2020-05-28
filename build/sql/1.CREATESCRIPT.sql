@@ -160,7 +160,9 @@ create table Trader
     constraint pk_Trader primary key (username),
 
     -- ***************** Foreign Keys
-    constraint FK_Trader_1 foreign key (username) references Users (username),
+    constraint FK_Trader_1 foreign key (username) references Users (username)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 GO
 
@@ -202,7 +204,7 @@ create table Items
     -- ***************** Foreign Keys
     constraint FK_Items_1 foreign key (category) references Categories (id),
     constraint FK_Items_2 foreign key (trader) references Trader (username)
-        ON DELETE NO ACTION
+        ON DELETE CASCADE
         ON UPDATE CASCADE,
 );
 GO
@@ -216,6 +218,8 @@ create table Files
 
     -- ***************** Foreign Keys
     constraint FK_Files_1 foreign key (item) references Items (id)
+        ON DELETE CASCADE
+        ON UPDATE NO ACTION
 );
 GO
 
