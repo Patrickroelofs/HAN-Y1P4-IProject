@@ -7,6 +7,64 @@
     if(empty($_GET['cat'])) {
         Redirect::to("index.php");
     }
+
+    $data = '';
+    $data .= '?cat=' . $selectedCategory;
+    $offset = 0;
+
+    // if there is an offset set set it, otherwise its 0
+    if(isset($_GET['offset'])) {
+        if(!empty($_GET['offset'])) {
+            $offset = $_GET['offset'];
+        } else {
+            $offset = 0;
+        }
+    } else {
+        $offset = 0;
+    }
+
+    //if the offset is pressed as UP add 20
+    if(isset($_POST['submit-offset-up'])) {
+        $data .= '&offset=' . $offset += 20;
+        $data .= '&min=' . escape($_GET['min']);
+        $data .= '&max=' . escape($_GET['max']);
+
+        Redirect::to('category.php' . $data);
+
+        //if the offset is pressed as DOWN remove 20
+    } else if (isset($_POST['submit-offset-down'])) {
+        $data .= '&offset=' . $offset -= 20;
+        $data .= '&min=' . escape($_GET['min']);
+        $data .= '&max=' . escape($_GET['max']);
+
+        Redirect::to('category.php' . $data);
+    }
+
+    //if the price changer is set
+    if(isset($_POST['submit-price'])) {
+        $data .= '&min=' . escape($_POST['min-price']);
+        $data .= '&max=' . escape($_POST['max-price']);
+        $data .= '&offset=' . 0;
+
+        Redirect::to('category.php' . $data);
+    }
+
+
+
+    //get all products based on above requirements
+    if(isset($_GET['min']) && isset($_GET['max'])) {
+        if(empty($_GET['min']) && empty($_GET['max'])) {
+            $allProducts = Database::getInstance()->query("SELECT * FROM Items WHERE category='" . escape($selectedCategory) . "' AND NOT hidden = 'true' AND NOT closed = 'true' ORDER BY title OFFSET $offset ROWS FETCH NEXT 20 ROWS ONLY");
+            $countProducts = Database::getInstance()->query("SELECT id FROM Items WHERE category='" . escape($selectedCategory) . "' AND NOT hidden = 'true' AND NOT closed = 'true'");
+        } else {
+            $allProducts = Database::getInstance()->query("SELECT * FROM Items WHERE category='" . escape($selectedCategory) . "' AND price BETWEEN '". escape($_GET['min']) ."' AND '". escape($_GET['max']) ."' AND NOT hidden = 'true' AND NOT closed = 'true' ORDER BY title OFFSET $offset ROWS FETCH NEXT 20 ROWS ONLY");
+            $countProducts = Database::getInstance()->query("SELECT id FROM Items WHERE category='" . escape($selectedCategory) . "' AND price BETWEEN '". escape($_GET['min']) ."' AND '". escape($_GET['max']) ."' AND NOT hidden = 'true' AND NOT closed = 'true' ");
+        }
+    } else {
+        $allProducts = Database::getInstance()->query("SELECT * FROM Items WHERE category='" . escape($selectedCategory) . "' AND NOT hidden = 'true' AND NOT closed = 'true' ORDER BY title OFFSET $offset ROWS FETCH NEXT 20 ROWS ONLY");
+        $countProducts = Database::getInstance()->query("SELECT id FROM Items WHERE category='" . escape($selectedCategory) . "' AND NOT hidden = 'true' AND NOT closed = 'true'");
+    }
+
 ?>
 
 <main>
@@ -30,11 +88,9 @@
                 <h3>Categorieën</h3>
                 <div class="cat-list">
                     <?php
-
                     foreach($categories->results() as $subcategory) {
                         echo "<a href='category.php?cat=$subcategory->id'>" . escape($subcategory->name) . '</a>';
                     }
-
                     ?>
                 </div>
                 <input type="checkbox" name="toggle" id="cat-toggle" class="category-toggle">
@@ -56,90 +112,65 @@
             </div>
 
 
-
-
             <div class="thirteen wide column">
                 <div class="ui stackable four column grid">
+
+                    <?php if ($allProducts->count() <= 0) {
+                        echo 'Geen resultaten gevonden...';
+                    }
+                    ?>
+
                     <?php
-                    // Post to get the min and max price submitted
-                    // Check if a min and max price is submitted
-                    if (isset($_POST['submit-price'])) {
-                        $min = escape($_POST['min-price']);
-                        $max = escape($_POST['max-price']);
-                        Redirect::to('category.php?cat='.$selectedCategory.'&min-price='.$min.'&max-price='.$max);
-                    }
+                        foreach ($allProducts->results() as $product) {
+                            ?>
 
-                    // Check if there is a category. If that is the case get all products from that category out of the database
-                    if (isset($_GET['cat']) && !isset($_GET['min-price']) && !isset($_GET['max-price'])) {
-                        if(isset($_GET['amount'])) {
-                            $ammountOfProductsShown = escape($_GET['amount']);
-                        } else {
-                            $ammountOfProductsShown = 16;
-                        }
-                        $allProducts = Database::getInstance()->query("SELECT * FROM Items WHERE category='" . escape($selectedCategory) . "' AND NOT hidden = 'true' AND NOT closed = 'true'");
-                        $product = Database::getInstance()->query("SELECT TOP $ammountOfProductsShown * FROM Items where category='". escape($selectedCategory) ."' AND NOT hidden = 'true' AND NOT closed = 'true'");
-                        // If there are no products let the user know that there are no results found
-                        if($product->count() <= 0) {
-                            echo "Geen resultaten";
-                        }
-                    }
-                    // Check if there is a category, minimum price and maximum price. If so get all products from that category within that price range out of the database
-                    elseif (isset($_GET['cat']) && isset($_GET['min-price']) && isset($_GET['max-price'])) {
-                        $product = Database::getInstance()->query("SELECT * FROM Items where category='". escape($selectedCategory) ."' AND price BETWEEN '". escape($_GET['min-price']) ."' AND '". escape($_GET['max-price']) ."' AND NOT hidden = 'true' AND NOT closed = 'true'");
-                        // If there are no products let the user know that there are no results found
-                        if($product->count() <= 0) {
-                            echo "Geen resultaten";
-                        }
-                    }
-                    // If there isn't a category entered the user will get redirected to index.php
-                    else {
-                        Message::error('index.php', array(
-                                'm' => 'Categorie bestaat niet'
-                        ));
-                    }
-
-                    foreach($product->results() as $result) { ?>
-                        <div class="column">
-                            <div class="ui fluid card">
-                                <a class="image" href="product.php?p=<?= $result->id; ?>">
-                                    <img src="<?= ROOT . $result->thumbnail; ?>" alt="Foto van <?= escape($result->title); ?>">
-                                </a>
-                                <div class="content">
-                                    <a class="header" href="product.php?p=<?= $result->id; ?>"><?= escape($result->title); ?></a>
-                                    <div class="description"><?= escape(Modifiers::textlength($result->description, 100)); ?>...</div>
-                                    <div class="description bold"><?= "€".escape($result->price); ?></div>
-                                </div>
-                            </div>
-                        </div>
-                    <?php }
-
-                    // load products form subcategories
-                    foreach($categories->results() as $subcategory) {
-                        $getsubItem = Database::getInstance()->query("SELECT * FROM Items WHERE category = $subcategory->id");
-
-                        if ($getsubItem->count() > 0) { ?>
                             <div class="column">
-                            <div class="ui fluid card">
-                                <a class="image" href="product.php?p=<?= $result->id; ?>">
-                                    <img src="<?= ROOT . $getsubItem->first()->thumbnail; ?>" alt="Foto van <?= escape($getsubItem->first()->title); ?>">
-                                </a>
-                                <div class="content">
-                                    <a class="header" href="product.php?p=<?= $getsubItem->first()->id; ?>"><?= escape($getsubItem->first()->title); ?></a>
-                                    <div class="description"><?= escape(Modifiers::textlength($getsubItem->first()->description, 100)); ?>...</div>
-                                    <div class="description bold"><?= "€".escape($getsubItem->first()->price); ?></div>
+                                <div class="ui fluid card">
+                                    <a class="image" href="product.php?p=<?= $product->id; ?>">
+                                        <img src="<?= ROOT . $product->thumbnail; ?>" alt="Foto van <?= escape($product->title); ?>">
+                                    </a>
+                                    <div class="content">
+                                        <a class="header" href="product.php?p=<?= $product->id; ?>"><?= escape($product->title); ?></a>
+                                        <div class="description"><?= escape(Modifiers::textlength($product->description, 100)); ?>...</div>
+                                        <div class="description bold"><?= "€".escape($product->price); ?></div>
+                                    </div>
                                 </div>
                             </div>
-                            </div>
-                        <?php }
-                    }
 
-                    $steps = 16;
-                    if($allProducts->count() >= $ammountOfProductsShown) { ?>
-                        <div>
-                            <a href="category.php?cat= <?=$selectedCategory?> &amount= <?=$ammountOfProductsShown + $steps?> ">Laad meer</a>
-                        </div>
-                    <?php } ?>
+                            <?php
+                        }
+                    ?>
+
                 </div>
+            </div>
+            <div class="paginator">
+                <form class="ui large form" action="" method="post">
+                    <?php
+
+                    if(isset($_GET['offset'])) {
+                        if($_GET['offset'] > 0) {
+                            ?>
+                            <button type="submit" class="ui left labeled icon button" name="submit-offset-down">
+                                <i class="left arrow icon"></i>
+                                Vorige pagina
+                            </button>
+                            <?php
+                        }
+                    }
+                    ?>
+
+                    <?php
+
+                    if($countProducts->count() >= $offset && $countProducts->count() - $offset >= 20) {
+                        ?>
+                        <button type="submit" class="ui right labeled icon button" name="submit-offset-up">
+                            <i class="right arrow icon"></i>
+                            Volgende pagina
+                        </button>
+                        <?php
+                    }
+                    ?>
+                </form>
             </div>
         </div>
     </div>
