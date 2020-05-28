@@ -122,7 +122,7 @@ create table Users
     -- ***************** Foreign Keys
     constraint FK_Users_1 foreign key (country) references Country (code)
         ON DELETE NO ACTION
-        ON UPDATE CASCADE
+        ON UPDATE NO ACTION
 );
 GO
 
@@ -202,7 +202,9 @@ create table Items
     constraint PK_items primary key (id),
 
     -- ***************** Foreign Keys
-    constraint FK_Items_1 foreign key (category) references Categories (id),
+    constraint FK_Items_1 foreign key (category) references Categories (id)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION,
     constraint FK_Items_2 foreign key (trader) references Trader (username)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
@@ -255,15 +257,16 @@ GO
 -- ************************************** Bids
 create table Bids
 (
-    username    varchar(50) not null,
+    username    varchar(50)     not null,
     item        bigint          not null,
     amount      decimal(18,2)   not null,
     date        date            not null constraint DF_Bids_date default GETDATE(),
     time        time            not null constraint DF_Bids_time default CURRENT_TIMESTAMP,
 
     -- ***************** Foreign Keys
-    constraint FK_Bids_1 foreign key (item) references Items (id),
-    constraint FK_Bids_2 foreign key (username) references Users (username),
+    constraint FK_Bids_1 foreign key (item) references Items (id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
 );
 GO
 
@@ -278,6 +281,8 @@ create table Notifications
     time        time            not null constraint DF_Notif_time default CURRENT_TIMESTAMP,
 
     --****************** Foreign Keys
-    constraint FK_Notif_1 foreign key (username) references Users (username),
+    constraint FK_Notif_1 foreign key (username) references Users (username)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 GO
