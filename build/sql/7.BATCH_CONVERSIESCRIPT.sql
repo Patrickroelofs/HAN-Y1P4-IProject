@@ -43,9 +43,6 @@ SELECT DISTINCT
 FROM batchUsers
 GO
 
-UPDATE Users SET Country = 0000
-WHERE Country IS NULL
-
 SET IDENTITY_INSERT Categories ON
 INSERT INTO Categories (id, name, within)
 SELECT Id, Name, Parent
