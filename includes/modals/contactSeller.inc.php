@@ -151,10 +151,12 @@ else { ?>
                 </div>
             </div>
             <div class="actions">
+                <?php if ($thisItem->first()->closed && $thisItem->first()->buyer == Session::get('username')) {?>
                 <a href="givefeedback.php?p=<?=$thisItem->first()->id ?>" class="ui primary right labeled icon button">
                     Feedback achterlaten
                     <i class="balance scale icon"></i>
                 </a>
+            <?php } ?>
                 <div class="ui positive right labeled icon button">
                     Sluiten
                     <i class="checkmark icon"></i>
