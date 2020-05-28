@@ -228,15 +228,28 @@ if (isset($_POST['delete-account-submit'])) {
             $bidsDel = Database::getInstance()->delete('Bids', array('username', '=', Session::get('username')));
         }
 
+        // Delete user notifications
+        $yourNoti = Database::getInstance()->query("SELECT * FROM Notifications WHERE username = '" . Session::get('username') . "'");
+
+        if ($yourNoti->count() > 0) {
+            $notiDelete = Database::getInstance()->delete('Notifications', array('username', '=', Session::get('username')));
+        }
+
         // if the user is a trader delete that trader & items, files, bids associated
         if ($user->first()->trader == true) {
             $itemsID = Database::getInstance()->query("SELECT id FROM Items WHERE trader = '" . Session::get('username') . "'", array());
 
-            //Remove bids, files, items, trader from database
+            //Remove bids, files, items, trader, feedback from database
             foreach ($itemsID->results() as $result) {
                 $id = $result->id;
 
                 $productBids = Database::getInstance()->delete('Bids', array('item', '=', $id));
+
+                $yourFeedback = Database::getInstance()->query("SELECT * FROM Feedback WHERE item = $id");
+
+                if ($yourFeedback->count() > 0) {
+                    $feedbackDelete = Database::getInstance()->delete('Feedback', array('item', '=', $id));
+                }
 
                 $filePath = Database::getInstance()->query("SELECT * FROM Files WHERE item = $id");
                 foreach ($filePath->results() as $pathResult) {
@@ -311,6 +324,13 @@ if (isset($_GET['rmid'])) {
             $bidsDel = Database::getInstance()->delete('Bids', array('username', '=', $_GET['rmuid']));
         }
 
+        // Delete user notifications
+        $yourNoti = Database::getInstance()->query("SELECT * FROM Notifications WHERE username = '" . $_GET['rmuid'] . "'");
+
+        if ($yourNoti->count() > 0) {
+            $notiDelete = Database::getInstance()->delete('Notifications', array('username', '=', $_GET['rmuid']));
+        }
+
         // if the user is a trader delete that trader & items, files, bids associated
         if ($stmt->first()->trader == true) {
             $itemsID = Database::getInstance()->query("SELECT id FROM Items WHERE trader = '" . $_GET['rmuid'] . "'", array());
@@ -319,6 +339,12 @@ if (isset($_GET['rmid'])) {
                 $id = $result->id;
 
                 $productBids = Database::getInstance()->delete('Bids', array('item', '=', $id));
+
+                $yourFeedback = Database::getInstance()->query("SELECT * FROM Feedback WHERE item = $id");
+
+                if ($yourFeedback->count() > 0) {
+                    $feedbackDelete = Database::getInstance()->delete('Feedback', array('item', '=', $id));
+                }
 
                 $filePath = Database::getInstance()->query("SELECT * FROM Files WHERE item = $id");
                 foreach ($filePath->results() as $pathResult) {
