@@ -179,6 +179,10 @@ footer .footer.title h1 {
     object-fit: initial !important;
     height: auto !important;
 }
+
+.categorytitle{
+    margin: 16px 0 !important;
+}
 /* --- SYSTEM MESSAGES ----------------------------------------- */
 .systemMessage {
     margin: 32px 0;

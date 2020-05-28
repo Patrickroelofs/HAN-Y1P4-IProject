@@ -69,12 +69,27 @@
 
 <main>
     <div class="ui container">
-        <h2>
-            <?php
+
+        <div class="ui stackable two column grid">
+            <h2 class="categorytitle">
+                <?php
                 $category = Database::getInstance()->get('Categories', array('id', '=', $selectedCategory));
                 echo escape($category->first()->name);
-            ?>
-        </h2>
+                ?>
+            </h2>
+        </div>
+
+        <div class="ui stackable two column grid">
+            <div class="ui breadcrumb categorybreadcrumb">
+                <a href="index.php" class="section">Home</a>
+                <div class="divider"> / </div>
+                <a href="categories.php" class="section">Categorieën</a>
+                <div class="divider"> / </div>
+                <div class="active section"><?= $category->first()->name; ?></div>
+            </div>
+        </div>
+
+
         <div class="ui stackable two column grid">
 
 
