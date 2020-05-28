@@ -171,6 +171,14 @@ footer .footer.title h1 {
     width: 100%;
 }
 
+.ui.card>.image>img, .ui.cards>.card>.image>img {
+    object-fit: contain!important;
+    height: 175px!important;
+}
+.highlightedcategories .ui.card.fluid>.image>img {
+    object-fit: initial !important;
+    height: auto !important;
+}
 /* --- SYSTEM MESSAGES ----------------------------------------- */
 .systemMessage {
     margin: 32px 0;

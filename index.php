@@ -7,7 +7,7 @@
     <div class="ui container">
         <!-- featured content -->
         <h2>Uitgelicht</h2>
-        <div class="ui stackable two column grid">
+        <div class="ui stackable two column grid highlightedcategories">
             <div class="column">
                 <div class="ui fluid card">
                     <a class="image" href="category.php?cat=160">
@@ -23,7 +23,7 @@
                 </div>
             </div>
         </div>
-        <div class="ui stackable four column grid">
+        <div class="ui stackable four column grid highlightedcategories">
             <div class="column">
                 <div class="ui fluid card">
                     <a class="image" href="category.php?cat=12081">
