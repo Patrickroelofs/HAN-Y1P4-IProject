@@ -93,23 +93,46 @@
                     }
                     // If there isn't a category entered the user will get redirected to index.php
                     else {
-                        header('Location:index.php');
+                        Message::error('index.php', array(
+                                'm' => 'Categorie bestaat niet'
+                        ));
                     }
 
                     foreach($product->results() as $result) { ?>
-                    <div class="column">
-                        <div class="ui fluid card">
-                            <a class="image" href="product.php?p=<?= $result->id; ?>">
-                                <img src="<?= ROOT . $result->thumbnail; ?>" alt="Foto van <?= escape($result->title); ?>">
-                            </a>
-                            <div class="content">
-                                <a class="header" href="product.php?p=<?= $result->id; ?>"><?= escape($result->title); ?></a>
-                                <div class="description"><?= escape(Modifiers::textlength($result->description, 100)); ?>...</div>
-                                <div class="description bold"><?= "€".escape($result->price); ?></div>
+                        <div class="column">
+                            <div class="ui fluid card">
+                                <a class="image" href="product.php?p=<?= $result->id; ?>">
+                                    <img src="<?= ROOT . $result->thumbnail; ?>" alt="Foto van <?= escape($result->title); ?>">
+                                </a>
+                                <div class="content">
+                                    <a class="header" href="product.php?p=<?= $result->id; ?>"><?= escape($result->title); ?></a>
+                                    <div class="description"><?= escape(Modifiers::textlength($result->description, 100)); ?>...</div>
+                                    <div class="description bold"><?= "€".escape($result->price); ?></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     <?php }
+
+                    // load products form subcategories
+                    foreach($categories->results() as $subcategory) {
+                        $getsubItem = Database::getInstance()->query("SELECT * FROM Items WHERE category = $subcategory->id");
+
+                        if ($getsubItem->count() > 0) { ?>
+                            <div class="column">
+                            <div class="ui fluid card">
+                                <a class="image" href="product.php?p=<?= $result->id; ?>">
+                                    <img src="<?= ROOT . $getsubItem->first()->thumbnail; ?>" alt="Foto van <?= escape($getsubItem->first()->title); ?>">
+                                </a>
+                                <div class="content">
+                                    <a class="header" href="product.php?p=<?= $getsubItem->first()->id; ?>"><?= escape($getsubItem->first()->title); ?></a>
+                                    <div class="description"><?= escape(Modifiers::textlength($getsubItem->first()->description, 100)); ?>...</div>
+                                    <div class="description bold"><?= "€".escape($getsubItem->first()->price); ?></div>
+                                </div>
+                            </div>
+                            </div>
+                        <?php }
+                    }
+
                     $steps = 16;
                     if($allProducts->count() >= $ammountOfProductsShown) { ?>
                         <div>
