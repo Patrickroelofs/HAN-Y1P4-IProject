@@ -150,7 +150,7 @@
                     if(isset($_GET['offset'])) {
                         if($_GET['offset'] > 0) {
                             ?>
-                            <button type="submit" class="ui left labeled icon button" name="submit-offset-down">
+                            <button type="submit" class="ui left labeled icon button primary" name="submit-offset-down">
                                 <i class="left arrow icon"></i>
                                 Vorige pagina
                             </button>
@@ -163,7 +163,7 @@
 
                     if($countProducts->count() >= $offset && $countProducts->count() - $offset >= 20) {
                         ?>
-                        <button type="submit" class="ui right labeled icon button" name="submit-offset-up">
+                        <button type="submit" class="ui right labeled icon button primary" name="submit-offset-up">
                             <i class="right arrow icon"></i>
                             Volgende pagina
                         </button>
