@@ -6,6 +6,24 @@ SELECT GBA_CODE, NAAM_LAND, BEGINDATUM, EINDDATUM, EER_Lid
 FROM tblIMAOLand
 GO
 
+DROP FUNCTION IF EXISTS dbo.getCountryCode
+GO
+
+CREATE FUNCTION dbo.getCountryCode(@Country varchar(40))
+RETURNS CHAR(4)
+    AS
+    BEGIN
+        DECLARE @code CHAR(4)
+        SET @code = (SELECT Country.code FROM Country WHERE Country.name LIKE @Country)
+
+        IF (@code IS NOT NULL)
+            RETURN @code
+        ELSE
+            RETURN '0000'
+        RETURN '0000'
+END
+GO
+
 INSERT INTO Users (username, email, password, profilepicture, firstname, lastname, phone, address1, address2, postalcode, city, country, trader, complete)
 SELECT DISTINCT
                 batchUsers.Username,
@@ -19,11 +37,14 @@ SELECT DISTINCT
                 '',
                 batchUsers.Postalcode,
                 '',
-                '0000',
+                dbo.getCountryCode(batchUsers.Location),
                 1,
                 1
 FROM batchUsers
 GO
+
+UPDATE Users SET Country = 0000
+WHERE Country IS NULL
 
 SET IDENTITY_INSERT Categories ON
 INSERT INTO Categories (id, name, within)
@@ -50,7 +71,7 @@ SELECT
     Verkoper,
     LEFT(Titel, 255),
     '',
-    concat('http://iproject19.icasites.nl/thumbnails/',Thumbnail),
+    concat('https://iproject19.icasites.nl/thumbnails/',Thumbnail),
     Categorie,
     Prijs,
     '',
@@ -73,6 +94,6 @@ GO
 
 INSERT INTO Files (ITEM, FILENAME)
 SELECT ItemID,
-       concat('http://iproject19.icasites.nl/pics/', IllustratieFile)
+       concat('https://iproject19.icasites.nl/pics/', IllustratieFile)
 FROM batchIllustraties
 GO
