@@ -16,7 +16,7 @@ $thisItem = Database::getInstance()->query("SELECT * FROM Items WHERE id = '$pro
 // Check if the product auction has been closed. If not direct user to index.php with the according error.
 if (!$thisItem->first()->closed) {
     Message::error('index.php', array(
-        'm' => 'Product bestaat niet'
+        'm' => 'Er kan nog geen feedback gegeven worden op dit product'
     ));
 }
 // Check if the product has been bought by the user
@@ -39,7 +39,7 @@ if ($thisItem->first()->buyer != Session::get('username')) {
 
             // Insert the feedback into the database
             try {
-                $stmt = Database::getInstance()->insert('Feedback', array(
+                $insertFeedback = Database::getInstance()->insert('Feedback', array(
                     'username' => $thisItem->first()->trader,
                     'item' => $productID,
                     'review' => $review,
@@ -47,7 +47,7 @@ if ($thisItem->first()->buyer != Session::get('username')) {
 
                 ));
 
-                Message::noticeMulti("product.php?p=1", array(
+                Message::noticeMulti("product.php?p=$productID", array(
                         'm' => 'Feedback succesvol verzonden'
                 ));
             } catch (PDOException $e) {
@@ -66,9 +66,9 @@ if ($thisItem->first()->buyer != Session::get('username')) {
                     <i class="dropdown icon"></i>
                     <div class="default text">Beoordeling</div>
                     <div class="menu">
-                        <div class="item" data-value="negative">Negatief</div>
-                        <div class="item" data-value="neutral">Neutraal</div>
-                        <div class="item" data-value="positive">Positief</div>
+                        <div class="item" data-value="negatief">Negatief</div>
+                        <div class="item" data-value="neutraal">Neutraal</div>
+                        <div class="item" data-value="positief">Positief</div>
                     </div>
                 </div>
             </div>

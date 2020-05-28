@@ -239,7 +239,7 @@ create table Feedback
     constraint FK_Feedback_2 foreign key (item) references Items (id),
 
     -- ***************** Checks
-    constraint CK_Feedback_review CHECK (review in ('negative', 'neutral', 'positive'))
+    constraint CK_Feedback_review CHECK (review in ('negatief', 'neutraal', 'positief'))
 );
 GO
 

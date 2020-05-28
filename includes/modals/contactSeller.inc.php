@@ -152,7 +152,7 @@ else { ?>
             </div>
             <div class="actions">
                 <?php if ($thisItem->first()->closed && $thisItem->first()->buyer == Session::get('username')) {?>
-                <a href="givefeedback.php?p=<?=$thisItem->first()->id ?>" class="ui primary right labeled icon button">
+                <a href="feedback.php?p=<?=$thisItem->first()->id ?>" class="ui primary right labeled icon button">
                     Feedback achterlaten
                     <i class="balance scale icon"></i>
                 </a>
