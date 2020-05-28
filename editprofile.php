@@ -129,7 +129,7 @@
                                 </div>
                                 <div class="menu">
                                     <?php
-                                    $countries = Database::getInstance()->query("SELECT * FROM Country");
+                                    $countries = Database::getInstance()->query("SELECT * FROM Country WHERE enddate IS NULL");
 
                                     foreach($countries->results() as $country) {
                                             ?>
