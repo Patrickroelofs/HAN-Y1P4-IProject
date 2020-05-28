@@ -161,9 +161,14 @@ footer .footer.title h1 {
     }
 }
 
+.notification:hover {
+    background: #0F4C8E !important;
+}
+
 /* --- SYSTEM MESSAGES ----------------------------------------- */
 .systemMessage {
     margin: 32px 0;
+    color: white;
 }
 
 /* --- PRODUCT CARDS -------------------------------------------- */
