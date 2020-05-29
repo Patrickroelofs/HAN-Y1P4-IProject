@@ -229,7 +229,7 @@ include FUNCTIONS . 'admin.func.php';
                     }
                 }
 
-                if($countItems->count() >= $itemOffset && $countItems->count() - $itemOffset >= 5) {
+                if($countItems->count() >= $itemOffset && $countItems->count() - $itemOffset >= 10) {
                     ?>
                     <button type="submit" class="ui right labeled icon button primary" name="submit-offset-items-up">
                         <i class="right arrow icon"></i>
