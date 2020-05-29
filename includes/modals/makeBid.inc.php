@@ -21,7 +21,7 @@ if(!Session::exists('username')) {
     $error = false;
 }
 
-// User is allowed to make a modal
+// User is allowed to make a bid
 if (!$error) { ?>
     <div class="ui modal makeOffer">
         <i class="close icon"></i>
