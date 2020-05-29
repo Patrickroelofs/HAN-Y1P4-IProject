@@ -38,9 +38,8 @@ if(Session::exists('username')){
 
         Message::warning('index.php', array('m' => 'Dit account is geblokeert, neem contact op met de klantenservice'));
     }
-}
 
-$selectTraders = Database::getInstance()->query("SELECT username FROM Users WHERE trader = 1");
-foreach ($selectTraders->results() as $result) {
-    Trader::checkItems($result->username);
+    if($user->first()->trader) {
+        Trader::checkItems($user->first()->username);
+    }
 }
