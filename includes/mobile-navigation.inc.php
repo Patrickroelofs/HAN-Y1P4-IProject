@@ -49,26 +49,25 @@
             } else {
                 ?>
                 <a class="item" href="editprofile.php">Mijn Profiel</a>
-                <a class="item" href="yourbids.php">Jouw biedingen</a>
+
                 <?php
-                if($user->first()->trader == false) {
-                    echo '<a class="item" href="selleraccountcreation.php">Word een verkoper</a>';
-                } else {
-                    echo '<a class="item" href="createauction.php">Advertentie plaatsen</a>';
+                if(!Admin::isLoggedIn()) {
+                    echo '<a class="item" href="yourbids.php">Jouw biedingen</a>';
+
+                    if($user->first()->trader == false) {
+                        echo '<a class="item" href="selleraccountcreation.php">Word een verkoper</a>';
+                    } else {
+                        echo '<a class="item" href="createauction.php">Advertentie plaatsen</a>';
+                    }
                 }
                 ?>
+                <a class="item" href="categories.php">Alle Categorieen</a>
+                <a class="item" href="new.php">Nieuwe producten</a>
                 <a class="item" href="includes/navigation/logout.inc.php">Uitloggen</a>
                 <?php
             }
             ?>
-            <a class="item" href="categories.php">Alle categorieën</a>
 
-            <?php if(Session::exists('username')) { ?>
-                <a class="item" href="foryou.php">Voor Jou</a>
-                <a class="item" href="nearby.php">Dichtbij</a>
-            <?php } ?>
-
-            <a class="item" href="new.php">Nieuw</a>
         </div>
     </div>
 </div>

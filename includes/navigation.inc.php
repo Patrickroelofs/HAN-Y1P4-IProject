@@ -72,7 +72,6 @@
 
             <?php if(Session::exists('username')) { ?>
                 <a href="foryou.php" class="ui item link">Voor Jou</a>
-                <a href="nearby.php" class="ui item link">Dichtbij</a>
             <?php } ?>
 
             <a href="new.php" class="ui item link">Nieuw</a>
