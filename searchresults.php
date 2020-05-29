@@ -34,7 +34,29 @@ include INCLUDES . 'head.inc.php';
                 } ?>
             </div>
         </div>
+        <br>
+        <form class="ui large form text-center" action="" method="post">
+            <?php if(isset($_GET['offset'])) {
+                if($_GET['offset'] > 0) {
+                    ?>
+                    <button type="submit" class="ui left labeled icon button primary" name="submit-search-down">
+                        <i class="left arrow icon"></i>
+                        Vorige pagina
+                    </button>
+                    <?php
+                }
+            }
 
+            if($countSearch->count() >= $offset && $countSearch->count() - $offset >= 20) {
+                ?>
+                <button type="submit" class="ui right labeled icon button primary" name="submit-search-up">
+                    <i class="right arrow icon"></i>
+                    Volgende pagina
+                </button>
+                <?php
+            }
+            ?>
+        </form>
     </div>
 </main>
 
