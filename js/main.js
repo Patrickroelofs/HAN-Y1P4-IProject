@@ -1,3 +1,13 @@
+/* Make show notifications modal */
+$(function(){
+    $("#showNotifications").click(function(){
+        $(".showNotifications").modal('show');
+    });
+    $(".showNotifications").modal({
+        closable: true
+    });
+});
+
 /* Make offer modal */
 $(function(){
     $("#makeOffer").click(function(){
