@@ -118,7 +118,12 @@ include FUNCTIONS . 'admin.func.php';
                 <?php $images = Database::getInstance()->query("SELECT TOP 4 * FROM Files WHERE item = '". $thisItem->first()->id ."' ORDER BY NEWID()"); ?>
                 <div class="product-gallery">
                     <div class="product-image">
-                        <img class="active" src="<?= $images->first()->filename; ?>">
+                        <?php if (($images->count() <= 0)) {
+                            $bigimage = "upload/highlightedCategories/nopic.png";
+                        } else {
+                            $bigimage = $images->first()->filename;
+                        }?>
+                        <img class="active" src="<?= $bigimage; ?>">
                     </div>
                     <ul class="image-list">
                         <?php // Check if there are multiple images
