@@ -158,8 +158,14 @@ include FUNCTIONS . 'admin.func.php';
         <div class="profileDivider">
             <h2>Recente reviews van deze gebruiker</h2>
             <?php
-            // Get reviews from the database
-            $reviews = Database::getInstance()->query("SELECT TOP 5 * FROM Feedback where username = '". $thisUser->first()->username ."' ORDER BY date DESC");
+            $step = 5;
+            if(isset($_GET['amount'])) {
+                $reviewAmount = $_GET['amount'];
+            } else {
+                $reviewAmount = 5;
+            }
+            $allReviews = Database::getInstance()->query("SELECT * FROM Feedback WHERE username= '". $thisUser->first()->username ."' ORDER BY date DESC");
+            $reviews = Database::getInstance()->query("SELECT TOP $reviewAmount * FROM Feedback where username = '". $thisUser->first()->username ."' ORDER BY date DESC");
             if($reviews->count() <= 0) {
                 echo '<p>Geen reviews gevonden...</p>';
             }
@@ -172,7 +178,11 @@ include FUNCTIONS . 'admin.func.php';
                 <p><?= ucfirst($review->comment) ?></p>
                 <p><?= $review->date ?></p>
             </div>
-            <?php }?>
+                <?php if($allReviews->count() > $reviewAmount) {?>
+            <div>
+                <a href="profile.php?user= <?= $_GET['user'] ?>&amount= <?= $reviewAmount + $step ?> "></a>
+            </div>
+            <?php }}?>
         </div>
     </div>
 </main>
