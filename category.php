@@ -8,6 +8,23 @@
         Redirect::to("index.php");
     }
 
+    $getAllSubcat = Database::getInstance()->get('Categories', array('within', '=', $selectedCategory));
+    $subcat = 'category = '. $selectedCategory;
+
+    foreach ($getAllSubcat->results() as $subResult) {
+        $subcat .= ' OR category = '. $subResult->id;
+
+        $getAllSubsubcat = Database::getInstance()->get('Categories', array('within', '=', $subResult->id));
+        foreach ($getAllSubsubcat->results() as $subsubResult) {
+            $subcat .= ' OR category = '. $subsubResult->id;
+
+            $getAllSubsubsubcat = Database::getInstance()->get('Categories', array('within', '=', $subsubResult->id));
+            foreach ($getAllSubsubsubcat->results() as $subsubsubResult) {
+                $subcat .= ' OR category = '. $subsubsubResult->id;
+            }
+        }
+    }
+
     $data = '';
     $data .= '?cat=' . $selectedCategory;
     $offset = 0;
@@ -54,17 +71,16 @@
     //get all products based on above requirements
     if(isset($_GET['min']) && isset($_GET['max'])) {
         if(empty($_GET['min']) && empty($_GET['max'])) {
-            $allProducts = Database::getInstance()->query("SELECT * FROM Items WHERE category='" . escape($selectedCategory) . "' AND NOT hidden = 'true' AND NOT closed = 'true' ORDER BY title OFFSET $offset ROWS FETCH NEXT 20 ROWS ONLY");
-            $countProducts = Database::getInstance()->query("SELECT id FROM Items WHERE category='" . escape($selectedCategory) . "' AND NOT hidden = 'true' AND NOT closed = 'true'");
+            $allProducts = Database::getInstance()->query("SELECT * FROM Items WHERE($subcat) AND NOT hidden = 'true' AND NOT closed = 'true' ORDER BY title OFFSET $offset ROWS FETCH NEXT 20 ROWS ONLY");
+            $countProducts = Database::getInstance()->query("SELECT id FROM Items WHERE($subcat) AND NOT hidden = 'true' AND NOT closed = 'true'");
         } else {
-            $allProducts = Database::getInstance()->query("SELECT * FROM Items WHERE category='" . escape($selectedCategory) . "' AND price BETWEEN '". escape($_GET['min']) ."' AND '". escape($_GET['max']) ."' AND NOT hidden = 'true' AND NOT closed = 'true' ORDER BY title OFFSET $offset ROWS FETCH NEXT 20 ROWS ONLY");
-            $countProducts = Database::getInstance()->query("SELECT id FROM Items WHERE category='" . escape($selectedCategory) . "' AND price BETWEEN '". escape($_GET['min']) ."' AND '". escape($_GET['max']) ."' AND NOT hidden = 'true' AND NOT closed = 'true' ");
+            $allProducts = Database::getInstance()->query("SELECT * FROM Items WHERE($subcat) AND price BETWEEN '". escape($_GET['min']) ."' AND '". escape($_GET['max']) ."' AND NOT hidden = 'true' AND NOT closed = 'true' ORDER BY title OFFSET $offset ROWS FETCH NEXT 20 ROWS ONLY");
+            $countProducts = Database::getInstance()->query("SELECT id FROM Items WHERE($subcat) AND price BETWEEN '". escape($_GET['min']) ."' AND '". escape($_GET['max']) ."' AND NOT hidden = 'true' AND NOT closed = 'true' ");
         }
     } else {
-        $allProducts = Database::getInstance()->query("SELECT * FROM Items WHERE category='" . escape($selectedCategory) . "' AND NOT hidden = 'true' AND NOT closed = 'true' ORDER BY title OFFSET $offset ROWS FETCH NEXT 20 ROWS ONLY");
-        $countProducts = Database::getInstance()->query("SELECT id FROM Items WHERE category='" . escape($selectedCategory) . "' AND NOT hidden = 'true' AND NOT closed = 'true'");
+        $allProducts = Database::getInstance()->query("SELECT * FROM Items WHERE($subcat) AND NOT hidden = 'true' AND NOT closed = 'true' ORDER BY title OFFSET $offset ROWS FETCH NEXT 20 ROWS ONLY");
+        $countProducts = Database::getInstance()->query("SELECT id FROM Items WHERE($subcat) AND NOT hidden = 'true' AND NOT closed = 'true'");
     }
-
 ?>
 
 <main>
@@ -187,7 +203,9 @@
                     ?>
                 </form>
             </div>
+
         </div>
+
     </div>
 </main>
 
