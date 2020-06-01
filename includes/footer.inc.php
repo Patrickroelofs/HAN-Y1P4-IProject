@@ -78,7 +78,7 @@
                     <a class="item" href="removeaccount.php">Verwijder Account</a>
                 </div>
                 <p>iConcepts (EenmaalAndermaal) is niet aansprakelijk voor (gevolg)schade die voortkomt uit het gebruik
-                    van deze site. <br>Copyright © 2020 EenmaalAndermaal B.V.</p>
+                    van deze site. <br>Copyright © <?php echo date("Y"); ?> EenmaalAndermaal B.V.</p>
             </div>
         </div>
     </section>
