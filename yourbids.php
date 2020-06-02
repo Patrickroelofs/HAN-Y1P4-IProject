@@ -28,6 +28,7 @@ include INCLUDES . 'head.inc.php';
                         <div class="content">
                             <a class="header" href="product.php?p=<?= $result->first()->id; ?>"><?= $result->first()->title; ?></a>
                             <div class="description"><?= escape(Modifiers::textlength($result->first()->description, 100)); ?>...</div>
+                            <em data-countdown="<?= $result->first()->durationenddate ?> <?= $result->first()->durationendtime ?>"></em>
                             <div class="description bold">€<?= $yourBid->amount; ?></div>
                         </div>
                     </div>

@@ -209,6 +209,7 @@ include FUNCTIONS . 'admin.func.php';
                                 <div class="content">
                                     <a class="header" href="product.php?p=<?= $result->id; ?>"><?= escape($result->title); ?></a>
                                     <div class="description"><?= escape(Modifiers::textlength($result->description, 100)); ?>...</div>
+                                    <em data-countdown="<?= $result->durationenddate ?> <?= $result->durationendtime ?>"></em>
                                     <div class="description bold">€<?= escape($result->price); ?></div>
                                 </div>
                             </div>
