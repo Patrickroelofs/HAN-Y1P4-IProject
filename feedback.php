@@ -2,7 +2,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/core/init.php';
 include INCLUDES . 'head.inc.php';
 
-// Check which product
+//Check which product
 if (isset($_GET['p'])) {
     $productID = escape($_GET['p']);
 } else {
@@ -66,9 +66,15 @@ if ($thisItem->first()->buyer != Session::get('username')) {
                     <i class="dropdown icon"></i>
                     <div class="default text">Beoordeling</div>
                     <div class="menu">
-                        <div class="item" data-value="negatief">Negatief</div>
-                        <div class="item" data-value="neutraal">Neutraal</div>
-                        <div class="item" data-value="positief">Positief</div>
+                        <div class="item" data-value="negatief">
+                            <i class="large red frown outline icon"></i>
+                            Negatief</div>
+                        <div class="item" data-value="neutraal">
+                            <i class="large orange meh outline icon"></i>
+                            Neutraal</div>
+                        <div class="item" data-value="positief">
+                            <i class="large green smile outline icon"></i>
+                            Positief</div>
                     </div>
                 </div>
             </div>
