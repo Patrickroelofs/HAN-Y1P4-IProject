@@ -31,7 +31,7 @@
         } ?>
     </div>
 </div>
-
+<br><br>
 <!-- closed products where buyer is user -->
 <div class="section">
     <h2>Gewonnen biedingen</h2>

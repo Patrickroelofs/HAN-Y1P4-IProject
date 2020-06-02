@@ -35,7 +35,7 @@ $traderProducts = Database::getInstance()->query("SELECT * FROM Items WHERE trad
 </div>
 <?php } ?>
 </div>
-
+<br><br>
 <?php
 $traderProducts = Database::getInstance()->query("SELECT * FROM Items WHERE trader = '". Session::get('username') . "' AND closed = 'true' AND hidden = 'false' ORDER BY durationbegindate, durationbegintime DESC", array()); ?>
 <!-- closed auctions -->
