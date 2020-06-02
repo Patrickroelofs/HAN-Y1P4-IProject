@@ -57,6 +57,7 @@
                     if($user->first()->trader == false) {
                         echo '<a class="item" href="selleraccountcreation.php">Word een verkoper</a>';
                     } else {
+                        echo '<a class="item" href="foryou.php#yourAuctions">Jouw advertenties</a>';
                         echo '<a class="item" href="createauction.php">Advertentie plaatsen</a>';
                     }
                 }
