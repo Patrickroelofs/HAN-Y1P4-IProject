@@ -210,6 +210,12 @@ footer .footer.title h1 {
     padding-bottom: 6px;
 }
 
+.product-description{
+    overflow-x: hidden;
+    overflow-y: visible;
+    max-height: 400px;
+}
+
 /* --- ADD Auction page ----------------------------------------- */
 .addAuction label{
     display: block;

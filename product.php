@@ -184,7 +184,12 @@ include FUNCTIONS . 'admin.func.php';
                                 }
                             ?>
                         </a><br>
-                    <strong>Beschrijving:</strong> <?= $thisItem->first()->description ?></p>
+                    </p>
+                    <strong>Beschrijving:</strong>
+                    <p class="product-description">
+                        <?= $thisItem->first()->description ?>
+                    </p>
+
 
                     <!-- Product price -->
                     <?php // Check if product is NOT closed
