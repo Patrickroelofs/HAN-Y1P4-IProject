@@ -119,15 +119,15 @@
                 }
 
                 if (!empty($toptoptopCat) && $toptoptopCat->first()->name != 'Root') {?>
-                    <a href="categories.php" class="section"><?= $toptoptopCat->first()->name ?></a>
+                    <a href="category.php?cat=<?= $toptoptopCat->first()->id ?>" class="section"><?= $toptoptopCat->first()->name ?></a>
                     <div class="divider"> / </div>
                 <?php }
                 if (!empty($toptopCat) && $toptopCat->first()->name != 'Root') {?>
-                    <a href="categories.php" class="section"><?= $toptopCat->first()->name ?></a>
+                    <a href="category.php?cat=<?= $toptopCat->first()->id ?>" class="section"><?= $toptopCat->first()->name ?></a>
                     <div class="divider"> / </div>
                 <?php }
                 if ($topCat->first()->name != 'Root') {?>
-                    <a href="categories.php" class="section"><?= $topCat->first()->name ?></a>
+                    <a href="category.php?cat=<?= $topCat->first()->id ?>" class="section"><?= $topCat->first()->name ?></a>
                     <div class="divider"> / </div>
                 <?php }
                 ?>
