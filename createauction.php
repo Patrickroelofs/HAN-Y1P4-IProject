@@ -72,17 +72,24 @@
                     <div class="menu">
                         <div class="ui icon search input">
                             <i class="search icon"></i>
-                            <input type="text" placeholder="Zoeken in rubrieken...">
+                            <input type="text" placeholder="Zoek in rubrieken...">
                         </div>
                         <div class="divider"></div>
                         <div class="scrolling menu">
                             <?php
                             $rubrieken = Database::getInstance()->query("SELECT * FROM Categories EXCEPT SELECT * FROM Categories WHERE id = -1");
+
                             foreach($rubrieken->results() as $result) {
+                                $topCat = Database::getInstance()->get('Categories', array('id', '=', $result->within));
                                 ?>
 
                                 <div class="item" data-value="<?= $result->id; ?>">
-                                    <?= $result->name; ?>
+                                    <?php
+                                    if ($topCat->first()->name != 'Root') {?>
+                                        <?= $topCat->first()->name ?> ->
+                                    <?php }
+                                    ?>
+                                    <span class="bold"><?= $result->name; ?></span>
                                 </div>
 
                                 <?php
