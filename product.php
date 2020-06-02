@@ -203,7 +203,9 @@ include FUNCTIONS . 'admin.func.php';
                             } ?>
                         <?php } // Check if product IS closed
                             elseif ($thisItem->first()->closed) { ?>
-                                <?php $buyer = Database::getInstance()->query("SELECT * FROM Users where username = '". $thisItem->first()->buyer ."'"); ?>
+                                <?php $buyer = Database::getInstance()->query("SELECT * FROM Users where username = '". $thisItem->first()->buyer ."'");
+                                    if(!$buyer->count()  <= 0) {
+                                ?>
                                 <!-- Saleprice -->
                                 <p><strong>Dit artikel is verkocht voor €<?= $thisItem->first()->saleprice ?></strong><br>
                                     aan: <a href="profile.php?user=<?= $buyer->first()->id ?>"><?= $thisItem->first()->buyer ?></a><br>
@@ -225,7 +227,8 @@ include FUNCTIONS . 'admin.func.php';
                                         </button>
                                     </div>
                                     <?php } ?>
-                            <?php }
+                            <?php } else echo '<br><br>Dit product is gesloten zonder biedingen.';
+                        }
                         ?>
                 </div>
 
@@ -319,7 +322,7 @@ include FUNCTIONS . 'admin.func.php';
 </main>
 
 <!-- Javascript countdown timer -->
-<?php if($timeLeft <= 0) { ?>
+<?php if($timeLeft <= 0 && $thisItem->first()->closed != true) { ?>
     <script>
         // Set the date we're counting down to
         var countDownDate = new Date("<?= date('F j\, Y'); ?> <?= $thisItem->first()->durationendtime ?>").getTime();
