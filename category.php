@@ -101,6 +101,38 @@
                 <div class="divider"> / </div>
                 <a href="categories.php" class="section">Categorieën</a>
                 <div class="divider"> / </div>
+
+                <!-- Categories above -->
+                <?php
+                $topCat = Database::getInstance()->get('Categories', array('id', '=', $category->first()->within));
+                $toptopCat = '';
+                $toptoptopCat = '';
+
+                // If there are 2 categories
+                if ($topCat->first()->name != 'Root') {
+                    $toptopCat = Database::getInstance()->get('Categories', array('id', '=', $topCat->first()->within));
+
+                    // If there are 3 categories
+                    if ($toptopCat->first()->name != 'Root') {
+                        $toptoptopCat = Database::getInstance()->get('Categories', array('id', '=', $toptopCat->first()->within));
+                    }
+                }
+
+                if (!empty($toptoptopCat) && $toptoptopCat->first()->name != 'Root') {?>
+                    <a href="categories.php" class="section"><?= $toptoptopCat->first()->name ?></a>
+                    <div class="divider"> / </div>
+                <?php }
+                if (!empty($toptopCat) && $toptopCat->first()->name != 'Root') {?>
+                    <a href="categories.php" class="section"><?= $toptopCat->first()->name ?></a>
+                    <div class="divider"> / </div>
+                <?php }
+                if ($topCat->first()->name != 'Root') {?>
+                    <a href="categories.php" class="section"><?= $topCat->first()->name ?></a>
+                    <div class="divider"> / </div>
+                <?php }
+                ?>
+
+                <!-- current category -->
                 <div class="active section"><?= $category->first()->name; ?></div>
             </div>
         </div>

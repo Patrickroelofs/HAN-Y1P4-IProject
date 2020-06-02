@@ -26,6 +26,7 @@ include INCLUDES . 'head.inc.php';
                         <div class="content">
                             <a class="header" href="<?php echo 'product.php?p=' . escape($result->id) ?>"><?php echo escape($result->title); ?></a>
                             <div class="description"><?php echo escape(Modifiers::textlength($result->description, 100)); ?></div>
+                            <em data-countdown="<?= $result->durationenddate ?> <?= $result->durationendtime ?>"></em>
                             <div class="description bold">€<?php echo escape($result->price); ?></div>
                         </div>
                     </div>
