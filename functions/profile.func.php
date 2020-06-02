@@ -63,15 +63,25 @@ if (isset($_POST['update-persoonsgegevens-submit'])) {
     $filename = md5(basename($profilepicture));
     $target = 'upload/profilepictures/' . $filename . '.' . $ext;
     $supported_image = array('gif', 'jpg', 'jpeg', 'png');
+    $size = $_FILES['profilepicture']['size'];
 
-
-    // TODO: Error messages and other invalid register checks.
     if (empty($firstname) || empty($lastname) || empty($dob)) {
         //error
-        echo 'error - empty';
+        Message::error('editprofile.php', array(
+            'm' => 'Enkele velden zijn leeg gelaten.'
+        ));
     }
-    if (!empty($profilepicture) && !in_array($ext, $supported_image)) {
-        echo 'error - unsupported file format';
+
+    else if (!empty($profilepicture) && !in_array($ext, $supported_image)) {
+        Message::error('editprofile.php', array(
+            'm' => 'Onbekende bestand gevonden...'
+        ));
+    }
+
+    else if($size > 2097152) {
+        Message::error('editprofile.php', array(
+            'm' => 'Bestand is te groot...'
+        ));
     } else {
         // Insert into database
         try {
