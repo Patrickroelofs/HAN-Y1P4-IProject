@@ -28,7 +28,7 @@ if ($user->first()->complete == 0) {
             $stmt = Database::getInstance()->insert('Trader', array(
                 'username' => Session::get('username'),
                 'bank' => $bank,
-                'bankaccount' => $bankNummer,
+                'bankaccount' => Hash::make($bankNummer),
                 'controloption' => $controleOptie,
                 'creditcard' => Hash::make($creditcard),
                 'activated' => false
