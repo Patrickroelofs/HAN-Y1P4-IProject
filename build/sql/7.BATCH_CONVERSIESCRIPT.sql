@@ -82,7 +82,7 @@ SELECT
     0,
     getdate(),
     '12:00:00',
-    DATEADD(day, 30, getdate()),
+    CAST(DATEADD(day, 7, GETDATE()) as DATE),
     '12:00:00'
 FROM batchItems
 SET IDENTITY_INSERT Items OFF
