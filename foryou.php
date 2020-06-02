@@ -84,15 +84,6 @@
         <div class="ui stackable five column grid">
             <div class="five column row">
                 <?php foreach ($usertraderProducts->results() as $result) {
-                    // Calculate time left in offer
-                    $currentDate = new DateTime(date("Y-m-d"));
-                    $endDate = new DateTime($result->durationenddate);
-                    if ($endDate > $currentDate) {
-                        $timeLeft = $currentDate->diff($endDate)->format("%d");
-                    } else {
-                        $timeLeft = 0;
-                    }
-
                     if(!$result->closed) {
                     ?>
                     <div class="column">
@@ -102,7 +93,8 @@
                             </a>
                             <div class="content">
                                 <a class="header" href="product.php?p=<?= $result->id; ?>"><?= $result->title; ?></a>
-                                <div class="description">Tijd tot verkoop: <?= $timeLeft ?> dagen</div>
+                                <div class="description"><?= escape(Modifiers::textlength($result->description, 100)); ?>...</div>
+                                <em data-countdown="<?= $result->durationenddate ?> <?= $result->durationendtime ?>"></em>
                                 <div class="description">Vanaf <span class="bold">€ <?= $result->price ?></span></div>
                             </div>
                         </div>

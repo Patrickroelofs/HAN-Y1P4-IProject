@@ -163,6 +163,7 @@
                                     <div class="content">
                                         <a class="header" href="product.php?p=<?= $product->id; ?>"><?= escape($product->title); ?></a>
                                         <div class="description"><?= escape(Modifiers::textlength($product->description, 100)); ?>...</div>
+                                        <em data-countdown="<?= $product->durationenddate ?> <?= $product->durationendtime ?>"></em>
                                         <div class="description bold"><?= "€".escape($product->price); ?></div>
                                     </div>
                                 </div>
