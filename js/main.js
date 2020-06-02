@@ -104,7 +104,7 @@ $(document).ready(function() {
 
 });
 
-$(function() {
+$(document).ready(function() {
     let dt = new Date();
 
     // Timers
@@ -139,7 +139,7 @@ $(function() {
         if (event.offset.totalDays === 0) {
             format = "%H:%M:%S";
         } else if (event.offset.totalDays < 7 && event.offset.totalDays >= 2) {
-            format = "%-d dagen %H:%M:%S";
+            format = "%-d dagen";
         } else if (event.offset.totalDays < 2) {
             format = "%-d dag %H:%M:%S";
         }
