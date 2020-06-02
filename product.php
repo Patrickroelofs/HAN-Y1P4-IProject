@@ -174,7 +174,6 @@ include FUNCTIONS . 'admin.func.php';
                             </p>
                             <!-- Bidding -->
                             <?php // check if the user isn't the same as the trader
-                            if(!$user->first()->trader) {
                             if (Session::exists('username') && strtolower(Session::get('username')) != strtolower($thisItem->first()->trader)) { ?>
                                 <div class="ui input labeled input">
                                     <button type="submit" id="makeOffer" class="ui primary labeled icon button">
@@ -189,9 +188,7 @@ include FUNCTIONS . 'admin.func.php';
                                         Bieden
                                     </button>
                                 </div>
-                            <?php }
-                            } else {
-                                echo 'Een verkoper kan geen biedingen uitbrengen, gebruik een kopers-account <br><br>'; } ?>
+                            <?php } ?>
                             <!-- Contact -->
                             <?php
                             if(Session::exists('username')) {
