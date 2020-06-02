@@ -296,6 +296,24 @@ include FUNCTIONS . 'admin.func.php';
         <br><br>
         <div class="profileDivider">
             <h2>Recente feedback op deze gebruiker</h2>
+
+            <?php
+            $allPositive= Database::getInstance()->query("SELECT review FROM Feedback WHERE username = '". $thisUser->first()->username . "' AND review = 'positief'");
+            $allMeh= Database::getInstance()->query("SELECT review FROM Feedback WHERE username = '". $thisUser->first()->username . "' AND review = 'neutraal'");
+            $allNegative=  Database::getInstance()->query("SELECT review FROM Feedback WHERE username = '". $thisUser->first()->username . "' AND review = 'negatief'");
+            ?>
+
+            <div>
+                <span style="font-size: 1.17em"><?php echo $allPositive->count() ?></span>
+                <i class="large green smile outline icon"></i>
+
+                <span style="font-size: 1.17em"><?php echo $allMeh->count() ?></span>
+                <i class="large orange meh outline icon"></i>
+
+                <span style="font-size: 1.17em"><?php echo $allNegative->count() ?></span>
+                <i class="large red frown outline icon"></i>
+            </div>
+
             <?php foreach ($getAllReviews->results() as $result) {
 
                 ?>
