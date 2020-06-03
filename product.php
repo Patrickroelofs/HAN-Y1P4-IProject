@@ -185,8 +185,26 @@ include FUNCTIONS . 'admin.func.php';
                                     echo escape($thisUser->first()->firstname) . ' ' . escape($thisUser->first()->lastname);
                                 }
                             ?>
-                        </a><br>
+                        </a>
+
+                        <?php
+                        $allPositive= Database::getInstance()->query("SELECT review FROM Feedback WHERE username = '". $thisUser->first()->username . "' AND review = 'positief'");
+                        $allMeh= Database::getInstance()->query("SELECT review FROM Feedback WHERE username = '". $thisUser->first()->username . "' AND review = 'neutraal'");
+                        $allNegative=  Database::getInstance()->query("SELECT review FROM Feedback WHERE username = '". $thisUser->first()->username . "' AND review = 'negatief'");
+                        ?>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                    <span>
+                        <span class="ui medium text"><?php echo $allPositive->count() ?></span>
+                        <i class="green smile outline icon"></i>
+
+                        <span class="ui medium text"><?php echo $allMeh->count() ?></span>
+                        <i class="orange meh outline icon"></i>
+
+                        <span class="ui medium text"><?php echo $allNegative->count() ?></span>
+                        <i class="red frown outline icon"></i>
+                    </span>
                     </p>
+                    <br>
                     <strong>Beschrijving:</strong>
                     <p class="product-description">
                         <?= $thisItem->first()->description ?>
