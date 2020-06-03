@@ -52,9 +52,9 @@
 
                 <?php
                 if(!Admin::isLoggedIn()) {
-                    echo '<a class="item" href="yourbids.php">Jouw biedingen</a>';
 
                     if($user->first()->trader == false) {
+                        echo '<a class="item" href="yourbids.php">Jouw biedingen</a>';
                         echo '<a class="item" href="selleraccountcreation.php">Word een verkoper</a>';
                     } else {
                         echo '<a class="item" href="foryou.php#yourAuctions">Jouw advertenties</a>';
