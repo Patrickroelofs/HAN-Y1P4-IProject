@@ -304,13 +304,13 @@ include FUNCTIONS . 'admin.func.php';
             ?>
 
             <div>
-                <span style="font-size: 1.17em"><?php echo $allPositive->count() ?></span>
+                <span class="ui medium text"><?php echo $allPositive->count() ?></span>
                 <i class="large green smile outline icon"></i>
 
-                <span style="font-size: 1.17em"><?php echo $allMeh->count() ?></span>
+                <span class="ui medium text"><?php echo $allMeh->count() ?></span>
                 <i class="large orange meh outline icon"></i>
 
-                <span style="font-size: 1.17em"><?php echo $allNegative->count() ?></span>
+                <span class="ui medium text"><?php echo $allNegative->count() ?></span>
                 <i class="large red frown outline icon"></i>
             </div>
 
