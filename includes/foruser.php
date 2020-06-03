@@ -11,23 +11,25 @@
         <div class="ui stackable five column grid">
         <?php foreach ($userBids->results() as $bid) {
             $product = Database::getInstance()->query("SELECT * FROM Items WHERE id = $bid->item AND closed = 'false' AND hidden = 'false'");
-            $highBid = Database::getInstance()->query("SELECT TOP 1 * FROM Bids WHERE item = $bid->item ORDER BY amount DESC"); ?>
-            <div class="column">
-                <div class="ui fluid card">
-                    <a class="image" href="product.php?p=<?= $product->first()->id; ?>">
-                        <img src="<?= ROOT . $product->first()->thumbnail; ?>" alt="Foto van <?= $product->first()->title; ?>">
-                    </a>
-                    <div class="content">
-                        <a class="header" href="product.php?p=<?= $product->first()->id; ?>"><?= $product->first()->title; ?></a>
-                        <div class="description"><span class="bold">Tijd over: </span><span data-countdown="<?= $product->first()->durationenddate ?> <?= $product->first()->durationendtime ?>"></span></div>
-                        <?php if ($highBid->first()->amount != $bid->amount) { ?>
-                            <div class="description"><span class="bold">Hoogste bod: </span>€<?= $highBid->first()->amount ?></div>
-                        <?php } ?>
-                        <div class="description"><span class="bold">Mijn bod: </span>€<?= $bid->amount ?> </div>
+            if (!empty($product->count() >= 1)) {
+                $highBid = Database::getInstance()->query("SELECT TOP 1 * FROM Bids WHERE item = $bid->item ORDER BY amount DESC"); ?>
+                <div class="column">
+                    <div class="ui fluid card">
+                        <a class="image" href="product.php?p=<?= $product->first()->id; ?>">
+                            <img src="<?= ROOT . $product->first()->thumbnail; ?>" alt="Foto van <?= $product->first()->title; ?>">
+                        </a>
+                        <div class="content">
+                            <a class="header" href="product.php?p=<?= $product->first()->id; ?>"><?= $product->first()->title; ?></a>
+                            <div class="description"><span class="bold">Tijd over: </span><span data-countdown="<?= $product->first()->durationenddate ?> <?= $product->first()->durationendtime ?>"></span></div>
+                            <?php if ($highBid->first()->amount != $bid->amount) { ?>
+                                <div class="description"><span class="bold">Hoogste bod: </span>€<?= $highBid->first()->amount ?></div>
+                            <?php } ?>
+                            <div class="description"><span class="bold">Mijn bod: </span>€<?= $bid->amount ?> </div>
+                        </div>
                     </div>
                 </div>
-            </div>
         <?php }
+        }
         ?>
     </div>
     <?php
