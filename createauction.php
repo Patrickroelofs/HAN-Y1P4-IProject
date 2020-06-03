@@ -131,7 +131,7 @@
 
                 <div class="field">
                     <label for="verzendinstructies">Verzendinstructies</label>
-                    <textarea name="verzendinstructies" id="verzendinstructies" rows="2"> <?php if (isset($_GET['verzendinstructies'])) { echo $_GET['verzendinstructies'];} ?></textarea>
+                    <textarea name="verzendinstructies" id="verzendinstructies" rows="2"><?php if (isset($_GET['verzendinstructies'])) { echo $_GET['verzendinstructies'];} ?></textarea>
                 </div>
             </div>
 
