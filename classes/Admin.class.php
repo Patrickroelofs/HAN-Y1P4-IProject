@@ -1,6 +1,10 @@
 <?php
 
 class Admin {
+    /**
+     * Checks if admin is logged in
+     * @return bool
+     */
     public static function isLoggedIn() {
         // if a session exists
         if(Session::exists('username')) {
@@ -21,6 +25,10 @@ class Admin {
         return false;
     }
 
+    /**
+     * Returns the admin id
+     * @return $admin-first()->id;
+     */
     public static function adminID() {
         if(Session::exists('username')) {
             $admin = Database::getInstance()->query("SELECT * FROM Admins where username = '". Session::get('username') ."'");
@@ -38,6 +46,10 @@ class Admin {
         return false;
     }
 
+    /**
+     * Bans a user
+     * @param $userID
+     */
     public static function banUser($userID) {
         // marks the user as banned
         Database::getInstance()->update("Users", "id", $userID, array(
@@ -58,6 +70,10 @@ class Admin {
         }
     }
 
+    /**
+     * Unbans a user
+     * @param $userID
+     */
     public static function unbanUser($userID) {
         Database::getInstance()->update("Users", "id", $userID, array(
             'banned' => false
@@ -77,18 +93,30 @@ class Admin {
         }
     }
 
+    /**
+     * Marks an item as hidden (invisible to users)
+     * @param $itemID
+     */
     public static function hideItem($itemID) {
         Database::getInstance()->update("Items", "id", $itemID, array(
            'hidden' => true
         ));
     }
 
+    /**
+     * Marks an item as visible (removes the hidden marker)
+     * @param $itemID
+     */
     public static function showItem($itemID) {
         Database::getInstance()->update("Items", "id", $itemID, array(
            'hidden' => false
         ));
     }
 
+    /**
+     * Adds a user as an admin
+     * @param $username
+     */
     public static function addAdmin($username) {
         Database::getInstance()->insert("Admins", array(
            'username' => $username

@@ -1,6 +1,11 @@
 <?php
 
 class Config {
+    /**
+     * Gets the data from the config file in core/globals.inc.php
+     * @param null $path
+     * @return bool|mixed
+     */
     public static function get($path = null){
         if($path) {
             $config = $GLOBALS['config'];
