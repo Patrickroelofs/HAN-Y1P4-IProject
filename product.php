@@ -139,7 +139,9 @@ include FUNCTIONS . 'admin.func.php';
                     <?php }
                     ?>
 
-                    <div class="active section"><a href="category.php?cat=<?= $rubriek->first()->id ?>"> <?= escape($rubriek->first()->name); ?> </a></div>
+                    <div class="section"><a href="category.php?cat=<?= $rubriek->first()->id ?>"> <?= escape($rubriek->first()->name); ?> </a></div>
+                    <div class="divider"> / </div>
+                    <div class="active section"><?= $thisItem->first()->title ?></div>
                 </div>
             </div>
         </div>
