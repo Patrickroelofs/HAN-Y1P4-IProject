@@ -117,7 +117,7 @@ if(isset($_POST['submit-offset-items-up'])) {
 if(isset($_GET['itemOffset']) && isset($_GET['bidsOffset']) && isset($_GET['reviewsOffset'])) {
     $getAllItems    = Database::getInstance()->query("SELECT hidden, id, title, description, price, thumbnail, durationenddate, durationendtime FROM Items WHERE trader = '". $thisUser->first()->username ."' ORDER BY title OFFSET $itemOffset ROWS FETCH NEXT 10 ROWS ONLY", array());
     $getAllBids     = Database::getInstance()->query("SELECT item, amount FROM Bids WHERE username = '". $thisUser->first()->username ."' ORDER BY date, time DESC OFFSET $bidsOffset ROWS FETCH NEXT 5 ROWS ONLY", array());
-    $getAllReviews  = Database::getInstance()->query("SELECT review, comment, date, time FROM Feedback WHERE username = '". $thisUser->first()->username ."' ORDER BY date,time DESC OFFSET $reviewsOffset ROWS FETCH NEXT 5 ROWS ONLY", array());
+    $getAllReviews  = Database::getInstance()->query("SELECT review, comment, date, time FROM Feedback WHERE username = '". $thisUser->first()->username ."' ORDER BY date DESC OFFSET $reviewsOffset ROWS FETCH NEXT 5 ROWS ONLY", array());
 
     $countItems     = Database::getInstance()->query("SELECT id FROM Items WHERE trader = '". $thisUser->first()->username ."'");
     $countBids      = Database::getInstance()->query("SELECT item FROM Bids WHERE username = '". $thisUser->first()->username ."'");
@@ -126,7 +126,7 @@ if(isset($_GET['itemOffset']) && isset($_GET['bidsOffset']) && isset($_GET['revi
 } else {
     $getAllItems    = Database::getInstance()->query("SELECT hidden, id, title, description, price, thumbnail, durationenddate, durationendtime FROM Items WHERE trader = '". $thisUser->first()->username ."' ORDER BY title OFFSET 0 ROWS FETCH NEXT 10 ROWS ONLY", array());
     $getAllBids     = Database::getInstance()->query("SELECT item, amount FROM Bids WHERE username = '". $thisUser->first()->username ."' ORDER BY date, time DESC OFFSET 0 ROWS FETCH NEXT 5 ROWS ONLY", array());
-    $getAllReviews  = Database::getInstance()->query("SELECT review, comment, date, time FROM Feedback WHERE username = '". $thisUser->first()->username ."' ORDER BY date,time DESC OFFSET 0 ROWS FETCH NEXT 5 ROWS ONLY", array());
+    $getAllReviews  = Database::getInstance()->query("SELECT review, comment, date, time FROM Feedback WHERE username = '". $thisUser->first()->username ."' ORDER BY date DESC OFFSET 0 ROWS FETCH NEXT 5 ROWS ONLY", array());
 
     $countItems     = Database::getInstance()->query("SELECT id FROM Items WHERE trader = '". $thisUser->first()->username ."'");
     $countBids      = Database::getInstance()->query("SELECT item FROM Bids WHERE username = '". $thisUser->first()->username ."'");
