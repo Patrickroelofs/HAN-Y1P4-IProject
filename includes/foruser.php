@@ -28,10 +28,16 @@
                 </div>
             </div>
         <?php }
-        } ?>
+        ?>
     </div>
+    <?php
+        } ?>
 </div>
+
+
 <br><br>
+
+
 <!-- closed products where buyer is user -->
 <div class="section">
     <h2>Gewonnen biedingen</h2>
@@ -60,6 +66,5 @@
                 </div>
             <?php } ?>
         </div>
-    <?php }
-    ?>
+    <?php } ?>
 </div>
