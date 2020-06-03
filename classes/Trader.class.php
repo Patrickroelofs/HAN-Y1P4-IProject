@@ -3,6 +3,11 @@
 
 class Trader
 {
+    /**
+     * Checks if an item needs to be closed, specifically when the time is < 0, if it is true mark the item as closed and send notifications.
+     * @param $username
+     * @throws Exception
+     */
     public static function checkItems($username) {
         $items = Database::getInstance()->get('Items', array('trader', '=', $username));
 

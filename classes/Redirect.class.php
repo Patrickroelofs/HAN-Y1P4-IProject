@@ -3,10 +3,13 @@
 
 class Redirect
 {
+    /**
+     * Redirects to a specific page
+     * @param null $location
+     */
     public static function to($location = null){
         if($location) {
 
-            //TODO: Error catching & Handling
             if(is_numeric($location)){
                 switch($location){
                     case 404:
@@ -20,6 +23,9 @@ class Redirect
         }
     }
 
+    /**
+     * Refreshes the page the user is currently on
+     */
     public static function refresh() {
         header("Refresh: 0");
     }

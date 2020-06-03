@@ -2,6 +2,11 @@
 
 class Message {
 
+    /**
+     * Returns an error and $fields, fields can be anything that needs to be returned.
+     * @param $location
+     * @param $fields
+     */
     public static function error($location, $fields) {
         $set = '';
         $x = 1;
@@ -18,6 +23,11 @@ class Message {
         Redirect::to($location.$set);
     }
 
+    /**
+     * Returns an error and $fields when multiple things need to be returned, fields can be anything that needs to be returned.
+     * @param $location
+     * @param $fields
+     */
     public static function errorMulti($location, $fields) {
         $set = '';
         $x = 1;

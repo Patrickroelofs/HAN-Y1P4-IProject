@@ -7,6 +7,9 @@ class Database {
     private         $_results;
     private         $_count = 0;
 
+    /**
+     * Database constructor.
+     */
     private function __construct() {
         try {
             if(self::$_pdo == null) {
@@ -17,14 +20,27 @@ class Database {
         }
     }
 
+    /**
+     * Returns the current database
+     * @return Database
+     */
     public static function getInstance() {
         return new Database();
     }
 
+    /**
+     * Closes the connection to the database
+     */
     public function closeConnection() {
         self::$_pdo = null;
     }
 
+    /**
+     * Query the database with an sql statement
+     * @param $sql
+     * @param array $params
+     * @return $this
+     */
     public function query($sql, $params = array()) {
         $this->_error = false;
         if($this->_query = self::$_pdo->prepare($sql)) {
@@ -47,6 +63,12 @@ class Database {
         return $this;
     }
 
+    /**
+     * Insert data into a $table, array $fields correspond with tables in database
+     * @param $table
+     * @param array $fields
+     * @return bool
+     */
     public function insert($table, $fields = array()) {
         if(count($fields)) {
             $keys = array_keys($fields);
@@ -71,6 +93,14 @@ class Database {
         return false;
     }
 
+    /**
+     * Update data in a $table, check the $row with $key, array $fields correspond with tables in database
+     * @param $table
+     * @param $row
+     * @param $key
+     * @param $fields
+     * @return bool
+     */
     public function update($table, $row, $key, $fields) {
         $set = '';
         $x = 1;
@@ -91,6 +121,13 @@ class Database {
         return false;
     }
 
+    /**
+     * An easier way of getting data from the database, with limiting operators for better security
+     * @param $action
+     * @param $table
+     * @param array $where
+     * @return $this|bool
+     */
     public function action($action, $table, $where = array()) {
         if(count($where) === 3) {
             $operators = array('=', '>', '<', '>=', '<=');
@@ -109,34 +146,72 @@ class Database {
         return false;
     }
 
+    /**
+     * A quick way to get data
+     * @param $table
+     * @param $where
+     * @return $this|bool
+     */
     public function get($table, $where) {
         return $this->action('SELECT *', $table, $where);
     }
 
+    /**
+     * A quick way to delete data
+     * @param $table
+     * @param $where
+     * @return $this|bool
+     */
     public function delete($table, $where) {
         return $this->action('DELETE', $table, $where);
     }
 
+    /**
+     * Prepare a statement
+     * @param $sql
+     * @return bool|PDOStatement
+     */
     public function prepare($sql){
         return self::$_pdo->prepare($sql);
     }
 
+    /**
+     * returns the result of any query
+     * @return mixed
+     */
     public function results() {
         return $this->_results;
     }
 
+    /**
+     * Returns the first result
+     * @return mixed
+     */
     public function first() {
         return $this->results()[0];
     }
 
+    /**
+     * returns the specific array key $id of a result
+     * @param $id
+     * @return mixed
+     */
     public function id($id) {
         return $this->results()[$id];
     }
 
+    /**
+     * returns true if there is an error in the database
+     * @return bool
+     */
     public function error() {
         return $this->_error;
     }
 
+    /**
+     * returns the amount of rows returned from a query
+     * @return int
+     */
     public function count() {
         return $this->_count;
     }
