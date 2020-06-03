@@ -115,23 +115,31 @@ if(isset($_POST['submit-offset-items-up'])) {
 }
 
 if(isset($_GET['itemOffset']) && isset($_GET['bidsOffset']) && isset($_GET['reviewsOffset'])) {
-    $getAllItems    = Database::getInstance()->query("SELECT hidden, id, title, description, price, thumbnail, durationenddate, durationendtime FROM Items WHERE trader = '". $thisUser->first()->username ."' ORDER BY title OFFSET $itemOffset ROWS FETCH NEXT 10 ROWS ONLY", array());
-    $getAllBids     = Database::getInstance()->query("SELECT item, amount FROM Bids WHERE username = '". $thisUser->first()->username ."' ORDER BY date, time DESC OFFSET $bidsOffset ROWS FETCH NEXT 5 ROWS ONLY", array());
-    $getAllReviews  = Database::getInstance()->query("SELECT review, comment, date, time FROM Feedback WHERE username = '". $thisUser->first()->username ."' ORDER BY date DESC OFFSET $reviewsOffset ROWS FETCH NEXT 5 ROWS ONLY", array());
+    $getAllItems    = Database::getInstance()->query("SELECT * FROM Items WHERE trader = '". $thisUser->first()->username ."' AND NOT hidden = 'true' AND NOT closed = 'true' ORDER BY title OFFSET $itemOffset ROWS FETCH NEXT 10 ROWS ONLY", array());
+    $getAllBids     = Database::getInstance()->query("SELECT * FROM Bids WHERE username = '". $thisUser->first()->username ."' ORDER BY date, time DESC OFFSET $bidsOffset ROWS FETCH NEXT 5 ROWS ONLY", array());
+    $getAllReviews  = Database::getInstance()->query("SELECT * FROM Feedback WHERE username = '". $thisUser->first()->username ."' ORDER BY date DESC OFFSET $reviewsOffset ROWS FETCH NEXT 5 ROWS ONLY", array());
+
+    $countItems     = Database::getInstance()->query("SELECT id FROM Items WHERE trader = '". $thisUser->first()->username ."'");
+    $countBids      = Database::getInstance()->query("SELECT item FROM Bids WHERE username = '". $thisUser->first()->username ."'");
+    $countFeedback  = Database::getInstance()->query("SELECT item FROM Feedback WHERE username = '" . $thisUser->first()->username . "'");
+
+} else if(Admin::isLoggedIn()) {
+    $getAllItems    = Database::getInstance()->query("SELECT * FROM Items WHERE trader = '". $thisUser->first()->username ."' ORDER BY title OFFSET 0 ROWS FETCH NEXT 10 ROWS ONLY", array());
+    $getAllBids     = Database::getInstance()->query("SELECT * FROM Bids WHERE username = '". $thisUser->first()->username ."' ORDER BY date, time DESC OFFSET 0 ROWS FETCH NEXT 5 ROWS ONLY", array());
+    $getAllReviews  = Database::getInstance()->query("SELECT * FROM Feedback WHERE username = '". $thisUser->first()->username ."' ORDER BY date DESC OFFSET 0 ROWS FETCH NEXT 5 ROWS ONLY", array());
 
     $countItems     = Database::getInstance()->query("SELECT id FROM Items WHERE trader = '". $thisUser->first()->username ."'");
     $countBids      = Database::getInstance()->query("SELECT item FROM Bids WHERE username = '". $thisUser->first()->username ."'");
     $countFeedback  = Database::getInstance()->query("SELECT item FROM Feedback WHERE username = '" . $thisUser->first()->username . "'");
 
 } else {
-    $getAllItems    = Database::getInstance()->query("SELECT hidden, id, title, description, price, thumbnail, durationenddate, durationendtime FROM Items WHERE trader = '". $thisUser->first()->username ."' ORDER BY title OFFSET 0 ROWS FETCH NEXT 10 ROWS ONLY", array());
-    $getAllBids     = Database::getInstance()->query("SELECT item, amount FROM Bids WHERE username = '". $thisUser->first()->username ."' ORDER BY date, time DESC OFFSET 0 ROWS FETCH NEXT 5 ROWS ONLY", array());
-    $getAllReviews  = Database::getInstance()->query("SELECT review, comment, date, time FROM Feedback WHERE username = '". $thisUser->first()->username ."' ORDER BY date DESC OFFSET 0 ROWS FETCH NEXT 5 ROWS ONLY", array());
+    $getAllItems    = Database::getInstance()->query("SELECT * FROM Items WHERE trader = '". $thisUser->first()->username ."'  AND NOT hidden = 'true' AND NOT closed = 'true' ORDER BY title OFFSET 0 ROWS FETCH NEXT 10 ROWS ONLY", array());
+    $getAllBids     = Database::getInstance()->query("SELECT * FROM Bids WHERE username = '". $thisUser->first()->username ."' ORDER BY date, time DESC OFFSET 0 ROWS FETCH NEXT 5 ROWS ONLY", array());
+    $getAllReviews  = Database::getInstance()->query("SELECT * FROM Feedback WHERE username = '". $thisUser->first()->username ."' ORDER BY date DESC OFFSET 0 ROWS FETCH NEXT 5 ROWS ONLY", array());
 
     $countItems     = Database::getInstance()->query("SELECT id FROM Items WHERE trader = '". $thisUser->first()->username ."'");
     $countBids      = Database::getInstance()->query("SELECT item FROM Bids WHERE username = '". $thisUser->first()->username ."'");
     $countFeedback  = Database::getInstance()->query("SELECT item FROM Feedback WHERE username = '" . $thisUser->first()->username . "'");
-
 }
 
 include FUNCTIONS . 'admin.func.php';
@@ -199,10 +207,9 @@ include FUNCTIONS . 'admin.func.php';
                 }
 
                 foreach($getAllItems->results() as $result) {
-                    if(!$result->hidden || Admin::isLoggedIn()) {
                         ?>
                         <div class="column">
-                            <div class="ui fluid card productcards <?php if($result->hidden) { echo 'itemhidden'; } ?>">
+                            <div class="ui fluid card productcards <?php if($result->hidden) { echo 'itemhidden'; } ?> <?php if($result->closed) { echo 'itemclosed'; } ?>">
                                 <a class="image" href="product.php?p=<?= $result->id; ?>">
                                     <img src="<?= ROOT . $result->thumbnail; ?>" alt="Foto van <?= escape($result->title); ?>">
                                 </a>
@@ -214,7 +221,7 @@ include FUNCTIONS . 'admin.func.php';
                                 </div>
                             </div>
                         </div>
-                    <?php }
+                <?php
                 } ?>
             </div>
             <br>

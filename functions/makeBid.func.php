@@ -40,7 +40,7 @@ if(isset($_POST['offer-submit'])) {
             echo $e->getMessage();
         }
 
-        Notification::add($bidHigh->first()->username, 'Je bieding op ' . $thisItem->first()->title . ' is overboden');
+        Notification::add($bidHigh->first()->username, "Je bieding op <a href='product.php?p=". $thisItem->first()->id ."'>" . $thisItem->first()->title . " is overboden </a>");
 
         // succes message
         Message::noticeMulti('product.php?p='.$productID.'', array(

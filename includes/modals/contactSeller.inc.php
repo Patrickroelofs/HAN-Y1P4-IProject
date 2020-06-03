@@ -57,7 +57,7 @@ else { ?>
                     <img src="
                 <?php
                     if(empty($buyer->first()->profilepicture)) {
-                        echo 'https://place-hold.it/400';
+                        echo 'upload/profilepictures/default.jpg';
                     } else {
                         echo $buyer->first()->profilepicture;
                     } ?>">
@@ -164,8 +164,11 @@ else { ?>
                 </div>
             </div>
             <div class="actions">
-                <?php if ($thisItem->first()->closed && $thisItem->first()->buyer == Session::get('username')) {?>
-                <a href="feedback.php?p=<?=$thisItem->first()->id ?>" class="ui primary right labeled icon button">
+                <?php
+                    $feedbackexists = Database::getInstance()->query("SELECT top (1) * from feedback where item = '". $thisItem->first()->id ."'");
+                ?>
+                <?php if ($thisItem->first()->closed && $thisItem->first()->buyer == Session::get('username') && $feedbackexists->count() < 1) { ?>
+                <a href="feedback.php?p=<?= $thisItem->first()->id ?>" class="ui primary right labeled icon button">
                     Feedback achterlaten
                     <i class="balance scale icon"></i>
                 </a>

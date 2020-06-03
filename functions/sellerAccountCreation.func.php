@@ -64,6 +64,7 @@ if ($user->first()->complete == 0) {
 //insert into database
     if (isset($_GET['id'])) {
         if (Hash::verify(Session::get('username'), $_GET['id'])) {
+            echo false;
             try {
                 $stmt = Database::getInstance()->update('Trader', 'username', Session::get('username'), array(
                     'activated' => true

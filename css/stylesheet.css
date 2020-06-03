@@ -303,6 +303,14 @@ footer .footer.title h1 {
     border: 2px solid red !important;
 }
 
+.itemclosed {
+    border: 2px solid blue !important;
+}
+
+.itemhidden.itemclosed {
+    border: 2px solid orange !important;
+}
+
 /* --- Bidlist -------------------------------------------------- */
 .bidlist {
     list-style: none;

@@ -37,7 +37,9 @@ if ($thisItem->count() < 1) {
 }
 
 // Check if the product has been bought by the user
-if(Session::exists('username')) {
+if(Admin::isLoggedIn()) {
+
+} else if(Session::exists('username')) {
     if (strtolower($thisItem->first()->buyer) != strtolower(Session::get('username')) && $thisItem->first()->closed) {
         if(strtolower($thisItem->first()->trader) != strtolower(Session::get('username'))) {
             Message::error('index.php', array(
@@ -45,12 +47,10 @@ if(Session::exists('username')) {
             ));
         }
     }
-} else {
-    if($thisItem->first()->closed) {
-        Message::error('index.php', array(
-            'm' => 'Een andere gebruiker heeft dit product gekocht'
-        ));
-    }
+} else if($thisItem->first()->closed) {
+    Message::error('index.php', array(
+        'm' => 'Een andere gebruiker heeft dit product gekocht'
+    ));
 }
 
 // Calculate time left in offer
