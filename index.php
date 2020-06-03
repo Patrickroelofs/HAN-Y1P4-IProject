@@ -11,14 +11,14 @@
             <div class="column">
                 <div class="ui fluid card">
                     <a class="image" href="category.php?cat=11116">
-                        <img src="upload/highlightedCategories/MuntenEnBankbiljetten.png" alt="categorie munten en bankbiljetten">
+                        <img src="upload/highlightedCategories/MuntenEnBankbiljetten.jpg" alt="categorie munten en bankbiljetten">
                     </a>
                 </div>
             </div>
             <div class="column">
                 <div class="ui fluid card">
                     <a class="image" href="category.php?cat=888">
-                        <img src="upload/highlightedCategories/Sport.png" alt="categorie sport">
+                        <img src="upload/highlightedCategories/Sport.jpg" alt="categorie sport">
                     </a>
                 </div>
             </div>
@@ -27,28 +27,28 @@
             <div class="column">
                 <div class="ui fluid card">
                     <a class="image" href="category.php?cat=9800">
-                        <img src="upload/highlightedCategories/Auto.png" alt="categorie auto">
+                        <img src="upload/highlightedCategories/Auto.jpg" alt="categorie auto">
                     </a>
                 </div>
             </div>
             <div class="column">
                 <div class="ui fluid card">
                     <a class="image" href="category.php?cat=281">
-                        <img src="upload/highlightedCategories/SieradenHorloge.png" alt="categorie sieraden">
+                        <img src="upload/highlightedCategories/SieradenHorloge.jpg" alt="categorie sieraden">
                     </a>
                 </div>
             </div>
             <div class="column">
                 <div class="ui fluid card">
                     <a class="image" href="category.php?cat=11233">
-                        <img src="upload/highlightedCategories/Muziek.png" alt="categorie muziek">
+                        <img src="upload/highlightedCategories/Muziek.jpg" alt="categorie muziek">
                     </a>
                 </div>
             </div>
             <div class="column">
                 <div class="ui fluid card">
                     <a class="image" href="category.php?cat=11232">
-                        <img src="upload/highlightedCategories/FilmDVD.png" alt="categorie film en dvd">
+                        <img src="upload/highlightedCategories/FilmDVD.jpg" alt="categorie film en dvd">
                     </a>
                 </div>
             </div>
