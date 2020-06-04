@@ -71,7 +71,7 @@ SELECT
     concat('https://iproject19.icasites.nl/thumbnails/',Thumbnail),
     Categorie,
     Prijs,
-    '',
+    'PayPal',
     '',
     '',
     '',
