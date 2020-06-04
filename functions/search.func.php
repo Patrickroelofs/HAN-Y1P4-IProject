@@ -38,13 +38,13 @@ if (isset($_GET['search'])) {
     }
 
     if(isset($_POST['submit-search-down'])) {
-        $data .= '&offset='. $offset -= 10;
+        $data .= '&offset='. $offset -= 20;
 
         Redirect::to('searchresults.php' . $data);
     }
 
     if(isset($_POST['submit-search-up'])) {
-        $data .= '&offset=' . $offset += 10;
+        $data .= '&offset=' . $offset += 20;
 
         Redirect::to('searchresults.php' . $data);
     }
@@ -57,12 +57,6 @@ if (isset($_GET['search'])) {
     }
 
     $condition = substr($condition, 0,-4);
-
-    if(isset($_GET['offset'])) {
-        $offset = $_GET['offset'];
-    } else {
-        $offset = 0;
-    }
 
     $stmt = Database::getInstance()->query("SELECT * FROM Items WHERE $condition ORDER BY TITLE OFFSET $offset ROWS FETCH NEXT 20 ROWS ONLY",array());
     $countSearch = Database::getInstance()->query("SELECT id FROM Items WHERE $condition");
