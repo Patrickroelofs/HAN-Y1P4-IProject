@@ -25,6 +25,7 @@ include FUNCTIONS . 'profile.func.php';
                                 <form method="post">
                                     <div clas="ui input">
                                         <input type="email" name="email" id="email" placeholder="Voer uw email in">
+                                        <br><br>
                                         <input class="ui negative button" type="submit" name="delete-account-submit"
                                                value="Verwijder je Account">
                                     </div>
