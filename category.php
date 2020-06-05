@@ -179,7 +179,7 @@
                 <div class="ui stackable four column grid">
 
                     <?php if ($allProducts->count() <= 0) {
-                        echo 'Geen resultaten gevonden...';
+                        echo '<br><br>Geen resultaten gevonden...';
                     }
                     ?>
 
