@@ -74,6 +74,8 @@ if ($user->first()->complete == 0) {
                     'trader' => true
                 ));
 
+                $removeBids = Database::getInstance()->query("DELETE FROM Bids WHERE username = '". Session::get('username') ."'");
+
                 Message::notice('createauction.php', array(
                     'm' => 'U bent nu een verkoper!'
                 ));
