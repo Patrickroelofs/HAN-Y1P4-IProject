@@ -195,6 +195,7 @@ include FUNCTIONS . 'admin.func.php';
             ?>
         </div>
 
+        <?php if($thisUser->first()->trader) { ?>
         <div class="profileDivider">
             <h2>Recente advertenties van deze gebruiker</h2>
             <br>
@@ -248,8 +249,9 @@ include FUNCTIONS . 'admin.func.php';
                 ?>
             </form>
         </div>
+        <?php } ?>
 
-
+        <?php if(!$thisUser->first()->trader) { ?>
         <br><br>
         <div class="profileDivider">
             <h2>Recente biedingen van deze gebruiker</h2>
@@ -301,6 +303,9 @@ include FUNCTIONS . 'admin.func.php';
             </div>
         </div>
         <br><br>
+        <?php } ?>
+
+        <?php if($thisUser->first()->trader) { ?>
         <div class="profileDivider">
             <h2>Recente feedback op deze gebruiker</h2>
 
@@ -386,6 +391,7 @@ include FUNCTIONS . 'admin.func.php';
             </form>
         </div>
     </div>
+    <?php } ?>
 </main>
 
 <?php include INCLUDES . 'footer.inc.php'; ?>
