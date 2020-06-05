@@ -53,7 +53,7 @@ if (isset($_GET['search'])) {
     $condition = '';
     $query = explode(" ", $search);
     foreach($query as $text) {
-        $condition .= "title LIKE '%$text%' OR description LIKE '%$text%' OR ";
+        $condition .= "title LIKE '%$text%' OR ";
     }
 
     $condition = substr($condition, 0,-4);
