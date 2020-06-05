@@ -326,7 +326,19 @@ include FUNCTIONS . 'admin.func.php';
                 ?>
 
                 <div class="ui segment">
-                    <h3><?= $result->review ?></h3>
+                    <div class="bottom-margin-12">
+                        <i class="<?php
+                            if($result->review == 'positief') {
+                            echo "large green smile outline icon";
+                            }
+                            if($result->review == 'neutraal') {
+                            echo "large orange meh outline icon";
+                            }
+                            if($result->review == 'negatief') {
+                            echo "large red frown outline icon";
+                            }
+                        ?>"></i>
+                    </div>
                     <p>
                         <?php if (empty($result->comment)) {
                             echo '<em>Geen bericht achtergelaten.</em>';

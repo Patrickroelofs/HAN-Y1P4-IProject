@@ -400,6 +400,10 @@ footer .footer.title h1 {
     margin: 12px 0 0 0;
 }
 
+.bottom-margin-12 {
+    margin-bottom: 12px;
+}
+
 .vertical-margin-24 {
     margin: 24px 0;
 }
