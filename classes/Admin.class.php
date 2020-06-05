@@ -68,6 +68,9 @@ class Admin {
                'hidden' => true
             ));
         }
+
+        //Delete bids
+        $getBids = Database::getInstance()->query("DELETE FROM Bids WHERE username = '". $getUser->first()->username ."'");
     }
 
     /**
