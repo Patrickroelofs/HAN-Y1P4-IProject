@@ -47,19 +47,32 @@
                     </div>
                 </div>
                 <div class="three wide column">
+                    <?php
+                    if(Session::exists('username')){
+                        if(!$user->first()->trader || Admin::isLoggedIn()) {
+                    ?>
                     <h4 class="ui header">Koper</h4>
                     <div class="ui link list">
                         <a href="foryou.php" class="item">Voor Jou</a>
                         <a href="nearby.php" class="item">Dichtbij</a>
                         <a href="yourbids.php" class="item">Jouw Biedingen</a>
                     </div>
+                    <?php }
+                        }
+                    ?>
                 </div>
                 <div class="three wide column">
+                    <?php
+                    if(Session::exists('username')){
+                        if($user->first()->trader || Admin::isLoggedIn()) {
+                    ?>
                     <h4 class="ui header">Verkoper</h4>
                     <div class="ui link list">
                         <a href="createauction.php" class="item">Advertentie Plaatsen</a>
                         <a href="foryou.php#yourAuctions" class="item">Jouw Advertenties</a>
                     </div>
+                    <?php }
+                    } ?>
                 </div>
                 <div class="seven wide column">
                     <h4 class="ui header">Jouw online Veilingsite.</h4>
