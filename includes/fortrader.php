@@ -11,26 +11,28 @@ $traderProducts = Database::getInstance()->query("SELECT * FROM Items WHERE trad
         <div class="ui stackable five column grid">
         <?php
         foreach ($traderProducts->results() as $product) {
-        $productBids = Database::getInstance()->query("SELECT * FROM Bids WHERE item = $product->id ORDER BY amount DESC"); ?>
-        <div class="column">
-            <div class="ui fluid card">
-                <a class="image" href="product.php?p=<?= $product->id; ?>">
-                    <img src="<?= ROOT . $product->thumbnail; ?>" alt="Foto van <?= $product->title; ?>">
-                </a>
-                <div class="content">
-                    <a class="header" href="product.php?p=<?= $product->id; ?>"><?= $product->title; ?></a>
-                    <div class="description"><span class="bold">Tijd over: </span><span data-countdown="<?= $product->durationenddate ?> <?= $product->durationendtime ?>"></span></div>
-                    <div class="description"><span class="bold">Aantal biedingen: </span> <?php
-                        if ($productBids->count() <= 0) { // if there are NO bids ?>
-                        0 </div>
-                    <div class="description"><span class="bold">Startprijs: </span> <?= $product->price ?></div>
-                    <?php } else { ?>
-                    <?= $productBids->count() ?> </div>
-                <div class="description"><span class="bold">Hoogste bod: </span> <?= $productBids->first()->amount ?></div>
-                <?php } ?>
+            $productBids = Database::getInstance()->query("SELECT * FROM Bids WHERE item = $product->id ORDER BY amount DESC"); ?>
+            <div class="column">
+                <div class="ui fluid card">
+                    <a class="image" href="product.php?p=<?= $product->id; ?>">
+                        <img src="<?= ROOT . $product->thumbnail; ?>" alt="Foto van <?= $product->title; ?>">
+                    </a>
+                    <div class="content">
+                        <a class="header" href="product.php?p=<?= $product->id; ?>"><?= $product->title; ?></a>
+                        <div class="description"><span class="bold">Tijd over: </span><span data-countdown="<?= $product->durationenddate ?> <?= $product->durationendtime ?>"></span></div>
+                        <div class="description"><span class="bold">Aantal biedingen: </span> <?php
+                            if ($productBids->count() <= 0) { // if there are NO bids ?>
+                                0 </div>
+                                <div class="description"><span class="bold">Startprijs: </span> <?= $product->price ?>
+                            <?php } else { ?>
+                                <?= $productBids->count() ?> </div>
+                                <div class="description"><span class="bold">Hoogste bod: </span> <?= $productBids->first()->amount ?>
+                            <?php } ?>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-<?php } ?>
+        <?php } ?>
     </div>
 <?php } ?>
 </div>
